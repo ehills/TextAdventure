@@ -1,0 +1,23 @@
+/*
+adsasdasd
+asd
+ads
+
+das
+ads
+sad
+ads
+a
+sd
+asd
+asd
+asd
+as
+d
+asd
+//aasdasasdas
+*/ asdasdasdasad
+This line has /* no */ comments
+This line has /* many *//*about 2 */ acsc/* in between */asc
+//asdasdasd
+dasdasd //asdasd

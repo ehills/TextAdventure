@@ -1,21 +1,29 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include "comments.h"
 using namespace std;
 
 int main(int argc, char* argv[]) {
    string line;
-   ifstream script;   if (argc != 2) {
+   bool in_comment = false;
+   ifstream script;
+
+   // Check there is a file name specified
+   if (argc != 2) {
       cout << "Please enter one command line argument as the path to the file\n";
       return EXIT_FAILURE;
    }
-   
+
+   // Open the file
    script.open(argv[1]);
    if (script.is_open()) {
-      cout << "OPENED " << argv[1] << " \n"; 
       while (script.good()) {
-            getline (script,line);
-            cout << line << endl;
+            getline(script, line);
+            strip_comments(&line, &in_comment);
+            if (!line.empty()) {
+               cout << line << endl;
+            }
       }
       script.close();
    } else {
