@@ -55,17 +55,17 @@ void Location::setWest(Location* location) {
 }
 
 /* Adds an item to the room */
-void Location::addItem(int item) {
-    this->items.push_back(item);
+void Location::addItem(string item_name) {
+    this->items.insert(item_name);
 }
 
 /* Removes an item from the room */
-void Location::removeItem(int item) {
-    this->items.remove(item);
+void Location::removeItem(string item_name) {
+    this->items.erase(item_name);
 }
     
 string listItems(void) {
-    
+    return "NOT DONE";
 }
 
 /* Constructor */

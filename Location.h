@@ -49,7 +49,7 @@ private:
     Location* north;
     Location* east;
     Location* west;
-    map<Item> items;
+    map<string, Item> items;
 };
 
 #endif
