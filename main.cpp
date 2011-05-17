@@ -2,32 +2,24 @@
 #include <fstream>
 #include <cstdlib>
 #include "comments.h"
+#include "constants.h"
+#include "fileio.h"
 using namespace std;
 
-int main(int argc, char* argv[]) {
-   string line;
-   bool in_comment = false;
-   ifstream script;
+void parse_file() {
+   strip_file_comments();
+}
 
+int main(int argc, char* argv[]) {
+   char* filename;
    // Check there is a file name specified
    if (argc != 2) {
-      cout << "Please enter one command line argument as the path to the file\n";
+      cout << ERROR_WRONG_ARGUMENTS;
       return EXIT_FAILURE;
    }
-
+   filename = argv[1];
    // Open the file
-   script.open(argv[1]);
-   if (script.is_open()) {
-      while (script.good()) {
-            getline(script, line);
-            strip_comments(&line, &in_comment);
-            if (!line.empty()) {
-               cout << line << endl;
-            }
-      }
-      script.close();
-   } else {
-      cout << "Unable to open " << argv[1] << "\n";
-   }
+   copy_file(filename, WORKING_FILENAME);
+   parse_file();
    return EXIT_SUCCESS;
 }

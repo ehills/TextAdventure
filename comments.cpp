@@ -1,4 +1,33 @@
 #include "comments.h"
+#include "fileio.h"
+
+void strip_file_comments() {
+   string line;
+   bool in_comment = false;
+   ifstream working_file;
+   ofstream temp_file;
+   working_file.open(WORKING_FILENAME);
+   temp_file.open(TEMP_FILENAME);
+   
+   if (working_file.is_open()) {
+      while (working_file.good()) {
+         getline(working_file, line);
+         strip_comments(&line, &in_comment);
+         if (!line.empty()) {
+            temp_file << line << endl;
+         }
+
+      }
+      if (in_comment) {
+         cout << ERROR_UNCLOSED_COMMENT;
+      }
+      working_file.close();
+      temp_file.close();
+      copy_file(TEMP_FILENAME, WORKING_FILENAME);
+   } else {
+      cout << ERROR_TEMP_FILE_NOT_OPEN;
+   }
+}
 
 void strip_comments(string* line, bool* in_comment) {
    unsigned int comment_position;
