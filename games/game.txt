@@ -1,0 +1,41 @@
+/* This is an example game used for testing */
+
+Player {
+    name = "Mother";
+    description = "A terrible parent";
+    carryLimit = 2;
+}
+
+// The score at the start
+initialScore = 0;
+
+// What gets said when the verb is not known
+defaultResponse = "I don't know how to " inputVerb ".";
+
+// The location to start in
+initialLocation = livingRoom;
+
+// The description to print when the game starts
+initialDescription = "The start description";
+
+// The location definition
+Location kitchen {
+    name = "Kitchen";
+    description = "The Kitchen";
+    
+    south = livingRoom;
+}
+
+// The location definition for livingRoom
+Location livingRoom {
+    name = "The Living Room";
+    description = "The Living Room";
+    
+    north = kitchen;
+}
+
+// The item definition for Television
+Item television {
+    name = "Television";
+    description = "The Television";
+}
