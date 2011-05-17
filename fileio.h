@@ -6,6 +6,5 @@
 using namespace std;
 
 extern void copy_file(char* filename, char* new_filename);
-extern void move_file(char* old_filename, char* new_filename);
 
 #endif

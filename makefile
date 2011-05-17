@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.cpp comments.cpp Player.cpp fileio.cpp Location.cpp Item.cpp
+SOURCES=main.cpp fileio.cpp Parser.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=TextAdventure
 

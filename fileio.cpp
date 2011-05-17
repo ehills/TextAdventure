@@ -22,7 +22,3 @@ void copy_file(char* filename, char* new_filename) {
    fclose(in);
    fclose(out);
 }
-
-void move_file(char* old_filename, char* new_filename) {
-   copy_file(old_filename, new_filename);
-}
