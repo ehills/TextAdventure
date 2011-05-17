@@ -13,7 +13,6 @@ Parser::Parser(char* filename) {
         while (getline(file, line)) {
             data += line;
             data += NEWLINE_HACK;
-            data += "(*-*)";
         }
         file.close();
     }
@@ -28,6 +27,7 @@ list<string> Parser::ParseFile(void) {
     }*/
     this->stripComments();
     this->ParseLocations();
+    this->ParseItems();
     return this->errors;
 }
 
@@ -99,7 +99,7 @@ int Parser::ParseLocations() {
 }
 
 int Parser::ParseItems() {
-   /* // Find all block comments and remove
+    // Find all block comments and remove
     unsigned int start, end, size;
 
     start = this->file_data.find("Item");
@@ -107,15 +107,15 @@ int Parser::ParseItems() {
         end = this->file_data.find("{", start);
         if (end < this->file_data.size()) {
             size = (end) - start;
-            cout << this->file_data.substr(start + 4, size - 4) << "\n";
-            / *
+            cout << this->file_data.substr(start + 5, size - 5) << "\n";
+            /*
              * ADD TO ITEM MAP
              * 
              * THEN LOOP AGAIN TO ADD DETAILS (DUE TO REFERENCING ISSUE)
-             * /
+             */
         }
         start = this->file_data.find("location", end);
-    }*/
+    }
 
     return NO_ERRORS;
 }

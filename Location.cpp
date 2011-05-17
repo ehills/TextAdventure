@@ -4,60 +4,71 @@
  * Date: May 17 2011
  * Description: This will be the object that is created for each room
  **/
-#include <iostream>
-#include <cstdlib>
-//#include "Item.h"
-#include <list>
-using namespace std;
-
-/* Location class will store all information relevant to a particular location*/
-class Location {
-   string name;
-   string description;
-   string shortDescription;
-   list<int> items;
-public:
-   Location(string, string, string, list<int>);
-   ~Location();
-   string getName(void) {return name;}
-   void setName(string name) {this->name = name;}
-   string getDescription(void) {return description;}
-   void setDescription(string description) {this->description = description;}
-   string getShortDescr(void) {return shortDescription;}
-   void setShortDescr(string shortD) {this->shortDescription = shortD;}
-   void addItem(int item);
-   void removeItem(int item);
-   void makeDescription(void);
-};
+#include "Location.h"
 
 /* Constructor */
-Location::Location(string name, string description,
-                   string shortDescription, list<int> items) {
-   this->name = name;
-   this->description = description;
-   makeDescription();
-   this->shortDescription = shortDescription;
-   this->items = items;
+Location::Location() {
+    this->name = "";
+    this->description = "";
+    this->items = "";
 }
 
-/* Will make the new room description based off the original base and then
- * has each item description added to the rooms description.
- */
-void Location::makeDescription(void) {
-   list<int>::iterator iter;
-   for (iter =items.begin(); iter != items.end(); ++iter) {
-      //this->description += (endl + *iter.getDescription);
-   }
+/* Constructor */
+Location::Location(string name, string description, list<int> items) {
+    this->name = name;
+    this->description = description;
+    this->items = items;
+}
+
+// Directions
+
+Location* Location::getNorth(void) {
+    return this->north;
+}
+
+Location* Location::getSouth(void) {
+    return this->south;
+}
+
+Location* Location::getEast(void) {
+    return this->east;
+}
+
+Location* Location::getWest(void) {
+    return this->west;
+}
+
+void Location::setNorth(Location* location) {
+    this->north = location;
+}
+
+void Location::setSouth(Location* location) {
+    this->south = location;
+}
+
+void Location::setEast(Location* location) {
+    this->east = location;
+}
+
+void Location::setWest(Location* location) {
+    this->west = location;
 }
 
 /* Adds an item to the room */
 void Location::addItem(int item) {
-   this->items.push_back(item);
+    this->items.push_back(item);
 }
 
 /* Removes an item from the room */
 void Location::removeItem(int item) {
-   this->items.remove(item);
+    this->items.remove(item);
+}
+    
+string listItems(void) {
+    
 }
 
-   
+/* Constructor */
+Location::~Location(void) {
+    
+}
