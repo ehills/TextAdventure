@@ -6,7 +6,7 @@
  **/
 #include <iostream>
 #include <cstdlib>
-#include "Item.h"
+//#include "Item.h"
 #include <list>
 using namespace std;
 
@@ -15,26 +15,27 @@ class Location {
    string name;
    string description;
    string shortDescription;
-   list<Item> items;
+   list<int> items;
 public:
-   Location(string, string, string, List);
+   Location(string, string, string, list<int>);
    ~Location();
    string getName(void) {return name;}
    void setName(string name) {this->name = name;}
    string getDescription(void) {return description;}
    void setDescription(string description) {this->description = description;}
    string getShortDescr(void) {return shortDescription;}
-   string setShortDescr(string shortD) {this->shortDescription = shortD;}
-   void addItem(Item item);
-   void removeItem(Item item);
+   void setShortDescr(string shortD) {this->shortDescription = shortD;}
+   void addItem(int item);
+   void removeItem(int item);
    void makeDescription(void);
 };
 
+/* Constructor */
 Location::Location(string name, string description,
-                   string shortDescription, List items) {
+                   string shortDescription, list<int> items) {
    this->name = name;
    this->description = description;
-   makeDescription(void);
+   makeDescription();
    this->shortDescription = shortDescription;
    this->items = items;
 }
@@ -42,20 +43,21 @@ Location::Location(string name, string description,
 /* Will make the new room description based off the original base and then
  * has each item description added to the rooms description.
  */
-//////////////// ITEM CLASS NEEDS TO BE MADE //////////////
-Location::makeDescription(void) {
-   list<Item>::iterator iter;
+void Location::makeDescription(void) {
+   list<int>::iterator iter;
    for (iter =items.begin(); iter != items.end(); ++iter) {
-      this->description += (endl + *iter.getDescription);
+      //this->description += (endl + *iter.getDescription);
    }
 }
 
-Location::addItem(Item item) {
-   // to be dones
+/* Adds an item to the room */
+void Location::addItem(int item) {
+   this->items.push_back(item);
 }
 
-Location:removieItem(Item item) {
-   // to be done
+/* Removes an item from the room */
+void Location::removeItem(int item) {
+   this->items.remove(item);
 }
 
    
