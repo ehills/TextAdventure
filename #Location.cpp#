@@ -57,12 +57,7 @@ void Location::addItem(Item item) {
 
 /* Removes an item from the room */
 void Location::removeItem(string item) {
-    list<Item>::iterator iter;
-    for (iter =items.begin(); iter != items.end(); ++iter) {
-       if (iter->getName() == item) {
-          this->items.remove(*iter);
-       }
-    }
+   
 }
 
    

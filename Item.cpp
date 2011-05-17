@@ -7,27 +7,24 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <string>
 using namespace std;
 
 /* Item class stores all information relevant to a particular item object */
 class Item {
    string name;
    string description;
-   int weight;
 public:
-   Item(string, string, int);
+   Item(string, string);
    ~Item();
    string getName(void) {return name;}
    void setName(string name) {this->name = name;}
    string getDescription(void) {return description;}
    void setDescription(string description) {this->description = description;}
-   int getWeight(void) {return weight;}
-   void setWeight(int weight) {this->weight = weight;}
 };
 
 /* Constructor */
-Item::Item(string name, string description, int weight) {
+Item::Item(string name, string description) {
    this->name = name;
    this->description = description;
-   this->weight = weight;
 }

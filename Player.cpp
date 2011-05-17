@@ -11,17 +11,23 @@ using namespace std;
 /* Player Class will have a description and a weight limit associated with it.*/
 class Player {
    string description;
-   int weight_limit;
+   int max_items;
+   int current_number_of_items;
 public:
-   Player(string, int);
+   Player(string, int, int);
    ~Player();
    string getDescription(void) {return description;}
    void setDescription(string description) {this->description = description;}
-   int getWeightLimit(void) {return weight_limit;}
-   void setWeightLimit(int limit) {weight_limit = limit;}
+   int getNumberOfItems(void) {return current_number_of_items;}
+   void setNumberOfItems(int number_of_items) {
+      current_number_of_items = number_of_items ;
+   }
+   int getMaxItems(void) {return max_items;}
+   void setMaxItems(int max_items) {this->max_items = max_items;}
 };
 
-Player::Player(string description, int weight_limit) {
+Player::Player(string description, int max_items, int current_number_of_items) {
    this->description = description;
-   this->weight_limit = weight_limit;
+   this->max_items = max_items;
+   this->current_number_of_items = current_number_of_items;
 }
