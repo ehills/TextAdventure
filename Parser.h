@@ -31,6 +31,12 @@ private:
     int ParseDefaults();
     int ParseLocations();
     int ParseItems();
+    
+    // Parses the attributes
+    void ParseLocation(string data, Location location);
+    
+    // Parses the attributes
+    void ParseItem(string data, Item item);
     //Player ParsePlayer();
     
     // Parsing Data
@@ -39,5 +45,6 @@ private:
     map<string, Location> locations;
     map<string, Item> items;
 };
+
 
 #endif

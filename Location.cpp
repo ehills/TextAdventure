@@ -17,6 +17,26 @@ Location::Location(string name, string description, map<string, Item> items) {
     this->items = items;
 }
 
+
+// Details
+
+string Location::getName(void) {
+    return this->name;
+}
+
+void Location::setName(string name) {
+    this->name = name;
+}
+
+string Location::getDescription(void) {
+    return this->description;
+}
+
+void Location::setDescription(string description) {
+    this->description = description;
+}
+
+
 // Directions
 
 Location* Location::getNorth(void) {
@@ -53,9 +73,8 @@ void Location::setWest(Location* location) {
 
 /* Adds an item to the room */
 void Location::addItem(string item_name, Item item) {
-    this->items.insert(pair<string, Item>(item_name, item));
+    this->items.insert(pair<string, Item > (item_name, item));
 }
-
 
 /* Adds an item to the room */
 bool Location::hasItem(string item_name) {
@@ -66,7 +85,7 @@ bool Location::hasItem(string item_name) {
 void Location::removeItem(string item_name) {
     this->items.erase(item_name);
 }
-    
+
 void Location::listItems(void) {
 }
 
