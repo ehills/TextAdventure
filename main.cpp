@@ -1,36 +1,42 @@
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
-#include <string>
-#include "Location.h"
-#include "Player.cpp"
+#include <list>
+#include "constants.h"
+#include "fileio.h"
+#include "Parser.h"
 using namespace std;
-#define WELCOME_MESSAGE "Placeholder\n"
-#define START_L_POINT "Placeholder"
-#define START_L_DESCR "Placeholder"
-#define PLAYER_DESCR "Placeholder"
-#define START_LOCATION "Placeholder"
 
-
-int main(int argc, char **argv) {
-   string user_response = "";
-   string user ="";
-   //Location startLocation = new Location(START_L_POINT, START_L_DESCR, items);
-   //Player player = new Player(PLAYER_DESCR, 5, 0,START_LOCATION);
-
-   /* Print welcome message and get users name */
-   cout << WELCOME_MESSAGE;
-   cout << "Please enter your hero's name: ";
-   cin >> user;
-   cin.ignore();
-   cout << "Thank you " << user << ". Your quest will now begin." << endl;
-
-   while (true) {
-      
-   }
-
-   return 0;
+void handle_errors(list<string> errors) {
+    if (!errors.empty()) {
+        cerr << "------------ " << errors.size() << " Errors Found " << "------------\n";
+        while (!errors.empty()) {
+            string error = errors.back();
+            cerr << error << "\n\n";
+            errors.pop_back();
+        }
+    } else {
+        cout << "\nFile compiled without errors\n";
+    }
 }
-      
 
-      
-   
+int main(int argc, char* argv[]) {
+    char* filename;
+    // Check there is a file name specified
+    if (argc != 2) {
+        cerr << ERROR_WRONG_ARGUMENTS;
+        return EXIT_FAILURE;
+    }
+
+    filename = argv[1];
+    Parser parser(filename);
+    list<string> errors = parser.ParseFile();
+    handle_errors(errors);
+
+    /*
+    
+    // Open the file
+    copy_file(filename, WORKING_FILENAME);
+    parse_file();*/
+    return EXIT_SUCCESS;
+}
