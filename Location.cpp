@@ -36,6 +36,38 @@ void Location::setDescription(string description) {
     this->description = description;
 }
 
+void Location::printRoom(void) {
+   cout << getDescription() << listItems();
+}
+
+/* Adds an item to the room */
+void Location::addItem(string item_name, Item item) {
+    this->items.insert(pair<string, Item > (item_name, item));
+}
+
+/* Adds an item to the room */
+bool Location::hasItem(string item_name) {
+    return this->items.count(item_name) != 0;
+}
+
+/* Removes an item from the room */
+void Location::removeItem(string item_name) {
+    this->items.erase(item_name);
+}
+
+/* Iterates through all items in the room and prints there description */
+string Location::listItems(void) {
+   string the_items ="";
+   map<string,Item>::iterator it;
+   for (it = items.begin(); it != items.end(); ++it) {
+      the_items += ("\n" + it->second.getDescription());
+   }
+   return the_items;
+}
+
+/* Destructor */
+Location::~Location(void) {
+}
 
 // Directions
 
@@ -69,31 +101,4 @@ void Location::setEast(Location* location) {
 
 void Location::setWest(Location* location) {
     this->west = location;
-}
-
-/* Adds an item to the room */
-void Location::addItem(string item_name, Item item) {
-    this->items.insert(pair<string, Item > (item_name, item));
-}
-
-/* Adds an item to the room */
-bool Location::hasItem(string item_name) {
-    return this->items.count(item_name) != 0;
-}
-
-/* Removes an item from the room */
-void Location::removeItem(string item_name) {
-    this->items.erase(item_name);
-}
-
-/* Iterates through all items in the room and prints there description */
-void Location::listItems(void) {
-   map<string,Item>::iterator it;
-   for (it = items.begin(); it != items.end(); ++it) {
-      cout << endl << it->second.getDescription();
-   }
-}
-
-/* Destructor */
-Location::~Location(void) {
 }

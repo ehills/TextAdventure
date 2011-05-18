@@ -25,6 +25,7 @@ public:
     void setName(string name);
     string getDescription(void);
     void setDescription(string description);
+    void printRoom(void);
     
     // Directions
     Location* getNorth(void);
@@ -40,7 +41,7 @@ public:
     void addItem(string item_name, Item item);
     bool hasItem(string item_name);
     void removeItem(string item_name);
-    void listItems(void);
+    string listItems(void);
     
     // Object Deletion
     ~Location(void);
