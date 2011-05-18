@@ -6,7 +6,7 @@
  **/
 #include "Location.h"
 
-/* Constructor */
+/* Default Constructor */
 Location::Location() {
 }
 
@@ -56,7 +56,6 @@ void Location::addItem(string item_name, Item item) {
     this->items.insert(pair<string, Item>(item_name, item));
 }
 
-
 /* Adds an item to the room */
 bool Location::hasItem(string item_name) {
     return this->items.count(item_name) != 0;
@@ -66,10 +65,15 @@ bool Location::hasItem(string item_name) {
 void Location::removeItem(string item_name) {
     this->items.erase(item_name);
 }
-    
+
+/* Iterates through all items in the room and prints there description */
 void Location::listItems(void) {
+   map<string,Item>::iterator it;
+   for (it = items.begin(); it != items.end(); ++it) {
+      cout << endl << it->second.getDescription();
+   }
 }
 
-/* Constructor */
+/* Destructor */
 Location::~Location(void) {
 }
