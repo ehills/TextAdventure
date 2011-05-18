@@ -2,19 +2,20 @@
 #include <cstdlib>
 #include <string>
 #include "Location.h"
-#include "Player.h"
+#include "Player.cpp"
 using namespace std;
 #define WELCOME_MESSAGE "Placeholder\n"
 #define START_L_POINT "Placeholder"
 #define START_L_DESCR "Placeholder"
 #define PLAYER_DESCR "Placeholder"
+#define START_LOCATION "Placeholder"
 
 
 int main(int argc, char **argv) {
    string user_response = "";
    string user ="";
-   Location startLocation = new Location(START_L_POINT, START_L_DESCR, items);
-   Player player = new Player(PLAYER_DESCR, 5, 0, startLocation);
+   //Location startLocation = new Location(START_L_POINT, START_L_DESCR, items);
+   //Player player = new Player(PLAYER_DESCR, 5, 0,START_LOCATION);
 
    /* Print welcome message and get users name */
    cout << WELCOME_MESSAGE;
