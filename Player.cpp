@@ -6,6 +6,7 @@
  **/
 #include <cstdlib>
 #include <iostream>
+#include "Location.h"
 using namespace std;
 
 /* Player Class will have a description and a weight limit associated with it.*/
@@ -13,8 +14,9 @@ class Player {
    string description;
    int max_items;
    int current_number_of_items;
+   Location start_location;
 public:
-   Player(string, int, int);
+   Player(string, int, int, Location);
    ~Player();
    string getDescription(void) {return description;}
    void setDescription(string description) {this->description = description;}
@@ -24,10 +26,14 @@ public:
    }
    int getMaxItems(void) {return max_items;}
    void setMaxItems(int max_items) {this->max_items = max_items;}
+   Location getStartLocation(void) {return start_location;}
+   void setStartLocation(Location location) {this->start_location = location;}
 };
 
-Player::Player(string description, int max_items, int current_number_of_items) {
+Player::Player(string description, int max_items, int current_number_of_items,
+               Location start_location) {
    this->description = description;
    this->max_items = max_items;
    this->current_number_of_items = current_number_of_items;
+   this->start_location = start_location;
 }
