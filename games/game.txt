@@ -21,13 +21,13 @@ initialDescription = "The start description";
 // The location definition
 Location kitchen {
     name = "Kitchen";
-    description = "The Kitchen";
+    description = "A kitchen is a room or part of a room used for cooking and food preparation. In the West, a modern residential kitchen is typically equipped with a stove, a sink with hot and cold running water, a refrigerator and kitchen cabinets arranged according to a modular design. Many households have a microwave oven, a dishwasher and other electric appliances. The main function of a kitchen is cooking or preparing food but it may also be used for dining and entertaining.";
     
     south = livingRoom;
 }
 
 // The location definition for livingRoom
-Location livingRoom {
+Location livingRoom                 {
     name = "The Living Room";
     description = "The Living Room";
     
@@ -37,5 +37,6 @@ Location livingRoom {
 // The item definition for Television
 Item television {
     name = "Television";
-    description = "The Television";
+    description = "A small television placed in the corner of the kitchen. It looks broken";
+    location = kitchen;
 }

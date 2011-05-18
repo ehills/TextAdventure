@@ -4,7 +4,9 @@
 #define NO_ERRORS 0
 #define BAD_ATTRIBUTE "(*****@@@*@**@*@*)@*!)@*#!)#*!)*#)@*!)@*#!)*$!^%#&!%(&!@%!(&^!@%(#!&@^)"
 
+
 // Tools for scanning data
+
 string ParseStringData(string data, string attribute) {
     unsigned int start, end, size;
     start = data.find(attribute);
@@ -17,26 +19,30 @@ string ParseStringData(string data, string attribute) {
     return BAD_ATTRIBUTE;
 }
 
+inline bool validAttribute(string attribute) {
+    return attribute.compare(BAD_ATTRIBUTE) != 0;
+}
+
 // Tools for scanning data
+
 string stringTrim(string data) {
-    unsigned int start, end;
-    start = 0;
-    end = data.length() - 1;
-    while (start < end) {
-        if (!isspace(data.at(start))) {
-            break;
+        unsigned int start, end;
+        start = 0;
+        while (start < data.length()) {
+            if (!isspace(data.at(start))) {
+                break;
+            }
+            data.replace(start, 1, "");
+            start++;
         }
-        data = data.erase(start, 1);
-        start++;
-    }
-    
-    while (end > start) {
-        if (!isspace(data.at(end))) {
-            break;
+        end =  data.length() - 1;
+        while (end > 0) {
+            if (!isspace(data.at(end))) {
+                break;
+            }
+            data.replace(end, 1, "");
+            end--;
         }
-        data = data.erase(end, 1);
-        end--;
-    }
     return data;
 }
 
@@ -48,12 +54,12 @@ string ParseVariableData(string data, string attribute) {
         start = data.find("=", start) + 1;
         end = data.find(";", start);
         size = end - start;
-        ret = stringTrim(data.substr(start, size));
+        ret = (data.substr(start, size));
+        ret = stringTrim(ret);
         return ret;
     }
     return BAD_ATTRIBUTE;
 }
-
 
 /* Constructor */
 Parser::Parser(char* filename) {
@@ -80,6 +86,12 @@ list<string> Parser::ParseFile(void) {
     this->stripComments();
     this->ParseLocations();
     this->ParseItems();
+    
+    map<string, Location>::iterator it;
+    for (it = this->locations.begin(); it != this->locations.end(); it++) {
+        it->second.printRoom();
+    }
+
     return this->errors;
 }
 
@@ -138,9 +150,12 @@ int Parser::ParseLocations() {
         } else {
             end = this->file_data.find("{", start);
             if (end < this->file_data.size()) {
+                start += 9;
                 size = (end) - start;
                 Location location;
-                string location_name = stringTrim(this->file_data.substr(start + 9, size - 9));
+                string original_location_name = this->file_data.substr(start, size);
+                string location_name = stringTrim(original_location_name);
+                this->file_data.replace(start, size, location_name + " ");
                 this->locations[location_name] = location;
             }
         }
@@ -152,12 +167,16 @@ int Parser::ParseLocations() {
      */
     map<string, Location>::iterator it;
     for (it = this->locations.begin(); it != this->locations.end(); it++) {
-        string search = "Location " + it->first + "{";
+        string search = "Location " + it->first + " {";
         start = this->file_data.find(search) + search.length();
-        end = this->file_data.find("}", start);
-        size = (end) - start;
-        string data = this->file_data.substr(start, size);
-        ParseLocation(data, it->second);
+        if (start < this->file_data.size()) {
+            end = this->file_data.find("}", start);
+            size = (end) - start;
+            string data = this->file_data.substr(start, size);
+            ParseLocation(data, &it->second);
+        } else {
+            cout << "BAD LOCATION" << endl;
+        }
     }
     return NO_ERRORS;
 }
@@ -173,12 +192,15 @@ int Parser::ParseItems() {
     while (start < this->file_data.size()) {
         end = this->file_data.find("{", start);
         if (end < this->file_data.size()) {
+            start += 5;
             size = (end) - start;
             Item item;
-            string item_name = stringTrim(this->file_data.substr(start + 5, size - 5));
+            string original_item_name = this->file_data.substr(start, size);
+            string item_name = stringTrim(original_item_name);
+            this->file_data.replace(start, size, item_name + " ");
             this->items[item_name] = item;
         }
-        start = this->file_data.find("location", end);
+        start = this->file_data.find("Item", end);
     }
 
     /*
@@ -186,12 +208,18 @@ int Parser::ParseItems() {
      */
     map<string, Item>::iterator it;
     for (it = this->items.begin(); it != this->items.end(); it++) {
-        string search = "Item " + it->first + "{";
+        string search = "Item " + it->first + " {";
         start = this->file_data.find(search) + search.length();
-        end = this->file_data.find("}", start);
-        size = (end) - start;
-        string data = this->file_data.substr(start, size);
-        ParseItem(data, it->second);
+        if (start < this->file_data.size()) {
+            end = this->file_data.find("}", start);
+            size = (end) - start;
+            string data = this->file_data.substr(start, size);
+            
+            ParseItem(data, &it->second);
+        } else {
+            cout << "BAD ITEM" << endl;
+            
+        }
     }
 
     return NO_ERRORS;
@@ -199,73 +227,81 @@ int Parser::ParseItems() {
 
 // Parses the attributes
 
-void Parser::ParseLocation(string data, Location location) {
+void Parser::ParseLocation(string data, Location *location) {
     string attribute;
     Location link;
-    
+
     // Parse Name
     attribute = ParseStringData(data, "name");
-    if (attribute != BAD_ATTRIBUTE) {
-        location.setName(attribute);
+    if (validAttribute(attribute)) {
+        location->setName(attribute);
     } else {
         // Set error (No name for location)
     }
 
-    // Parse Description
+    // Parse Description(string attribute)
     attribute = ParseStringData(data, "description");
-    if (attribute != BAD_ATTRIBUTE) {
-        location.setDescription(attribute);
+    if (validAttribute(attribute)) {
+        location->setDescription(attribute);
     } else {
         // Set error (No description for location)
     }
 
     // Parse Exits
     attribute = ParseVariableData(data, "north");
-    if (attribute != BAD_ATTRIBUTE) {
+    if (validAttribute(attribute)) {
         link = this->locations.at(attribute);
-        location.setNorth(&link);
+        location->setNorth(&link);
     }
-    
+
     attribute = ParseVariableData(data, "south");
-    if (attribute != BAD_ATTRIBUTE) {
+    if (validAttribute(attribute)) {
         link = this->locations.at(attribute);
-        location.setSouth(&link);
+        location->setSouth(&link);
     }
-    
+
     attribute = ParseVariableData(data, "east");
-    if (attribute != BAD_ATTRIBUTE) {
+    if (validAttribute(attribute)) {
         link = this->locations.at(attribute);
-        location.setEast(&link);
+        location->setEast(&link);
     }
-    
+
     attribute = ParseVariableData(data, "west");
-    if (attribute != BAD_ATTRIBUTE) {
+    if (validAttribute(attribute)) {
         link = this->locations.at(attribute);
-        location.setWest(&link);
+        location->setWest(&link);
     }
 }
 
 // Parses the attributes
-void Parser::ParseItem(string data, Item item) {
+
+void Parser::ParseItem(string data, Item *item) {
     string attribute;
     Location location;
-    
     // Parse Name
     attribute = ParseStringData(data, "name");
-    if (attribute != BAD_ATTRIBUTE) {
-        item.setName(attribute);
+    if (validAttribute(attribute)) {
+        item->setName(attribute);
     } else {
         // Set error (No name for location)
     }
-
     // Parse Description
     attribute = ParseStringData(data, "description");
-    if (attribute != BAD_ATTRIBUTE) {
-        item.setDescription(attribute);
+    if (validAttribute(attribute)) {
+        item->setDescription(attribute);
     } else {
         // Set error (No description for location)
     }
-    
+    // Parse Description
+    attribute = ParseVariableData(data, "location");
+    if (validAttribute(attribute)) {
+        location = this->locations.at(attribute);
+        location.addItem(item->getName(), *item);
+        this->locations[attribute] = location;
+    } else {
+        // Set error (No description for location)
+    }
+
 }
 
 /*

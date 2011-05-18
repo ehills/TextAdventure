@@ -17,9 +17,7 @@ Location::Location(string name, string description, map<string, Item> items) {
     this->items = items;
 }
 
-
 // Details
-
 string Location::getName(void) {
     return this->name;
 }
@@ -37,7 +35,7 @@ void Location::setDescription(string description) {
 }
 
 void Location::printRoom(void) {
-   cout << getDescription() << listItems();
+    cout << this->getDescription() << endl << this->listItems();
 }
 
 /* Adds an item to the room */
@@ -57,20 +55,17 @@ void Location::removeItem(string item_name) {
 
 /* Iterates through all items in the room and prints there description */
 string Location::listItems(void) {
-   string the_items ="";
-   map<string,Item>::iterator it;
-   for (it = items.begin(); it != items.end(); ++it) {
-      the_items += ("\n" + it->second.getDescription());
-   }
-   return the_items;
-}
-
-/* Destructor */
-Location::~Location(void) {
+    
+    string the_items = "-- Items --";
+    map<string, Item>::iterator it;
+    for (it = items.begin(); it != items.end(); ++it) {
+        the_items += ("\n" + it->second.getDescription());
+    }
+    the_items += "\n\n";
+    return the_items;
 }
 
 // Directions
-
 Location* Location::getNorth(void) {
     return this->north;
 }
@@ -101,4 +96,8 @@ void Location::setEast(Location* location) {
 
 void Location::setWest(Location* location) {
     this->west = location;
+}
+
+/* Destructor */
+Location::~Location(void) {
 }

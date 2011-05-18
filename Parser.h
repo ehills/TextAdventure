@@ -33,10 +33,10 @@ private:
     int ParseItems();
     
     // Parses the attributes
-    void ParseLocation(string data, Location location);
+    void ParseLocation(string data, Location* location);
     
     // Parses the attributes
-    void ParseItem(string data, Item item);
+    void ParseItem(string data, Item* item);
     //Player ParsePlayer();
     
     // Parsing Data

@@ -19,7 +19,7 @@ public:
     void setDescription(string description);
     void addVerb(string verb, string expression);
     void removeVerb(string verb);
-    void printVerb(void);
+    void print();
     string getVerbExpression(string verb);
     ~Item();
 };
