@@ -8,13 +8,10 @@
 
 /* Constructor */
 Location::Location() {
-    this->name = "";
-    this->description = "";
-    this->items = "";
 }
 
 /* Constructor */
-Location::Location(string name, string description, list<int> items) {
+Location::Location(string name, string description, map<string, Item> items) {
     this->name = name;
     this->description = description;
     this->items = items;
@@ -55,8 +52,14 @@ void Location::setWest(Location* location) {
 }
 
 /* Adds an item to the room */
-void Location::addItem(string item_name) {
-    this->items.insert(item_name);
+void Location::addItem(string item_name, Item item) {
+    this->items.insert(pair<string, Item>(item_name, item));
+}
+
+
+/* Adds an item to the room */
+bool Location::hasItem(string item_name) {
+    return this->items.count(item_name) != 0;
 }
 
 /* Removes an item from the room */
@@ -64,11 +67,9 @@ void Location::removeItem(string item_name) {
     this->items.erase(item_name);
 }
     
-string listItems(void) {
-    return "NOT DONE";
+void Location::listItems(void) {
 }
 
 /* Constructor */
 Location::~Location(void) {
-    
 }

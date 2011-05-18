@@ -79,21 +79,19 @@ int Parser::ParseLocations() {
     start = this->file_data.find("Location");
     while (start < this->file_data.size()) {
         if (this->file_data.at(start - 1) == 'l') {
-             end = start + 9;
+            end = start + 9;
         } else {
             end = this->file_data.find("{", start);
             if (end < this->file_data.size()) {
                 size = (end) - start;
-                cout << this->file_data.substr(start + 9, size - 9) << "\n";
-                /*
-                 * ADD TO LOCATION MAP
-                 * 
-                 * THEN LOOP AGAIN TO ADD DETAILS (DUE TO REFERENCING ISSUE)
-                 */
+                Location location;
+                string location_name = this->file_data.substr(start + 9, size - 9);
+                this->locations[location_name] = location;
             }
         }
         start = this->file_data.find("Location", end);
     }
+    cout << "NUMBER FOUND = " << this->locations.size() << "\n";
 
     return NO_ERRORS;
 }
@@ -107,12 +105,10 @@ int Parser::ParseItems() {
         end = this->file_data.find("{", start);
         if (end < this->file_data.size()) {
             size = (end) - start;
-            cout << this->file_data.substr(start + 5, size - 5) << "\n";
-            /*
-             * ADD TO ITEM MAP
-             * 
-             * THEN LOOP AGAIN TO ADD DETAILS (DUE TO REFERENCING ISSUE)
-             */
+            Item item;
+            string item_name = this->file_data.substr(start + 5, size - 5);
+            this->items[item_name] = item;
+
         }
         start = this->file_data.find("location", end);
     }

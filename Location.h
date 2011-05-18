@@ -5,18 +5,19 @@
  * Created on May 17, 2011, 5:26 PM
  */
 
-#ifndef LOCATION_H
-#define	LOCATION_H
+#ifndef LOCATION_H_
+#define	LOCATION_H_
 #include <iostream>
 #include <cstdlib>
+#include <map>
 #include "Item.h"
-#include <list>
+
 using namespace std;
 
 /* Location class will store all information relevant to a particular location*/
 class Location {
 public:
-    Location(string, string, list<int>);
+    Location(string, string, map<string, Item>);
     Location();
 
     // Details
@@ -36,9 +37,10 @@ public:
     void setWest(Location* location);
     
     // Items
-    void addItem(Item item);
-    void removeItem(Item item);
-    string listItems(void);
+    void addItem(string item_name, Item item);
+    bool hasItem(string item_name);
+    void removeItem(string item_name);
+    void listItems(void);
     
     // Object Deletion
     ~Location(void);
