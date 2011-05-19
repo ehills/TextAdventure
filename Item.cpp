@@ -7,33 +7,40 @@
 
 #include "Item.h"
 
-/* Constructor */
-Item::Item(string name, string description,
-        map<string, string> verb_expressions) {
+
+ /* Constructor sets up initial variables */
+ Item::Item(string name, string description,
+            map<string, string> verb_expressions) {
     this->name = name;
     this->description = description;
     this->verb_expressions = verb_expressions;
 }
 
+/* Default constructor to set up an empty Item*/
 Item::Item() {
 }
 
+/* Returns the name of the Item */
 string Item::getName(void) {
     return this->name;
 }
 
+/* Sets the name of the item */
 void Item::setName(string name) {
     this->name = name;
 }
 
+/* Returns a description of the item */
 string Item::getDescription(void) {
     return this->description;
 }
 
+/* Sets a description for the item */
 void Item::setDescription(string description) {
     this->description = description;
 }
 
+/* Adds a verb to the list of valid verbs for this item */
 void Item::addVerb(string verb, string expressions) {
     this->verb_expressions.insert(pair<string, string > (verb, expressions));
 }
@@ -50,16 +57,19 @@ void Item::setAttributes(map<string, bool> attributes) {
     this->attributes = attributes;
 }
 
+/* Removes a verb from the list of valid verbs for this item */
 void Item::removeVerb(string verb) {
     this->verb_expressions.erase(verb);
 }
 
+/* Returns the value associated with a key verb */
 string Item::getVerbExpression(string verb) {
     map<string, string>::iterator it;
     it = verb_expressions.find(verb);
     return it->second;
 }
 
+/* Prints out the Items name and description */
 void Item::print() {
     cout << this->name << ", " << this->description << endl;
 }
@@ -71,5 +81,6 @@ void Item::printVerbs() {
     }
 }
 
+/* Destructor */
 Item::~Item(void) {
 }
