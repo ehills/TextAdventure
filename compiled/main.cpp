@@ -2,31 +2,52 @@
 #include <cstdlib>
 #include <string>
 #include "Location.h"
-//#include "Player.cpp"
+#include "Player.h"
 using namespace std;
-#define WELCOME_MESSAGE "Placeholder\n"
-#define START_L_POINT "Placeholder"
-#define START_L_DESCR "Placeholder"
-#define PLAYER_DESCR "Placeholder"
-#define START_LOCATION "Placeholder"
-
+#define WELCOME_MESSAGE "Hello and welcome to zork, please give us a good grade"
 
 int main(int argc, char **argv) {
    string user_response = "";
-   string user ="";
-   //Location startLocation = new Location(START_L_POINT, START_L_DESCR, items);
-   //Player player = new Player(PLAYER_DESCR, 5, 0,START_LOCATION);
+   string username ="";
+   string prompt ="";
+   string command="";
+   string verb="";
+   string noun="";
+
+   Location* inventory = new Location();
+   Location* startLocation = new Location();
+   Player* player = new Player();
 
    /* Print welcome message and get users name */
-   cout << WELCOME_MESSAGE;
+   cout << WELCOME_MESSAGE << endl;
    cout << "Please enter your hero's name: ";
-   cin >> user;
-   cin.ignore();
-   cout << "Thank you " << user << ". Your quest will now begin." << endl;
+   cin >> username;
+   player->setName(username);
+   prompt = player->getName() + ": ";
+   cout << "Thank you " << player->getName() <<
+      ". Your quest will now begin.\n";
 
-   while (true) {
-      
-   }
+    while (true) {
+      cout << prompt;
+      cout.flush();
+      cin >> command;
+      verb = command;
+      cin >> command;
+      noun = command;
+  
+      if (verb.compare("verb") == 0) { // if verb is in list of verbs
+         if (noun.compare("noun") == 0 ) {
+            // noun.doVerb
+         } else {
+            cout << "Sorry you do not have this item" << endl;
+         }
+      } else {
+         cout << "Sorry I do not understand this command" << endl;
+      }
+      cin.ignore();
+   
+   
+       }
 
    return 0;
 }
