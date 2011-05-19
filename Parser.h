@@ -28,6 +28,7 @@ public:
 private:
     //comment striping code
     int stripComments();
+    int ParseAttributes();
     int ParseDefaults();
     int ParseLocations();
     int ParseItems();
@@ -44,6 +45,8 @@ private:
     list<string> errors;
     map<string, Location> locations;
     map<string, Item> items;
+    map<string, string> default_verb_expressions;
+    map<string, bool> default_attribute_values;
 };
 
 

@@ -10,6 +10,7 @@ class Item {
     string name;
     string description;
     map<string, string> verb_expressions;
+    map<string, bool> attributes;
 public:
     Item(string name, string description, map<string, string>);
     Item();
@@ -18,6 +19,10 @@ public:
     string getDescription(void);
     void setDescription(string description);
     void addVerb(string verb, string expression);
+    void addVerbs(map<string, string> verb_expressions);
+    map<string, bool> getAttributes(); 
+    void setAttributes(map<string, bool> attributes); 
+    void printVerbs();
     void removeVerb(string verb);
     void print();
     string getVerbExpression(string verb);
