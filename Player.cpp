@@ -9,14 +9,24 @@
 /* Player Class will have a description and a weight limit associated with it.*/
 
 /* Constructor */
-Player::Player(string description, int max_items, int current_number_of_items,
-               Location start_location, Location inventory) {
+Player::Player(){}
+
+Player::Player(string name, string description , int max_items,
+               int current_number_of_items, Location current_location,
+               Location inventory) {
+   this->name = name;
    this->description = description;
    this->max_items = max_items;
    this->current_number_of_items = current_number_of_items;
-   this->start_location = start_location;
+   this->current_location = current_location;
    this->inventory = inventory;
 }
+
+/* Gets player name */
+string Player::getName(void) {return name;}
+
+/* Sets player name */
+void Player::setName(string name) {this->name = name;}
 
 /* Gets player description */
 string Player::getDescription(void) {return description;}
@@ -41,11 +51,11 @@ int Player::getMaxItems(void) {return max_items;}
 void Player::setMaxItems(int max_items) {this->max_items = max_items;}
 
 /* Returns the players starting location */
-Location Player::getStartLocation(void) {return start_location;}
+Location Player::getLocation(void) {return current_location;}
 
 /* Sets the players starting location */
-void Player::setStartLocation(Location location) {
-   this->start_location = location;
+void Player::setLocation(Location location) {
+   this->current_location = location;
 }
 
 /* Returns the players inventory location */

@@ -35,9 +35,9 @@ int main(int argc, char **argv) {
       cin >> command;
       noun = command;
   
-      if (verb.compare("verb") == 0) { // if verb is in list of verbs
-         if (noun.compare("noun") == 0 ) {
-            // noun.doVerb
+      if (verb.compare(/*verbs.hasVerb(verb))*/"verb")) { // if verb is in list of verbs
+         if (player->getLocation().hasItem(noun)) {
+            // player->getLocation().getItem(noun)->doVerb();
          } else {
             cout << "Sorry you do not have this item" << endl;
          }

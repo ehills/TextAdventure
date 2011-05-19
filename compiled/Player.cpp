@@ -6,19 +6,23 @@
  **/
 #include "Player.h"
 
-/* Player Class will have a description and a weight limit associated with it.*/
+/* Player Class will have a description, name, maximum number of items,
+ * current number of items held, the current location and a location which
+ * will store the inventory.
+ */
 
 /* Constructor */
 Player::Player(){}
 
+/* Constructor will initiliase all variables associated with Player class */
 Player::Player(string name, string description , int max_items,
-               int current_number_of_items, Location start_location,
+               int current_number_of_items, Location current_location,
                Location inventory) {
    this->name = name;
    this->description = description;
    this->max_items = max_items;
    this->current_number_of_items = current_number_of_items;
-   this->start_location = start_location;
+   this->current_location = current_location;
    this->inventory = inventory;
 }
 
@@ -51,11 +55,11 @@ int Player::getMaxItems(void) {return max_items;}
 void Player::setMaxItems(int max_items) {this->max_items = max_items;}
 
 /* Returns the players starting location */
-Location Player::getStartLocation(void) {return start_location;}
+Location Player::getLocation(void) {return current_location;}
 
 /* Sets the players starting location */
-void Player::setStartLocation(Location location) {
-   this->start_location = location;
+void Player::setLocation(Location location) {
+   this->current_location = location;
 }
 
 /* Returns the players inventory location */

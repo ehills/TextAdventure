@@ -9,31 +9,63 @@
 #include <cstdlib>
 #include <iostream>
 #include "Location.h"
-
 using namespace std;
 
+/* Player Class will have a description, name, maximum number of items,
+ * current number of items held, the current location and a location which
+ * will store the inventory.
+ */
 class Player {
    string name;
    string description;
    int max_items;
    int current_number_of_items;
-   Location start_location;
+   Location current_location;
    Location inventory;
-public:
+ public:
+   /* Constructor */
    Player();
+
+   /* Constructor will initiliase all variables associated with Player class */
    Player(string, string, int, int, Location, Location);
+
+   /* Destructor */
    ~Player();
+
+   /* Gets player name */
    string getName(void);
+
+   /* Sets player name */
    void setName(string name);
+
+   /* Gets player description */
    string getDescription(void);
+
+   /* Sets player description */
    void setDescription(string description);
+
+   /* Returns the number of items currently held by the player */
    int getNumberOfItems(void);
+
+   /* Sets the number of items that the player currently has */
    void setNumberOfItems(int number_of_items);
+
+   /* Returns the max number of items the player can hold */
    int getMaxItems(void);
+
+   /* Sets the number of max items the player can hold */
    void setMaxItems(int max_items);
-   Location getStartLocation(void);
-   void setStartLocation(Location location);
+
+   /* Returns the players starting location */
+   Location getLocation(void);
+
+   /* Sets the players starting location */
+   void setLocation(Location location);
+
+   /* Returns the players inventory location */
    Location getInventory(void);
+
+   /* Sets the players inventory location */
    void setInventory(Location inventory);
 };
 

@@ -1,3 +1,9 @@
+/*
+ * File: Constants.h
+ * Name: Constants
+ * Date: May 19 2011
+ * Description: Some constants for IO
+ */
 #ifndef CONSTANTS_H_
 #define CONSTATNS_H_
 

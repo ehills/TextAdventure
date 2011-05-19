@@ -13,22 +13,26 @@
 using namespace std;
 
 class Player {
+   string name;
    string description;
    int max_items;
    int current_number_of_items;
-   Location start_location;
+   Location current_location;
    Location inventory;
 public:
-   Player(string, int, int, Location, Location);
+   Player();
+   Player(string, string, int, int, Location, Location);
    ~Player();
+   string getName(void);
+   void setName(string name);
    string getDescription(void);
    void setDescription(string description);
    int getNumberOfItems(void);
    void setNumberOfItems(int number_of_items);
    int getMaxItems(void);
    void setMaxItems(int max_items);
-   Location getStartLocation(void);
-   void setStartLocation(Location location);
+   Location getLocation(void);
+   void setLocation(Location location);
    Location getInventory(void);
    void setInventory(Location inventory);
 };
