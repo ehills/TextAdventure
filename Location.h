@@ -41,6 +41,7 @@ public:
     void addItem(string item_name, Item item);
     bool hasItem(string item_name);
     void removeItem(string item_name);
+    string listItemsDescription(void);
     string listItems(void);
     
     // Object Deletion

@@ -60,13 +60,22 @@ void Location::removeItem(string item_name) {
 }
 
 /* Returns the description of each item in this location */
-string Location::listItems(void) {    
+string Location::listItemsDescriptions(void) {    
     string the_items = "-- Items --";
     map<string, Item>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
         the_items += ("\n" + it->second.getDescription());
     }
-    the_items += "\n\n";
+    return the_items;
+}
+
+/* Returns the name of each item in this location */
+string Location::listItems(void) {    
+    string the_items = "-- Items --";
+    map<string, Item>::iterator it;
+    for (it = items.begin(); it != items.end(); ++it) {
+        the_items += ("\n" + it->second.getName());
+    }
     return the_items;
 }
 

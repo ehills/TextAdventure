@@ -43,6 +43,7 @@ class Location {
    bool hasItem(string item_name);
    void removeItem(string item_name);
    string listItems(void);
+   string listItemsDescriptions(void);
     
    // Destructor
    ~Location(void);
