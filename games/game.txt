@@ -1,9 +1,41 @@
 /* This is an example game used for testing */
 
-Player {
+Player mother {
     name = "Mother";
     description = "A terrible parent";
     carryLimit = 2;
+}
+
+Attribute isLocked;
+Attribute isTakeable;
+Attribute isOpenable;
+Attribute isExaminable;
+Attribute isClosed;
+
+ItemDefaults {
+    !isTakeable;
+    !isOpenable;
+    isExaminable;
+
+    Verb "drop" {
+        if (mother.hasItem(inputItem)) {
+            inputItem.setLocation(mother.getLocation());
+        } else {
+            print("I don't have " + inputItem + ".");
+        }
+    }
+    
+    Verb "take" {
+        if (mother.canCarry()) {
+            inputItem.setLocation(mother);
+        } else {
+            print("You are carrying to much already");
+        }
+    }
+
+    Verb "examine" {
+        print(inputItem.description());
+    }
 }
 
 // The score at the start
@@ -39,4 +71,25 @@ Item television {
     name = "Television";
     description = "A small television placed in the corner of the kitchen. It looks broken";
     location = kitchen;
+    isTakeable;
+
+    Verb "drop" {
+        if (mother.hasItem(inputItem)) {
+            inputItem.setLocation(mother.getLocation());
+        } else {
+            print("I don't have " + inputItem + ".");
+        }
+    }
+    
+    Verb "take" {
+        if (mother.canCarry()) {
+            inputItem.setLocation(mother);
+        } else {
+            print("You are carrying to much already");
+        }
+    }
+
+    Verb "examine" {
+        print(inputItem.description());
+    }
 }

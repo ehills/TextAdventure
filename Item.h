@@ -10,6 +10,7 @@ class Item {
     string name;
     string description;
     map<string, string> verb_expressions;
+    map<string, bool> attributes;
 public:
      /* Constructor sets up initial variables */
     Item(string name, string description, map<string, string>);
@@ -25,6 +26,10 @@ public:
     void setDescription(string description);
     /* Adds a verb to the list of valid verbs for this item */
     void addVerb(string verb, string expression);
+    void addVerbs(map<string, string> verb_expressions);
+    map<string, bool> getAttributes(); 
+    void setAttributes(map<string, bool> attributes); 
+    void printVerbs();
     /* Removes a verb from the list of valid verbs for this item */
     void removeVerb(string verb);
     /* Prints out the Items name and description */

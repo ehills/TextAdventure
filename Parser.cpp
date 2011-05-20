@@ -1,65 +1,7 @@
 #include "Parser.h"
 #include "constants.h"
+#include "parsetools.cpp"
 #define NEWLINE_HACK "(*-*)"
-#define NO_ERRORS 0
-#define BAD_ATTRIBUTE "(*****@@@*@**@*@*)@*!)@*#!)#*!)*#)@*!)@*#!)*$!^%#&!%(&!@%!(&^!@%(#!&@^)"
-
-
-// Tools for scanning data
-
-string ParseStringData(string data, string attribute) {
-    unsigned int start, end, size;
-    start = data.find(attribute);
-    if (start < data.size()) {
-        start = data.find("\"", start) + 1;
-        end = data.find("\"", start);
-        size = end - start;
-        return data.substr(start, size);
-    }
-    return BAD_ATTRIBUTE;
-}
-
-inline bool validAttribute(string attribute) {
-    return attribute.compare(BAD_ATTRIBUTE) != 0;
-}
-
-// Tools for scanning data
-
-string stringTrim(string data) {
-        unsigned int start, end;
-        start = 0;
-        while (start < data.length()) {
-            if (!isspace(data.at(start))) {
-                break;
-            }
-            data.replace(start, 1, "");
-            start++;
-        }
-        end =  data.length() - 1;
-        while (end > 0) {
-            if (!isspace(data.at(end))) {
-                break;
-            }
-            data.replace(end, 1, "");
-            end--;
-        }
-    return data;
-}
-
-string ParseVariableData(string data, string attribute) {
-    unsigned int start, end, size;
-    string ret;
-    start = data.find(attribute);
-    if (start < data.size()) {
-        start = data.find("=", start) + 1;
-        end = data.find(";", start);
-        size = end - start;
-        ret = (data.substr(start, size));
-        ret = stringTrim(ret);
-        return ret;
-    }
-    return BAD_ATTRIBUTE;
-}
 
 /* Constructor */
 Parser::Parser(char* filename) {
@@ -84,14 +26,15 @@ list<string> Parser::ParseFile(void) {
     } else if (this->ParseItems() > NO_ERRORS) {
     }*/
     this->stripComments();
+    this->ParseAttributes();
+    this->ParseDefaults();
     this->ParseLocations();
     this->ParseItems();
-    
-    map<string, Location>::iterator it;
-    for (it = this->locations.begin(); it != this->locations.end(); it++) {
-        it->second.printRoom();
-    }
-
+    //    map<string, Location>::iterator it;
+    //    for (it = this->locations.begin(); it != this->locations.end(); it++) {
+    //        it->second.printRoom();
+    //        
+    //    }
     return this->errors;
 }
 
@@ -132,7 +75,48 @@ int Parser::stripComments() {
     return NO_ERRORS;
 }
 
+int Parser::ParseAttributes() {
+    unsigned int start, end;
+    string attribute;
+    start = this->file_data.find("Attribute ");
+    while (start < this->file_data.size()) {
+        start += 10;
+        end = this->file_data.find(";", start);
+        attribute = stringTrim(this->file_data.substr(start, end - start));
+        this->default_attribute_values[attribute] = false;
+        start = this->file_data.find("Attribute ", start);
+    }
+    return NO_ERRORS;
+}
+
 int Parser::ParseDefaults() {
+    unsigned int start, end;
+    string data;
+    start = this->file_data.find("ItemDefaults");
+    if (start < this->file_data.size()) {
+        // Parse verb expressions
+        start = this->file_data.find("{", start) + 1;
+        end = ParseEndBrace(start, this->file_data);
+        data = this->file_data.substr(start, end - start);
+        default_verb_expressions = ParseVerbs(data);
+
+        // Parse All attributes
+        map<string, bool>::iterator it;
+        for (it = this->default_attribute_values.begin(); it != this->default_attribute_values.end(); it++) {
+            string attribute = it->first;
+            unsigned int pos = this->file_data.find(attribute, start);
+            if (pos < end) {
+                if (this->file_data.at(pos - 1) != '!') {
+                    this->default_attribute_values[attribute] = true;
+                }
+            }
+        }
+
+        // REMOVE DEFAULT DATA TO AVOID COLLISION OF ITEM
+        start = this->file_data.find("ItemDefaults");
+        this->file_data.replace(start, end + 1 - start, "");
+
+    }
     return NO_ERRORS;
 }
 
@@ -170,7 +154,7 @@ int Parser::ParseLocations() {
         string search = "Location " + it->first + " {";
         start = this->file_data.find(search) + search.length();
         if (start < this->file_data.size()) {
-            end = this->file_data.find("}", start);
+            end = ParseEndBrace(start, this->file_data);
             size = (end) - start;
             string data = this->file_data.substr(start, size);
             ParseLocation(data, &it->second);
@@ -188,19 +172,22 @@ int Parser::ParseItems() {
     /*
      * Parse the Items first time through
      */
-    start = this->file_data.find("Item");
+    start = this->file_data.find("Item ");
     while (start < this->file_data.size()) {
         end = this->file_data.find("{", start);
         if (end < this->file_data.size()) {
-            start += 5;
-            size = (end) - start;
-            Item item;
-            string original_item_name = this->file_data.substr(start, size);
-            string item_name = stringTrim(original_item_name);
-            this->file_data.replace(start, size, item_name + " ");
-            this->items[item_name] = item;
+            if (this->file_data.at(start - 1) != 't') {
+                
+                start += 5;
+                size = (end) - start;
+                Item item;
+                string original_item_name = this->file_data.substr(start, size);
+                string item_name = stringTrim(original_item_name);
+                this->file_data.replace(start, size, item_name + " ");
+                this->items[item_name] = item;
+            }
         }
-        start = this->file_data.find("Item", end);
+        start = this->file_data.find("Item ", end);
     }
 
     /*
@@ -211,21 +198,19 @@ int Parser::ParseItems() {
         string search = "Item " + it->first + " {";
         start = this->file_data.find(search) + search.length();
         if (start < this->file_data.size()) {
-            end = this->file_data.find("}", start);
+            end = ParseEndBrace(start, this->file_data);
             size = (end) - start;
             string data = this->file_data.substr(start, size);
-            
+
             ParseItem(data, &it->second);
         } else {
             cout << "BAD ITEM" << endl;
-            
+
         }
     }
 
     return NO_ERRORS;
 }
-
-// Parses the attributes
 
 void Parser::ParseLocation(string data, Location *location) {
     string attribute;
@@ -273,8 +258,6 @@ void Parser::ParseLocation(string data, Location *location) {
     }
 }
 
-// Parses the attributes
-
 void Parser::ParseItem(string data, Item *item) {
     string attribute;
     Location location;
@@ -302,12 +285,26 @@ void Parser::ParseItem(string data, Item *item) {
         // Set error (No description for location)
     }
 
+    item->addVerbs(ParseVerbs(data));
+
+    map<string, bool>::iterator it;
+    unsigned int start, end;
+    start = 0;
+    end = data.size();
+    map<string, bool> attributes(this->default_attribute_values);
+    for (it = attributes.begin(); it != attributes.end(); it++) {
+        string attribute = it->first;
+        unsigned int pos = data.find(attribute, start);
+        if (pos < end) {
+            if (pos - 1 > 0 && data.at(pos - 1) != '!') {
+                attributes[attribute] = true;
+                cout << item->getName() << " " << attribute << " is true " << endl;
+            }
+        }
+    }
+    item->setAttributes(attributes);
 }
 
-/*
- * Deallocates the resources used
- *
- */
 Parser::~Parser() {
 
 }
