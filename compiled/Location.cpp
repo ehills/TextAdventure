@@ -8,13 +8,21 @@
 
 /* Default Constructor */
 Location::Location() {
+   this->north = NULL;
+   this->south = NULL;
+   this->west = NULL;
+   this->east = NULL;
 }
 
 /* Constructor */
 Location::Location(string name, string description, map<string, Item> items) {
-    this->name = name;
-    this->description = description;
-    this->items = items;
+   this->name = name;
+   this->description = description;
+   this->items = items;
+   this->north = NULL;
+   this->south = NULL;
+   this->west = NULL;
+   this->east = NULL;
 }
 
 /* Returns the name of this location */
@@ -77,6 +85,26 @@ string Location::listItems(void) {
         the_items += ("\n" + it->second.getName());
     }
     return the_items;
+}
+
+/* Checks to see if the location can go north */
+bool Location::hasNorth(void) {
+   return (this->north != NULL);
+}
+
+/* Checks to see if the location can go south */
+bool Location::hasSouth(void) {
+   return (this->south != NULL);
+}
+
+/* Checks to see if the location can go east */
+bool Location::hasEast(void) {
+   return (this->east != NULL);
+}
+
+/* Checks to see if the location can go west */
+bool Location::hasWest(void) {
+   return (this->west != NULL);
 }
 
 /* Returns the location pointed to by north */
