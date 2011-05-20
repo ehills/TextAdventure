@@ -29,8 +29,8 @@ list<string> Parser::ParseFile(void) {
     this->ParseAttributes();
     this->ParseDefaults();
     this->ParseLocations();
-    this->ParseItems();  
-    
+    this->ParseItems();
+
     string location_name = ParseVariableData(this->file_data, "initialLocation");
     if (this->locations.count(location_name) > 0) {
         this->initialLocation = &this->locations.find(location_name)->second;
@@ -141,13 +141,12 @@ int Parser::ParseDefaults() {
 int Parser::ParseLocations() {
     // Find all block comments and remove
     unsigned int start, end, size;
-
     /*
      * Parse the Location names first time through
      */
     start = this->file_data.find("Location");
     while (start < this->file_data.size()) {
-        
+
         if (this->file_data.at(start - 1) == 'l') {
             end = start + 9;
         } else {
@@ -158,6 +157,7 @@ int Parser::ParseLocations() {
                 Location location;
                 string original_location_name = this->file_data.substr(start, size);
                 string location_name = stringTrim(original_location_name);
+                location.setVariableName(location_name);
                 this->file_data.replace(start, size, location_name + " ");
                 this->locations[location_name] = location;
             }
@@ -174,7 +174,7 @@ int Parser::ParseLocations() {
     map<string, Location>::iterator it;
     for (it = this->locations.begin(); it != this->locations.end(); it++) {
         string search = "Location " + it->first + " {";
-        
+
         start = this->file_data.find(search) + search.length();
         if (start < this->file_data.size()) {
             end = ParseEndBrace(start, this->file_data);
@@ -243,6 +243,7 @@ void Parser::ParseLocation(string data, Location *location) {
     attribute = ParseStringData(data, "name");
     if (validAttribute(attribute)) {
         location->setName(attribute);
+        cout << attribute << endl;
     } else {
         // Set error (No name for location)
     }

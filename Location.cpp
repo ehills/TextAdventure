@@ -8,13 +8,21 @@
 
 /* Default Constructor */
 Location::Location() {
+    this->north = NULL;
+    this->south = NULL;
+    this->west = NULL;
+    this->east = NULL;
 }
 
 /* Constructor */
-Location::Location(string name, string description, map<string, Item> items) {
+Location::Location(string variable_name, string name, string description, map<string, Item> items) {
     this->name = name;
     this->description = description;
     this->items = items;
+    this->north = NULL;
+    this->south = NULL;
+    this->west = NULL;
+    this->east = NULL;
 }
 
 /* Returns the name of this location */
@@ -25,6 +33,17 @@ string Location::getName(void) {
 /* Sets the name of this Location */
 void Location::setName(string name) {
     this->name = name;
+}
+
+/* Returns the name of this location */
+string Location::getVariableName(void) {
+    return this->variable_name;
+}
+
+/* Sets the name of this Location */
+void Location::setVariableName(string variable_name) {
+    this->variable_name = variable_name;
+    cout << "setting " << this->getVariableName() << endl;
 }
 
 /* Returns the description of this room */
@@ -60,7 +79,7 @@ void Location::removeItem(string item_name) {
 }
 
 /* Returns the description of each item in this location */
-string Location::listItemsDescription(void) {    
+string Location::listItemsDescription(void) {
     string the_items = "-- Items --";
     map<string, Item>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
@@ -70,7 +89,7 @@ string Location::listItemsDescription(void) {
 }
 
 /* Returns the name of each item in this location */
-string Location::listItems(void) {    
+string Location::listItems(void) {
     string the_items = "-- Items --";
     map<string, Item>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
@@ -79,6 +98,25 @@ string Location::listItems(void) {
     return the_items;
 }
 
+/* Checks to see if the location can go north */
+bool Location::hasNorth(void) {
+    return (this->north != NULL);
+}
+
+/* Checks to see if the location can go south */
+bool Location::hasSouth(void) {
+    return (this->south != NULL);
+}
+
+/* Checks to see if the location can go east */
+bool Location::hasEast(void) {
+    return (this->east != NULL);
+}
+
+/* Checks to see if the location can go west */
+bool Location::hasWest(void) {
+    return (this->west != NULL);
+}
 
 /* Returns the location pointed to by north */
 Location* Location::getNorth(void) {

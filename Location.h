@@ -17,12 +17,14 @@ using namespace std;
 /* Location class will store all information relevant to a particular location*/
 class Location {
 public:
-    Location(string, string, map<string, Item>);
+    Location(string, string, string, map<string, Item>);
     Location();
 
     // Details
     string getName(void);
     void setName(string name);
+    string getVariableName(void);
+    void setVariableName(string variable_name);
     string getDescription(void);
     void setDescription(string description);
     void printRoom(void);
@@ -32,6 +34,10 @@ public:
     Location* getSouth(void);
     Location* getEast(void);
     Location* getWest(void);
+    bool hasNorth(void);
+    bool hasSouth(void);
+    bool hasEast(void);
+    bool hasWest(void);
     void setNorth(Location* location);
     void setSouth(Location* location);
     void setEast(Location* location);
@@ -48,6 +54,7 @@ public:
     ~Location(void);
 private:
     string name;
+    string variable_name;
     string description;
     Location* south;
     Location* north;
