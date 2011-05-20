@@ -25,6 +25,7 @@ int main(int argc, char **argv) {
 	startLocation.setDescription("You find yourself in an empty room...");
 	hospitalFloor.setDescription("You find yourself in a brightly lit room...");
 	startLocation.setNorth(&hospitalFloor);
+	hospitalFloor.setSouth(&startLocation);
 	currentLocation = &startLocation;
 
 	/* Print welcome message and get users name */
@@ -38,6 +39,7 @@ int main(int argc, char **argv) {
 	cin.ignore();
 	player->setName(username);
 	prompt = player->getName() + ": ";
+
 	cout << "Thank you " << player->getName() <<
 			". Your quest will now begin.\n";
 
@@ -97,14 +99,14 @@ int main(int argc, char **argv) {
 		}
 
 		// Describe location and items in it
-		if(command == "look" || command == "describe") {
+		if(verb == "look" and noun == ""|| verb == "describe" and noun == "") {
 			currentLocation->printRoom();
 			cout << endl;
 			goto main_loop;
 		}
 
 		// Move north, south, west or east
-		if(verb=="north") {
+		if(verb=="north" and noun == "") {
 			if (!currentLocation->hasNorth()) {
 				cout << "Sorry you can not go North" << endl;
 				goto main_loop;
@@ -115,7 +117,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		if(verb=="south") {
+		if(verb=="south" and noun == "") {
 			if (!currentLocation->hasSouth()) {
 				cout << "Sorry you can not go South" << endl;
 				goto main_loop;
@@ -126,7 +128,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		if(verb=="west") {
+		if(verb=="west" and noun == "") {
 			if (!currentLocation->hasWest()) {
 				cout << "Sorry you can not go West" << endl;
 				goto main_loop;
@@ -137,7 +139,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		if(verb=="east") {
+		if(verb=="east" and noun == "") {
 			if (!currentLocation->hasEast()) {
 				cout << "Sorry you can not go East" << endl;
 				goto main_loop;
