@@ -26,7 +26,7 @@ public:
     string getDescription(void);
     void setDescription(string description);
     void printRoom(void);
-    
+
     // Directions
     Location* getNorth(void);
     Location* getSouth(void);
@@ -53,6 +53,7 @@ private:
     Location* east;
     Location* west;
     map<string, Item> items;
+    map<string, string> verb_expressions;
 };
 
 #endif

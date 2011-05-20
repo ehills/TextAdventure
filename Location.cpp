@@ -70,6 +70,7 @@ string Location::listItems(void) {
     return the_items;
 }
 
+
 /* Returns the location pointed to by north */
 Location* Location::getNorth(void) {
     return this->north;

@@ -30,11 +30,14 @@ list<string> Parser::ParseFile(void) {
     this->ParseDefaults();
     this->ParseLocations();
     this->ParseItems();
-    //    map<string, Location>::iterator it;
-    //    for (it = this->locations.begin(); it != this->locations.end(); it++) {
-    //        it->second.printRoom();
-    //        
-    //    }
+    
+    
+    string location_name = ParseVariableData(this->file_data, "initialLocation");
+    if (this->locations.count(location_name) > 0) {
+        this->initialLocation = &this->locations.find(location_name)->second;
+    } else {
+        cout << "BAD INITIAL LOCATION" << endl;
+    }
     return this->errors;
 }
 
@@ -117,6 +120,22 @@ int Parser::ParseDefaults() {
         this->file_data.replace(start, end + 1 - start, "");
 
     }
+    
+    start = this->file_data.find("LocationDefaults");
+    if (start < this->file_data.size()) {
+        // Parse verb expressions
+        start = this->file_data.find("{", start) + 1;
+        end = ParseEndBrace(start, this->file_data);
+        data = this->file_data.substr(start, end - start);
+        default_location_verb_expressions = ParseVerbs(data);
+        
+        // REMOVE DEFAULT DATA TO AVOID COLLISION OF ITEM
+        start = this->file_data.find("LocationDefaults");
+        this->file_data.replace(start, end + 1 - start, "");
+
+    }
+    
+    this->initialDescription = ParseStringData(this->file_data, "initialDescription");
     return NO_ERRORS;
 }
 
@@ -285,7 +304,9 @@ void Parser::ParseItem(string data, Item *item) {
         // Set error (No description for location)
     }
 
+    item->addVerbs(this->default_verb_expressions);
     item->addVerbs(ParseVerbs(data));
+    
 
     map<string, bool>::iterator it;
     unsigned int start, end;
@@ -298,7 +319,6 @@ void Parser::ParseItem(string data, Item *item) {
         if (pos < end) {
             if (pos - 1 > 0 && data.at(pos - 1) != '!') {
                 attributes[attribute] = true;
-                cout << item->getName() << " " << attribute << " is true " << endl;
             }
         }
     }

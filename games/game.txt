@@ -38,6 +38,14 @@ ItemDefaults {
     }
 }
 
+
+LocationDefaults {
+    Verb "look" {
+        describe;
+        list;
+    }
+}
+
 // The score at the start
 initialScore = 0;
 
