@@ -24,11 +24,12 @@ int main(int argc, char* argv[]) {
     char* filename;
     // Check there is a file name specified
     if (argc != 2) {
-        cerr << ERROR_WRONG_ARGUMENTS;
-        return EXIT_FAILURE;
+        filename = "games/game.txt";
+//        cerr << ERROR_WRONG_ARGUMENTS;
+//        return EXIT_FAILURE;
+    } else {
+        filename = argv[1];
     }
-
-    filename = argv[1];
     Compiler *compiler = new Compiler();
     compiler->Compile(filename);
     /*

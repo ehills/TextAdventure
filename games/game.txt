@@ -63,7 +63,7 @@ Location kitchen {
     name = "Kitchen";
     description = "A kitchen is a room or part of a room used for cooking and food preparation. In the West, a modern residential kitchen is typically equipped with a stove, a sink with hot and cold running water, a refrigerator and kitchen cabinets arranged according to a modular design. Many households have a microwave oven, a dishwasher and other electric appliances. The main function of a kitchen is cooking or preparing food but it may also be used for dining and entertaining.";
     
-    south = livingRoom;
+    north = livingRoom;
 }
 
 // The location definition for livingRoom

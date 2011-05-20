@@ -5,8 +5,10 @@ Compiler::Compiler() {
 }
 
 void Compiler::Compile(char* filename) {
-    Parser parser(filename);
-    parser.ParseFile();
+    Parser* parser = new Parser(filename);
+    parser->ParseFile();
+    
+    
     
     // Setting up includes/defines
     string output = "\
@@ -17,7 +19,7 @@ void Compiler::Compile(char* filename) {
 #include \"Location.h\"\n\
 #include \"Player.h\"\n\
 using namespace std;\n\
-#define WELCOME_MESSAGE \"" + parser.initialDescription + "\"\n\
+#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n\
 #define QUIT_GAME \"quit\"\n\
 \n\
 int main(int argc, char **argv) {\n\
@@ -32,25 +34,27 @@ int main(int argc, char **argv) {\n\
     
     // Output locations  
     map<string, Location>::iterator it;
-    for (it = parser.locations.begin(); it != parser.locations.end(); it++) {
+    
+    for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
         output += "\tLocation " + it->first + "(\"" + it->second.getName() + "\", \"" + it->second.getDescription() + "\");\n";
     }
     
     output += "\n";
     
-    for (it = parser.locations.begin(); it != parser.locations.end(); it++) {
+    
+    for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
         Location location = it->second;
         if (location.hasNorth()) {
-            output += "\t" + it->first + ".setNorth(&" + location.getNorth()->getName() + ");\n";
+            output += "\t" + it->first + ".setNorth(&" + (location.getNorth()->getVariableName()) + ");\n";
         }
         if (location.hasSouth()) {
-            output += "\t" + it->first + ".setSouth(&" + location.getSouth()->getName() + ");\n";
+            output += "\t" + it->first + ".setSouth(&" + (location.getSouth()->getVariableName()) + ");\n";
         }
         if (location.hasEast()) {
-            output += "\t" + it->first + ".setEast(&" + location.getEast()->getName() + ");\n";
+            output += "\t" + it->first + ".setEast(&" + location.getEast()->getVariableName() + ");\n";
         }
         if (location.hasWest()) {
-            output += "\t" + it->first + ".setWest(&" + location.getWest()->getName() + ");\n";
+            output += "\t" + it->first + ".setWest(&" + location.getWest()->getVariableName() + ");\n";
         }
     }
     cout << output << endl;

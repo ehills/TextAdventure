@@ -37,6 +37,9 @@ list<string> Parser::ParseFile(void) {
     } else {
         cout << "BAD INITIAL LOCATION" << endl;
     }
+    
+    
+    
     return this->errors;
 }
 
@@ -185,6 +188,9 @@ int Parser::ParseLocations() {
             cout << "BAD LOCATION" << endl;
         }
     }
+    for (it = this->locations.begin(); it != this->locations.end(); it++) {
+         cout << "CUNT " <<  it->second.getVariableName() << " " <<  it->second.getNorth()->getVariableName()  << endl;
+    }
     return NO_ERRORS;
 }
 
@@ -262,6 +268,8 @@ void Parser::ParseLocation(string data, Location *location) {
         if (this->locations.count(attribute) > 0) {
             link = this->locations.at(attribute);
             location->setNorth(&link);
+            cout << "FUCK " <<  &location->getVariableName() << " " <<  &location->getNorth()->getVariableName()  << endl;
+            cout << "FUCK " <<  location->getVariableName() << " " <<  location->getNorth()->getVariableName()  << endl;
         } else {
             cerr << "location not in map " << attribute << endl;
         }
