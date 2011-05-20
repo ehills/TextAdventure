@@ -37,12 +37,18 @@ class Location {
    void setSouth(Location* location);
    void setEast(Location* location);
    void setWest(Location* location);
+   bool hasNorth(void);
+   bool hasSouth(void);
+   bool hasEast(void);
+   bool hasWest(void);
+   
     
    /* This set of methods will deal with Items stored in this location */
    void addItem(string item_name, Item item);
    bool hasItem(string item_name);
    void removeItem(string item_name);
    string listItems(void);
+   string listItemsDescriptions(void);
     
    // Destructor
    ~Location(void);
