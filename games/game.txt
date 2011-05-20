@@ -56,7 +56,7 @@ defaultResponse = "I don't know how to " inputVerb ".";
 initialLocation = livingRoom;
 
 // The description to print when the game starts
-initialDescription = "The start description";
+initialDescription = "Ed Is a Fucking homo";
 
 // The location definition
 Location kitchen {

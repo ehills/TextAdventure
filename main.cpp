@@ -4,21 +4,21 @@
 #include <list>
 #include "constants.h"
 #include "fileio.h"
-#include "Parser.h"
+#include "Compiler.h"
 using namespace std;
-
-void handle_errors(list<string> errors) {
-    if (!errors.empty()) {
-        cerr << "------------ " << errors.size() << " Errors Found " << "------------\n";
-        while (!errors.empty()) {
-            string error = errors.back();
-            cerr << error << "\n\n";
-            errors.pop_back();
-        }
-    } else {
-        cout << "\nFile compiled without errors\n";
-    }
-}
+//
+//void handle_errors(list<string> errors) {
+//    if (!errors.empty()) {
+//        cerr << "------------ " << errors.size() << " Errors Found " << "------------\n";
+//        while (!errors.empty()) {
+//            string error = errors.back();
+//            cerr << error << "\n\n";
+//            errors.pop_back();
+//        }
+//    } else {
+//        cout << "\nFile compiled without errors\n";
+//    }
+//}
 
 int main(int argc, char* argv[]) {
     char* filename;
@@ -29,10 +29,8 @@ int main(int argc, char* argv[]) {
     }
 
     filename = argv[1];
-    Parser parser(filename);
-    list<string> errors = parser.ParseFile();
-    handle_errors(errors);
-
+    Compiler *compiler = new Compiler();
+    compiler->Compile(filename);
     /*
     
     // Open the file
