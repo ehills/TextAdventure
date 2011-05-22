@@ -64,6 +64,9 @@ void Location::printRoom(void) {
 
 /* Adds an item to the room */
 void Location::addItem(string item_name, Item item) {
+    if (item.hasLocation()) {
+        item.getLocation()->removeItem(item_name);
+    }
     this->items.insert(pair<string, Item > (item_name, item));
 }
 

@@ -1,55 +1,56 @@
-/**
- * Class: Item
- * File: Item.cpp
- * Date: May 17 2011
- * Description: This is the file that will be used for the Item once it
- *              has been parsed from the users file.
- **/
+#include "Item.h"
 
-#include <string>
-#include <iostream>
-using namespace std;
+/* Constructor sets up initial variables */
+Item::Item(string name, string description) {
+    this->name = name;
+    this->description = description;
+    this->location = NULL;
+}
 
-/* Item class will store all relevant information for a particular item */
-class Item {
-   string name;
-   string description;
-public:
-   /* Constructor sets up initial variables */
-   Item(string name, string description) {
-      this->name = name;
-      this->description = description;
-   }
-   
-   /* Default constructor to set up an empty Item*/
-   Item(){}
-   
-   /* Returns the name of the Item */
-   string getName(void) {
-      return this->name;
-   }
+/* Default constructor to set up an empty Item*/
+Item::Item() {
+}
 
-   /* Sets the name of the item */
-   void setName(string name) {
-      this->name = name;
-   }
+/* Returns the name of the Item */
+Item::string Item::getName(void) {
+    return this->name;
+}
 
-   /* Returns a description of the item */
-   string getDescription(void) {
-      return this->description;
-   }
+/* Sets the name of the item */
+void Item::setName(string name) {
+    this->name = name;
+}
 
-   /* Sets a description for the item */
-   void setDescription(string description) {
-      this->description = description;
-   }  
+/* Returns the name of the Item */
+bool Item::hasLocation(void) {
+    return (this->location != NULL);
+}
 
-   /* Prints out the Items name and description */
-   void print() {
-      cout << this->name << ", " << this->description << endl;
-   }
-   
-   /* Destructor */
-   ~Item(void) {
-   }
-};
+/* Returns the name of the Item */
+Location* Item::getLocation(void) {
+    return this->location;
+}
+
+/* Sets the name of the item */
+void Item::setLocation(Location* location) {
+    this->location = location;
+}
+
+/* Returns a description of the item */
+string Item::getDescription(void) {
+    return this->description;
+}
+
+/* Sets a description for the item */
+void Item::setDescription(string description) {
+    this->description = description;
+}
+
+/* Prints out the Items name and description */
+void Item::print() {
+    cout << this->name << ", " << this->description << endl;
+}
+
+/* Destructor */
+Item::~Item(void) {
+}

@@ -46,12 +46,12 @@ void Player::setMaxItems(int max_items) {this->max_items = max_items;}
 Location* Player::getLocation(void) {return current_location;}
 
 /* Sets the players starting location */
-void Player::setLocation(Location *location) {
+void Player::setLocation(Location* location) {
    this->current_location = location;
 }
 
 /* Returns the players inventory location */
-Location Player::getInventory(void) {return inventory;}
+Location* Player::getInventory(void) {return inventory;}
 
 /* Sets the players inventory location */
-void Player::setInventory(Location inventory) {this->inventory = inventory;}
+void Player::setInventory(Location* inventory) {this->inventory = inventory;}

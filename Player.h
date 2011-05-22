@@ -14,6 +14,7 @@ using namespace std;
 
 class Player {
    string name;
+   string variable_name;
    string description;
    int max_items;
    int current_number_of_items;
@@ -25,6 +26,8 @@ public:
    ~Player();
    string getName(void);
    void setName(string name);
+   string getVariableName(void);
+   void setVariableName(string variable_name);
    string getDescription(void);
    void setDescription(string description);
    int getNumberOfItems(void);

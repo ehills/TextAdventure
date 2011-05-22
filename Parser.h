@@ -14,6 +14,7 @@
 #include <map>
 #include "Location.h"
 #include "Item.h"
+#include "Player.h"
 using namespace std;
 
 
@@ -32,16 +33,18 @@ public:
     Location *initialLocation;
     list<string> errors;
     map<string, Location*> locations;
-    map<string, Item> items;
+    map<string, Item*> items;
     map<string, string> default_verb_expressions;
     map<string, string> default_location_verb_expressions;
     map<string, bool> default_attribute_values;
+    Player* player;
 private:
     //comment striping code
     int stripComments();
     int ParseAttributes();
     int ParseDefaults();
     int ParseLocations();
+    int ParsePlayer();
     int ParseItems();
     
     // Parses the attributes

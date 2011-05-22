@@ -21,7 +21,7 @@ class Player {
    int max_items;
    int current_number_of_items;
    Location* current_location;
-   Location inventory;
+   Location* inventory;
  public:
    /* Constructor */
    Player();
@@ -60,10 +60,10 @@ class Player {
    void setLocation(Location* location);
 
    /* Returns the players inventory location */
-   Location getInventory(void);
+   Location* getInventory(void);
 
    /* Sets the players inventory location */
-   void setInventory(Location inventory);
+   void setInventory(Location* inventory);
 };
 
 #endif

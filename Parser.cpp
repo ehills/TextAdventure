@@ -1,6 +1,8 @@
 #include "Parser.h"
 #include "constants.h"
 #include "parsetools.cpp"
+#include "Player.h"
+
 #define NEWLINE_HACK "(*-*)"
 
 /* Constructor */
@@ -30,6 +32,7 @@ list<string> Parser::ParseFile(void) {
     this->ParseDefaults();
     this->ParseLocations();
     this->ParseItems();
+    this->ParsePlayer();
 
     string location_name = ParseVariableData(this->file_data, "initialLocation");
     if (this->locations.count(location_name) > 0) {
@@ -37,9 +40,9 @@ list<string> Parser::ParseFile(void) {
     } else {
         cout << "BAD INITIAL LOCATION" << endl;
     }
-    
-    
-    
+
+
+
     return this->errors;
 }
 
@@ -190,6 +193,38 @@ int Parser::ParseLocations() {
     return NO_ERRORS;
 }
 
+int Parser::ParsePlayer() {
+    // Find all block comments and remove
+    unsigned int start, end, size;
+    string attribute, data;
+    /*
+     * Parse the Items first time through
+     */
+    start = this->file_data.find("Player ");
+    if (start < this->file_data.size()) {
+        end = this->file_data.find("{", start);
+        if (end < this->file_data.size()) {
+            start += 7;
+            size = (end) - start;
+            player = new Player();
+            attribute = stringTrim(this->file_data.substr(start, size));
+            player->setVariableName(attribute);
+            end++;
+            data = this->file_data.substr(end, ParseEndBrace(end, this->file_data));
+            attribute = ParseStringData(data, "name");
+            player->setName(attribute);
+            
+            attribute = ParseStringData(data, "description");
+            player->setDescription(attribute);
+            
+            attribute = ParseVariableData(data, "carryLimit");
+            player->setMaxItems(atoi(attribute.c_str()));
+        }
+    }
+
+    return NO_ERRORS;
+}
+
 int Parser::ParseItems() {
     // Find all block comments and remove
     unsigned int start, end, size;
@@ -205,10 +240,10 @@ int Parser::ParseItems() {
 
                 start += 5;
                 size = (end) - start;
-                Item item;
-                string original_item_name = this->file_data.substr(start, size);
-                string item_name = stringTrim(original_item_name);
+                Item *item = new Item();
+                string item_name = stringTrim(this->file_data.substr(start, size));
                 this->file_data.replace(start, size, item_name + " ");
+                item->setVariableName(item_name);
                 this->items[item_name] = item;
             }
         }
@@ -218,7 +253,7 @@ int Parser::ParseItems() {
     /*
      * Parse the Item details second time through
      */
-    map<string, Item>::iterator it;
+    map<string, Item*>::iterator it;
     for (it = this->items.begin(); it != this->items.end(); it++) {
         string search = "Item " + it->first + " {";
         start = this->file_data.find(search) + search.length();
@@ -226,8 +261,7 @@ int Parser::ParseItems() {
             end = ParseEndBrace(start, this->file_data);
             size = (end) - start;
             string data = this->file_data.substr(start, size);
-
-            ParseItem(data, &it->second);
+            ParseItem(data, it->second);
         } else {
             cout << "BAD ITEM" << endl;
 
@@ -297,13 +331,12 @@ void Parser::ParseLocation(string data, Location *location) {
             cerr << "location not in map " << attribute << endl;
         }
     }
-    
+
     //this->locations[location->getVariableName()] = *location;
 }
 
-void Parser::ParseItem(string data, Item * item) {
+void Parser::ParseItem(string data, Item *item) {
     string attribute;
-    Location* location;
     // Parse Name
     attribute = ParseStringData(data, "name");
     if (validAttribute(attribute)) {
@@ -322,9 +355,7 @@ void Parser::ParseItem(string data, Item * item) {
     attribute = ParseVariableData(data, "location");
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
-            location = this->locations.at(attribute);
-            location->addItem(item->getName(), *item);
-            this->locations[attribute] = location;
+            item->setLocation(this->locations.at(attribute));
         } else {
             cerr << "location not in map " << attribute << endl;
         }

@@ -10,14 +10,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <map>
-#include "Item.h"
 
 using namespace std;
 
 /* Location class will store all information relevant to a particular location*/
 class Location {
 public:
-    Location(string, string, string, map<string, Item>);
+    Location(string, string, string);
     Location();
 
     // Details
@@ -27,7 +26,6 @@ public:
     void setVariableName(string variable_name);
     string getDescription(void);
     void setDescription(string description);
-    void printRoom(void);
 
     // Directions
     Location* getNorth(void);
@@ -42,14 +40,6 @@ public:
     void setSouth(Location* location);
     void setEast(Location* location);
     void setWest(Location* location);
-    
-    // Items
-    void addItem(string item_name, Item item);
-    bool hasItem(string item_name);
-    void removeItem(string item_name);
-    string listItemsDescription(void);
-    string listItems(void);
-    
     // Object Deletion
     ~Location(void);
 private:
@@ -60,8 +50,6 @@ private:
     Location* north;
     Location* east;
     Location* west;
-    map<string, Item> items;
-    map<string, string> verb_expressions;
 };
 
 #endif

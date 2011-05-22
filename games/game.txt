@@ -18,23 +18,25 @@ ItemDefaults {
     isExaminable;
 
     Verb "drop" {
-        if (mother.hasItem(inputItem)) {
-            inputItem.setLocation(mother.getLocation());
+        if (mother hasItem inputItem) {
+            inputItem setLocation currentLocation;
         } else {
-            print("I don't have " + inputItem + ".");
+            print "I don't have";
+            print inputItem;
+            print ".";
         }
     }
     
     Verb "take" {
-        if (mother.canCarry()) {
-            inputItem.setLocation(mother);
+        if (mother canCarry inputItem) {
+            inputItem setLocation mother;
         } else {
-            print("You are carrying to much already");
+            print "You are carrying to much already";
         }
     }
 
     Verb "examine" {
-        print(inputItem.description());
+        print inputItem.description();
     }
 }
 
@@ -67,7 +69,7 @@ Location kitchen {
 }
 
 // The location definition for livingRoom
-Location livingRoom                 {
+Location livingRoom {
     name = "The Living Room";
     description = "The Living Room";
     
@@ -80,24 +82,4 @@ Item television {
     description = "A small television placed in the corner of the kitchen. It looks broken";
     location = kitchen;
     isTakeable;
-
-    Verb "drop" {
-        if (mother.hasItem(inputItem)) {
-            inputItem.setLocation(mother.getLocation());
-        } else {
-            print("I don't have " + inputItem + ".");
-        }
-    }
-    
-    Verb "take" {
-        if (mother.canCarry()) {
-            inputItem.setLocation(mother);
-        } else {
-            print("You are carrying to much already");
-        }
-    }
-
-    Verb "examine" {
-        print(inputItem.description());
-    }
 }

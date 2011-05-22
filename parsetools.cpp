@@ -1,13 +1,4 @@
-#ifndef PARSERTOOLS_H_
-#define	PARSERTOOLS_H_
-
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <map>
-
 using namespace std;
-
 #define NO_ERRORS 0
 #define BAD_ATTRIBUTE "(*****@@@*@**@*@*)@*!)@*#!)#*!)*#)@*!)@*#!)*$!^%#&!%(&!@%!(&^!@%(#!&@^)"
 
@@ -110,5 +101,3 @@ map<string, string> ParseVerbs(string data) {
     }
     return rules;
 }
-
-#endif

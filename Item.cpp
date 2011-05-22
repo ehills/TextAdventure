@@ -30,6 +30,16 @@ void Item::setName(string name) {
     this->name = name;
 }
 
+/* Returns the name of the Item */
+string Item::getVariableName(void) {
+    return this->variable_name;
+}
+
+/* Sets the name of the item */
+void Item::setVariableName(string name) {
+    this->variable_name = name;
+}
+
 /* Returns a description of the item */
 string Item::getDescription(void) {
     return this->description;
@@ -43,6 +53,11 @@ void Item::setDescription(string description) {
 /* Adds a verb to the list of valid verbs for this item */
 void Item::addVerb(string verb, string expressions) {
     this->verb_expressions.insert(pair<string, string > (verb, expressions));
+}
+
+/* Adds a verb to the list of valid verbs for this item */
+map<string, string> Item::getVerbs() {
+    return this->verb_expressions;
 }
 
 void Item::addVerbs(map<string, string> verb_expressions) {
@@ -84,6 +99,13 @@ void Item::printVerbs() {
     for (it = this->verb_expressions.begin(); it != this->verb_expressions.end(); it++) {
         cout << it->first << endl << it->second << endl;
     }
+}
+
+Location* Item::getLocation(void) {
+    return this->location;
+}
+void Item::setLocation(Location* location) {
+    this->location = location;
 }
 
 /* Destructor */

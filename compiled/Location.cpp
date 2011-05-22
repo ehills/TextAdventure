@@ -25,16 +25,6 @@ Location::Location(string name, string description, map<string, Item> items) {
    this->east = NULL;
 }
 
-/* Constructor */
-Location::Location(string name, string description) {
-   this->name = name;
-   this->description = description;
-   this->north = NULL;
-   this->south = NULL;
-   this->west = NULL;
-   this->east = NULL;
-}
-
 /* Returns the name of this location */
 string Location::getName(void) {
     return this->name;
@@ -70,6 +60,10 @@ void Location::addItem(string item_name, Item item) {
 /* Checks to see if item is in this location */
 bool Location::hasItem(string item_name) {
     return this->items.count(item_name) != 0;
+}
+
+Item Location::getItem(string item_name) {
+	return this->items.find(item_name)->second;
 }
 
 /* Removes an item from the room */

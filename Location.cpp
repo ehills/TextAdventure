@@ -15,10 +15,10 @@ Location::Location() {
 }
 
 /* Constructor */
-Location::Location(string variable_name, string name, string description, map<string, Item> items) {
+Location::Location(string variable_name, string name, string description) {
     this->name = name;
+    this->variable_name = variable_name;
     this->description = description;
-    this->items = items;
     this->north = NULL;
     this->south = NULL;
     this->west = NULL;
@@ -53,48 +53,6 @@ string Location::getDescription(void) {
 /* Sets the description of this room */
 void Location::setDescription(string description) {
     this->description = description;
-}
-
-/* Prints out the description plus the objects that are currently in this
- * location to the user
- */
-void Location::printRoom(void) {
-    cout << this->getDescription() << endl << this->listItems();
-}
-
-/* Adds an item to the room */
-void Location::addItem(string item_name, Item item) {
-    this->items.insert(pair<string, Item > (item_name, item));
-}
-
-/* Checks to see if item is in this location */
-bool Location::hasItem(string item_name) {
-    return this->items.count(item_name) != 0;
-}
-
-/* Removes an item from the room */
-void Location::removeItem(string item_name) {
-    this->items.erase(item_name);
-}
-
-/* Returns the description of each item in this location */
-string Location::listItemsDescription(void) {
-    string the_items = "-- Items --";
-    map<string, Item>::iterator it;
-    for (it = items.begin(); it != items.end(); ++it) {
-        the_items += ("\n" + it->second.getDescription());
-    }
-    return the_items;
-}
-
-/* Returns the name of each item in this location */
-string Location::listItems(void) {
-    string the_items = "-- Items --";
-    map<string, Item>::iterator it;
-    for (it = items.begin(); it != items.end(); ++it) {
-        the_items += ("\n" + it->second.getName());
-    }
-    return the_items;
 }
 
 /* Checks to see if the location can go north */

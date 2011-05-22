@@ -4,10 +4,14 @@
 using namespace std;
 
 class Compiler {
+    Parser* parser;
 public:
-    Compiler();
-    void Compile(char* filename);
+    Compiler(char* filename);
+    void Compile();
     ~Compiler(void);
+private:
+    string CompileNounVerb(Item *item);
+    string CompileSingleVerb(string commands);
 };
 
 

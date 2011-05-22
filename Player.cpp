@@ -28,6 +28,13 @@ string Player::getName(void) {return name;}
 /* Sets player name */
 void Player::setName(string name) {this->name = name;}
 
+
+/* Gets player name */
+string Player::getVariableName(void) {return variable_name;}
+
+/* Sets player name */
+void Player::setVariableName(string variable_name) {this->variable_name = variable_name;}
+
 /* Gets player description */
 string Player::getDescription(void) {return description;}
 
