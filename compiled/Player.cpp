@@ -67,3 +67,8 @@ Location Player::getInventory(void) {return inventory;}
 
 /* Sets the players inventory location */
 void Player::setInventory(Location inventory) {this->inventory = inventory;}
+
+/* Check to see if there is inventory space */
+bool Player::canCarry(void) {
+	return current_number_of_items < max_items;
+}

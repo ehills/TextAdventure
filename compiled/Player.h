@@ -67,6 +67,9 @@ class Player {
 
    /* Sets the players inventory location */
    void setInventory(Location inventory);
+
+   /* Check to see if there is inventory space */
+   bool canCarry(void);
 };
 
 #endif

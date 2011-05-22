@@ -12,7 +12,7 @@ Item::Item() {
 }
 
 /* Returns the name of the Item */
-Item::string Item::getName(void) {
+string Item::getName(void) {
     return this->name;
 }
 
