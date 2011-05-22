@@ -14,12 +14,18 @@ int main(int argc, char **argv) {
 	string verb;
 	string noun;
 	string prompt;
+	bool globalVerb = false;
 	int count;
 
+	Player* player = new Player();
 	Location* currentLocation = new Location();
 	Location inventory;
+	//currentLocation = &player->getLocation();
+
 	Location hospitalFloor;
 	Location startLocation;
+	Item sword("Long sword", "A dirty long sword");
+	Item mace("Spikey mace", "A brutal looking mace");
 
 	startLocation.setName("start room");
 	startLocation.setDescription("You find yourself in an empty room...");
@@ -27,9 +33,10 @@ int main(int argc, char **argv) {
 	startLocation.setNorth(&hospitalFloor);
 	hospitalFloor.setSouth(&startLocation);
 	currentLocation = &startLocation;
+	currentLocation->addItem("sword", sword);
+	currentLocation->addItem("mace", mace);
 
 	/* Print welcome message and get users name */
-	Player* player = new Player();
 	player->setInventory(inventory);
 	player->setMaxItems(8);
 	player->setNumberOfItems(+1);
@@ -38,7 +45,7 @@ int main(int argc, char **argv) {
 	cin >> username;
 	cin.ignore();
 	player->setName(username);
-	prompt = player->getName() + ": ";
+	prompt = ">>> ";
 
 	cout << "Thank you " << player->getName() <<
 			". Your quest will now begin.\n";
@@ -47,11 +54,9 @@ int main(int argc, char **argv) {
 
 	while (command != QUIT_GAME) {
 		main_loop:
-		//cout << "current room: " << currentLocation->getName() << endl;
+		// Get verb and noun from user's input
 		cout << prompt;
 		getline(cin, command);
-
-		// Get verb and noun from user's input
 		istringstream word(command);
 		verb = "";
 		noun = "";
@@ -65,7 +70,7 @@ int main(int argc, char **argv) {
 			// Get the verb
 			if (count == 0) {
 				word >> verb;
-			// Get the noun
+				// Get the noun
 			} else {
 				word >> noun;
 			}
@@ -76,14 +81,13 @@ int main(int argc, char **argv) {
 		if (command == QUIT_GAME) {
 			quit_loop:
 			string quit = "";
-			cout << "Do you really want to quit?: [y]or[n]" << endl << ">>> ";
-			cin >> quit;
-			cin.ignore();
-			if (quit == "y") {
+			cout << "Do you really want to quit [y]or[n]?: ";
+			getline(cin, quit);;
+			if (quit == "y" or quit == "yes") {
 				cout << "Thanks for playing!" << endl;
-				break;
+				return 0;
 			}
-			else if (quit == "n") {
+			else if (quit == "n" or quit == "no") {
 				goto main_loop;
 			} else {
 				goto quit_loop;
@@ -91,80 +95,80 @@ int main(int argc, char **argv) {
 		}
 
 		// Look in inventory
-		if(command == "i" || command == "inventory" || command == "invent" ) {
-
+		if((verb == "i" and noun == "") or (verb == "inventory" and noun == "") or (verb == "invent" and noun == "")) {
 			cout << player->getInventory().listItems();
-			cout <<  player->getNumberOfItems() << "/" << player->getMaxItems()<< endl;
+			cout << player->getNumberOfItems() << "/" << player->getMaxItems()<< endl;
 			goto main_loop;
 		}
 
 		// Describe location and items in it
-		if(verb == "look" and noun == ""|| verb == "describe" and noun == "") {
+		if((verb == "look" and noun == "") or (verb == "describe" and noun == "")) {
+			cout << currentLocation->getName() << ": ";
 			currentLocation->printRoom();
 			cout << endl;
 			goto main_loop;
 		}
 
 		// Move north, south, west or east
-                if (count == 1) {
-                    if(verb=="north") {
-                            if (!currentLocation->hasNorth()) {
-                                    cout << "Sorry you can not go North" << endl;
-                                    goto main_loop;
-                            } else {
-                                    currentLocation = currentLocation->getNorth();
-                                    cout << currentLocation->getDescription() << endl;
-                                    goto main_loop;
-                            }
-                    }
-
-                    if(verb=="south") {
-                            if (!currentLocation->hasSouth()) {
-                                    cout << "Sorry you can not go South" << endl;
-                                    goto main_loop;
-                            } else {
-                                    currentLocation = currentLocation->getSouth();
-                                    cout << currentLocation->getDescription() << endl;
-                                    goto main_loop;
-                            }
-                    }
-
-                    if(verb=="west") {
-                            if (!currentLocation->hasWest()) {
-                                    cout << "Sorry you can not go West" << endl;
-                                    goto main_loop;
-                            } else {
-                                    currentLocation = currentLocation->getWest();
-                                    cout << currentLocation->getDescription() << endl;
-                                    goto main_loop;
-                            }
-                    }
-
-                    if(verb=="east") {
-                            if (!currentLocation->hasEast()) {
-                                    cout << "Sorry you can not go East" << endl;
-                                    goto main_loop;
-                            } else {
-                                    currentLocation = currentLocation->getEast();
-                                    cout << currentLocation->getDescription() << endl;
-                                    goto main_loop;
-                            }
-                    }
-                }
-
-		if (verb.compare("verb") == 0) { // if verb is in list of verbs
-			if (noun.compare("noun") == 0 ) {
-				// noun.doVerb
+		if(verb=="north" and noun == "") {
+			if (!currentLocation->hasNorth()) {
+				cout << "Sorry you can not go North" << endl;
+				goto main_loop;
 			} else {
-				cout << "Sorry you do not have this item" << endl;
+				currentLocation = currentLocation->getNorth();
+				cout << currentLocation->getDescription() << endl;
+				goto main_loop;
 			}
+		}
+
+		if(verb=="south" and noun == "") {
+			if (!currentLocation->hasSouth()) {
+				cout << "Sorry you can not go South" << endl;
+				goto main_loop;
+			} else {
+				currentLocation = currentLocation->getSouth();
+				cout << currentLocation->getDescription() << endl;
+				goto main_loop;
+			}
+		}
+
+		if(verb=="west" and noun == "") {
+			if (!currentLocation->hasWest()){
+				cout << "Sorry you can not go West" << endl;
+				goto main_loop;
+			} else {
+				currentLocation = currentLocation->getWest();
+				cout << currentLocation->getDescription() << endl;
+				goto main_loop;
+			}
+		}
+
+		if(verb=="east" and noun == "") {
+			if (!currentLocation->hasEast()) {
+				cout << "Sorry you can not go East" << endl;
+				goto main_loop;
+			} else {
+				currentLocation = currentLocation->getEast();
+				cout << currentLocation->getDescription() << endl;
+				goto main_loop;
+			}
+		}
+
+		// If item is in the current location
+		if (currentLocation->hasItem(noun)) {
+			currentLocation->getItem(noun).doVerb(verb);
+		// If item is in player's inventory
+		} else if (player->getInventory().hasItem(noun)){
+			player->getInventory().getItem(noun).doVerb(verb);
+		// If verb is a global verb
+		} else if (globalVerb and noun == "") {
+			//do.globalVerb
 		} else {
 			cout << "Sorry I do not understand this command" << endl;
 		}
 	}
 	return 0;
 }
-
 
 
 

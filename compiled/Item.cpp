@@ -12,44 +12,49 @@ using namespace std;
 
 /* Item class will store all relevant information for a particular item */
 class Item {
-   string name;
-   string description;
+	string name;
+	string description;
 public:
-   /* Constructor sets up initial variables */
-   Item(string name, string description) {
-      this->name = name;
-      this->description = description;
-   }
-   
-   /* Default constructor to set up an empty Item*/
-   Item(){}
-   
-   /* Returns the name of the Item */
-   string getName(void) {
-      return this->name;
-   }
+	/* Constructor sets up initial variables */
+	Item(string name, string description) {
+		this->name = name;
+		this->description = description;
+	}
 
-   /* Sets the name of the item */
-   void setName(string name) {
-      this->name = name;
-   }
+	/* Default constructor to set up an empty Item*/
+	Item(){}
 
-   /* Returns a description of the item */
-   string getDescription(void) {
-      return this->description;
-   }
+	/* Returns the name of the Item */
+	string getName(void) {
+		return this->name;
+	}
 
-   /* Sets a description for the item */
-   void setDescription(string description) {
-      this->description = description;
-   }  
+	/* Sets the name of the item */
+	void setName(string name) {
+		this->name = name;
+	}
 
-   /* Prints out the Items name and description */
-   void print() {
-      cout << this->name << ", " << this->description << endl;
-   }
-   
-   /* Destructor */
-   ~Item(void) {
-   }
+	/* Performs verb on object */
+	void doVerb(string verb) {
+		cout << "Sorry " << '"' << verb << '"' << " cannot be performed on " << '"' << this->getName() << '"' << "." << endl;
+	}
+
+	/* Returns a description of the item */
+	string getDescription(void) {
+		return this->description;
+	}
+
+	/* Sets a description for the item */
+	void setDescription(string description) {
+		this->description = description;
+	}
+
+	/* Prints out the Item's name and description */
+	void print() {
+		cout << this->name << ", " << this->description << endl;
+	}
+
+	/* Destructor */
+	~Item(void) {
+	}
 };
