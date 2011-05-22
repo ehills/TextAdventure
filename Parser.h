@@ -31,7 +31,7 @@ public:
     string initialDescription;
     Location *initialLocation;
     list<string> errors;
-    map<string, Location> locations;
+    map<string, Location*> locations;
     map<string, Item> items;
     map<string, string> default_verb_expressions;
     map<string, string> default_location_verb_expressions;

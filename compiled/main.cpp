@@ -106,49 +106,51 @@ int main(int argc, char **argv) {
 		}
 
 		// Move north, south, west or east
-		if(verb=="north" and noun == "") {
-			if (!currentLocation->hasNorth()) {
-				cout << "Sorry you can not go North" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getNorth();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
+                if (count == 1) {
+                    if(verb=="north") {
+                            if (!currentLocation->hasNorth()) {
+                                    cout << "Sorry you can not go North" << endl;
+                                    goto main_loop;
+                            } else {
+                                    currentLocation = currentLocation->getNorth();
+                                    cout << currentLocation->getDescription() << endl;
+                                    goto main_loop;
+                            }
+                    }
 
-		if(verb=="south" and noun == "") {
-			if (!currentLocation->hasSouth()) {
-				cout << "Sorry you can not go South" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getSouth();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
+                    if(verb=="south") {
+                            if (!currentLocation->hasSouth()) {
+                                    cout << "Sorry you can not go South" << endl;
+                                    goto main_loop;
+                            } else {
+                                    currentLocation = currentLocation->getSouth();
+                                    cout << currentLocation->getDescription() << endl;
+                                    goto main_loop;
+                            }
+                    }
 
-		if(verb=="west" and noun == "") {
-			if (!currentLocation->hasWest()) {
-				cout << "Sorry you can not go West" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getWest();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
+                    if(verb=="west") {
+                            if (!currentLocation->hasWest()) {
+                                    cout << "Sorry you can not go West" << endl;
+                                    goto main_loop;
+                            } else {
+                                    currentLocation = currentLocation->getWest();
+                                    cout << currentLocation->getDescription() << endl;
+                                    goto main_loop;
+                            }
+                    }
 
-		if(verb=="east" and noun == "") {
-			if (!currentLocation->hasEast()) {
-				cout << "Sorry you can not go East" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getEast();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
+                    if(verb=="east") {
+                            if (!currentLocation->hasEast()) {
+                                    cout << "Sorry you can not go East" << endl;
+                                    goto main_loop;
+                            } else {
+                                    currentLocation = currentLocation->getEast();
+                                    cout << currentLocation->getDescription() << endl;
+                                    goto main_loop;
+                            }
+                    }
+                }
 
 		if (verb.compare("verb") == 0) { // if verb is in list of verbs
 			if (noun.compare("noun") == 0 ) {

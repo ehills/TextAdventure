@@ -43,7 +43,6 @@ string Location::getVariableName(void) {
 /* Sets the name of this Location */
 void Location::setVariableName(string variable_name) {
     this->variable_name = variable_name;
-    cout << "setting " << this->getVariableName() << endl;
 }
 
 /* Returns the description of this room */

@@ -71,7 +71,7 @@ Location livingRoom                 {
     name = "The Living Room";
     description = "The Living Room";
     
-    north = kitchen;
+    south = kitchen;
 }
 
 // The item definition for Television

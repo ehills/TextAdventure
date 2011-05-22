@@ -33,7 +33,7 @@ list<string> Parser::ParseFile(void) {
 
     string location_name = ParseVariableData(this->file_data, "initialLocation");
     if (this->locations.count(location_name) > 0) {
-        this->initialLocation = &this->locations.find(location_name)->second;
+        this->initialLocation = this->locations.find(location_name)->second;
     } else {
         cout << "BAD INITIAL LOCATION" << endl;
     }
@@ -157,10 +157,9 @@ int Parser::ParseLocations() {
             if (end < this->file_data.size() && end < this->file_data.find(";", start)) {
                 start += 9;
                 size = (end) - start;
-                Location location;
-                string original_location_name = this->file_data.substr(start, size);
-                string location_name = stringTrim(original_location_name);
-                location.setVariableName(location_name);
+                Location* location = new Location();
+                string location_name = stringTrim(this->file_data.substr(start, size));
+                location->setVariableName(location_name);
                 this->file_data.replace(start, size, location_name + " ");
                 this->locations[location_name] = location;
             }
@@ -174,7 +173,7 @@ int Parser::ParseLocations() {
     /*
      * Parse the Location details second time through
      */
-    map<string, Location>::iterator it;
+    map<string, Location*>::iterator it;
     for (it = this->locations.begin(); it != this->locations.end(); it++) {
         string search = "Location " + it->first + " {";
 
@@ -183,13 +182,10 @@ int Parser::ParseLocations() {
             end = ParseEndBrace(start, this->file_data);
             size = (end) - start;
             string data = this->file_data.substr(start, size);
-            ParseLocation(data, &it->second);
+            ParseLocation(data, it->second);
         } else {
             cout << "BAD LOCATION" << endl;
         }
-    }
-    for (it = this->locations.begin(); it != this->locations.end(); it++) {
-         cout << "CUNT " <<  it->second.getVariableName() << " " <<  it->second.getNorth()->getVariableName()  << endl;
     }
     return NO_ERRORS;
 }
@@ -243,13 +239,12 @@ int Parser::ParseItems() {
 
 void Parser::ParseLocation(string data, Location *location) {
     string attribute;
-    Location link;
+    Location *link;
 
     // Parse Name
     attribute = ParseStringData(data, "name");
     if (validAttribute(attribute)) {
         location->setName(attribute);
-        cout << attribute << endl;
     } else {
         // Set error (No name for location)
     }
@@ -267,9 +262,7 @@ void Parser::ParseLocation(string data, Location *location) {
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
             link = this->locations.at(attribute);
-            location->setNorth(&link);
-            cout << "FUCK " <<  &location->getVariableName() << " " <<  &location->getNorth()->getVariableName()  << endl;
-            cout << "FUCK " <<  location->getVariableName() << " " <<  location->getNorth()->getVariableName()  << endl;
+            location->setNorth(link);
         } else {
             cerr << "location not in map " << attribute << endl;
         }
@@ -279,7 +272,7 @@ void Parser::ParseLocation(string data, Location *location) {
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
             link = this->locations.at(attribute);
-            location->setSouth(&link);
+            location->setSouth(link);
         } else {
             cerr << "location not in map " << attribute << endl;
         }
@@ -289,7 +282,7 @@ void Parser::ParseLocation(string data, Location *location) {
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
             link = this->locations.at(attribute);
-            location->setEast(&link);
+            location->setEast(link);
         } else {
             cerr << "location not in map " << attribute << endl;
         }
@@ -299,16 +292,18 @@ void Parser::ParseLocation(string data, Location *location) {
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
             link = this->locations.at(attribute);
-            location->setWest(&link);
+            location->setWest(link);
         } else {
             cerr << "location not in map " << attribute << endl;
         }
     }
+    
+    //this->locations[location->getVariableName()] = *location;
 }
 
 void Parser::ParseItem(string data, Item * item) {
     string attribute;
-    Location location;
+    Location* location;
     // Parse Name
     attribute = ParseStringData(data, "name");
     if (validAttribute(attribute)) {
@@ -328,7 +323,7 @@ void Parser::ParseItem(string data, Item * item) {
     if (validAttribute(attribute)) {
         if (this->locations.count(attribute) > 0) {
             location = this->locations.at(attribute);
-            location.addItem(item->getName(), *item);
+            location->addItem(item->getName(), *item);
             this->locations[attribute] = location;
         } else {
             cerr << "location not in map " << attribute << endl;
