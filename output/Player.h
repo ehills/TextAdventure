@@ -19,7 +19,6 @@ class Player {
    string name;
    string description;
    int max_items;
-   int current_number_of_items;
    Location* current_location;
    Location* inventory;
  public:
@@ -43,9 +42,6 @@ class Player {
 
    /* Returns the number of items currently held by the player */
    int getNumberOfItems(void);
-
-   /* Sets the number of items that the player currently has */
-   void setNumberOfItems(int number_of_items);
 
    /* Returns the max number of items the player can hold */
    int getMaxItems(void);

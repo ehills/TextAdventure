@@ -10,8 +10,9 @@
 
 #include <string>
 #include <iostream>
-#include "Location.h"
 using namespace std;
+
+class Location;
 
 /* Item class will store all relevant information for a particular item */
 class Item {

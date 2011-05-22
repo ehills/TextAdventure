@@ -10,9 +10,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <map>
-
 using namespace std;
-
+class Item;
 /* Location class will store all information relevant to a particular location*/
 class Location {
 public:

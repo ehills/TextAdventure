@@ -25,7 +25,6 @@ class Location {
     map<string, Item> items;
 public:
     // Constructors
-    Location(string, string, map<string, Item>);
     Location(string, string);
     Location();
 
@@ -53,6 +52,7 @@ public:
 
     /* This set of methods will deal with Items stored in this location */
     void addItem(string item_name, Item item);
+    int getItemCount();
     bool hasItem(string item_name);
     void removeItem(string item_name);
     string listItems(void);

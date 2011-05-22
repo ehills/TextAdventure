@@ -37,6 +37,7 @@ void Compiler::Compile() {
 #include <string>\n\
 #include <sstream>\n\
 #include \"Location.h\"\n\
+#include \"Item.h\"\n\
 #include \"Player.h\"\n\
 using namespace std;\n\
 #define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n\
@@ -91,7 +92,7 @@ int main(int argc, char **argv) {\n\
     map<string, Item*>::iterator objects;
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
         output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\");\n";
-        output += objects->first + ".setLocation(&" + objects->second->getLocation()->getVariableName() + ");\n";
+        output += "// " +objects->first + ".setLocation(&" + objects->second->getLocation()->getVariableName() + ");\n";
         output += objects->second->getLocation()->getVariableName() + ".addItem(\"" + objects->second->getName() + "\", " + objects->first + ");\n";
     }
 
@@ -147,6 +148,11 @@ int main(int argc, char **argv) {\n\
 
     // DIRECTIONS 
     output += "\n\
+        if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
+                cout << " + parser->player->getVariableName() + "->getInventory()->listItems();\n\
+                cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
+                goto main_loop;\n\
+        }\n\n\
         if(verb==\"north\") {\n\
             if (!" + parser->player->getVariableName() + "->getLocation()->hasNorth()) {\n\
                 cout << \"Sorry you can not go North\" << endl;\n\
@@ -182,7 +188,7 @@ int main(int argc, char **argv) {\n\
             "                cout << \"Sorry you can not go East\" << endl;\n\
                 goto main_loop;\n\
             } else {\n\
-                 player->setLocation(" + parser->player->getVariableName() + "->getLocation()->getEast());\n\
+                " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getEast());\n\
                 cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n\
                 goto main_loop;\n\
             }\n\
@@ -306,14 +312,16 @@ string Compiler::CompileNounVerb(Item *item) {
                     }
                     if (location == "") {
                         if (line.find(parser->player->getVariableName()) < line.length()) {
-                            location = parser->player->getVariableName() + ".getInventory()";
-                            break;  
+                            location = parser->player->getVariableName() + "->getInventory()";
+                        } else if (line.find("currentLocation") < line.length()) {
+                            location = parser->player->getVariableName() + "->getLocation()";  
                         }
                     }
                     if (location == "" || item == "") {
                         cerr << "Unreadable setLocation Command: \"" << line << "\"" << endl;
                     } else {
-                        output += location + "->addItem(" + item + "->getName(), " + item + ")\n";
+                        cerr << location << "->addItem(" << item << ".getName(), " << item << ");\n";
+                        output += location + "->addItem(" + item + ".getName(), " + item + ");\n";
                     }
                 } else {
                     cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;

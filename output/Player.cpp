@@ -29,12 +29,8 @@ void Player::setDescription(string description) {
 }
 
 /* Returns the number of items currently held by the player */
-int Player::getNumberOfItems(void) {return current_number_of_items;}
+int Player::getNumberOfItems(void) {return inventory->getItemCount();}
 
-/* Sets the number of items that the player currently has */
-void Player::setNumberOfItems(int number_of_items) {
-   current_number_of_items = number_of_items ;
-}
 
 /* Returns the max number of items the player can hold */
 int Player::getMaxItems(void) {return max_items;}
