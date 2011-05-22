@@ -14,7 +14,6 @@ int main(int argc, char **argv) {
 	string verb;
 	string noun;
 	string prompt;
-	bool globalVerb = false;
 	int count;
 
 	Player* player = new Player();
@@ -39,7 +38,12 @@ int main(int argc, char **argv) {
 	/* Print welcome message and get users name */
 	player->setInventory(inventory);
 	player->setMaxItems(8);
-	player->setNumberOfItems(+1);
+	player->setNumberOfItems(7);
+	if(player->canCarry()) {
+		cout << "Can pickup" << endl;
+	} else {
+		cout << "Cannot pickup" << endl;
+	}
 	cout << WELCOME_MESSAGE << endl;
 	cout << "Please enter your hero's name: ";
 	cin >> username;
@@ -94,75 +98,69 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		// Look in inventory
-		if((verb == "i" and noun == "") or (verb == "inventory" and noun == "") or (verb == "invent" and noun == "")) {
-			cout << player->getInventory().listItems();
-			cout << player->getNumberOfItems() << "/" << player->getMaxItems()<< endl;
+		// Do single word commands
+		if (count == 2) {
+
+			// Describe location and items in it
+			if((verb == "look") or (verb == "describe")) {
+				cout << currentLocation->getName() << ": ";
+				currentLocation->printRoom();
+				cout << endl;
+			}
+
+			// Look in inventory
+			if((verb == "i") or (verb == "inventory") or (verb == "invent") or (verb == "inv")) {
+				cout << player->getInventory().listItems();
+				cout << player->getNumberOfItems() << "/" << player->getMaxItems()<< endl;
+			}
+
+			// Move north, south, west or east
+			if(verb=="north") {
+				if (!currentLocation->hasNorth()) {
+					cout << "Sorry you can not go North" << endl;
+				} else {
+					currentLocation = currentLocation->getNorth();
+					cout << currentLocation->getDescription() << endl;
+				}
+			}
+
+			if(verb=="south") {
+				if (!currentLocation->hasSouth()) {
+					cout << "Sorry you can not go South" << endl;
+				} else {
+					currentLocation = currentLocation->getSouth();
+					cout << currentLocation->getDescription() << endl;
+				}
+			}
+
+			if(verb=="west") {
+				if (!currentLocation->hasWest()){
+					cout << "Sorry you can not go West" << endl;
+				} else {
+					currentLocation = currentLocation->getWest();
+					cout << currentLocation->getDescription() << endl;
+				}
+			}
+
+			if(verb=="east") {
+				if (!currentLocation->hasEast()) {
+					cout << "Sorry you can not go East" << endl;
+				} else {
+					currentLocation = currentLocation->getEast();
+					cout << currentLocation->getDescription() << endl;
+				}
+			}
 			goto main_loop;
 		}
 
-		// Describe location and items in it
-		if((verb == "look" and noun == "") or (verb == "describe" and noun == "")) {
-			cout << currentLocation->getName() << ": ";
-			currentLocation->printRoom();
-			cout << endl;
-			goto main_loop;
-		}
-
-		// Move north, south, west or east
-		if(verb=="north" and noun == "") {
-			if (!currentLocation->hasNorth()) {
-				cout << "Sorry you can not go North" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getNorth();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
-
-		if(verb=="south" and noun == "") {
-			if (!currentLocation->hasSouth()) {
-				cout << "Sorry you can not go South" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getSouth();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
-
-		if(verb=="west" and noun == "") {
-			if (!currentLocation->hasWest()){
-				cout << "Sorry you can not go West" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getWest();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
-
-		if(verb=="east" and noun == "") {
-			if (!currentLocation->hasEast()) {
-				cout << "Sorry you can not go East" << endl;
-				goto main_loop;
-			} else {
-				currentLocation = currentLocation->getEast();
-				cout << currentLocation->getDescription() << endl;
-				goto main_loop;
-			}
-		}
-
+		// Do double word commands
 		// If item is in the current location
 		if (currentLocation->hasItem(noun)) {
 			currentLocation->getItem(noun).doVerb(verb);
-		// If item is in player's inventory
+			// If item is in player's inventory
 		} else if (player->getInventory().hasItem(noun)){
 			player->getInventory().getItem(noun).doVerb(verb);
-		// If verb is a global verb
-		} else if (globalVerb and noun == "") {
-			//do.globalVerb
+			// If verb is a global verb
 		} else {
 			cout << "Sorry I do not understand this command" << endl;
 		}
