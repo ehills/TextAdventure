@@ -1,3 +1,6 @@
+#ifndef PARSERTOOLS_H_
+#define	PARSERTOOLS_H_
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -30,23 +33,23 @@ string ParseStringData(string data, string attribute) {
 // Tools for scanning data
 
 string stringTrim(string data) {
-        unsigned int start, end;
-        start = 0;
-        while (start < data.length()) {
-            if (!isspace(data.at(start))) {
-                break;
-            }
-            data.replace(start, 1, "");
-            start++;
+    unsigned int start, end;
+    start = 0;
+    while (start < data.length()) {
+        if (!isspace(data.at(start))) {
+            break;
         }
-        end =  data.length() - 1;
-        while (end > 0) {
-            if (!isspace(data.at(end))) {
-                break;
-            }
-            data.replace(end, 1, "");
-            end--;
+        data.replace(start, 1, "");
+        start++;
+    }
+    end = data.length() - 1;
+    while (end > 0) {
+        if (!isspace(data.at(end))) {
+            break;
         }
+        data.replace(end, 1, "");
+        end--;
+    }
     return data;
 }
 
@@ -65,17 +68,15 @@ string ParseVariableData(string data, string attribute) {
     return BAD_ATTRIBUTE;
 }
 
-
-
 unsigned int ParseEndBrace(unsigned int start, string data) {
     unsigned int another, end, temp;
     int count = 1;
     temp = start;
     while (count > 0) {
-        
+
         another = data.find("{", temp);
         end = data.find("}", temp);
-        
+
         if (another < end && another < data.size()) {
             temp = another + 1;
             count++;
@@ -97,15 +98,17 @@ map<string, string> ParseVerbs(string data) {
         end = data.find("\"", start);
         size = end - start;
         string name = data.substr(start, size);
-        
+
         // Parse Verb actions
         start = data.find("{", end) + 1;
         end = ParseEndBrace(start, data);
         size = end - start;
         string actions = data.substr(start, size);
         rules[name] = actions;
-        
+
         start = data.find("Verb ", end);
     }
     return rules;
 }
+
+#endif

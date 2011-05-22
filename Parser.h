@@ -16,6 +16,7 @@
 #include "Item.h"
 using namespace std;
 
+
 class Parser {
 public:
     Parser(char* filename);
@@ -25,6 +26,16 @@ public:
     
     // Object Deletion
     ~Parser(void);
+    
+
+    string initialDescription;
+    Location *initialLocation;
+    list<string> errors;
+    map<string, Location*> locations;
+    map<string, Item> items;
+    map<string, string> default_verb_expressions;
+    map<string, string> default_location_verb_expressions;
+    map<string, bool> default_attribute_values;
 private:
     //comment striping code
     int stripComments();
@@ -40,13 +51,8 @@ private:
     void ParseItem(string data, Item* item);
     //Player ParsePlayer();
     
-    // Parsing Data
+        // Parsing Data
     string file_data;
-    list<string> errors;
-    map<string, Location> locations;
-    map<string, Item> items;
-    map<string, string> default_verb_expressions;
-    map<string, bool> default_attribute_values;
 };
 
 

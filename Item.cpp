@@ -46,7 +46,12 @@ void Item::addVerb(string verb, string expressions) {
 }
 
 void Item::addVerbs(map<string, string> verb_expressions) {
-    this->verb_expressions = verb_expressions;
+    
+    map<string, string>::iterator it;
+    for (it = verb_expressions.begin(); it != verb_expressions.end(); it++) {
+         this->verb_expressions[it->first] = it->second;
+    }
+   
 }
 
 map<string, bool> Item::getAttributes() {
