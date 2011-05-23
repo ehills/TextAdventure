@@ -25,6 +25,11 @@ Location::Location(string name, string description) {
    this->east = NULL;
 }
 
+
+Location::~Location(void) {
+}
+
+
 /* Returns the name of this location */
 string Location::getName(void) {
     return this->name;
@@ -156,8 +161,4 @@ void Location::setEast(Location* location) {
 /* Sets the location pointed to by west */
 void Location::setWest(Location* location) {
     this->west = location;
-}
-
-/* Destructor */
-Location::~Location(void) {
 }
