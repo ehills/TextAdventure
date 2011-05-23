@@ -82,7 +82,7 @@ Location tortureRoom {
 }
 
 Item lamp {
-    name = "A lamp";
+    name = "lamp";
     description = "A rusty old lamp but looks like it still works";
     location = diningRoom;
 
@@ -99,7 +99,7 @@ Item lamp {
 }
 
 Item mirror {
-    name = "A mirror";
+    name = "mirror";
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful..";
     location = masterBedroom;
 

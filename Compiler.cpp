@@ -211,7 +211,7 @@ int main(int argc, char **argv) {\n\
     output += "} else {\n";
 
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-        output += "if (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\")) {\n"
+        output += "if ((noun == \"" + objects->second->getName() + "\") && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
                 "" + CompileNounVerb(objects->second) + ""
                 "goto main_loop;\n"
                 "}";
@@ -371,14 +371,14 @@ string Compiler::CompileNounVerb(Item *item) {
                         } else if (line.find("inLocation") < line.length()) {
                             string location = getLocation(expression);
                             string item = getItem(expression);
-                            if (location == "" && item == "") {
+                            if (location != "" && item != "") {
                                  output += "if (" + item + "->getLocation() == &" + location +") {\n";
-                            } else if (location == "") {
+                            } else if (location != "") {
                                 size_t pos = line.find(parser->player->getVariableName());
                                 if (pos < line.length()) {
                                     output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
                                 }
-                            } else if (item == "") {
+                            } else if (item != "") {
                                 size_t pos = line.find(parser->player->getVariableName());
                                 if (pos < line.length()) {
                                     output += "if (" + parser->player->getVariableName() + "->getLocation() == &" + location +") {\n";

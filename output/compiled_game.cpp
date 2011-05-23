@@ -31,11 +31,11 @@ masterBedroom.setEast(&entranceHall);
 secretHall.setNorth(&tortureRoom);
 secretHall.setSouth(&entranceHall);
 tortureRoom.setSouth(&secretHall);
-Location compiler_inventory("Inventory", "Description of the inventory");Player* andy = new Player();andy->setLocation(&garden);andy->setInventory(&compiler_inventory);andy->setMaxItems(4);Item lamp("A lamp", "A rusty old lamp but looks like it still works");
-diningRoom.addItem("A lamp", &lamp);
+Location compiler_inventory("Inventory", "Description of the inventory");Player* andy = new Player();andy->setLocation(&garden);andy->setInventory(&compiler_inventory);andy->setMaxItems(4);Item lamp("lamp", "A rusty old lamp but looks like it still works");
+diningRoom.addItem("lamp", &lamp);
 lamp.setLocation(&diningRoom);
-Item mirror("A mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful..");
-masterBedroom.addItem("A mirror", &mirror);
+Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful..");
+masterBedroom.addItem("mirror", &mirror);
 mirror.setLocation(&masterBedroom);
 cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->getDescription() << endl;while (true) {   main_loop:   cout << prompt;   getline(cin, command);   istringstream word(command);   verb = "";   noun = "";   count = 0;   while (word) {      if (count > 2) {           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun" << endl;           goto main_loop;      }      if (count == 0) {           word >> verb;      } else {           word >> noun;      }      count++;   }    if (command == QUIT_GAME) {
         quit_loop:
@@ -107,7 +107,7 @@ cout << andy->getLocation()->listItems() << endl;
 goto main_loop;}
 cout << "I don't know how to " << verb << " here" << endl;
 } else {
-if (andy->getLocation()->hasItem("A lamp") || andy->getInventory()->hasItem("A lamp")) {
+if ((noun == "lamp") && (andy->getLocation()->hasItem("lamp") || andy->getInventory()->hasItem("lamp"))) {
 if (verb == "drop") {
 if (andy->getInventory()->hasItem(lamp.getName())) {
 andy->getLocation()->addItem(lamp.getName(), &lamp);
@@ -131,9 +131,9 @@ andy->getInventory()->addItem(lamp.getName(), &lamp);
 } else {cout << "You are carrying too much already";
 }
 goto main_loop;}
-cout << "Sorry you can not " << verb << "on" << "A lamp" << endl;
+cout << "Sorry you can not " << verb << "on" << "lamp" << endl;
 goto main_loop;
-}if (andy->getLocation()->hasItem("A mirror") || andy->getInventory()->hasItem("A mirror")) {
+}if ((noun == "mirror") && (andy->getLocation()->hasItem("mirror") || andy->getInventory()->hasItem("mirror"))) {
 if (verb == "drop") {
 if (andy->getInventory()->hasItem(mirror.getName())) {
 andy->getLocation()->addItem(mirror.getName(), &mirror);
@@ -152,13 +152,13 @@ andy->getInventory()->addItem(mirror.getName(), &mirror);
 }
 goto main_loop;}
 if (verb == "use") {
-if (andy->getLocation() == &tortureRoom) {
+if (andy->getInventory() == .getLocation()) {
 cout << "You pull out out the mirror, the ghost upon seeing it's horrific reflection fleas in terror. Congratulations you have busted your first ghost!";
 break;
 } else {cout << "You admire yourself in the mirror.";
 }
 goto main_loop;}
-cout << "Sorry you can not " << verb << "on" << "A mirror" << endl;
+cout << "Sorry you can not " << verb << "on" << "mirror" << endl;
 goto main_loop;
 }cout << "I can't find a " << noun << " here" << endl;
 }
