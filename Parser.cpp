@@ -17,26 +17,30 @@ Parser::Parser(char* filename) {
             data += NEWLINE_HACK;
         }
         file.close();
+    } else {
+        cerr << FILE_DID_NOT_OPEN << endl;
+        this->errors.push_front(FILE_DID_NOT_OPEN);
     }
     this->file_data = data;
 }
 
 /* Calls all methods associated with parseing the file */
 list<string> Parser::ParseFile(void) {
-    this->stripComments();
-    this->ParseAttributes();
-    this->ParseDefaults();
-    this->ParseLocations();
-    this->ParseItems();
-    this->ParsePlayer();
+    if (this->errors.size() == 0) {
+        this->stripComments();
+        this->ParseAttributes();
+        this->ParseDefaults();
+        this->ParseLocations();
+        this->ParseItems();
+        this->ParsePlayer();
 
-    string location_name = ParseVariableData(this->file_data, "initialLocation");
-    if (this->locations.count(location_name) > 0) {
-        this->initialLocation = this->locations.find(location_name)->second;
-    } else {
-        cout << BAD_LOCATION << endl;
+        string location_name = ParseVariableData(this->file_data, "initialLocation");
+        if (this->locations.count(location_name) > 0) {
+            this->initialLocation = this->locations.find(location_name)->second;
+        } else {
+            cout << BAD_LOCATION << endl;
+        }
     }
-
     return this->errors;
 }
 
@@ -145,7 +149,7 @@ int Parser::ParseDefaults() {
 int Parser::ParseLocations() {
     // Find all block comments and remove
     unsigned int start, end, size;
-    
+
     // Parse the Location names first time through
     start = this->file_data.find("Location");
     while (start < this->file_data.size()) {
@@ -162,7 +166,7 @@ int Parser::ParseLocations() {
                 location->setVariableName(location_name);
                 this->file_data.replace(start, size, location_name + " ");
                 this->locations[location_name] = location;
-                
+
             }
         }
         if (end < this->file_data.size()) {
@@ -182,7 +186,7 @@ int Parser::ParseLocations() {
             string data = this->file_data.substr(start, size);
             ParseLocation(data, it->second);
         } else {
-            cout << BAD_LOCATION  << endl;
+            cout << BAD_LOCATION << endl;
         }
     }
     return NO_ERRORS;
@@ -209,10 +213,10 @@ int Parser::ParsePlayer() {
             data = this->file_data.substr(end, ParseEndBrace(end, this->file_data));
             attribute = ParseStringData(data, "name");
             player->setName(attribute);
-            
+
             attribute = ParseStringData(data, "description");
             player->setDescription(attribute);
-            
+
             attribute = ParseVariableData(data, "carryLimit");
             player->setMaxItems(atoi(attribute.c_str()));
         }
@@ -277,7 +281,7 @@ void Parser::ParseLocation(string data, Location *location) {
         end = data.find(";", start) + 1;
         data.replace(start, end - start, "");
     } else {
-       cout << NO_LOCATION_NAME << endl;
+        cout << NO_LOCATION_NAME << endl;
     }
 
     // Parse Description(string attribute)
@@ -288,7 +292,7 @@ void Parser::ParseLocation(string data, Location *location) {
         end = data.find(";", start) + 1;
         data.replace(start, end - start, "");
     } else {
-       cout << NO_LOCATION_DESCRIPTION << endl;
+        cout << NO_LOCATION_DESCRIPTION << ": " << location->getName() << endl;
     }
     // Parse Exits
     attribute = ParseVariableData(data, "north");
@@ -307,7 +311,7 @@ void Parser::ParseLocation(string data, Location *location) {
             link = this->locations.at(attribute);
             location->setSouth(link);
         } else {
-            cerr <<NO_JOINED_LOCATION << attribute << endl;
+            cerr << NO_JOINED_LOCATION << attribute << endl;
         }
     }
 
@@ -330,7 +334,7 @@ void Parser::ParseLocation(string data, Location *location) {
             cerr << NO_JOINED_LOCATION << attribute << endl;
         }
     }
-   
+
 }
 
 /* Parses a particular item */
@@ -341,14 +345,14 @@ void Parser::ParseItem(string data, Item *item) {
     if (validAttribute(attribute)) {
         item->setName(attribute);
     } else {
-       cout << NO_ITEM_NAME << endl;
+        cout << NO_ITEM_NAME << endl;
     }
     // Parse Description
     attribute = ParseStringData(data, "description");
     if (validAttribute(attribute)) {
         item->setDescription(attribute);
     } else {
-       cout << NO_ITEM_DESCRIPTION << endl;
+        cout << NO_ITEM_DESCRIPTION << endl;
     }
     // Parse location
     attribute = ParseVariableData(data, "location");
@@ -359,7 +363,7 @@ void Parser::ParseItem(string data, Item *item) {
             cerr << BAD_LOCATION << attribute << endl;
         }
     } else {
-       cout << NO_ITEM_LOCATION << endl;
+        cout << NO_ITEM_LOCATION << endl;
     }
 
     item->addVerbs(this->default_verb_expressions);
@@ -388,11 +392,11 @@ Parser::~Parser() {
     for (locations = this->locations.begin(); locations != this->locations.end(); locations++) {
         delete locations->second;
     }
-    
+
     map<string, Item*>::iterator objects;
     for (objects = this->items.begin(); objects != this->items.end(); objects++) {
         delete objects->second;
     }
-    
+
     delete this->player;
 }

@@ -29,5 +29,6 @@
 #define BAD_BRACES "Your braces {, } are not sentactically correct."
 #define ONLY_ONE_LOCATION "You need more than one Location."
 #define NO_LOCATIONS "You do not have any Locations."
-
+#define PARSER_FAIL "The Parser did not complete without errors."
+#define FILE_DID_NOT_OPEN "The file specified was unable to be opened"
 #endif

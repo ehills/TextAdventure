@@ -33,6 +33,11 @@ Compiler::Compiler(char* filename) {
 
 /* Compiles the user game */
 void Compiler::Compile() {
+    if (parser->errors.size() > 0) {
+        cerr << PARSER_FAIL << endl;
+        return;
+    }
+    
     string inventory_name = INVENTORY_NAME;
 
 
@@ -47,7 +52,8 @@ void Compiler::Compile() {
 #include \"Player.h\"\n\
 using namespace std;\n\
 #define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n\
-#define QUIT_GAME \"quit\"\n";
+#define QUIT_GAME \"quit\"\n\
+string toLower(string text);\n";
 
     // START OF MAIN METHOD        
     output += "\
@@ -65,7 +71,7 @@ int main(int argc, char **argv) {\n\
     map<string, Location*>::iterator it;
 
     for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
-        output += "Location " + it->first + "(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\");\n";
+        output += "Location* " + it->first + " = new Location(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\");\n";
     }
 
     output += "\n";
@@ -73,32 +79,32 @@ int main(int argc, char **argv) {\n\
     for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
         Location *location = it->second;
         if (location->hasNorth()) {
-            output += "" + it->first + ".setNorth(&" + (location->getNorth()->getVariableName()) + ");\n";
+            output += "" + it->first + "->setNorth(" + (location->getNorth()->getVariableName()) + ");\n";
         }
         if (location->hasSouth()) {
-            output += "" + it->first + ".setSouth(&" + (location->getSouth()->getVariableName()) + ");\n";
+            output += "" + it->first + "->setSouth(" + (location->getSouth()->getVariableName()) + ");\n";
         }
         if (location->hasEast()) {
-            output += "" + it->first + ".setEast(&" + location->getEast()->getVariableName() + ");\n";
+            output += "" + it->first + "->setEast(" + location->getEast()->getVariableName() + ");\n";
         }
         if (location->hasWest()) {
-            output += "" + it->first + ".setWest(&" + location->getWest()->getVariableName() + ");\n";
+            output += "" + it->first + "->setWest(" + location->getWest()->getVariableName() + ");\n";
         }
     }
 
     // Output Player/Inventory
-    output += "Location " + inventory_name + "(\"Inventory\", \"Description of the inventory\");"
+    output += "Location* " + inventory_name + " = new Location(\"Inventory\", \"Description of the inventory\");"
             "Player* " + parser->player->getVariableName() + " = new Player();"
-            "" + parser->player->getVariableName() + "->setLocation(&" + parser->initialLocation->getVariableName() + ");"
-            "" + parser->player->getVariableName() + "->setInventory(&" + inventory_name + ");"
+            "" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
+            "" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
             "" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
     // Output Items
     map<string, Item*>::iterator objects;
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
         output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\");\n";
-        output += objects->second->getLocation()->getVariableName() + ".addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
-        output += objects->first + ".setLocation(&" + objects->second->getLocation()->getVariableName() + ");\n";
+        output += objects->second->getLocation()->getVariableName() + "->addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
+        output += objects->first + ".setLocation(" + objects->second->getLocation()->getVariableName() + ");\n";
     }
 
     // START OF GAME LOOP AND WORD READING
@@ -151,6 +157,12 @@ int main(int argc, char **argv) {\n\
     output += "\
     if (count == 2) {\n";
 
+    // VERBS
+    map<string, string>::iterator iterator;
+    for (iterator = parser->default_location_verb_expressions.begin(); iterator != parser->default_location_verb_expressions.end(); iterator++) {
+        output += "if (verb==\"" + iterator->first + "\"){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
+    }
+
     // DIRECTIONS 
     output += "\n\
         if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
@@ -199,11 +211,7 @@ int main(int argc, char **argv) {\n\
             }\n\
         }";
 
-    // VERBS
-    map<string, string>::iterator iterator;
-    for (iterator = parser->default_location_verb_expressions.begin(); iterator != parser->default_location_verb_expressions.end(); iterator++) {
-        output += "if (verb==\"" + iterator->first + "\"){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
-    }
+
 
 
     output += "cout << \"I don't know how to \" << verb << \" here\" << endl;\n";
@@ -212,7 +220,7 @@ int main(int argc, char **argv) {\n\
     output += "} else {\n";
 
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-        output += "if ((noun == \"" + objects->second->getName() + "\") && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
+        output += "if ((toLower(noun) == toLower(\"" + objects->second->getName() + "\")) && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
                 "" + CompileNounVerb(objects->second) + ""
                 "goto main_loop;\n"
                 "}";
@@ -276,22 +284,7 @@ string Compiler::CompileSingleVerb(string commands) {
     istringstream lines(commands);
     while (getline(lines, line)) {
         btrim(line);
-        if (line.length() > 0) {
-            if (line.compare("describe;") == 0) {
-                output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
-            } else if (line.compare("list;") == 0) {
-                output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItemsDescription() << endl;\n";
-            } else if (line.compare("gameOver;") == 0) {
-                output += "break;\n";
-            } else if (line.find("print ") < line.length()) {
-                size_t start, end;
-                start = line.find_first_of("\"") + 1;
-                end = line.find_last_of("\"");
-                output += "cout << \"" + line.substr(start, end - start) + "\" << endl;\n";
-            } else {
-                cout << UNKNOWN_COMMAND << line << "\"" << endl;
-            }
-        }
+        output += CompileVerb(line);
     }
     return output;
 }
@@ -315,156 +308,163 @@ string Compiler::CompileNounVerb(Item *item) {
         output += "if (verb == \"" + it->first + "\") {\n";
         istringstream lines(data);
         while (getline(lines, line)) {
-            btrim(line);
-            if (line.length() > 0) {
-                if (line.compare("describe;") == 0) {
-                    output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
-                } else if (line.compare("list;") == 0) {
-                    output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
-                } else if (line.compare("gameOver;") == 0) {
-                    output += "break;\n";
-                } else if (line.find("print \"") < line.length()) {
-                    size_t start, end;
-                    start = line.find_first_of("\"") + 1;
-                    end = line.find_last_of("\"");
-                    output += "cout << \"" + line.substr(start, end - start) + "\";\n";
-                } else if (line.find("print ") < line.length()) {
-                    string object = getLocation(line);
-                    if (object == "") {
-                        object = getItem(line);
-                    }
-                    if (object != "") {
-                        if (line.find(".description()") < line.length()) {
-                            output += "cout << " + object + ".getName() << endl;\n";
-                        } else {
-                            output += "cout << " + object + ".getDescription() << endl;\n";
-                        }
-                    } else {
-                        cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;
-                    }
-                } else if (line.find("setDescription") < line.length()) {
-                    string location = getLocation(line);
-                    size_t start, end;
-                    start = line.find("\"") + 1;
-                    end = line.find("\"", start);
-                    output += location + ".setDescription(\"" + line.substr(start, end - start) + "\");";
-                } else if (line.find("if") < line.length()) {
-                    size_t open, close;
-                    open = line.find("(");
-                    close = line.find(")");
-                    if (open < line.length() && close < line.length()) {
-                        open++;
-                        string expression = line.substr(open, close - open);
-                        if (line.find("hasItem") < line.length()) {
-                            string location = getLocation(expression);
-                            string item = getItem(expression);
-                            if (location == "" || item == "") {
-                                cout << INCOMPLETE_EXPRESSION << endl;
-                            } else {
-                                output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
-                            }
-                        } else if (line.find("canCarry") < line.length()) {
-                            if (line.find(parser->player->getVariableName()) < line.length()) {
-                                output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
-                            } else {
-                                cout << BAD_CARRIABLE_EXPRESSION << endl;
-                            }
-                        } else if (line.find("inLocation") < line.length()) {
-                            string location = getLocation(expression);
-                            string item = getItem(expression);
-                            if (location != "" && item != "") {
-                                size_t pos = location.find(parser->player->getVariableName());
-                                if (pos >= line.length()) {
-                                    location = "&" + location;
-                                }
-                                output += "if (" + item + ".getLocation() == " + location + ") {\n";
-                            } else if (item != "") {
-                                size_t pos = line.find(parser->player->getVariableName());
-                                if (pos < line.length()) {
-                                    output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
-                                }
-                            } else if (location != "") {
-                                size_t pos = line.find(parser->player->getVariableName());
-                                if (pos < line.length()) {
-                                    output += "if (" + parser->player->getVariableName() + "->getLocation() == &" + location + ") {\n";
-                                }
-                            } else {
-                                cout << BAD_INLOCATION << endl;
-                            }
-                        } else {
-                            cout << BAD_BOOLEAN << endl;
-                        }
-                    } else {
-                        cout << BAD_BRACES << endl;
-                    }
-                } else if (line.find("else") < line.length()) {
-                    output += "} else {";
-                } else if (line.find("setLocation") < line.length()) {
-                    string location = getLocation(line);
-                    string item = getItem(line);
-
-                    if (location == "" || item == "") {
-                        cout << "Unreadable setLocation Command: \"" << line << "\"" << endl;
-                    } else {
-                        output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
-                    }
-                } else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length()
-                        || line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
-                    string location = getLocation(line);
-                    string command = "setNorth";
-                    if (line.find("setSouth") < line.length()) {
-                        command = "setSouth";
-                    } else if (line.find("setWest") < line.length()) {
-                        command = "setWest";
-                    } else if (line.find("setEast") < line.length()) {
-                        command = "setEast";
-                    }
-                    if (location != "") {
-                        size_t pos = line.find(location);
-                        line.replace(pos, location.length(), "");
-
-                        string location2 = getLocation(line);
-                        if (location != "") {
-                            size_t pos2 = line.find(location2);
-                            if (pos < pos2) {
-                                output += location + "." + command + "(&" + location2 + ");\n";
-                            } else {
-                                output += location2 + "." + command + "(&" + location + ");\n";
-                            }
-                        } else {
-                            cout << ONLY_ONE_LOCATION << endl;
-                        }
-                    } else {
-                        cout << NO_LOCATIONS << endl;
-                    }
-                } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length()
-                        || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
-                    string location = getLocation(line);
-                    string command = "setNorth";
-                    if (line.find("removeSouth") < line.length()) {
-                        command = "setSouth";
-                    } else if (line.find("removeWest") < line.length()) {
-                        command = "setWest";
-                    } else if (line.find("removeEast") < line.length()) {
-                        command = "setEast";
-                    }
-                    if (location != "") {
-                        output += location + "." + command + "(NULL);\n";
-                    } else {
-                        cerr << BAD_LOCATION << endl;
-                    }
-                } else if (line.find("}") < line.length()) {
-                    output += "}\n";
-                } else {
-                    cerr << UNKNOWN_COMMAND << line << "\"" << endl;
-                }
-            }
+            output += CompileVerb(line);
         }
         // END VERB
         output += "goto main_loop;";
         output += "}\n";
     }
     output += "cout << \"Sorry you can not \" << verb << \"on\" << \"" + item->getName() + "\" << endl;\n";
+    return output;
+}
+
+/* Compiles a single verb from the input command */
+string Compiler::CompileVerb(string line) {
+    btrim(line);
+    string output = "";
+    if (line.length() > 0) {
+        if (line.compare("describe;") == 0) {
+            output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
+        } else if (line.compare("list;") == 0) {
+            output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
+        } else if (line.compare("gameOver;") == 0) {
+            output += "break;\n";
+        } else if (line.find("print \"") < line.length()) {
+            size_t start, end;
+            start = line.find_first_of("\"") + 1;
+            end = line.find_last_of("\"");
+            output += "cout << \"" + line.substr(start, end - start) + "\";\n";
+        } else if (line.find("print ") < line.length()) {
+            string location = getLocation(line);
+            string item = getItem(line);
+            if (location != "") {
+                if (line.find(".description()") < line.length()) {
+                    output += "cout << " + location + "->getDescription() << endl;\n";
+                } else {
+                    output += "cout << " + location + "->getName() << endl;\n";
+                }
+            } else if (item != "") {
+                if (line.find(".description()") < line.length()) {
+                    output += "cout << " + item + ".getDescription() << endl;\n";
+                } else {
+                    output += "cout << " + item + ".getName() << endl;\n";
+                }
+            } else {
+                cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;
+            }
+        } else if (line.find("setDescription") < line.length()) {
+            string location = getLocation(line);
+            size_t start, end;
+            start = line.find("\"") + 1;
+            end = line.find("\"", start);
+            output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");";
+        } else if (line.find("if") < line.length()) {
+            size_t open, close;
+            open = line.find("(");
+            close = line.find(")");
+            if (open < line.length() && close < line.length()) {
+                open++;
+                string expression = line.substr(open, close - open);
+                if (line.find("hasItem") < line.length()) {
+                    string location = getLocation(expression);
+                    string item = getItem(expression);
+                    if (location == "" || item == "") {
+                        cout << INCOMPLETE_EXPRESSION << endl;
+                    } else {
+                        output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
+                    }
+                } else if (line.find("canCarry") < line.length()) {
+                    if (line.find(parser->player->getVariableName()) < line.length()) {
+                        output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
+                    } else {
+                        cout << BAD_CARRIABLE_EXPRESSION << endl;
+                    }
+                } else if (line.find("inLocation") < line.length()) {
+                    string location = getLocation(expression);
+                    string item = getItem(expression);
+                    if (location != "" && item != "") {
+                        output += "if (" + item + ".getLocation() == " + location + ") {\n";
+                    } else if (item != "") {
+                        size_t pos = line.find(parser->player->getVariableName());
+                        if (pos < line.length()) {
+                            output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
+                        }
+                    } else if (location != "") {
+                        size_t pos = line.find(parser->player->getVariableName());
+                        if (pos < line.length()) {
+                            output += "if (" + parser->player->getVariableName() + "->getLocation() == " + location + ") {\n";
+                        }
+                    } else {
+                        cout << BAD_INLOCATION << endl;
+                    }
+                } else {
+                    cout << BAD_BOOLEAN << endl;
+                }
+            } else {
+                cout << BAD_BRACES << endl;
+            }
+        } else if (line.find("else") < line.length()) {
+            output += "} else {";
+        } else if (line.find("setLocation") < line.length()) {
+            string location = getLocation(line);
+            string item = getItem(line);
+
+            if (location == "" || item == "") {
+                cout << "Unreadable setLocation Command: \"" << line << "\"" << endl;
+            } else {
+                output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
+            }
+        } else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length()
+                || line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
+            string location = getLocation(line);
+            string command = "setNorth";
+            if (line.find("setSouth") < line.length()) {
+                command = "setSouth";
+            } else if (line.find("setWest") < line.length()) {
+                command = "setWest";
+            } else if (line.find("setEast") < line.length()) {
+                command = "setEast";
+            }
+            if (location != "") {
+                size_t pos = line.find(location);
+                line.replace(pos, location.length(), "");
+
+                string location2 = getLocation(line);
+                if (location != "") {
+                    size_t pos2 = line.find(location2);
+                    if (pos < pos2) {
+                        output += location + "->" + command + "(" + location2 + ");\n";
+                    } else {
+                        output += location2 + "->" + command + "(" + location + ");\n";
+                    }
+                } else {
+                    cout << ONLY_ONE_LOCATION << endl;
+                }
+            } else {
+                cout << NO_LOCATIONS << endl;
+            }
+        } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length()
+                || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
+            string location = getLocation(line);
+            string command = "setNorth";
+            if (line.find("removeSouth") < line.length()) {
+                command = "setSouth";
+            } else if (line.find("removeWest") < line.length()) {
+                command = "setWest";
+            } else if (line.find("removeEast") < line.length()) {
+                command = "setEast";
+            }
+            if (location != "") {
+                output += location + "->" + command + "(NULL);\n";
+            } else {
+                cerr << BAD_LOCATION << endl;
+            }
+        } else if (line.find("}") < line.length()) {
+            output += "}\n";
+        } else {
+            cerr << UNKNOWN_COMMAND << line << "\"" << endl;
+        }
+    }
     return output;
 }
 

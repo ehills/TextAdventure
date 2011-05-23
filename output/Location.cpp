@@ -73,7 +73,6 @@ string Location::printRoom(void) {
 
 /* Adds an item to the room */
 void Location::addItem(string item_name, Item* item) {
-    cerr << "adding " << toLower(item_name) << " to " << this->getName() << endl;
     if (item->hasLocation()) {
         item->getLocation()->removeItem(item_name);
     }
@@ -93,7 +92,6 @@ int Location::getItemCount() {
 
 /* Removes an item from the room */
 void Location::removeItem(string item_name) {
-    cerr << "removing " << item_name << " from " << this->getName() << endl;
     this->items.erase(toLower(item_name));
 }
 

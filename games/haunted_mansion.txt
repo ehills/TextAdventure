@@ -9,15 +9,21 @@ ItemDefaults {
         print inputItem.description();
     }
     Verb "pickup" {
-        if (andy canCarry) {
-            inputItem setLocation andy ;
+        if (andy hasItem inputItem) {
+            print "You already have ";
+            print inputItem;
+            print ".";
         } else {
-            print "You are carrying too much already";
-        }
+            if (andy canCarry) {
+                inputItem setLocation andy ;
+            } else {
+                print "You are carrying too much already";
+            }
+        }   
     }
 
     Verb "drop" {
-        if (andy hasItem inputItem ) {
+        if (andy hasItem inputItem) {
             inputItem setLocation currentLocation;
         } else {
             print "I don't have ";

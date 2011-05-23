@@ -14,6 +14,7 @@ private:
     string getItem(string expression);
     string getLocation(string expression);
     string CompileSingleVerb(string commands);
+    string CompileVerb(string line);
 };
 
 
