@@ -329,7 +329,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     output += "cout << \"" + line.substr(start, end - start) + "\";\n";
                 } else if (line.find("print ") < line.length()) {
                     string object = getLocation(line);
-                    if (object != "") {
+                    if (object == "") {
                         object = getItem(line);
                     }
                     if (object != "") {
@@ -339,7 +339,7 @@ string Compiler::CompileNounVerb(Item *item) {
                             output += "cout << " + object + ".getDescription() << endl;\n";
                         }
                     } else {
-                       cout << UNKNOWN_PRINT_STATEMENT << endl;
+                       cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;
                     }
                 } else if (line.find("setDescription") < line.length()) {
                     string location = getLocation(line);
@@ -405,7 +405,6 @@ string Compiler::CompileNounVerb(Item *item) {
                     }
                 } else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length() 
                         || line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
-                    cerr << "Set" << endl;
                     string location = getLocation(line);
                     string command = "setNorth";
                     if (line.find("setSouth") < line.length()) {
@@ -423,10 +422,8 @@ string Compiler::CompileNounVerb(Item *item) {
                         if (location != "") {
                             size_t pos2 = line.find(location2);
                             if (pos < pos2) {
-                                cerr << "aSDASASDASD" << endl;
                                 output += location + "->" + command + "(&" + location2 + ");\n";
                             } else {
-                                cerr << "ADSADSADASDASDASDAS" << endl;
                                 output += location2 + "->" + command + "(&" + location + ");\n";
                             }
                         } else {
@@ -437,10 +434,9 @@ string Compiler::CompileNounVerb(Item *item) {
                     }
                 } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length() 
                         || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
-                    cerr << "Remove" << endl;
                     string location = getLocation(line);
                     string command = "setNorth";
-                    if (line.find("removeNorth") < line.length()) {
+                    if (line.find("removeSouth") < line.length()) {
                         command = "setSouth";
                     } else if (line.find("removeWest") < line.length()) {
                         command = "setWest";
