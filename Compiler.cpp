@@ -163,7 +163,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getNorth());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;\n \
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n \
                 goto main_loop;\n\
             }\n\
         }\n\n\
@@ -173,7 +173,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getSouth());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }\n\n\
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getWest());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }\n\
@@ -193,7 +193,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getEast());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }";

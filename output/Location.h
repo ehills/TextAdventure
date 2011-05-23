@@ -33,7 +33,7 @@ public:
     void setName(string name);
     string getDescription(void);
     void setDescription(string description);
-    void printRoom(void);
+    string printRoom(void);
 
     /* This set of methods will deal with Location linkage */
     Location* getNorth(void);
@@ -56,7 +56,7 @@ public:
     bool hasItem(string item_name);
     void removeItem(string item_name);
     string listItems(void);
-    string listItemsDescriptions(void);
+    string listItemsDescription(void);
 
     // Destructor
     ~Location(void);
