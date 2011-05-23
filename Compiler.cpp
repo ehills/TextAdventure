@@ -2,21 +2,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Compiler.h"
-//#define INVENTORY_NAME "a_name_no_one_would_pick_ever_to_avoid_variable_names_overlapping"
-#define INVENTORY_NAME "inventory"
+#include "constants.h"
+#define INVENTORY_NAME "compiler_inventory"
 
+/* Removes all white space before the string */
 void ltrim(string& str) {
     string::size_type pos = 0;
     while (pos < str.size() && isspace(str[pos])) pos++;
     str.erase(0, pos);
 }
 
+/* Removes all white space after the string */
 void rtrim(string& str) {
     string::size_type pos = str.size();
     while (pos > 0 && isspace(str[pos - 1])) pos--;
     str.erase(pos);
 }
 
+/* Removes all white space before and after string */
 void btrim(string& str) {
     ltrim(str);
     rtrim(str);
@@ -27,7 +30,7 @@ Compiler::Compiler(char* filename) {
     this->parser = new Parser(filename);
     parser->ParseFile();
 }
-
+/* Compiles the user game */
 void Compiler::Compile() {
     string inventory_name = INVENTORY_NAME;
 
@@ -65,7 +68,6 @@ int main(int argc, char **argv) {\n\
     }
 
     output += "\n";
-
 
     for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
         Location *location = it->second;
@@ -227,6 +229,7 @@ int main(int argc, char **argv) {\n\
 
 }
 
+/* Gets the item from the expression */
 string Compiler::getItem(string expression) {
     string item = "";
     map<string, Item*>::iterator objects;
@@ -239,6 +242,7 @@ string Compiler::getItem(string expression) {
     return item;
 }
 
+/* Gets the location from the expression */
 string Compiler::getLocation(string expression) {
     string location = "";
     map<string, Location*>::iterator locations;
@@ -258,6 +262,7 @@ string Compiler::getLocation(string expression) {
     return location;
 }
 
+/* Compiles a single verb from the input command */
 string Compiler::CompileSingleVerb(string commands) {
     string line, output = "";
     istringstream lines(commands);
@@ -276,13 +281,14 @@ string Compiler::CompileSingleVerb(string commands) {
                 end = line.find_last_of("\"");
                 output += "cout << \"" + line.substr(start, end - start) + "\" << endl;\n";
             } else {
-                cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;
+                cout << UNKNOWN_COMMAND << line << "\"" << endl;
             }
         }
     }
     return output;
 }
 
+/* Compiles the noun and verb together */
 string Compiler::CompileNounVerb(Item *item) {
     map<string, string> verbs = item->getVerbs();
     map<string, string>::iterator it;
@@ -325,9 +331,9 @@ string Compiler::CompileNounVerb(Item *item) {
                         } else {
                             output += "cout << " + object + ".getDescription() << endl;\n";
                         }
+                    } else {
+                       cout << UNKNOWN_PRINT_STATEMENT << endl;
                     }
-                    // ERROR UNKNOWN PRINT STATEMENT
-
                 } else if (line.find("setDescription") < line.length()) {
                     string location = getLocation(line);
                     size_t start, end;
@@ -346,7 +352,7 @@ string Compiler::CompileNounVerb(Item *item) {
                             string location = getLocation(expression);
                             string item = getItem(expression);
                             if (location == "" || item == "") {
-                                // BAD EXPRESSION
+                               cout << INCOMPLETE_EXPRESSION << endl;
                             } else {
                                 output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
                             }
@@ -354,7 +360,7 @@ string Compiler::CompileNounVerb(Item *item) {
                             if (line.find(parser->player->getVariableName()) < line.length()) {
                                 output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
                             } else {
-                                // BAD CAN CARRY EXPRESSION
+                               cout << BAD_CARRIABLE_EXPRESSION << endl;
                             }
                         } else if (line.find("inLocation") < line.length()) {
                             string location = getLocation(expression);
@@ -372,13 +378,13 @@ string Compiler::CompileNounVerb(Item *item) {
                                     output += "if (" + parser->player->getVariableName() + "->getLocation() == &" + location +") {\n";
                                 }
                             } else {
-                               // BAD INLOCATION BOOLEAN
+                               cout << BAD_INLOCATION << endl;
                             }
                         } else {
-                            //ERROR BAD BOOLEAN
+                           cout << BAD_BOOLEAN << endl;
                         }
                     } else {
-                        // ERROR BAD BRACES
+                       cout << BAD_BRACES << endl;
                     }
                 } else if (line.find("else") < line.length()) {
                     output += "} else {";
@@ -387,7 +393,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     string item = getItem(line);
 
                     if (location == "" || item == "") {
-                        cerr << "Unreadable setLocation Command: \"" << line << "\"" << endl;
+                        cout << "Unreadable setLocation Command: \"" << line << "\"" << endl;
                     } else {
                         output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
                     }
@@ -415,10 +421,10 @@ string Compiler::CompileNounVerb(Item *item) {
                                 output += location2 + "->" + command + "(&" + location + ");\n";
                             }
                         } else {
-                            // ERROR ONLY ONE LOCATION
+                           cout << ONLY_ONE_LOCATION << endl;
                         }
                     } else {
-                        // ERROR ONLY NO LOCATIONS
+                       cout << NO_LOCATIONS << endl;
                     }
                 } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length() 
                         || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
@@ -438,7 +444,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     cerr << line << endl;
                     output += "}\n";
                 } else {
-                    cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;
+                    cerr << UNKNOWN_COMMAND << line << "\"" << endl;
                 }
             }
         }

@@ -1,0 +1,1950 @@
+Compiler.cpp:1:1: error: stray ‘#’ in program
+Compiler.cpp:1:1: error: ‘e’ does not name a type
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:140:8: error: ‘size_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:34:9: error: ‘__u_char’ does not name a type
+/usr/include/sys/types.h:35:9: error: ‘__u_short’ does not name a type
+/usr/include/sys/types.h:36:9: error: ‘__u_int’ does not name a type
+/usr/include/sys/types.h:37:9: error: ‘__u_long’ does not name a type
+/usr/include/sys/types.h:38:9: error: ‘__quad_t’ does not name a type
+/usr/include/sys/types.h:39:9: error: ‘__u_quad_t’ does not name a type
+/usr/include/sys/types.h:40:9: error: ‘__fsid_t’ does not name a type
+/usr/include/sys/types.h:45:9: error: ‘__loff_t’ does not name a type
+/usr/include/sys/types.h:49:9: error: ‘__ino_t’ does not name a type
+/usr/include/sys/types.h:56:9: error: ‘__ino64_t’ does not name a type
+/usr/include/sys/types.h:61:9: error: ‘__dev_t’ does not name a type
+/usr/include/sys/types.h:66:9: error: ‘__gid_t’ does not name a type
+/usr/include/sys/types.h:71:9: error: ‘__mode_t’ does not name a type
+/usr/include/sys/types.h:76:9: error: ‘__nlink_t’ does not name a type
+/usr/include/sys/types.h:81:9: error: ‘__uid_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:99:9: error: ‘__pid_t’ does not name a type
+/usr/include/sys/types.h:105:9: error: ‘__id_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:116:9: error: ‘__daddr_t’ does not name a type
+/usr/include/sys/types.h:117:9: error: ‘__caddr_t’ does not name a type
+/usr/include/sys/types.h:123:9: error: ‘__key_t’ does not name a type
+In file included from /usr/include/sys/types.h:133:0,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/time.h:60:9: error: ‘__clock_t’ does not name a type
+In file included from /usr/include/sys/types.h:133:0,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/time.h:76:9: error: ‘__time_t’ does not name a type
+In file included from /usr/include/sys/types.h:133:0,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/time.h:92:9: error: ‘__clockid_t’ does not name a type
+In file included from /usr/include/sys/types.h:133:0,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/time.h:104:9: error: ‘__timer_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:137:9: error: ‘__useconds_t’ does not name a type
+/usr/include/sys/types.h:141:9: error: ‘__suseconds_t’ does not name a type
+In file included from /usr/include/sys/select.h:44:0,
+                 from /usr/include/sys/types.h:220,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/time.h:122:5: error: ‘__time_t’ does not name a type
+In file included from /usr/include/sys/select.h:46:0,
+                 from /usr/include/sys/types.h:220,
+                 from /usr/include/stdlib.h:320,
+                 from Compiler.cpp:3:
+/usr/include/bits/time.h:77:5: error: ‘__time_t’ does not name a type
+/usr/include/bits/time.h:78:5: error: ‘__suseconds_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:229:9: error: ‘__blksize_t’ does not name a type
+/usr/include/sys/types.h:236:9: error: ‘__blkcnt_t’ does not name a type
+/usr/include/sys/types.h:240:9: error: ‘__fsblkcnt_t’ does not name a type
+/usr/include/sys/types.h:244:9: error: ‘__fsfilcnt_t’ does not name a type
+In file included from /usr/include/stdlib.h:320:0,
+                 from Compiler.cpp:3:
+/usr/include/sys/types.h:263:9: error: ‘__blkcnt64_t’ does not name a type
+/usr/include/sys/types.h:264:9: error: ‘__fsblkcnt64_t’ does not name a type
+/usr/include/sys/types.h:265:9: error: ‘__fsfilcnt64_t’ does not name a type
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:337:4: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:367:4: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:471:22: error: ‘size_t’ was not declared in this scope
+/usr/include/stdlib.h:471:37: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/stdlib.h:473:22: error: ‘size_t’ was not declared in this scope
+/usr/include/stdlib.h:473:38: error: ‘size_t’ was not declared in this scope
+/usr/include/stdlib.h:473:51: error: initializer expression list treated as compound expression
+/usr/include/stdlib.h:474:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/stdlib.h:485:36: error: ‘size_t’ has not been declared
+In file included from /usr/include/stdlib.h:497:0,
+                 from Compiler.cpp:3:
+/usr/include/alloca.h:33:22: error: ‘size_t’ was not declared in this scope
+/usr/include/alloca.h:33:37: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:503:22: error: ‘size_t’ was not declared in this scope
+/usr/include/stdlib.h:503:37: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/stdlib.h:508:45: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:508:65: error: ‘size_t’ has not been declared
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:756:9: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:756:25: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:761:34: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:761:50: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:764:36: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:764:52: error: ‘size_t’ has not been declared
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:840:6: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:843:6: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:847:31: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:851:31: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:860:38: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:864:36: error: ‘size_t’ has not been declared
+/usr/include/stdlib.h:871:8: error: ‘size_t’ does not name a type
+/usr/include/stdlib.h:874:8: error: ‘size_t’ does not name a type
+In file included from Compiler.cpp:3:0:
+/usr/include/stdlib.h:937:46: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:44:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstddef:52:11: error: ‘::size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:106:9: error: ‘__mbstate_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:148:40: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:156:40: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:163:67: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:173:4: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:183:6: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:193:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:209:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:249:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:253:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:284:8: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:303:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:311:59: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:314:12: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:323:41: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:328:39: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:332:65: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:336:53: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:343:40: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:359:29: error: ‘mbstate_t’ does not name a type
+/usr/include/wchar.h:363:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:368:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:372:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:374:8: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:406:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:412:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:421:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:427:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:441:44: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:568:40: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:578:8: error: ‘__FILE’ does not name a type
+/usr/include/wchar.h:585:19: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:585:27: error: ‘__fp’ was not declared in this scope
+/usr/include/wchar.h:585:33: error: expected primary-expression before ‘int’
+/usr/include/wchar.h:585:43: error: initializer expression list treated as compound expression
+/usr/include/wchar.h:585:45: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/wchar.h:592:22: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:592:30: error: expected primary-expression before ‘__restrict’
+/usr/include/wchar.h:593:8: error: expected primary-expression before ‘__const’
+/usr/include/wchar.h:593:46: error: expected primary-expression before ‘...’ token
+/usr/include/wchar.h:593:49: error: initializer expression list treated as compound expression
+/usr/include/wchar.h:602:47: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:610:23: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:610:31: error: expected primary-expression before ‘__restrict’
+/usr/include/wchar.h:611:9: error: expected primary-expression before ‘__const’
+/usr/include/wchar.h:612:9: error: ‘__gnuc_va_list’ was not declared in this scope
+/usr/include/wchar.h:612:29: error: initializer expression list treated as compound expression
+/usr/include/wchar.h:619:8: error: ‘__gnuc_va_list’ has not been declared
+/usr/include/wchar.h:623:48: error: ‘size_t’ has not been declared
+/usr/include/wchar.h:625:9: error: ‘__gnuc_va_list’ has not been declared
+/usr/include/wchar.h:633:21: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:633:29: error: expected primary-expression before ‘__restrict’
+/usr/include/wchar.h:634:7: error: expected primary-expression before ‘__const’
+/usr/include/wchar.h:634:45: error: expected primary-expression before ‘...’ token
+/usr/include/wchar.h:634:48: error: initializer expression list treated as compound expression
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:687:22: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:687:30: error: expected primary-expression before ‘__restrict’
+/usr/include/wchar.h:688:8: error: expected primary-expression before ‘__const’
+/usr/include/wchar.h:689:8: error: ‘__gnuc_va_list’ was not declared in this scope
+/usr/include/wchar.h:689:28: error: initializer expression list treated as compound expression
+/usr/include/wchar.h:696:7: error: ‘__gnuc_va_list’ has not been declared
+/usr/include/wchar.h:701:8: error: ‘__gnuc_va_list’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:743:23: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:743:31: error: ‘__stream’ was not declared in this scope
+/usr/include/wchar.h:744:22: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:744:30: error: ‘__stream’ was not declared in this scope
+/usr/include/wchar.h:757:37: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:758:36: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:773:4: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:780:6: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:787:37: error: ‘__FILE’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:799:31: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:799:39: error: ‘__stream’ was not declared in this scope
+/usr/include/wchar.h:808:32: error: ‘__FILE’ was not declared in this scope
+/usr/include/wchar.h:808:40: error: ‘__stream’ was not declared in this scope
+/usr/include/wchar.h:816:46: error: ‘__FILE’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:825:45: error: ‘__FILE’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:47:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wchar.h:836:6: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:845:8: error: ‘__FILE’ has not been declared
+/usr/include/wchar.h:853:8: error: ‘size_t’ does not name a type
+/usr/include/wchar.h:863:8: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:67:11: error: ‘::mbstate_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:153:11: error: ‘::mbrlen’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:154:11: error: ‘::mbrtowc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:156:11: error: ‘::mbsrtowcs’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:178:11: error: ‘::wcrtomb’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:183:11: error: ‘::wcscspn’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:184:11: error: ‘::wcsftime’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:185:11: error: ‘::wcslen’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:189:11: error: ‘::wcsrtombs’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:190:11: error: ‘::wcsspn’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwchar:198:11: error: ‘::wcsxfrm’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/iosfwd:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:228:16: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:228:25: error: template argument 1 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:228:36: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:230:16: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:230:25: error: template argument 1 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/postypes.h:230:37: error: invalid type in declaration before ‘;’ token
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_pair.h:60:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h:66,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/move.h:118:26: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/move.h: In function ‘void std::swap(_Tp (&)[_Nm], _Tp (&)[_Nm])’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/move.h:122:12: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/move.h:122:19: error: expected ‘;’ before ‘__n’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/move.h:122:28: error: ‘__n’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h: In static member function ‘static bool std::__lexicographical_compare<true>::__lc(const _Tp*, const _Tp*, const _Up*, const _Up*)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h:915:10: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h:916:10: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h:918:16: error: ‘__len1’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_algobase.h:918:24: error: ‘__len2’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:70:15: error: ‘mbstate_t’ in namespace ‘std’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:111:66: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:113:14: error: ‘size_t’ in namespace ‘std’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:117:39: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:120:57: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:123:57: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:126:35: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:152:64: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h: In static member function ‘static int __gnu_cxx::char_traits<_CharT>::compare(const char_type*, const char_type*, int)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:154:12: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:154:24: error: expected ‘;’ before ‘__i’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:154:33: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:163:5: error: ‘size_t’ in namespace ‘std’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:173:3: error: expected unqualified-id before ‘template’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:187:55: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:196:55: error: ‘std::size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:206:33: error: ‘std::size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:243:15: error: ‘mbstate_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:258:61: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:261:14: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:266:34: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:270:52: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:274:52: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:278:30: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:314:15: error: ‘mbstate_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:329:61: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:332:14: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:337:34: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:341:52: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:345:52: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/char_traits.h:349:30: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cctype:44:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/localefwd.h:44,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/ctype.h:83:16: error: ‘__int32_t’ does not name a type
+/usr/include/ctype.h:85:16: error: ‘__int32_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/localefwd.h:133:40: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/localefwd.h:133:49: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/localefwd.h:135:43: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/localefwd.h:135:52: error: template argument 3 is invalid
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/bits/sched.h:201:30: error: ‘size_t’ was not declared in this scope
+/usr/include/bits/sched.h:201:48: error: expected primary-expression before ‘const’
+/usr/include/bits/sched.h:201:71: error: initializer expression list treated as compound expression
+/usr/include/bits/sched.h:202:3: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/bits/sched.h:203:37: error: ‘size_t’ was not declared in this scope
+/usr/include/bits/sched.h:203:53: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/include/pthread.h:25:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/sched.h:51:28: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:51:43: error: expected primary-expression before ‘__const’
+/usr/include/sched.h:51:78: error: initializer expression list treated as compound expression
+/usr/include/sched.h:52:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/sched.h:55:28: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:55:43: error: expected primary-expression before ‘struct’
+/usr/include/sched.h:55:70: error: initializer expression list treated as compound expression
+/usr/include/sched.h:55:72: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/sched.h:58:32: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:58:47: error: expected primary-expression before ‘int’
+/usr/include/sched.h:59:11: error: expected primary-expression before ‘__const’
+/usr/include/sched.h:59:46: error: initializer expression list treated as compound expression
+/usr/include/sched.h:59:48: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/sched.h:62:32: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:62:47: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/sched.h:74:35: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:74:50: error: expected primary-expression before ‘struct’
+/usr/include/sched.h:74:70: error: initializer expression list treated as compound expression
+/usr/include/sched.h:74:72: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/include/pthread.h:25:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/sched.h:118:31: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:118:46: error: ‘size_t’ was not declared in this scope
+/usr/include/sched.h:119:10: error: expected primary-expression before ‘__const’
+/usr/include/sched.h:119:37: error: initializer expression list treated as compound expression
+/usr/include/sched.h:119:39: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/sched.h:122:31: error: ‘__pid_t’ was not declared in this scope
+/usr/include/sched.h:122:46: error: ‘size_t’ was not declared in this scope
+/usr/include/sched.h:123:20: error: expected primary-expression before ‘*’ token
+/usr/include/sched.h:123:21: error: ‘__cpuset’ was not declared in this scope
+/usr/include/sched.h:123:29: error: initializer expression list treated as compound expression
+/usr/include/sched.h:123:31: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/include/pthread.h:26:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/time.h:183:8: error: ‘clock_t’ does not name a type
+/usr/include/time.h:186:8: error: ‘time_t’ does not name a type
+/usr/include/time.h:189:25: error: ‘time_t’ was not declared in this scope
+/usr/include/time.h:189:41: error: ‘time_t’ was not declared in this scope
+/usr/include/time.h:189:55: error: initializer expression list treated as compound expression
+/usr/include/time.h:190:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:193:8: error: ‘time_t’ does not name a type
+/usr/include/time.h:199:8: error: ‘size_t’ does not name a type
+/usr/include/time.h:217:8: error: ‘size_t’ does not name a type
+/usr/include/time.h:233:35: error: ‘time_t’ does not name a type
+/usr/include/time.h:237:38: error: ‘time_t’ does not name a type
+/usr/include/time.h:243:37: error: ‘time_t’ does not name a type
+/usr/include/time.h:248:40: error: ‘time_t’ does not name a type
+/usr/include/time.h:258:29: error: ‘time_t’ does not name a type
+/usr/include/time.h:270:31: error: ‘time_t’ does not name a type
+/usr/include/time.h:298:27: error: ‘time_t’ does not name a type
+In file included from /usr/include/pthread.h:26:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/time.h:313:8: error: ‘time_t’ does not name a type
+/usr/include/time.h:316:8: error: ‘time_t’ does not name a type
+In file included from /usr/include/pthread.h:26:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/time.h:333:26: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:333:48: error: expected primary-expression before ‘struct’
+/usr/include/time.h:333:70: error: initializer expression list treated as compound expression
+/usr/include/time.h:333:72: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:336:27: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:336:49: error: expected primary-expression before ‘struct’
+/usr/include/time.h:336:70: error: initializer expression list treated as compound expression
+/usr/include/time.h:336:72: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:339:27: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:339:49: error: expected primary-expression before ‘__const’
+/usr/include/time.h:339:78: error: initializer expression list treated as compound expression
+/usr/include/time.h:340:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:347:29: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:347:51: error: expected primary-expression before ‘int’
+/usr/include/time.h:348:8: error: expected primary-expression before ‘__const’
+/usr/include/time.h:349:8: error: expected primary-expression before ‘struct’
+/usr/include/time.h:349:30: error: initializer expression list treated as compound expression
+/usr/include/time.h:352:33: error: ‘pid_t’ was not declared in this scope
+/usr/include/time.h:352:46: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:352:57: error: ‘__clock_id’ was not declared in this scope
+/usr/include/time.h:352:67: error: initializer expression list treated as compound expression
+/usr/include/time.h:352:69: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:357:26: error: ‘clockid_t’ was not declared in this scope
+/usr/include/time.h:358:5: error: expected primary-expression before ‘struct’
+/usr/include/time.h:359:5: error: ‘timer_t’ was not declared in this scope
+/usr/include/time.h:359:14: error: expected primary-expression before ‘__restrict’
+/usr/include/time.h:359:34: error: initializer expression list treated as compound expression
+/usr/include/time.h:359:36: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:362:26: error: ‘timer_t’ was not declared in this scope
+/usr/include/time.h:362:45: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:365:27: error: ‘timer_t’ was not declared in this scope
+/usr/include/time.h:365:46: error: expected primary-expression before ‘int’
+/usr/include/time.h:366:6: error: expected primary-expression before ‘__const’
+/usr/include/time.h:367:6: error: expected primary-expression before ‘struct’
+/usr/include/time.h:367:44: error: initializer expression list treated as compound expression
+/usr/include/time.h:367:46: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:370:27: error: ‘timer_t’ was not declared in this scope
+/usr/include/time.h:370:46: error: expected primary-expression before ‘struct’
+/usr/include/time.h:370:72: error: initializer expression list treated as compound expression
+/usr/include/time.h:371:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/time.h:374:30: error: ‘timer_t’ was not declared in this scope
+/usr/include/time.h:374:49: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/pthread.h:297:11: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:302:11: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:361:19: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:368:11: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:375:7: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:382:7: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:389:6: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:396:6: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:431:11: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:458:52: error: ‘size_t’ has not been declared
+/usr/include/pthread.h:463:52: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/pthread.h:1013:11: error: ‘__clockid_t’ has not been declared
+/usr/include/pthread.h:1018:11: error: ‘__clockid_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/pthread.h:1113:7: error: ‘__clockid_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:268:9: error: ‘__intptr_t’ does not name a type
+/usr/include/unistd.h:275:9: error: ‘__socklen_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:331:8: error: ‘__off_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:342:8: error: ‘__off64_t’ does not name a type
+/usr/include/unistd.h:357:8: error: ‘ssize_t’ does not name a type
+/usr/include/unistd.h:363:8: error: ‘ssize_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:373:8: error: ‘ssize_t’ does not name a type
+/usr/include/unistd.h:381:8: error: ‘ssize_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:401:8: error: ‘ssize_t’ does not name a type
+/usr/include/unistd.h:405:8: error: ‘ssize_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:449:8: error: ‘__useconds_t’ does not name a type
+/usr/include/unistd.h:457:20: error: ‘__useconds_t’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:470:41: error: ‘__uid_t’ has not been declared
+/usr/include/unistd.h:470:58: error: ‘__gid_t’ has not been declared
+/usr/include/unistd.h:475:30: error: ‘__uid_t’ has not been declared
+/usr/include/unistd.h:475:47: error: ‘__gid_t’ has not been declared
+/usr/include/unistd.h:480:42: error: ‘__uid_t’ has not been declared
+/usr/include/unistd.h:480:59: error: ‘__gid_t’ has not been declared
+/usr/include/unistd.h:488:54: error: ‘__uid_t’ has not been declared
+/usr/include/unistd.h:489:8: error: ‘__gid_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:508:35: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:620:8: error: ‘size_t’ does not name a type
+/usr/include/unistd.h:625:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:628:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:633:8: error: ‘__pid_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:643:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:645:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:652:21: error: ‘__pid_t’ was not declared in this scope
+/usr/include/unistd.h:652:36: error: ‘__pid_t’ was not declared in this scope
+/usr/include/unistd.h:652:50: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:652:52: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:686:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:690:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:694:8: error: ‘__uid_t’ does not name a type
+/usr/include/unistd.h:697:8: error: ‘__uid_t’ does not name a type
+/usr/include/unistd.h:700:8: error: ‘__gid_t’ does not name a type
+/usr/include/unistd.h:703:8: error: ‘__gid_t’ does not name a type
+/usr/include/unistd.h:708:35: error: ‘__gid_t’ has not been declared
+/usr/include/unistd.h:712:26: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:712:41: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:719:20: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:719:35: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:724:22: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:724:38: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:724:52: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:724:54: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:729:21: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:729:36: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:736:20: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:736:35: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:741:22: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:741:38: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:741:52: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:741:54: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:746:21: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:746:36: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:752:23: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:752:32: error: ‘__ruid’ was not declared in this scope
+/usr/include/unistd.h:752:40: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:752:49: error: ‘__euid’ was not declared in this scope
+/usr/include/unistd.h:752:57: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:752:66: error: ‘__suid’ was not declared in this scope
+/usr/include/unistd.h:752:72: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:753:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:757:23: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:757:32: error: ‘__rgid’ was not declared in this scope
+/usr/include/unistd.h:757:40: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:757:49: error: ‘__egid’ was not declared in this scope
+/usr/include/unistd.h:757:57: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:757:66: error: ‘__sgid’ was not declared in this scope
+/usr/include/unistd.h:757:72: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:758:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:762:23: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:762:39: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:762:55: error: ‘__uid_t’ was not declared in this scope
+/usr/include/unistd.h:762:69: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:763:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:767:23: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:767:39: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:767:55: error: ‘__gid_t’ was not declared in this scope
+/usr/include/unistd.h:767:69: error: initializer expression list treated as compound expression
+/usr/include/unistd.h:768:6: error: expected ‘,’ or ‘;’ before ‘throw’
+/usr/include/unistd.h:775:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:783:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:793:46: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:828:8: error: ‘ssize_t’ does not name a type
+/usr/include/unistd.h:839:8: error: ‘ssize_t’ does not name a type
+/usr/include/unistd.h:858:8: error: ‘__pid_t’ does not name a type
+/usr/include/unistd.h:861:33: error: ‘__pid_t’ has not been declared
+/usr/include/unistd.h:876:38: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:898:39: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:905:47: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:916:41: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:918:49: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:936:57: error: ‘size_t’ has not been declared
+/usr/include/unistd.h:937:6: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1007:44: error: ‘__off_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1019:46: error: ‘__off64_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1029:33: error: ‘__off_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1039:35: error: ‘__off64_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1056:20: error: ‘intptr_t’ was not declared in this scope
+/usr/include/unistd.h:1056:38: error: expected ‘,’ or ‘;’ before ‘throw’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1094:40: error: ‘__off_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1104:42: error: ‘__off64_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr-default.h:42:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/gthr.h:162,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/atomicity.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/unistd.h:1146:5: error: ‘ssize_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:33:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/c++allocator.h:34,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:48,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:93:25: error: declaration of ‘operator new’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:93:20: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:94:27: error: declaration of ‘operator new []’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:94:22: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:97:25: error: declaration of ‘operator new’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:97:20: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:97:33: error: expected primary-expression before ‘const’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:98:27: error: declaration of ‘operator new []’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:98:22: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:98:35: error: expected primary-expression before ‘const’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:103:32: error: declaration of ‘operator new’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:103:27: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:103:40: error: expected primary-expression before ‘void’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:104:34: error: declaration of ‘operator new []’ as non-function
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:104:29: error: ‘size_t’ is not a member of ‘std’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/new:104:42: error: expected primary-expression before ‘void’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/c++allocator.h:34:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:48,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:39:14: error: ‘std::size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/c++allocator.h:34:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:48,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:54:15: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:84:16: error: ‘size_type’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:94:31: error: ‘size_type’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:97:7: error: ‘size_type’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:67:15: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:89:15: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:53:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h: In instantiation of ‘std::basic_string<char>’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.tcc:1133:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:114:53: error: no type named ‘size_type’ in ‘struct std::basic_string<char>::_CharT_alloc_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h: In instantiation of ‘std::basic_string<wchar_t>’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.tcc:1148:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:114:53: error: no type named ‘size_type’ in ‘struct std::basic_string<wchar_t>::_CharT_alloc_type’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:369:18: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:449:13: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:465:5: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:493:5: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:520:25: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:521:24: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:522:17: error: field ‘size_t’ has incomplete type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:522:19: error: expected ‘;’ before ‘throw’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:560:36: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h: In member function ‘bool std::locale::_Impl::_M_check_same_name()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:537:7: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:537:14: error: expected ‘;’ before ‘__i’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:537:32: error: ‘__i’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:637:22: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:651:34: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:708:7: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:771:5: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:775:3: error: expected unqualified-id before ‘template’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:780:5: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:785:3: error: expected unqualified-id before ‘template’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:815:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc: In function ‘bool std::has_facet(const std::locale&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:93:13: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:95:15: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:95:36: error: ‘class std::locale::_Impl’ has no member named ‘_M_facets_size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc: In function ‘const _Facet& std::use_facet(const std::locale&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:107:13: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:109:11: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:109:33: error: ‘class std::locale::_Impl’ has no member named ‘_M_facets_size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:112:52: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:127:5: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:131:3: error: expected unqualified-id before ‘template’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc: In member function ‘virtual std::collate<_CharT>::string_type std::collate<_CharT>::do_transform(const _CharT*, const _CharT*) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:183:7: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:183:14: error: expected ‘;’ before ‘__len’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:185:32: error: ‘__len’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:195:15: error: expected ‘;’ before ‘__res’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:198:12: error: ‘__res’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:206:26: error: ‘__res’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:245:25: error: explicit instantiation of ‘struct std::collate_byname<char>’ before definition of template
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.tcc:257:25: error: explicit instantiation of ‘struct std::collate_byname<wchar_t>’ before definition of template
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwctype:46:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wctype.h:187:17: error: ‘__int32_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwctype:46:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/include/wctype.h:219:8: error: ‘wctrans_t’ does not name a type
+/usr/include/wctype.h:222:39: error: ‘wctrans_t’ has not been declared
+/usr/include/wctype.h:306:8: error: ‘wctrans_t’ does not name a type
+/usr/include/wctype.h:310:41: error: ‘wctrans_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwctype:78:11: error: ‘::wctrans_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cwctype:100:11: error: ‘::wctrans’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:103:26: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:351:36: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:615:20: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:697:20: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:710:58: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:724:6: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1207:20: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1218:32: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1472:37: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1485:37: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1498:37: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1567:7: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1570:7: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1572:7: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1590:31: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1660:23: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1673:39: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1687:35: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1875:40: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:1930:22: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2112:33: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2135:40: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2268:22: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2427:46: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2437:44: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2601:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘const std::__numpunct_cache<_CharT>* std::__use_cache<std::__numpunct_cache<_CharT> >::operator()(const std::locale&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:55:8: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:57:16: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:72:63: error: ‘__i’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘void std::__numpunct_cache<_CharT>::_M_cache(const std::locale&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:89:4: error: ‘_M_grouping_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:98:4: error: ‘_M_truename_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:103:4: error: ‘_M_falsename_size’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2601:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:137:45: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘_InIter std::num_get<_CharT, _InIter>::_M_extract_float(_InIter, _InIter, std::ios_base&, std::ios_base::iostate&, std::string&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:207:19: error: ‘struct std::string’ has no member named ‘reserve’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:292:28: error: ‘struct std::string’ has no member named ‘size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:315:28: error: ‘struct std::string’ has no member named ‘size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:351:28: error: ‘struct std::string’ has no member named ‘size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘_InIter std::num_get<_CharT, _InIter>::_M_extract_int(_InIter, _InIter, std::ios_base&, std::ios_base::iostate&, _ValueT&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:457:8: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:463:21: error: ‘struct std::string’ has no member named ‘reserve’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:479:38: error: ‘__len’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:523:39: error: ‘__len’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:549:23: error: ‘struct std::string’ has no member named ‘size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:562:56: error: ‘struct std::string’ has no member named ‘size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(iter_type, iter_type, std::ios_base&, std::ios_base::iostate&, bool&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:625:4: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:625:11: error: expected ‘;’ before ‘__n’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:637:39: error: ‘__n’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:643:38: error: ‘__n’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:651:10: error: ‘__n’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:657:19: error: ‘__n’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(iter_type, iter_type, std::ios_base&, std::ios_base::iostate&, float&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:690:14: error: ‘struct std::string’ has no member named ‘reserve’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(iter_type, iter_type, std::ios_base&, std::ios_base::iostate&, double&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:705:14: error: ‘struct std::string’ has no member named ‘reserve’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2601:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(iter_type, iter_type, std::ios_base&, std::ios_base::iostate&, long double&) const’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:737:14: error: ‘struct std::string’ has no member named ‘reserve’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:834:42: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:934:44: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.h:2601:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:45,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In static member function ‘static void std::__pad<_CharT, _Traits>::_S_pad(std::ios_base&, _CharT, _CharT*, const _CharT*, std::streamsize, std::streamsize)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1195:13: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1202:39: error: ‘__plen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1206:7: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1206:14: error: expected ‘;’ before ‘__mod’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1219:8: error: ‘__mod’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1229:8: error: ‘__mod’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1234:31: error: ‘__plen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1235:47: error: ‘__mod’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1241:26: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc: In function ‘_CharT* std::__add_grouping(_CharT*, _CharT, const char*, int, const _CharT*, const _CharT*)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1244:7: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1244:14: error: expected ‘;’ before ‘__idx’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1245:14: error: expected ‘;’ before ‘__ctr’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1247:40: error: ‘__idx’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1252:38: error: ‘__ctr’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1258:14: error: ‘__ctr’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1261:27: error: ‘__idx’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_facets.tcc:1265:14: error: ‘__idx’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ostream:586:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:41,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc: In function ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc:329:10: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc:338:27: error: ‘__clen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc:341:13: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc:341:20: error: expected ‘;’ before ‘__i’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ostream.tcc:341:29: error: ‘__i’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:42:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:214:33: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:223:38: error: expected ‘)’ before ‘__refs’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:42:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:259:29: error: ‘size_t’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:42:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:292:22: error: expected ‘)’ before ‘__refs’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:296:34: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:326:29: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:337:31: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:337:40: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:338:50: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:338:59: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:395:34: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:395:43: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:396:53: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:396:62: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:459:39: error: ‘size_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:479:52: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:479:61: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:482:31: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:482:40: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:483:35: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:483:44: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:483:5: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:487:35: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:487:44: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:487:5: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:490:55: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:490:64: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:493:34: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:493:43: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:494:38: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:494:47: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:494:5: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:498:38: error: ‘mbstate_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:498:47: error: template argument 3 is invalid
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/codecvt.h:498:5: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:43:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:95:11: error: ‘::FILE’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:96:11: error: ‘::fpos_t’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:98:11: error: ‘::clearerr’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:99:11: error: ‘::fclose’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:100:11: error: ‘::feof’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:101:11: error: ‘::ferror’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:102:11: error: ‘::fflush’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:103:11: error: ‘::fgetc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:104:11: error: ‘::fgetpos’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:105:11: error: ‘::fgets’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:106:11: error: ‘::fopen’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:107:11: error: ‘::fprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:108:11: error: ‘::fputc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:109:11: error: ‘::fputs’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:110:11: error: ‘::fread’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:111:11: error: ‘::freopen’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:112:11: error: ‘::fscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:113:11: error: ‘::fseek’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:114:11: error: ‘::fsetpos’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:115:11: error: ‘::ftell’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:116:11: error: ‘::fwrite’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:117:11: error: ‘::getc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:118:11: error: ‘::getchar’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:119:11: error: ‘::gets’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:120:11: error: ‘::perror’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:121:11: error: ‘::printf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:122:11: error: ‘::putc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:123:11: error: ‘::putchar’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:124:11: error: ‘::puts’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:125:11: error: ‘::remove’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:126:11: error: ‘::rename’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:127:11: error: ‘::rewind’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:128:11: error: ‘::scanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:129:11: error: ‘::setbuf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:130:11: error: ‘::setvbuf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:131:11: error: ‘::sprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:132:11: error: ‘::sscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:133:11: error: ‘::tmpfile’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:134:11: error: ‘::tmpnam’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:135:11: error: ‘::ungetc’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:136:11: error: ‘::vfprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:137:11: error: ‘::vprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:138:11: error: ‘::vsprintf’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:43:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:167:11: error: ‘::snprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:168:11: error: ‘::vfscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:169:11: error: ‘::vscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:170:11: error: ‘::vsnprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:171:11: error: ‘::vsscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:178:22: error: ‘__gnu_cxx::snprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:179:22: error: ‘__gnu_cxx::vfscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:180:22: error: ‘__gnu_cxx::vscanf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:181:22: error: ‘__gnu_cxx::vsnprintf’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdio:182:22: error: ‘__gnu_cxx::vsscanf’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/basic_file.h:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:44,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/c++io.h:45:11: error: ‘FILE’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:44:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/basic_file.h:55:7: error: ‘__c_file’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/basic_file.h:67:15: error: expected ‘;’ before ‘(’ token
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/basic_file.h:81:34: error: ‘__c_file’ does not name a type
+In file included from Parser.h:10:0,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:116:7: error: ‘size_t’ does not name a type
+In file included from Parser.h:10:0,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream: In member function ‘void std::basic_filebuf<_CharT, _Traits>::_M_set_buffer(std::streamsize)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:397:33: error: ‘_M_buf_size’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:916:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘void std::basic_filebuf<_CharT, _Traits>::_M_allocate_internal_buffer()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:54:27: error: ‘_M_buf_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In constructor ‘std::basic_filebuf<_CharT, _Traits>::basic_filebuf()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:81:38: error: class ‘std::basic_filebuf<_CharT, _Traits>’ does not have any field named ‘_M_buf_size’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘virtual std::basic_filebuf<_CharT, _Traits>::int_type std::basic_filebuf<_CharT, _Traits>::underflow()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:219:10: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:229:11: error: ‘__buflen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:241:21: error: ‘__buflen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:244:14: error: ‘__buflen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:300:23: error: ‘__buflen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:303:9: error: ‘size_t’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:303:16: error: expected ‘;’ before ‘__avail’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:304:27: error: ‘__avail’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:304:36: error: ‘__buflen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘virtual std::basic_filebuf<_CharT, _Traits>::int_type std::basic_filebuf<_CharT, _Traits>::overflow(std::basic_filebuf<_CharT, _Traits>::int_type)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:433:13: error: ‘_M_buf_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘virtual std::streamsize std::basic_filebuf<_CharT, _Traits>::xsgetn(_CharT*, std::streamsize)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:547:36: error: ‘_M_buf_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘virtual std::streamsize std::basic_filebuf<_CharT, _Traits>::xsputn(const _CharT*, std::streamsize)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:625:23: error: ‘_M_buf_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘virtual std::basic_filebuf<_CharT, _Traits>::__streambuf_type* std::basic_filebuf<_CharT, _Traits>::setbuf(char_type*, std::streamsize)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:662:6: error: ‘_M_buf_size’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:916:0,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:674:8: error: ‘_M_buf_size’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc: In member function ‘bool std::basic_filebuf<_CharT, _Traits>::_M_terminate_output()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:795:10: error: ‘size_t’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:796:15: error: ‘__blen’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:803:48: error: ‘__buf’ was not declared in this scope
+In file included from Parser.h:10:0,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream: In instantiation of ‘std::basic_filebuf<char>’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:911:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:80:48: error: no type named ‘state_type’ in ‘struct std::basic_filebuf<char>::traits_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:81:54: error: no type named ‘state_type’ in ‘struct std::char_traits<char>’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream: In instantiation of ‘std::basic_filebuf<wchar_t>’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/fstream.tcc:917:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:80:48: error: no type named ‘state_type’ in ‘struct std::basic_filebuf<wchar_t>::traits_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:81:54: error: no type named ‘state_type’ in ‘struct std::char_traits<wchar_t>’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:437:15: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:519:22: error: expected ‘)’ before ‘__n’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:642:14: error: ‘size_type’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:804:7: error: ‘size_type’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:809:7: error: ‘size_type’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:824:14: error: ‘size_type’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1028:35: error: ‘size_type’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1394:26: error: ‘size_type’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1421:22: error: ‘size_type’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:63:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h: In member function ‘void std::list<_Tp, _Alloc>::_M_initialize_dispatch(_Integer, _Integer, std::__true_type)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1379:42: error: expected type-specifier before ‘size_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1379:42: error: expected ‘>’ before ‘size_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1379:42: error: expected ‘(’ before ‘size_type’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_list.h:1379:42: error: ‘size_type’ was not declared in this scope
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/list:66:0,
+                 from Parser.h:11,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:118:12: error: variable or field ‘resize’ declared void
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:118:12: error: ‘size_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:118:34: error: ‘value_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:155:20: error: variable or field ‘_M_fill_assign’ declared void
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:155:20: error: ‘size_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/list.tcc:155:35: error: expected primary-expression before ‘const’
+In file included from Parser.h:13:0,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdlib:122:11: error: ‘::mbstowcs’ has not been declared
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/cstdlib:134:11: error: ‘::wcstombs’ has not been declared
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:340:15: error: ‘size_t’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:430:4: error: ‘size_type’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:669:7: error: ‘size_type’ does not name a type
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:673:7: error: ‘size_type’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:718:7: error: ‘size_type’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:758:7: error: ‘size_type’ does not name a type
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: In constructor ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree_impl<_Key_compare, _Is_pod_comparator>::_Rb_tree_impl()’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:434:6: error: class ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree_impl<_Key_compare, _Is_pod_comparator>’ does not have any field named ‘_M_node_count’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: In constructor ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree_impl<_Key_compare, _Is_pod_comparator>::_Rb_tree_impl(const _Key_compare&, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Node_allocator&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:439:6: error: class ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree_impl<_Key_compare, _Is_pod_comparator>’ does not have any field named ‘_M_node_count’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: In member function ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::iterator std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_insert_unique_(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::const_iterator, const _Val&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1226:13: error: there are no arguments to ‘size’ that depend on a template parameter, so a declaration of ‘size’ must be available
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1226:13: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: In member function ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::iterator std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_insert_equal_(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::const_iterator, const _Val&)’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1285:13: error: there are no arguments to ‘size’ that depend on a template parameter, so a declaration of ‘size’ must be available
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: At global scope:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1423:5: error: prototype for ‘typename std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::size_type std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(const _Key&)’ does not match any in class ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:739:7: error: candidates are: void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(const key_type*, const key_type*)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:736:7: error:                 void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::const_iterator, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::const_iterator)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:733:7: error:                 void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::iterator, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::iterator)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1408:5: error:                 void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::const_iterator)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1394:5: error:                 void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::erase(std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::iterator)
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:1542:28: error: no ‘typename std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::size_type std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::count(const _Key&) const’ member function declared in class ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:61:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h: In instantiation of ‘std::map<std::basic_string<char>, std::basic_string<char> >’:
+Item.h:14:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:139:45: error: no type named ‘size_type’ in ‘class std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h: In instantiation of ‘std::map<std::basic_string<char>, bool>’:
+Item.h:15:23:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:139:45: error: no type named ‘size_type’ in ‘class std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, bool>, std::_Select1st<std::pair<const std::basic_string<char>, bool> >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, bool> > >’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h: In instantiation of ‘std::map<std::basic_string<char>, Location*>’:
+Parser.h:35:28:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:139:45: error: no type named ‘size_type’ in ‘class std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, Location*>, std::_Select1st<std::pair<const std::basic_string<char>, Location*> >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, Location*> > >’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h: In instantiation of ‘std::map<std::basic_string<char>, Item*>’:
+Parser.h:36:24:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:139:45: error: no type named ‘size_type’ in ‘class std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, Item*>, std::_Select1st<std::pair<const std::basic_string<char>, Item*> >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, Item*> > >’
+Compiler.cpp: In function ‘void ltrim(std::string&)’:
+Compiler.cpp:11:12: error: ‘pos’ was not declared in this scope
+Compiler.cpp:11:22: error: ‘struct std::string’ has no member named ‘size’
+Compiler.cpp:12:18: error: ‘pos’ was not declared in this scope
+Compiler.cpp: In function ‘void rtrim(std::string&)’:
+Compiler.cpp:17:33: error: ‘struct std::string’ has no member named ‘size’
+Compiler.cpp:18:12: error: ‘pos’ was not declared in this scope
+Compiler.cpp:19:15: error: ‘pos’ was not declared in this scope
+Compiler.cpp: In member function ‘std::string Compiler::getItem(std::string)’:
+Compiler.cpp:238:24: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:238:58: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp: In member function ‘std::string Compiler::getLocation(std::string)’:
+Compiler.cpp:251:24: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:251:60: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:257:24: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:257:77: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:259:31: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:259:68: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp: In member function ‘std::string Compiler::CompileSingleVerb(std::string)’:
+Compiler.cpp:269:25: error: variable ‘std::istringstream lines’ has initializer but incomplete type
+Compiler.cpp:272:18: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:279:29: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:279:51: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:280:17: error: ‘size_t’ was not declared in this scope
+Compiler.cpp:280:24: error: expected ‘;’ before ‘start’
+Compiler.cpp:281:17: error: ‘start’ was not declared in this scope
+Compiler.cpp:281:30: error: ‘struct std::string’ has no member named ‘find_first_of’
+Compiler.cpp:282:17: error: ‘end’ was not declared in this scope
+Compiler.cpp:282:28: error: ‘struct std::string’ has no member named ‘find_last_of’
+Compiler.cpp:283:47: error: ‘struct std::string’ has no member named ‘substr’
+Compiler.cpp: In member function ‘std::string Compiler::CompileNounVerb(Item*)’:
+Compiler.cpp:301:9: error: ‘size_t’ was not declared in this scope
+Compiler.cpp:301:16: error: expected ‘;’ before ‘pos’
+Compiler.cpp:302:16: error: ‘pos’ was not declared in this scope
+Compiler.cpp:302:27: error: ‘struct std::string’ has no member named ‘size’
+Compiler.cpp:304:24: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:309:29: error: variable ‘std::istringstream lines’ has initializer but incomplete type
+Compiler.cpp:312:22: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:319:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:319:57: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:320:28: error: expected ‘;’ before ‘start’
+Compiler.cpp:321:21: error: ‘start’ was not declared in this scope
+Compiler.cpp:321:34: error: ‘struct std::string’ has no member named ‘find_first_of’
+Compiler.cpp:322:21: error: ‘end’ was not declared in this scope
+Compiler.cpp:322:32: error: ‘struct std::string’ has no member named ‘find_last_of’
+Compiler.cpp:323:51: error: ‘struct std::string’ has no member named ‘substr’
+Compiler.cpp:324:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:324:55: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:330:34: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:330:64: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:338:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:338:63: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:340:28: error: expected ‘;’ before ‘start’
+Compiler.cpp:341:21: error: ‘start’ was not declared in this scope
+Compiler.cpp:341:34: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:342:21: error: ‘end’ was not declared in this scope
+Compiler.cpp:342:32: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:343:70: error: ‘struct std::string’ has no member named ‘substr’
+Compiler.cpp:344:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:344:51: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:345:28: error: expected ‘;’ before ‘open’
+Compiler.cpp:346:21: error: ‘open’ was not declared in this scope
+Compiler.cpp:346:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:347:34: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:348:37: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:348:62: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:350:50: error: ‘struct std::string’ has no member named ‘substr’
+Compiler.cpp:352:34: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:352:57: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:360:41: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:360:65: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:361:38: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:361:85: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:366:41: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:366:67: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:372:40: error: expected ‘;’ before ‘pos’
+Compiler.cpp:373:37: error: ‘pos’ was not declared in this scope
+Compiler.cpp:373:48: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:377:40: error: expected ‘;’ before ‘pos’
+Compiler.cpp:378:37: error: ‘pos’ was not declared in this scope
+Compiler.cpp:378:48: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:390:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:390:53: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:392:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:392:60: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:401:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:401:57: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:401:74: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:401:97: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:402:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:402:56: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:402:73: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:402:97: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:405:30: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:405:54: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:407:37: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:407:60: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:409:37: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:409:60: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:413:32: error: expected ‘;’ before ‘pos’
+Compiler.cpp:414:38: error: ‘pos’ was not declared in this scope
+Compiler.cpp:414:52: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:418:36: error: expected ‘;’ before ‘pos2’
+Compiler.cpp:419:39: error: ‘pos2’ was not declared in this scope
+Compiler.cpp:430:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:430:60: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:430:77: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:430:103: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:431:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:431:59: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:431:76: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:431:103: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:434:30: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:434:57: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:436:37: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:436:63: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:438:37: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:438:63: error: ‘struct std::string’ has no member named ‘length’
+Compiler.cpp:444:33: error: ‘struct std::string’ has no member named ‘find’
+Compiler.cpp:444:50: error: ‘struct std::string’ has no member named ‘length’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:56:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.tcc: In function ‘std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>]’:
+Compiler.cpp:48:39:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.tcc:700:7: error: ‘struct std::operator+(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>]::__string_type’ has no member named ‘reserve’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.tcc:700:7: error: ‘const struct std::basic_string<char>’ has no member named ‘size’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:53:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h: In function ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>]’:
+Compiler.cpp:229:13:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:2605:63: error: ‘const struct std::basic_string<char>’ has no member named ‘size’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:41:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ostream: In function ‘std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*) [with _Traits = std::char_traits<char>]’:
+Compiler.cpp:285:25:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ostream:513:2: error: ‘length’ is not a member of ‘std::char_traits<char>’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:53:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h: In member function ‘std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::append(const _CharT*) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>, std::basic_string<_CharT, _Traits, _Alloc> = std::basic_string<char>]’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:2304:7:   instantiated from ‘std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>]’
+Compiler.cpp:48:60:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:957:51: error: ‘length’ is not a member of ‘std::basic_string<char>::traits_type’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/map:60:0,
+                 from Parser.h:14,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h: In copy constructor ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc> = std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >]’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:171:22:   instantiated from ‘std::map<_Key, _Tp, _Compare, _Alloc>::map(const std::map<_Key, _Tp, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Tp = std::basic_string<char>, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::map<_Key, _Tp, _Compare, _Alloc> = std::map<std::basic_string<char>, std::basic_string<char> >]’
+Compiler.cpp:294:48:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:605:6: error: ‘const struct std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >::_Rb_tree_impl<std::less<std::basic_string<char> >, false>’ has no member named ‘_M_node_count’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:605:6: error: ‘struct std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >::_Rb_tree_impl<std::less<std::basic_string<char> >, false>’ has no member named ‘_M_node_count’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:53:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h: In member function ‘std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::assign(const _CharT*) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>, std::basic_string<_CharT, _Traits, _Alloc> = std::basic_string<char>]’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:541:32:   instantiated from ‘std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::operator=(const _CharT*) [with _CharT = char, _Traits = std::char_traits<char>, _Alloc = std::allocator<char>, std::basic_string<_CharT, _Traits, _Alloc> = std::basic_string<char>]’
+Compiler.cpp:406:35:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/basic_string.h:1078:51: error: ‘length’ is not a member of ‘std::basic_string<char>::traits_type’
+In file included from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/x86_64-redhat-linux/bits/c++allocator.h:34:0,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/allocator.h:48,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/string:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ios:43,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/istream:40,
+                 from /usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/fstream:40,
+                 from Parser.h:10,
+                 from Compiler.h:3,
+                 from Compiler.cpp:4:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h: In member function ‘void __gnu_cxx::new_allocator<_Tp>::construct(_Tp*, const _Tp&) [with _Tp = std::pair<const std::basic_string<char>, std::basic_string<char> >, _Tp* = std::pair<const std::basic_string<char>, std::basic_string<char> >*]’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:371:6:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_create_node(const value_type&) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, value_type = std::pair<const std::basic_string<char>, std::basic_string<char> >]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:416:55:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_clone_node(const std::_Rb_tree_node<_Val>*) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, const std::_Rb_tree_node<_Val>* = const std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:950:43:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_copy(const std::_Rb_tree_node<_Val>*, std::_Rb_tree_node<_Val>*) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, const std::_Rb_tree_node<_Val>* = const std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:602:6:   instantiated from ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc> = std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:171:22:   instantiated from ‘std::map<_Key, _Tp, _Compare, _Alloc>::map(const std::map<_Key, _Tp, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Tp = std::basic_string<char>, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::map<_Key, _Tp, _Compare, _Alloc> = std::map<std::basic_string<char>, std::basic_string<char> >]’
+Compiler.cpp:294:48:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:105:9: error: no matching function for call to ‘operator new(long unsigned int, void*)’
+<built-in>:0:0: note: candidate is: void* operator new(long unsigned int)
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h: In member function ‘_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(int, const void*) [with _Tp = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Tp* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’:
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:359:51:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_get_node() [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:369:33:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_create_node(const value_type&) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, value_type = std::pair<const std::basic_string<char>, std::basic_string<char> >]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:416:55:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_clone_node(const std::_Rb_tree_node<_Val>*) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, const std::_Rb_tree_node<_Val>* = const std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:950:43:   instantiated from ‘std::_Rb_tree_node<_Val>* std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_copy(const std::_Rb_tree_node<_Val>*, std::_Rb_tree_node<_Val>*) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree_node<_Val>* = std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*, const std::_Rb_tree_node<_Val>* = const std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > >*]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_tree.h:602:6:   instantiated from ‘std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_Rb_tree(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Val = std::pair<const std::basic_string<char>, std::basic_string<char> >, _KeyOfValue = std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc> = std::_Rb_tree<std::basic_string<char>, std::pair<const std::basic_string<char>, std::basic_string<char> >, std::_Select1st<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > >]’
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/bits/stl_map.h:171:22:   instantiated from ‘std::map<_Key, _Tp, _Compare, _Alloc>::map(const std::map<_Key, _Tp, _Compare, _Alloc>&) [with _Key = std::basic_string<char>, _Tp = std::basic_string<char>, _Compare = std::less<std::basic_string<char> >, _Alloc = std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > >, std::map<_Key, _Tp, _Compare, _Alloc> = std::map<std::basic_string<char>, std::basic_string<char> >]’
+Compiler.cpp:294:48:   instantiated from here
+/usr/lib/gcc/x86_64-redhat-linux/4.5.1/../../../../include/c++/4.5.1/ext/new_allocator.h:86:2: error: ‘class __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<const std::basic_string<char>, std::basic_string<char> > > >’ has no member named ‘max_size’
+make: *** [Compiler.o] Error 1

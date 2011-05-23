@@ -20,5 +20,14 @@
 #define NO_ITEM_NAME "Your item does not have a name."
 #define NO_ITEM_DESCRIPTION "Your item does not have a description."
 #define NO_ITEM_LOCATION "Your item is not associated with a location."
+#define UNKNOWN_COMMAND "Unreadable/Unknown Command: \""
+#define UNKNOWN_PRINT_STATEMENT "Unknown Print Statement."
+#define INCOMPLETE_EXPRESSION "Your expression is incomplete."
+#define BAD_CARRIABLE_EXPRESSION "Your carry expression is wrong."
+#define BAD_INLOCATION "Your inLocation statement is incorrect."
+#define BAD_BOOLEAN "Your boolean (true/false) expression is incorrect."
+#define BAD_BRACES "Your braces {, } are not sentactically correct."
+#define ONLY_ONE_LOCATION "You need more than one Location."
+#define NO_LOCATIONS "You do not have any Locations."
 
 #endif
