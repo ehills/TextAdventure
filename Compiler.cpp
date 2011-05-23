@@ -415,12 +415,12 @@ string Compiler::CompileNounVerb(Item *item) {
                     }  else if (line.find("setEast") < line.length()) {
                         command = "setEast";
                     } 
-                    if (location == "") {
+                    if (location != "") {
                         size_t pos = line.find(location);
                         line.replace(pos, location.length(), "");
 
                         string location2 = getLocation(line);
-                        if (location == "") {
+                        if (location != "") {
                             size_t pos2 = line.find(location2);
                             if (pos < pos2) {
                                 cerr << "aSDASASDASD" << endl;
@@ -447,7 +447,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     }  else if (line.find("removeEast") < line.length()) {
                         command = "setEast";
                     } 
-                    if (location == "") {
+                    if (location != "") {
                         output += location + "->" + command + "(NULL);\n";
                     } else {
                         cerr << "NO LOCATION" << endl;
