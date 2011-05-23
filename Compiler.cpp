@@ -422,9 +422,9 @@ string Compiler::CompileNounVerb(Item *item) {
                         if (location != "") {
                             size_t pos2 = line.find(location2);
                             if (pos < pos2) {
-                                output += location + "->" + command + "(&" + location2 + ");\n";
+                                output += location + "." + command + "(&" + location2 + ");\n";
                             } else {
-                                output += location2 + "->" + command + "(&" + location + ");\n";
+                                output += location2 + "." + command + "(&" + location + ");\n";
                             }
                         } else {
                            cout << ONLY_ONE_LOCATION << endl;
@@ -444,9 +444,9 @@ string Compiler::CompileNounVerb(Item *item) {
                         command = "setEast";
                     } 
                     if (location != "") {
-                        output += location + "->" + command + "(NULL);\n";
+                        output += location + "." + command + "(NULL);\n";
                     } else {
-                        cerr << "NO LOCATION" << endl;
+                        cerr << NO_LOCATIONS << endl;
                     }
                 } else if (line.find("}") < line.length()) {
                     output += "}\n";
