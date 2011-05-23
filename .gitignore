@@ -2,3 +2,5 @@
 *.o
 TextAdventure
 nbproject
+output/compiled_game.cpp
+output/*.o

@@ -112,15 +112,19 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(lamp.getName())) {
 andy->getLocation()->addItem(lamp.getName(), &lamp);
 } else {cout << "I don't have ";
+cout << lamp.getDescription() << endl;
 cout << ".";
 }
 goto main_loop;}
 if (verb == "examine") {
+cout << lamp.getName() << endl;
 goto main_loop;}
 if (verb == "light") {
-entranceHall.setDescription("You can now make out a door to the north");masterBedroom.setDescription("You can now make out a mirror in the far corner of the room");goto main_loop;}
+entranceHall.setDescription("You can now make out a door to the north");entranceHall.setNorth(&secretHall);
+masterBedroom.setDescription("You can now make out a mirror in the far corner of the room");goto main_loop;}
 if (verb == "off") {
-entranceHall.setDescription("You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north");masterBedroom.setDescription("You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you");goto main_loop;}
+entranceHall.setDescription("You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north");entranceHall.setNorth(NULL);
+masterBedroom.setDescription("You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you");goto main_loop;}
 if (verb == "pickup") {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(lamp.getName(), &lamp);
@@ -134,10 +138,12 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(mirror.getName())) {
 andy->getLocation()->addItem(mirror.getName(), &mirror);
 } else {cout << "I don't have ";
+cout << mirror.getDescription() << endl;
 cout << ".";
 }
 goto main_loop;}
 if (verb == "examine") {
+cout << mirror.getName() << endl;
 goto main_loop;}
 if (verb == "pickup") {
 if (andy->canCarry()) {

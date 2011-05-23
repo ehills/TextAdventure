@@ -21,7 +21,7 @@
 #define NO_ITEM_DESCRIPTION "Your item does not have a description."
 #define NO_ITEM_LOCATION "Your item is not associated with a location."
 #define UNKNOWN_COMMAND "Unreadable/Unknown Command: \""
-#define UNKNOWN_PRINT_STATEMENT "Unknown Print Statement."
+#define UNKNOWN_PRINT_STATEMENT "Unknown/Illformed Print Statement."
 #define INCOMPLETE_EXPRESSION "Your expression is incomplete."
 #define BAD_CARRIABLE_EXPRESSION "Your carry expression is wrong."
 #define BAD_INLOCATION "Your inLocation statement is incorrect."
