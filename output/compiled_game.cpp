@@ -37,7 +37,7 @@ lamp.setLocation(&diningRoom);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful..");
 masterBedroom.addItem("mirror", &mirror);
 mirror.setLocation(&masterBedroom);
-cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->getDescription() << endl;while (true) {   main_loop:   cout << prompt;   getline(cin, command);   istringstream word(command);   verb = "";   noun = "";   count = 0;   while (word) {      if (count > 2) {           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun" << endl;           goto main_loop;      }      if (count == 0) {           word >> verb;      } else {           word >> noun;      }      count++;   }    if (command == QUIT_GAME) {
+cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->printRoom() << endl;while (true) {   main_loop:   cout << prompt;   getline(cin, command);   istringstream word(command);   verb = "";   noun = "";   count = 0;   while (word) {      if (count > 2) {           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun" << endl;           goto main_loop;      }      if (count == 0) {           word >> verb;      } else {           word >> noun;      }      count++;   }    if (command == QUIT_GAME) {
         quit_loop:
         string quit = "";
         cout << "Do you really want to quit?: [y]or[n] ";        cout.flush();
@@ -65,8 +65,8 @@ cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->g
                 goto main_loop;
             } else {
                 andy->setLocation(andy->getLocation()->getNorth());
-                cout << andy->getLocation()->getDescription() << endl;
-                goto main_loop;
+                cout << andy->getLocation()->printRoom() << endl;
+                 goto main_loop;
             }
         }
 
@@ -76,7 +76,7 @@ cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->g
                 goto main_loop;
             } else {
                 andy->setLocation(andy->getLocation()->getSouth());
-                cout << andy->getLocation()->getDescription() << endl;
+                cout << andy->getLocation()->printRoom() << endl;
                 goto main_loop;
             }
         }
@@ -87,7 +87,7 @@ cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->g
                 goto main_loop;
             } else {
                 andy->setLocation(andy->getLocation()->getWest());
-                cout << andy->getLocation()->getDescription() << endl;
+                cout << andy->getLocation()->printRoom() << endl;
                 goto main_loop;
             }
         }
@@ -97,12 +97,12 @@ cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->g
                 goto main_loop;
             } else {
                 andy->setLocation(andy->getLocation()->getEast());
-                cout << andy->getLocation()->getDescription() << endl;
+                cout << andy->getLocation()->printRoom() << endl;
                 goto main_loop;
             }
         }if (verb=="look"){
 cout << andy->getLocation()->getDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItemsDescription() << endl;
 
 goto main_loop;}
 cout << "I don't know how to " << verb << " here" << endl;
