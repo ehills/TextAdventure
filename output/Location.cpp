@@ -6,6 +6,16 @@
  **/
 #include "Location.h"
 
+string toLower(string text) {
+    size_t pos = 0;
+    string ret = "";
+    while (pos < text.length()) {
+        ret += tolower(text.at(pos)); 
+        pos++;
+    }
+    return ret;
+}
+
 /* Default Constructor */
 Location::Location() {
    this->north = NULL;
@@ -59,17 +69,17 @@ string Location::printRoom(void) {
 
 /* Adds an item to the room */
 void Location::addItem(string item_name, Item* item) {
-    cerr << "adding " << item_name << " to " << this->getName() << endl;
+    cerr << "adding " << toLower(item_name) << " to " << this->getName() << endl;
     if (item->hasLocation()) {
         item->getLocation()->removeItem(item_name);
     }
     item->setLocation(this);
-    this->items.insert(pair<string, Item*> (item_name, item));
+    this->items.insert(pair<string, Item*> (toLower(item_name), item));
 }
 
 /* Checks to see if item is in this location */
 bool Location::hasItem(string item_name) {
-    return this->items.count(item_name) != 0;
+    return this->items.count(toLower(item_name)) != 0;
 }
 
 /* Checks to see if item is in this location */
@@ -80,7 +90,7 @@ int Location::getItemCount() {
 /* Removes an item from the room */
 void Location::removeItem(string item_name) {
     cerr << "removing " << item_name << " from " << this->getName() << endl;
-    this->items.erase(item_name);
+    this->items.erase(toLower(item_name));
 }
 
 /* Returns the description of each item in this location */
