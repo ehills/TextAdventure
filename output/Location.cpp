@@ -54,7 +54,7 @@ void Location::setDescription(string description) {
  * location to the user
  */
 string Location::printRoom(void) {
-    return this->getDescription() + "\n" + this->listItemsDescription();
+    return this->getDescription() + " There is " + this->listItemsDescription();
 }
 
 /* Adds an item to the room */
