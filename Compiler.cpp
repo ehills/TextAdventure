@@ -151,7 +151,7 @@ int main(int argc, char **argv) {\n\
     // DIRECTIONS 
     output += "\n\
         if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
-                cout << " + parser->player->getVariableName() + "->getInventory()->listItems();\n\
+                cout << " + parser->player->getVariableName() + "->getInventory()->listItems() << endl;\n\
                 cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
                 goto main_loop;\n\
         }\n\n\
@@ -223,7 +223,14 @@ int main(int argc, char **argv) {\n\
 
     // END OF MAIN METHOD            
     output += "}";
-    cout << output << endl;
+    
+    ofstream file;
+    file.open("output/compiled_game.cpp", ios::out|ios::trunc);
+    if (file.is_open()) {
+        file << output;
+        file.flush();
+        file.close();
+    }
 
 }
 
@@ -341,7 +348,6 @@ string Compiler::CompileNounVerb(Item *item) {
                     if (open < line.length() && close < line.length()) {
                         open++;
                         string expression = line.substr(open, close - open);
-                        cerr << expression << endl;
                         if (line.find("hasItem") < line.length()) {
                             string location = getLocation(expression);
                             string item = getItem(expression);
@@ -393,6 +399,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     }
                 } else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length() 
                         || line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
+                    cerr << "Set" << endl;
                     string location = getLocation(line);
                     string command = "setNorth";
                     if (line.find("setSouth") < line.length()) {
@@ -410,18 +417,23 @@ string Compiler::CompileNounVerb(Item *item) {
                         if (location == "") {
                             size_t pos2 = line.find(location2);
                             if (pos < pos2) {
+                                cerr << "aSDASASDASD" << endl;
                                 output += location + "->" + command + "(&" + location2 + ");\n";
                             } else {
+                                cerr << "ADSADSADASDASDASDAS" << endl;
                                 output += location2 + "->" + command + "(&" + location + ");\n";
                             }
                         } else {
+                             cerr << "ONE LOCATION" << endl;
                             // ERROR ONLY ONE LOCATION
                         }
                     } else {
+                        cerr << "NO LOCATION" << endl;
                         // ERROR ONLY NO LOCATIONS
                     }
                 } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length() 
                         || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
+                    cerr << "Remove" << endl;
                     string location = getLocation(line);
                     string command = "setNorth";
                     if (line.find("removeNorth") < line.length()) {
@@ -433,9 +445,10 @@ string Compiler::CompileNounVerb(Item *item) {
                     } 
                     if (location == "") {
                         output += location + "->" + command + "(NULL);\n";
+                    } else {
+                        cerr << "NO LOCATION" << endl;
                     }
                 } else if (line.find("}") < line.length()) {
-                    cerr << line << endl;
                     output += "}\n";
                 } else {
                     cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;

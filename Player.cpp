@@ -24,6 +24,10 @@ Player::Player(string name, string description , int max_items,
    this->inventory = inventory;
 }
 
+Player::~Player(){
+
+}
+
 /* Gets player name */
 string Player::getName(void) {return name;}
 

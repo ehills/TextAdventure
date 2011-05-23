@@ -384,5 +384,15 @@ void Parser::ParseItem(string data, Item *item) {
 
 /* Destructor */
 Parser::~Parser() {
-
+    map<string, Location*>::iterator locations;
+    for (locations = this->locations.begin(); locations != this->locations.end(); locations++) {
+        delete locations->second;
+    }
+    
+    map<string, Item*>::iterator objects;
+    for (objects = this->items.begin(); objects != this->items.end(); objects++) {
+        delete objects->second;
+    }
+    
+    delete this->player;
 }
