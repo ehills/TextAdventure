@@ -34,6 +34,7 @@ public:
    void setNumberOfItems(int number_of_items);
    int getMaxItems(void);
    void setMaxItems(int max_items);
+   string getMaxItemsString();
    Location getLocation(void);
    void setLocation(Location location);
    Location getInventory(void);

@@ -4,6 +4,8 @@
  * Date: May 16 2011
  * Description: Contains the Player object and methods needed to access it.
  **/
+#include <sstream>
+
 #include "Player.h"
 
 /* Player Class will have a description and a weight limit associated with it.*/
@@ -53,6 +55,11 @@ void Player::setNumberOfItems(int number_of_items) {
 
 /* Returns the max number of items the player can hold */
 int Player::getMaxItems(void) {return max_items;}
+string Player::getMaxItemsString(void) {
+    stringstream s;
+    s << max_items;
+    return s.str();
+}
 
 /* Sets the number of max items the player can hold */
 void Player::setMaxItems(int max_items) {this->max_items = max_items;}

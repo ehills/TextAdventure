@@ -40,6 +40,7 @@ class Player {
    /* Sets player description */
    void setDescription(string description);
 
+   bool canCarry(void);
    /* Returns the number of items currently held by the player */
    int getNumberOfItems(void);
 

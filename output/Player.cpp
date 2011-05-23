@@ -31,6 +31,9 @@ void Player::setDescription(string description) {
 /* Returns the number of items currently held by the player */
 int Player::getNumberOfItems(void) {return inventory->getItemCount();}
 
+bool Player::canCarry(void) {
+	return this->getNumberOfItems() < max_items;
+}
 
 /* Returns the max number of items the player can hold */
 int Player::getMaxItems(void) {return max_items;}

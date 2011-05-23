@@ -11,6 +11,8 @@ public:
     ~Compiler(void);
 private:
     string CompileNounVerb(Item *item);
+    string getItem(string expression);
+    string getLocation(string expression);
     string CompileSingleVerb(string commands);
 };
 

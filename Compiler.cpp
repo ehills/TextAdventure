@@ -1,4 +1,6 @@
 #include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 #include "Compiler.h"
 //#define INVENTORY_NAME "a_name_no_one_would_pick_ever_to_avoid_variable_names_overlapping"
 #define INVENTORY_NAME "inventory"
@@ -86,20 +88,20 @@ int main(int argc, char **argv) {\n\
             "Player* " + parser->player->getVariableName() + " = new Player();"
             "" + parser->player->getVariableName() + "->setLocation(&" + parser->initialLocation->getVariableName() + ");"
             "" + parser->player->getVariableName() + "->setInventory(&" + inventory_name + ");"
-            "" + parser->player->getVariableName() + "->setMaxItems(" + "8" + ");";
+            "" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
     // Output Items
     map<string, Item*>::iterator objects;
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
         output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\");\n";
-        output += "// " +objects->first + ".setLocation(&" + objects->second->getLocation()->getVariableName() + ");\n";
-        output += objects->second->getLocation()->getVariableName() + ".addItem(\"" + objects->second->getName() + "\", " + objects->first + ");\n";
+        output += objects->second->getLocation()->getVariableName() + ".addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
+        output += objects->first + ".setLocation(&" + objects->second->getLocation()->getVariableName() + ");\n";
     }
 
     // START OF GAME LOOP AND WORD READING
     output += ""
             "cout << WELCOME_MESSAGE << endl;"
-            "prompt = \">>> \";"
+            "prompt = \"\\n>>> \";"
             "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;"
             "while (true) {"
             "   main_loop:"
@@ -208,7 +210,6 @@ int main(int argc, char **argv) {\n\
 
     for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
         output += "if (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\")) {\n"
-                "cerr << \"hit object in room\" << endl;\n"
                 "" + CompileNounVerb(objects->second) + ""
                 "goto main_loop;\n"
                 "}";
@@ -226,7 +227,36 @@ int main(int argc, char **argv) {\n\
 
 }
 
+string Compiler::getItem(string expression) {
+    string item = "";
+    map<string, Item*>::iterator objects;
+    for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
+        if (expression.find(objects->first) < expression.length()) {
+            item = objects->first;
+            break;
+        }
+    }
+    return item;
+}
 
+string Compiler::getLocation(string expression) {
+    string location = "";
+    map<string, Location*>::iterator locations;
+    for (locations = parser->locations.begin(); locations != parser->locations.end(); locations++) {
+        if (expression.find(locations->first) < expression.length()) {
+            location = locations->first;
+            break;
+        }
+    }
+    if (location == "") {
+        if (expression.find(parser->player->getVariableName()) < expression.length()) {
+            location = parser->player->getVariableName() + "->getInventory()";
+        } else if (expression.find("currentLocation") < expression.length()) {
+            location = parser->player->getVariableName() + "->getLocation()";
+        }
+    }
+    return location;
+}
 
 string Compiler::CompileSingleVerb(string commands) {
     string line, output = "";
@@ -253,7 +283,6 @@ string Compiler::CompileSingleVerb(string commands) {
     return output;
 }
 
-
 string Compiler::CompileNounVerb(Item *item) {
     map<string, string> verbs = item->getVerbs();
     map<string, string>::iterator it;
@@ -270,7 +299,6 @@ string Compiler::CompileNounVerb(Item *item) {
 
         // START VERB
         output += "if (verb == \"" + it->first + "\") {\n";
-        output += "cerr << \"DOING " + it->first + "\" << endl;\n";
         istringstream lines(data);
         while (getline(lines, line)) {
             btrim(line);
@@ -286,43 +314,52 @@ string Compiler::CompileNounVerb(Item *item) {
                     start = line.find_first_of("\"") + 1;
                     end = line.find_last_of("\"");
                     output += "cout << \"" + line.substr(start, end - start) + "\";\n";
-                } else if (line.find("print " + item->getVariableName()) < line.length()) {
-                    output += "cout << " + item->getVariableName();
-                    if (line.find(".description()") < line.length()) {
-                        output += ".getDescription()";
+                } else if (line.find("setDescription") < line.length()) {
+                    string location = getLocation(line);
+                    size_t start, end;
+                    start = line.find("\"") + 1;
+                    end = line.find("\"", start);
+                    output += location + ".setDescription(\"" + line.substr(start, end - start) + "\");";
+                } else if (line.find("if") < line.length()) {
+                    size_t open, close;
+                    open = line.find("(");
+                    close = line.find(")");
+                    if (open < line.length() && close < line.length()) {
+                        open++;
+                        string expression = line.substr(open, close - open);
+                        cerr << expression << endl;
+                        if (line.find("hasItem") < line.length()) {
+                            string location = getLocation(expression);
+                            string item = getItem(expression);
+                            if (location == "" || item == "") {
+                                // BAD EXPRESSION
+                            } else {
+                                output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
+                            }
+                        } else if (line.find("canCarry") < line.length()) {
+                            if (line.find(parser->player->getVariableName()) < line.length()) {
+                                output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
+                            } else {
+                                // BAD CAN CARRY EXPRESSION
+                            }
+                        }
                     } else {
-                        output += ".getName()";
+                        // ERROR BAD BRACES
                     }
-                    output += ";\n";
-                }  else if (line.find("setLocation") < line.length()) {
-                    string location, item = "";
-                    map<string, Item*>::iterator objects;
-                    for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-                        if (line.find(objects->first) < line.length()) {
-                            item = objects->first;
-                            break;  
-                        }
-                    }
-                    map<string, Location*>::iterator locations;
-                    for (locations = parser->locations.begin(); locations != parser->locations.end(); locations++) {
-                        if (line.find(locations->first) < line.length()) {
-                            location = locations->first;
-                            break;  
-                        }
-                    }
-                    if (location == "") {
-                        if (line.find(parser->player->getVariableName()) < line.length()) {
-                            location = parser->player->getVariableName() + "->getInventory()";
-                        } else if (line.find("currentLocation") < line.length()) {
-                            location = parser->player->getVariableName() + "->getLocation()";  
-                        }
-                    }
+                } else if (line.find("else") < line.length()) {
+                    output += "} else {";
+                } else if (line.find("setLocation") < line.length()) {
+                    string location = getLocation(line);
+                    string item = getItem(line);
+                    
                     if (location == "" || item == "") {
                         cerr << "Unreadable setLocation Command: \"" << line << "\"" << endl;
                     } else {
-                        cerr << location << "->addItem(" << item << ".getName(), " << item << ");\n";
-                        output += location + "->addItem(" + item + ".getName(), " + item + ");\n";
+                        output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
                     }
+                } else if (line.find("}") < line.length()) {
+                    cerr << line << endl; 
+                    output += "}\n";
                 } else {
                     cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;
                 }

@@ -165,6 +165,7 @@ int Parser::ParseLocations() {
                 location->setVariableName(location_name);
                 this->file_data.replace(start, size, location_name + " ");
                 this->locations[location_name] = location;
+                
             }
         }
         if (end < this->file_data.size()) {
@@ -179,7 +180,6 @@ int Parser::ParseLocations() {
     map<string, Location*>::iterator it;
     for (it = this->locations.begin(); it != this->locations.end(); it++) {
         string search = "Location " + it->first + " {";
-
         start = this->file_data.find(search) + search.length();
         if (start < this->file_data.size()) {
             end = ParseEndBrace(start, this->file_data);
@@ -274,11 +274,14 @@ int Parser::ParseItems() {
 void Parser::ParseLocation(string data, Location *location) {
     string attribute;
     Location *link;
-
+    unsigned int start, end;
     // Parse Name
     attribute = ParseStringData(data, "name");
     if (validAttribute(attribute)) {
         location->setName(attribute);
+        start = data.find("name");
+        end = data.find(";", start) + 1;
+        data.replace(start, end - start, "");
     } else {
         // Set error (No name for location)
     }
@@ -287,10 +290,12 @@ void Parser::ParseLocation(string data, Location *location) {
     attribute = ParseStringData(data, "description");
     if (validAttribute(attribute)) {
         location->setDescription(attribute);
+        start = data.find("description");
+        end = data.find(";", start) + 1;
+        data.replace(start, end - start, "");
     } else {
         // Set error (No description for location)
     }
-
     // Parse Exits
     attribute = ParseVariableData(data, "north");
     if (validAttribute(attribute)) {
@@ -331,7 +336,6 @@ void Parser::ParseLocation(string data, Location *location) {
             cerr << "location not in map " << attribute << endl;
         }
     }
-
     //this->locations[location->getVariableName()] = *location;
 }
 

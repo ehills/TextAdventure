@@ -1,0 +1,114 @@
+Player andy  {
+    name =  "Andy";
+    description = "An amateur ghost hunter";
+    carryLimit = 4;
+}
+
+ItemDefaults {
+    Verb "examine" {
+        print inputItem.description();
+    }
+    Verb "pickup" {
+        if (andy canCarry) {
+            inputItem setLocation andy ;
+        } else {
+            print "You are carrying too much already";
+        }
+    }
+
+    Verb "drop" {
+        if (andy hasItem inputItem ) {
+            inputItem setLocation currentLocation;
+        } else {
+            print "I don't have ";
+            print inputItem;
+            print ".";
+        }
+    }
+}
+
+LocationDefaults {
+    Verb "look" {
+        describe;
+        list;
+    }
+}
+
+initialLocation = garden;
+
+initialDescription = "You find yourself in an overgrown garden, to the north is an old, desolate mansion. Locals say it to be haunted by a sadistic cultist who once inhabited it many years ago. This is the perfect place to hone your ghost-busting skills";
+
+Location garden {
+    name = "The overgrown garden";
+    description = "An overgrown garden in front of an old, spooky mansion";
+
+    north = entranceHall;
+}
+
+Location entranceHall {
+    name = "The entrance hall";
+    description = "You find yourself in a dimly lit expansive entrance hall illuminated only by the faint moonlight filtering through the dusty windows. You can only see darkness to the north and doorways to the east and west";
+
+    west = masterBedroom;
+    east = diningRoom;
+}
+
+Location diningRoom {
+    name = "The dining room";
+    description = "An old dusty dinning room, complete with ornate chandeliers. You notice an old lamp resting on the long dinning room table. To the west is the Entrance hall where you just entered from";
+
+    west = entranceHall;
+}
+
+Location masterBedroom {
+    name = "The master bedroom";
+    description = "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you. To the east is the Entrance hall where you just entered from";
+    east = entranceHall;
+}
+
+Location secretHall {
+    name = "The secret hall";
+    description = "A long narrow hallway expands out in front of you, you see an opening at the end of the hall  which you can feel a dark forbidding presence coming from. You notice openings to the south and north";
+
+    south = entranceHall;
+    north = tortureRoom;
+}
+
+Location tortureRoom {
+    name = "The torture room";
+    description = "You enter a cold stone room and instantly feel terrified. You see pentagrams carved into the stone floors which look to be covered in fresh blood. A hooded apparition materializes in front of you, wielding a menacing scythe. You can see your death is it's eyes";
+
+    south = secretHall;
+}
+
+Item lamp {
+    name = "A lamp";
+    description = "A rusty old lamp but looks like it still works";
+    location = diningRoom;
+
+    Verb "light" {
+        entranceHall setDescription "You can now make out a door to the north";
+        entranceHall setNorth secretHall;
+        masterBedroom setDescription "You can now make out a mirror in the far corner of the room";
+    }
+    Verb "off" {
+        entranceHall setDescription "You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north";
+        entranceHall removeNorth;
+        masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you";
+    }
+}
+
+Item mirror {
+    name = "A mirror";
+    description = "You see your handsome, confident reflection in the mirror. This mirror could be useful..";
+    location = masterBedroom;
+
+    Verb = "use" {
+        if(location = tortureRoom) {
+            print "You pull out out the mirror, the ghost upon seeing it's horrific reflection fleas in terror. Congratulations you have busted your first ghost!";
+            gameOver;
+        } else {
+            print "You admire yourself in the mirror.";
+        }
+    }
+}

@@ -53,11 +53,13 @@ void Location::printRoom(void) {
 }
 
 /* Adds an item to the room */
-void Location::addItem(string item_name, Item item) {
-    if (item.hasLocation()) {
-        item.getLocation()->removeItem(item_name);
+void Location::addItem(string item_name, Item* item) {
+    cerr << "adding " << item_name << " to " << this->getName() << endl;
+    if (item->hasLocation()) {
+        item->getLocation()->removeItem(item_name);
     }
-    this->items.insert(pair<string, Item > (item_name, item));
+    item->setLocation(this);
+    this->items.insert(pair<string, Item*> (item_name, item));
 }
 
 /* Checks to see if item is in this location */
@@ -72,15 +74,16 @@ int Location::getItemCount() {
 
 /* Removes an item from the room */
 void Location::removeItem(string item_name) {
+    cerr << "removing " << item_name << " from " << this->getName() << endl;
     this->items.erase(item_name);
 }
 
 /* Returns the description of each item in this location */
 string Location::listItemsDescriptions(void) {    
     string the_items = "Items: ";
-    map<string, Item>::iterator it;
+    map<string, Item*>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
-        the_items += ("\n" + it->second.getDescription());
+        the_items += ("\n" + it->second->getDescription());
     }
     return the_items;
 }
@@ -88,9 +91,9 @@ string Location::listItemsDescriptions(void) {
 /* Returns the name of each item in this location */
 string Location::listItems(void) {    
     string the_items = "Items: ";
-    map<string, Item>::iterator it;
+    map<string, Item*>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
-        the_items += ("\n" + it->second.getName());
+        the_items += ("\n" + it->second->getName());
     }
     return the_items;
 }
