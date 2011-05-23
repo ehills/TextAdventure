@@ -68,7 +68,7 @@ Location masterBedroom {
 
 Location secretHall {
     name = "The secret hall";
-    description = "A long narrow hallway expands out in front of you, you see an opening at the end of the hall  which you can feel a dark forbidding presence coming from. You notice openings to the south and north";
+    description = "A long narrow hallway expands out in front of you, you see an opening at the end of the hall which you can feel a dark forbidding presence coming from. You notice openings to the south and north";
 
     south = entranceHall;
     north = tortureRoom;
@@ -87,14 +87,25 @@ Item lamp {
     location = diningRoom;
 
     Verb "light" {
-        entranceHall setDescription "You can now make out a door to the north";
-        entranceHall setNorth secretHall;
-        masterBedroom setDescription "You can now make out a mirror in the far corner of the room";
+	if(lamp inLocation andy) {
+		entranceHall setDescription "You can now make out a door to the north";
+		entranceHall setNorth secretHall;
+		masterBedroom setDescription "You can now make out a mirror in the far corner of the room";
+		print "You fiddle around with the old lamp and manage to get it working";
+	} else {
+		print "You don't have that item";
+	}
     }
-    Verb "off" {
-        entranceHall setDescription "You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north";
-        entranceHall removeNorth;
-        masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you";
+    
+Verb "off" {
+	if(lamp inLocation andy) {
+		entranceHall setDescription "You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north";
+		entranceHall removeNorth;
+		masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you";
+		print "You switch off the old lamp";
+	} else {
+		print "You don't have that item";
+	}
     }
 }
 

@@ -104,7 +104,7 @@ int main(int argc, char **argv) {\n\
     output += ""
             "cout << WELCOME_MESSAGE << endl;"
             "prompt = \"\\n>>> \";"
-            "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;"
+            "cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;"
             "while (true) {"
             "   main_loop:"
             "   cout << prompt;"
@@ -163,7 +163,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getNorth());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n \
                 goto main_loop;\n\
             }\n\
         }\n\n\
@@ -173,7 +173,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getSouth());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }\n\n\
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getWest());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }\n\
@@ -193,7 +193,7 @@ int main(int argc, char **argv) {\n\
                 goto main_loop;\n\
             } else {\n\
                 " + parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getEast());\n\
-                cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n\
+                cout << " + parser->player->getVariableName() + "->getLocation().printRoom() << endl;\n\
                 goto main_loop;\n\
             }\n\
         }";
@@ -279,7 +279,7 @@ string Compiler::CompileSingleVerb(string commands) {
             if (line.compare("describe;") == 0) {
                 output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
             } else if (line.compare("list;") == 0) {
-                output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
+                output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItemsDescription() << endl;\n";
             } else if (line.compare("gameOver;") == 0) {
                 output += "break;\n";
             } else if (line.find("print ") < line.length()) {
@@ -317,7 +317,7 @@ string Compiler::CompileNounVerb(Item *item) {
             btrim(line);
             if (line.length() > 0) {
                 if (line.compare("describe;") == 0) {
-                    output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
+                   output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
                 } else if (line.compare("list;") == 0) {
                     output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
                 } else if (line.compare("gameOver;") == 0) {
@@ -446,7 +446,7 @@ string Compiler::CompileNounVerb(Item *item) {
                     if (location != "") {
                         output += location + "." + command + "(NULL);\n";
                     } else {
-                        cerr << NO_LOCATIONS << endl;
+                        cerr << BAD_LOCATION << endl;
                     }
                 } else if (line.find("}") < line.length()) {
                     output += "}\n";
