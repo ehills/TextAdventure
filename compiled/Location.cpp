@@ -49,7 +49,7 @@ void Location::setDescription(string description) {
  * location to the user
  */
 void Location::printRoom(void) {
-    cout << this->getDescription() << endl << this->listItems();
+    cout << this->getDescription() << endl << this->listItemsDescriptions();
 }
 
 /* Adds an item to the room */
