@@ -196,16 +196,18 @@ quit_loop:
                     goto main_loop;
                 }
                 if (verb == "use") {
-                    cout << "You pull out out the mirror, the ghost upon seeing it's horrific reflection fleas in terror. Congratulations you have busted your first ghost!";
-                    break;
-                } else {
-                    cout << "You admire yourself in the mirror.";
+                    if (andy->getLocation() == &tortureRoom) {
+                        cout << "You pull out out the mirror, the ghost upon seeing it's horrific reflection fleas in terror. Congratulations you have busted your first ghost!";
+                        break;
+                    } else {
+                        cout << "You admire yourself in the mirror.";
+                    }
+                    goto main_loop;
                 }
+                cout << "Sorry you can not " << verb << "on" << "A mirror" << endl;
                 goto main_loop;
             }
-            cout << "Sorry you can not " << verb << "on" << "A mirror" << endl;
-            goto main_loop;
+            cout << "I can't find a " << noun << " here" << endl;
         }
-        cout << "I can't find a " << noun << " here" << endl;
     }
 }

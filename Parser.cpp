@@ -153,7 +153,7 @@ int Parser::ParseLocations() {
     start = this->file_data.find("Location");
     while (start < this->file_data.size()) {
 
-        if (this->file_data.at(start - 1) == 'l') {
+        if (this->file_data.at(start - 1) == 'l' || this->file_data.at(start - 1) == 'n') {
             end = start + 9;
         } else {
             end = this->file_data.find("{", start);

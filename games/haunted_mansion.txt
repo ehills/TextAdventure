@@ -104,7 +104,7 @@ Item mirror {
     location = masterBedroom;
 
     Verb = "use" {
-        if(location = tortureRoom) {
+        if(andy inLocation tortureRoom) {
             print "You pull out out the mirror, the ghost upon seeing it's horrific reflection fleas in terror. Congratulations you have busted your first ghost!";
             gameOver;
         } else {

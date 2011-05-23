@@ -314,6 +314,20 @@ string Compiler::CompileNounVerb(Item *item) {
                     start = line.find_first_of("\"") + 1;
                     end = line.find_last_of("\"");
                     output += "cout << \"" + line.substr(start, end - start) + "\";\n";
+                } else if (line.find("print ") < line.length()) {
+                    string object = getLocation(line);
+                    if (object != "") {
+                        object = getItem(line);
+                    }
+                    if (object != "") {
+                        if (line.find(".description()") < line.length()) {
+                            output += "cout << " + object + ".getName() << endl;\n";
+                        } else {
+                            output += "cout << " + object + ".getDescription() << endl;\n";
+                        }
+                    }
+                    // ERROR UNKNOWN PRINT STATEMENT
+
                 } else if (line.find("setDescription") < line.length()) {
                     string location = getLocation(line);
                     size_t start, end;
@@ -342,6 +356,26 @@ string Compiler::CompileNounVerb(Item *item) {
                             } else {
                                 // BAD CAN CARRY EXPRESSION
                             }
+                        } else if (line.find("inLocation") < line.length()) {
+                            string location = getLocation(expression);
+                            string item = getItem(expression);
+                            if (location == "" && item == "") {
+                                 output += "if (" + item + "->getLocation() == &" + location +") {\n";
+                            } else if (location == "") {
+                                size_t pos = line.find(parser->player->getVariableName());
+                                if (pos < line.length()) {
+                                    output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
+                                }
+                            } else if (item == "") {
+                                size_t pos = line.find(parser->player->getVariableName());
+                                if (pos < line.length()) {
+                                    output += "if (" + parser->player->getVariableName() + "->getLocation() == &" + location +") {\n";
+                                }
+                            } else {
+                               // BAD INLOCATION BOOLEAN
+                            }
+                        } else {
+                            //ERROR BAD BOOLEAN
                         }
                     } else {
                         // ERROR BAD BRACES
@@ -351,14 +385,57 @@ string Compiler::CompileNounVerb(Item *item) {
                 } else if (line.find("setLocation") < line.length()) {
                     string location = getLocation(line);
                     string item = getItem(line);
-                    
+
                     if (location == "" || item == "") {
                         cerr << "Unreadable setLocation Command: \"" << line << "\"" << endl;
                     } else {
                         output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
                     }
+                } else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length() 
+                        || line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
+                    string location = getLocation(line);
+                    string command = "setNorth";
+                    if (line.find("setSouth") < line.length()) {
+                        command = "setSouth";
+                    } else if (line.find("setWest") < line.length()) {
+                        command = "setWest";
+                    }  else if (line.find("setEast") < line.length()) {
+                        command = "setEast";
+                    } 
+                    if (location == "") {
+                        size_t pos = line.find(location);
+                        line.replace(pos, location.length(), "");
+
+                        string location2 = getLocation(line);
+                        if (location == "") {
+                            size_t pos2 = line.find(location2);
+                            if (pos < pos2) {
+                                output += location + "->" + command + "(&" + location2 + ");\n";
+                            } else {
+                                output += location2 + "->" + command + "(&" + location + ");\n";
+                            }
+                        } else {
+                            // ERROR ONLY ONE LOCATION
+                        }
+                    } else {
+                        // ERROR ONLY NO LOCATIONS
+                    }
+                } else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length() 
+                        || line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
+                    string location = getLocation(line);
+                    string command = "setNorth";
+                    if (line.find("removeNorth") < line.length()) {
+                        command = "setSouth";
+                    } else if (line.find("removeWest") < line.length()) {
+                        command = "setWest";
+                    }  else if (line.find("removeEast") < line.length()) {
+                        command = "setEast";
+                    } 
+                    if (location == "") {
+                        output += location + "->" + command + "(NULL);\n";
+                    }
                 } else if (line.find("}") < line.length()) {
-                    cerr << line << endl; 
+                    cerr << line << endl;
                     output += "}\n";
                 } else {
                     cerr << "Unreadable/Unknown Command: \"" << line << "\"" << endl;
