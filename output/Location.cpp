@@ -64,7 +64,11 @@ void Location::setDescription(string description) {
  * location to the user
  */
 string Location::printRoom(void) {
-    return this->getDescription() + " There is " + this->listItemsDescription();
+   if (!this->items.empty()) {
+      return this->getDescription() + " There is " + this->listItemsDescription();
+   } else {
+      return this->getDescription();
+   }
 }
 
 /* Adds an item to the room */
