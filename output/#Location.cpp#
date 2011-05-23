@@ -107,7 +107,7 @@ string Location::listItemsDescription(void) {
 }
 
 /* Returns the name of each item in this location */
-string Location::listItems(void) {    
+string Location::listItems(void) {   
     string the_items = "Items: ";
     map<string, Item*>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
