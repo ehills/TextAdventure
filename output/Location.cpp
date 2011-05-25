@@ -65,7 +65,7 @@ void Location::setDescription(string description) {
  */
 string Location::printRoom(void) {
    if (!this->items.empty()) {
-      return this->getDescription() + " There is " + this->listItemsDescription();
+      return this->getDescription() + " " + this->listItemsDescription();
    } else {
       return this->getDescription();
    }

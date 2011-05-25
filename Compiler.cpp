@@ -314,7 +314,7 @@ string Compiler::CompileNounVerb(Item *item) {
         output += "goto main_loop;";
         output += "}\n";
     }
-    output += "cout << \"Sorry you can not \" << verb << \"on\" << \"" + item->getName() + "\" << endl;\n";
+    output += "cout << \"Sorry you can not '\" << verb << \"' on '\" << \"" + item->getName() + "\" << \"'\" << endl;\n";
     return output;
 }
 
@@ -465,7 +465,6 @@ string Compiler::CompileVerb(string line) {
             cerr << UNKNOWN_COMMAND << line << "\"" << endl;
         }
     }
-    output += "cout << \"Sorry you can not '\" << verb << \"' on \" << \"'" + item->getName() + "'\" << endl;\n";
     return output;
 }
 
