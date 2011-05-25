@@ -9,3 +9,5 @@ output/Play
 *.gch
 output/\#*
 output/*.gch
+.metadata
+.DS_Store
