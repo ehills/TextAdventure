@@ -4,3 +4,8 @@ TextAdventure
 nbproject
 output/compiled_game.cpp
 output/*.o
+output/Play
+\#*
+*.gch
+output/\#*
+output/*.gch
