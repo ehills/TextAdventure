@@ -100,7 +100,7 @@ string Location::listItemsDescription(void) {
     string the_items;
     map<string, Item*>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
-        the_items += (it->second->getName());
+        the_items += (it->second->getDescription());
     }
     return the_items;
 }
