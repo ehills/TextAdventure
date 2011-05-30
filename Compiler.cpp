@@ -139,9 +139,7 @@ int main(int argc, char **argv) {\n\
         quit_loop:\n\
         string quit = \"\";\n\
         cout << \"Do you really want to quit?: [y]or[n] \";\
-        cout.flush();\n\
-	cin >> quit;\n\
-	cin.ignore();\n\
+	getline(cin, quit);\n\
 	if (quit == \"y\") {\n\
         	cout << \"Thanks for playing!\" << endl;\n\
                 break;\n\

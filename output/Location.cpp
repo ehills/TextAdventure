@@ -65,7 +65,7 @@ void Location::setDescription(string description) {
  */
 string Location::printRoom(void) {
    if (!this->items.empty()) {
-      return this->getDescription() + " " + this->listItemsDescription();
+      return this->getDescription() + "\n" + this->listItems();
    } else {
       return this->getDescription();
    }
@@ -78,7 +78,6 @@ void Location::addItem(string item_name, Item* item) {
     }
     item->setLocation(this);
     this->items.insert(pair<string, Item*> (toLower(item_name), item));
-    cout << item->getDescription() << endl;
 }
 
 /* Checks to see if item is in this location */
@@ -101,7 +100,7 @@ string Location::listItemsDescription(void) {
     string the_items;
     map<string, Item*>::iterator it;
     for (it = items.begin(); it != items.end(); ++it) {
-        the_items += (it->second->getDescription());
+        the_items += (it->second->getName());
     }
     return the_items;
 }
