@@ -27,6 +27,53 @@ ItemDefaults {
     }
 }
 
+LocationDefaults {
+    Verb "look" {
+		 if(mother inLocation tortureRoom) {
+            print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
+			gameOver;
+		} else {
+			describe;
+			list;
+		}
+    }
+    Verb "north or n or nth" {
+    	if(mother inLocation hasNorth) {
+    		mother setLocation toNorth;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go north";
+    	}
+    }
+    Verb "south or s or sth" {
+    	if(mother inLocation hasSouth) {
+    		mother setLocation toSouth;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go south";
+    	}
+    }
+    Verb "east or e" {
+    	if(mother inLocation hasEast) {
+    		mother setLocation toEast;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go east";
+    	}
+    }
+    Verb "west or w" {
+    	if(mother inLocation hasWest) {
+    		mother setLocation toWest;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot got west";
+    	}
+    }
+}
 initialLocation = living_room;
 
 initialDescription = "You have just returned from the supermarket. You put the key into the keyhole, turn it and open the door. As you pickup your groceries and enter the house, you hear a baby crying. Oh, no! You forgot about your baby and left it at home while you went out shopping. To make things worse, you can't reemember where in the house you put it. You are a terrible mother! Now there is nonly one thing on your mind... Where is the baby crying?";

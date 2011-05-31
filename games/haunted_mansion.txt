@@ -5,26 +5,11 @@ Player andy  {
 }
 
 ItemDefaults {
-    Verb "examine" {
+    Verb "examine or x or ex or look" {
         print inputItem.description();
     }
     
-	Verb "pickup" {
-        if (andy hasItem inputItem) {
-            print "You already have the ";
-            print inputItem;
-        } else {
-            if (andy canCarry) {
-                inputItem setLocation andy;
-				print "You pickup the ";
-				print inputItem;
-            } else {
-                print "You are carrying too much already.";
-            }
-        }   
-    }
-	
-	Verb "get" {
+	Verb "pickup or pick-up or get" {
         if (andy hasItem inputItem) {
             print "You already have the ";
             print inputItem;
@@ -61,6 +46,47 @@ LocationDefaults {
 			list;
 		}
     }
+    Verb "north or n or nth" {
+    	if(andy inLocation hasNorth) {
+    		andy setLocation toNorth;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go north";
+    	}
+    }
+    Verb "south or s or sth" {
+    	if(andy inLocation tortureRoom) {
+    		print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead..."
+    		gameOver;
+    		list;
+    	}
+    	if(andy inLocation hasSouth) {
+    		andy setLocation toSouth;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go south";
+    	}
+    }
+    Verb "east or e" {
+    	if(andy inLocation hasEast) {
+    		andy setLocation toEast;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot go east";
+    	}
+    }
+    Verb "west or w" {
+    	if(andy inLocation hasWest) {
+    		andy setLocation toWest;
+    		describe;
+    		list;
+    	} else {
+    		print "You cannot got west";
+    	}
+    }
 }
 
 initialLocation = garden;
@@ -71,7 +97,6 @@ Location deadSpace {
 	name = "Dead space";
 	description = "Dead space";
 }
-
 
 Location garden {
     name = "The overgrown garden";
@@ -121,7 +146,7 @@ Item lamp {
     description = "A rusty old lamp but still looks like it might work.";
     location = diningRoom;
 
-    Verb "light" {
+    Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
 			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west.";
 			entranceHall setNorth secretHall;
@@ -133,19 +158,7 @@ Item lamp {
 		}
     }
 	
-	Verb "use" {
-		if(lamp inLocation andy) {
-			entranceHall setDescription "With light eminating from the lamp you can now make out a door to the north as long with the doorways to the east and west.";
-			entranceHall setNorth secretHall;
-			masterBedroom setDescription "With the aid of the lamp you can make out a mirror in the far corner of the room.";
-			mirror setLocation masterBedroom;
-			print "You fiddle around with the old lamp and manage to turn it on.";
-		} else {
-			print "You don't have that item.";
-		}
-    }
-    
-	Verb "off" {
+	Verb "off or turnoff or turn-off" {
 		if(lamp inLocation andy) {
 			entranceHall setDescription "You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north.";
 			entranceHall removeNorth;
@@ -162,7 +175,7 @@ Item mirror {
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful...";
     location = deadSpace;
 
-    Verb = "use" {
+    Verb = "use or lookat or look-at" {
         if(andy inLocation tortureRoom) {
             print "You pull out out the mirror, the ghost upon seeing it's horrific reflection flees in terror. Congratulations you have busted your first ghost!";
             gameOver;

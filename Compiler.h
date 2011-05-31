@@ -15,6 +15,7 @@ private:
     string getLocation(string expression);
     string CompileSingleVerb(string commands);
     string CompileVerb(string line);
+    string getVerbSynonyms(string);
 };
 
 
