@@ -49,7 +49,6 @@ public:
     bool hasEast(void);
     bool hasWest(void);
 
-
     /* This set of methods will deal with Items stored in this location */
     void addItem(string item_name, Item* item);
     int getItemCount();

@@ -108,6 +108,14 @@ void Item::setLocation(Location* location) {
     this->location = location;
 }
 
+void Item::setAttributeString(string attribute_string) {
+	this->attribute_string = attribute_string;
+}
+
+string Item::getAttributeString(void) {
+	return this->attribute_string;
+}
+
 /* Destructor */
 Item::~Item(void) {
 }

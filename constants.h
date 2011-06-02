@@ -31,4 +31,5 @@
 #define NO_LOCATIONS "You do not have any Locations."
 #define PARSER_FAIL "The Parser did not complete without errors."
 #define FILE_DID_NOT_OPEN "The file specified was unable to be opened"
+#define NO_DEFAULT_ATTRIBUTE "There is no default attribute for that item's attribute"
 #endif

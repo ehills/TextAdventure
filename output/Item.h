@@ -10,6 +10,8 @@
 
 #include <string>
 #include <iostream>
+#include <map>
+
 using namespace std;
 
 class Location;
@@ -19,6 +21,7 @@ class Item {
    Location* location;
    string name;
    string description;
+   map<string, bool> attributes;
    
 public:
    /* Constructor sets up initial variables */
@@ -51,6 +54,15 @@ public:
    /* Prints out the Items name and description */
    void print();
    
+   /* Add an attribute to an item */
+   void addAttribute(string, bool);
+
+   /* Returns an items attribute */
+   bool hasAttribute(string);
+
+   /* Returns an items attribute */
+   void setAttribute(string, bool);
+
    /* Destructor */
    ~Item(void);
 };

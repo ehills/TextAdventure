@@ -21,12 +21,10 @@ void Item::setName(string name) {
     this->name = name;
 }
 
-/* Returns the name of the Item */
 bool Item::hasLocation(void) {
     return (this->location != NULL);
 }
 
-/* Returns the name of the Item */
 Location* Item::getLocation(void) {
     return this->location;
 }
@@ -49,6 +47,21 @@ void Item::setDescription(string description) {
 /* Prints out the Items name and description */
 void Item::print() {
     cout << this->name << ", " << this->description << endl;
+}
+
+/* Add an attribute to an item */
+void Item::addAttribute(string attribute_name, bool is) {
+    this->attributes.insert(pair<string, bool>(attribute_name, is));
+}
+
+/* Returns an items attribute */
+bool Item::hasAttribute(string attribute_name){
+	return this->attributes.find(attribute_name)->second;
+}
+
+/* Returns an items attribute */
+void Item::setAttribute(string attribute_name, bool is) {
+	this->attributes[attribute_name] = is;
 }
 
 /* Destructor */

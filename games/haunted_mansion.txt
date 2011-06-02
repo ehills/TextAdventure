@@ -5,23 +5,28 @@ Player andy  {
 }
 
 ItemDefaults {
-    Verb "examine or x or ex or look" {
+    Verb "examine or x or ex look" {
         print inputItem.description();
     }
     
 	Verb "pickup or pick-up or get" {
-        if (andy hasItem inputItem) {
-            print "You already have the ";
-            print inputItem;
-        } else {
-            if (andy canCarry) {
-                inputItem setLocation andy;
-				print "You pickup the ";
-				print inputItem;
-            } else {
-                print "You are carrying too much already.";
+		if (inputItem hasAttribute canPickup) {
+			 if (andy hasItem inputItem) {
+	            print "You already have the ";
+	            print inputItem;
+	        } else {
+	            if (andy canCarry) {
+	                inputItem setLocation andy;
+					print "You pickup the ";
+					print inputItem;
+	            } else {
+	                print "You are carrying too much already.";
+                }
             }
-        }   
+        } else {
+        	print "You cannont pick up the ";
+        	print inputItem;
+        }
     }
 
     Verb "drop" {
@@ -59,7 +64,6 @@ LocationDefaults {
     	if(andy inLocation tortureRoom) {
     		print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead..."
     		gameOver;
-    		list;
     	}
     	if(andy inLocation hasSouth) {
     		andy setLocation toSouth;
@@ -84,7 +88,7 @@ LocationDefaults {
     		describe;
     		list;
     	} else {
-    		print "You cannot got west";
+    		print "You cannot go west";
     	}
     }
 }
@@ -93,6 +97,7 @@ initialLocation = garden;
 
 initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job and find yourself in an overgrown garden, to the north is the old, abandoned mansion locals say to be haunted by a sadistic cultist who once inhabited it many years ago. This is the perfect place to hone your ghost-busting skills.";
 
+// Location to store game items
 Location deadSpace {
 	name = "Dead space";
 	description = "Dead space";
@@ -111,6 +116,7 @@ Location entranceHall {
 
     west = masterBedroom;
     east = diningRoom;
+    south = garden;
 }
 
 Location diningRoom {
@@ -131,7 +137,6 @@ Location secretHall {
     description = "A long narrow hallway expands out in front of you, you see an opening at the end of the hall which you can feel a dark forbidding presence coming from it.";
 
     south = entranceHall;
-    north = tortureRoom;
 }
 
 Location tortureRoom {
@@ -145,6 +150,7 @@ Item lamp {
     name = "lamp";
     description = "A rusty old lamp but still looks like it might work.";
     location = diningRoom;
+    hasAttributes = "canPickup";
 
     Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
@@ -152,6 +158,7 @@ Item lamp {
 			entranceHall setNorth secretHall;
 			masterBedroom setDescription "With the aid of the lamp you find yourself in an old creepy bedroom.";
 			mirror setLocation masterBedroom;
+			bed setLocation masterBedroom;
 			print "You fiddle around with the old lamp and manage to turn it on.";
 		} else {
 			print "You don't have that item.";
@@ -174,6 +181,7 @@ Item mirror {
     name = "mirror";
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful...";
     location = deadSpace;
+    hasAttributes = "canPickup";
 
     Verb = "use or lookat or look-at" {
         if(andy inLocation tortureRoom) {
@@ -183,5 +191,48 @@ Item mirror {
             print "You admire yourself in the mirror.";
         }
     }
+}
+
+Item door {
+	name = "door"
+	description = "A solid wooden door is located in the north wall. You notice a small keyhole";
+	location = secretHall;
+	hasAttributes = "isLocked !canPickup";
+	
+	Verb = "open or unlock" {
+		if (door hasAttribute isLocked) {
+		print "You cannot open the door it is locked";
+		} else {
+			secretHall setNorth tortureRoom;
+			print "The door swings open";
+		}
+	}
+}
+
+Item key {
+	name = "key";
+	description = "a small key";
+	location = deadSpace;
+	hasAttributes = "canPickup";
+	
+	Verb = "use" {
+		if(andy inLocation secretHall) {
+			print "You struggle to turn the key in the old door but manage to unlock it";
+			secretHall setNorth tortureRoom;
+			door setAttribute !isLocked;
+		}
+	}
+}
+
+Item bed {
+	name = "bed";
+	description = "A massive bed... you can see something glinting in the lamp light under it";
+	location = deadSpace;
+	hasAttributes = "!canPickup";
+	
+	Verb = "under or look" {
+		print "You see a small key glinting under the bed";
+		key setLocation masterBedroom;
+	}
 }
 

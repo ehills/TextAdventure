@@ -107,10 +107,14 @@ string Location::listItemsDescription(void) {
 
 /* Returns the name of each item in this location */
 string Location::listItems(void) {    
-    string the_items = "Items: ";
+    string the_items = "Items in \"" + this->getName() + '"' + ":";
     map<string, Item*>::iterator it;
-    for (it = items.begin(); it != items.end(); ++it) {
-       the_items += ("\n" + it->second->getName() + " - " + it->second->getDescription());
+    int count = 0;
+    for (it = items.begin(), count=0; it != items.end(); ++it, count++) {
+    	the_items += ("\n-" + it->second->getName()); //+ " - " + it->second->getDescription());
+    }
+    if (count == 0) {
+    	the_items += "\nNone";
     }
     return the_items;
 }

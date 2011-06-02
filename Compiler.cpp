@@ -99,12 +99,38 @@ void Compiler::Compile() {
 			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
 			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
+	output += "\n";
+
+	//Output default attributes
+	/*map<string, bool>::iterator at;
+	for (at = parser->default_attribute_values.begin(); at != parser->default_attribute_values.end(); at++) {
+		output += "Attribute* " + at->first + " = new Attribute(" + '"' + at->first + '"' + ");\n";
+	}*/
+
 	// Output Items
 	map<string, Item*>::iterator objects;
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\");\n";
 		output += objects->second->getLocation()->getVariableName() + "->addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
 		output += objects->first + ".setLocation(" + objects->second->getLocation()->getVariableName() + ");\n";
+
+		// Add item attributes
+		size_t pos;
+		string temp, sub;
+		istringstream word(objects->second->getAttributeString());
+		do {
+			word >> temp;
+			if (temp.find('!') == 0) {
+				pos = temp.find('!') + 1;
+				sub = temp.substr(pos);
+				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
+			} else if (temp != ""){
+				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
+			}
+			temp = "";
+		} while (word);
+
+		//cout << "HERE " << objects->second->getAttributeString()<< endl;
 	}
 
 	// START OF GAME LOOP AND WORD READING
@@ -279,10 +305,12 @@ string Compiler::CompileNounVerb(Item *item) {
 /* Compiles a single verb from the input command */
 string Compiler::CompileVerb(string line) {
 	btrim(line);
+
 	string output = "";
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
-			output += "cout << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
+			output += "cout << \"<<<\" << " + parser->player->getVariableName() + "->getLocation()->getName() << \">>>\" << endl;\n";
+			output += "cout << \" \" << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
 		} else if (line.compare("gameOver;") == 0) {
@@ -331,6 +359,12 @@ string Compiler::CompileVerb(string line) {
 					} else {
 						output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
 					}
+				} else if (line.find("hasAttribute") < line.length()) {
+					string item = getItem(expression);
+					size_t start, end;
+					start = line.find("hasAttribute");
+					end = line.find(")");
+					output += "if (" + item + "." + line.substr(start,12) + "(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 				} else if (line.find("canCarry") < line.length()) {
 					if (line.find(parser->player->getVariableName()) < line.length()) {
 						output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
@@ -415,6 +449,16 @@ string Compiler::CompileVerb(string line) {
 				}
 			} else {
 				cout << NO_LOCATIONS << endl;
+			}
+		} else if (line.find("setAttribute") < line.length()) {
+			string item = getItem(line);
+			size_t start, end;
+			start = line.find("setAttribute");
+			end = line.find(";");
+			if (line.substr(start+13, (end-start-13)).find('!') == 0) {
+				output += item + ".setAttribute(" + '"' + line.substr(start+14, (end-start-14)) + '"' + ", false);\n";
+			} else {
+				output += item + ".setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
 			}
 		} else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length()
 				|| line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {

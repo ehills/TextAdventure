@@ -11,6 +11,7 @@ class Item {
     string variable_name;
     string name;
     string description;
+    string attribute_string;
     map<string, string> verb_expressions;
     map<string, bool> attributes;
     Location* location;
@@ -35,8 +36,8 @@ public:
     map<string, string> getVerbs();
     void addVerb(string verb, string expression);
     void addVerbs(map<string, string> verb_expressions);
-    map<string, bool> getAttributes(); 
-    void setAttributes(map<string, bool> attributes); 
+    map<string, bool> getAttributes();
+    void setAttributes(map<string, bool> attributes);
     void printVerbs();
     /* Removes a verb from the list of valid verbs for this item */
     void removeVerb(string verb);
@@ -47,6 +48,10 @@ public:
     
     Location* getLocation(void);
     void setLocation(Location* location);
+
+    void setAttributeString(string);
+
+    string getAttributeString(void);
 
     /* Destructor */
     ~Item();
