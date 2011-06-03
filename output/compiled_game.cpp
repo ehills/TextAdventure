@@ -72,7 +72,7 @@ if (verb == "east" || verb == "e"){
 if (andy->getLocation()->hasEast()) {
 andy->setLocation(andy->getLocation()->getEast()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << " " << andy->getLocation()->getDescription();
+cout << " " << andy->getLocation()->getDescription() << endl;
 } else {cout << "You cannot go east";
 }
 
@@ -82,7 +82,7 @@ if (andy->getLocation() == tortureRoom) {
 cout << "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 break;
 } else {cout << andy->getLocation()->listItems() << endl;
-cout << " " << andy->getLocation()->getDescription();
+cout << " " << andy->getLocation()->getDescription() << endl;
 }
 
 goto main_loop;}
@@ -90,7 +90,7 @@ if (verb == "north" || verb == "n" || verb == "nth"){
 if (andy->getLocation()->hasNorth()) {
 andy->setLocation(andy->getLocation()->getNorth()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << " " << andy->getLocation()->getDescription();
+cout << " " << andy->getLocation()->getDescription() << endl;
 } else {cout << "You cannot go north";
 }
 
@@ -103,7 +103,7 @@ break;
 if (andy->getLocation()->hasSouth()) {
 andy->setLocation(andy->getLocation()->getSouth()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << " " << andy->getLocation()->getDescription();
+cout << " " << andy->getLocation()->getDescription() << endl;
 } else {cout << "You cannot go south";
 }
 
@@ -112,7 +112,7 @@ if (verb == "west" || verb == "w"){
 if (andy->getLocation()->hasWest()) {
 andy->setLocation(andy->getLocation()->getWest()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << " " << andy->getLocation()->getDescription();
+cout << " " << andy->getLocation()->getDescription() << endl;
 } else {cout << "You cannot go west";
 }
 
@@ -120,7 +120,7 @@ goto main_loop;}
 
 			if ((verb == "i") || (verb == "inventory") || (verb == "invent")) {
 			cout << andy->getInventory()->listItems() << endl;
-			cout << andy->getNumberOfItems() << "/" << andy->getMaxItems();
+			cout << andy->getNumberOfItems() << "/" << andy->getMaxItems() << endl;
 			goto main_loop;
 			}
 
