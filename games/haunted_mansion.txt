@@ -6,7 +6,7 @@ Player andy  {
 
 ItemDefaults {
     Verb "examine or x or ex or look" {
-        print inputItem.description();
+        print inputItem description;
     }
     
 	Verb "pickup or pick-up or get" {
@@ -231,9 +231,13 @@ Item bed {
 	location = deadSpace;
 	hasAttributes = "!canPickup";
 	
-	Verb = "under or look" {
-		print "You see a small key glinting under the bed";
-		key setLocation masterBedroom;
+	Verb = "under or look or examine or x or ex" {
+		if (key inLocation andy) {
+			print " A massive bed";
+		} else {
+			print "You see a small key glinting under the bed";
+			key setLocation masterBedroom;	
+		}
 	}
 }
 

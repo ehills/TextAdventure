@@ -96,6 +96,10 @@ cout << " " << andy->getLocation()->getDescription() << endl;
 
 goto main_loop;}
 if (verb == "south" || verb == "s" || verb == "sth"){
+if (andy->getLocation() == tortureRoom) {
+cout << "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead...";
+break;
+}
 if (andy->getLocation()->hasSouth()) {
 andy->setLocation(andy->getLocation()->getSouth()); 
 cout << andy->getLocation()->listItems() << endl;
@@ -124,9 +128,12 @@ goto main_loop;}
 cout << "I don't know how to " << verb << " here";
 } else if (verb != "" && noun != "" ){
 if ((toLower(noun) == toLower("bed")) && (andy->getLocation()->hasItem("bed") || andy->getInventory()->hasItem("bed"))) {
-if (verb == "under" || verb == "look") {
-cout << "You see a small key glinting under the bed";
+if (verb == "under" || verb == "look" || verb == "examine" || verb == "x" || verb == "ex") {
+if (key.getLocation() == andy->getInventory()) {
+cout << " A massive bed";
+} else {cout << "You see a small key glinting under the bed";
 masterBedroom->addItem(key.getName(), &key);
+}
 goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed.hasAttribute("canPickup")) {
