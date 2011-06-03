@@ -309,7 +309,7 @@ string Compiler::CompileVerb(string line) {
 	string output = "";
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
-			output += "cout << \"<<<\" << " + parser->player->getVariableName() + "->getLocation()->getName() << \">>>\" << endl;\n";
+			//output += "cout << \"<<<\" << " + parser->player->getVariableName() + "->getLocation()->getName() << \">>>\" << endl;\n";
 			output += "cout << \" \" << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";

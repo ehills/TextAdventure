@@ -47,15 +47,16 @@ LocationDefaults {
             print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 			gameOver;
 		} else {
-			describe;
 			list;
+			describe;
+			
 		}
     }
     Verb "north or n or nth" {
     	if(andy inLocation hasNorth) {
     		andy setLocation toNorth;
-    		describe;
     		list;
+			describe;
     	} else {
     		print "You cannot go north";
     	}
@@ -67,8 +68,8 @@ LocationDefaults {
     	}
     	if(andy inLocation hasSouth) {
     		andy setLocation toSouth;
-    		describe;
     		list;
+			describe;
     	} else {
     		print "You cannot go south";
     	}
@@ -76,8 +77,8 @@ LocationDefaults {
     Verb "east or e" {
     	if(andy inLocation hasEast) {
     		andy setLocation toEast;
-    		describe;
     		list;
+			describe;
     	} else {
     		print "You cannot go east";
     	}
@@ -85,8 +86,8 @@ LocationDefaults {
     Verb "west or w" {
     	if(andy inLocation hasWest) {
     		andy setLocation toWest;
-    		describe;
     		list;
+			describe;
     	} else {
     		print "You cannot go west";
     	}
