@@ -326,13 +326,13 @@ string Compiler::CompileVerb(string line) {
 			string location = getLocation(line);
 			string item = getItem(line);
 			if (location != "") {
-				if (line.find("description") < line.length()) {
+				if (line.find("getDescription") < line.length()) {
 					output += "cout << " + location + "->getDescription();\n";
 				} else {
 					output += "cout << " + location + "->getName();\n";
 				}
 			} else if (item != "") {
-				if (line.find("description") < line.length()) {
+				if (line.find("getDescription") < line.length()) {
 					output += "cout << " + item + ".getDescription();\n";
 				} else {
 					output += "cout << " + item + ".getName();\n";

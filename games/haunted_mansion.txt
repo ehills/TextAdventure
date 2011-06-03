@@ -6,7 +6,7 @@ Player andy  {
 
 ItemDefaults {
     Verb "examine or x or ex or look" {
-        print inputItem description;
+        print inputItem getDescription;
     }
     
 	Verb "pickup or pick-up or get" {
