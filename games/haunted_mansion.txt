@@ -5,7 +5,7 @@ Player andy  {
 }
 
 ItemDefaults {
-    Verb "examine or x or ex look" {
+    Verb "examine or x or ex or look" {
         print inputItem.description();
     }
     

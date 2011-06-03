@@ -179,7 +179,7 @@ void Compiler::Compile() {
 
 	// SINGLE VERB
 	output += "\
-			if (count == 2) {\n";
+			if (verb != \"\" && noun == \"\" ) {\n";
 
 	// VERBS
 	map<string, string>::iterator iterator;
@@ -200,7 +200,7 @@ void Compiler::Compile() {
 	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
 
 	// SINGLE VERB END / VERB NOUN START
-	output += "} else {\n";
+	output += "} else if (verb != \"\" && noun != \"\" ){\n";
 
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "if ((toLower(noun) == toLower(\"" + objects->second->getName() + "\")) && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
@@ -275,10 +275,12 @@ string Compiler::CompileSingleVerb(string commands) {
 /* Compiles the noun and verb together */
 string Compiler::CompileNounVerb(Item *item) {
 	map<string, string> verbs = item->getVerbs();
-	map<string, string>::iterator it;
+	map<string, string>::reverse_iterator rit;
 	string line, output = "";
-	for (it = verbs.begin(); it != verbs.end(); it++) {
-		string data = it->second;
+
+	// Reverse iterate so that predefined item verbs get precedence over item default verbs.
+	for (rit = verbs.rbegin(); rit != verbs.rend(); rit++) {
+		string data = rit->second;
 
 		// REPLACE inputItem
 		size_t pos = data.find("inputItem");
@@ -288,12 +290,13 @@ string Compiler::CompileNounVerb(Item *item) {
 		}
 
 		// START VERB
-		string verbs = getVerbSynonyms(it->first);
+		string verbs = getVerbSynonyms(rit->first);
 		output += "if (" + verbs + ") {\n";
 		istringstream lines(data);
 		while (getline(lines, line)) {
 			output += CompileVerb(line);
 		}
+
 		// END VERB
 		output += "goto main_loop;";
 		output += "}\n";
