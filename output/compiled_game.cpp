@@ -34,10 +34,15 @@ masterBedroom->setEast(entranceHall);
 secretHall->setSouth(entranceHall);
 tortureRoom->setSouth(secretHall);
 Location* compiler_inventory = new Location("Inventory", "Description of the inventory");Player* andy = new Player();andy->setLocation(garden);andy->setInventory(compiler_inventory);andy->setMaxItems(4);
-Item bed("bed", "A massive bed... you can see something glinting in the lamp light under it");
+Item bed("bed", "A massive bed... you can see something glinting in the lamp light under it.");
 deadSpace->addItem("bed", &bed);
 bed.setLocation(deadSpace);
 bed.addAttribute("canPickup", false);
+Item box("box", "A large wooden box");
+secretHall->addItem("box", &box);
+box.setLocation(secretHall);
+box.addAttribute("isOpen", false);
+box.addAttribute("canPickup", false);
 Item door("door", "A solid wooden door is located in the north wall. You notice a small keyhole");
 secretHall->addItem("door", &door);
 door.setLocation(secretHall);
@@ -55,6 +60,10 @@ Item mirror("mirror", "You see your handsome, confident reflection in the mirror
 deadSpace->addItem("mirror", &mirror);
 mirror.setLocation(deadSpace);
 mirror.addAttribute("canPickup", true);
+Item skull("skull", "A cracked human skull");
+deadSpace->addItem("skull", &skull);
+skull.setLocation(deadSpace);
+skull.addAttribute("canPickup", true);
 cout << WELCOME_MESSAGE << endl;prompt = "\n>>> ";cout << andy->getLocation()->printRoom() << endl;while (true) {   main_loop:   cout << prompt;   getline(cin, command);   istringstream word(command);   verb = "";   noun = "";   count = 0;   while (word) {      if (count > 2) {           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun" << endl;           goto main_loop;      }      if (count == 0) {           word >> verb;      } else {           word >> noun;      }      count++;   }			if (command == QUIT_GAME) {
 			quit_loop:
 			string quit = "";
@@ -149,12 +158,13 @@ cout << bed.getName();
 }
 } else {cout << "You cannont pick up the ";
 cout << bed.getName();
+cout << ", what were you thinking...";
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << bed.getDescription();
 goto main_loop;}
-if (verb == "drop") {
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(bed.getName())) {
 andy->getLocation()->addItem(bed.getName(), &bed);
 cout << "You drop the ";
@@ -165,7 +175,55 @@ cout << bed.getName();
 goto main_loop;}
 cout << "Sorry you can not '" << verb << "' on '" << "bed" << "'" << endl;
 goto main_loop;
+}if ((toLower(noun) == toLower("box")) && (andy->getLocation()->hasItem("box") || andy->getInventory()->hasItem("box"))) {
+if (verb == "pickup" || verb == "pick-up" || verb == "get") {
+if (box.hasAttribute("canPickup")) {
+if (andy->getInventory()->hasItem(box.getName())) {
+cout << "You already have the ";
+cout << box.getName();
+} else {if (andy->canCarry()) {
+andy->getInventory()->addItem(box.getName(), &box);
+cout << "You pickup the ";
+cout << box.getName();
+} else {cout << "You are carrying too much already.";
+}
+}
+} else {cout << "You cannont pick up the ";
+cout << box.getName();
+cout << ", what were you thinking...";
+}
+goto main_loop;}
+if (verb == "open") {
+if (box.hasAttribute("isOpen")) {
+cout << "The box is already open...";
+} else {secretHall->addItem(skull.getName(), &skull);
+cout << "You open the box and discover a human skull... the body is nowhere to been seen";
+}
+goto main_loop;}
+if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+cout << box.getDescription();
+goto main_loop;}
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
+if (andy->getInventory()->hasItem(box.getName())) {
+andy->getLocation()->addItem(box.getName(), &box);
+cout << "You drop the ";
+cout << box.getName();
+} else {cout << "I don't have ";
+cout << box.getName();
+}
+goto main_loop;}
+cout << "Sorry you can not '" << verb << "' on '" << "box" << "'" << endl;
+goto main_loop;
 }if ((toLower(noun) == toLower("door")) && (andy->getLocation()->hasItem("door") || andy->getInventory()->hasItem("door"))) {
+if (verb == "unlock") {
+if (key.getLocation() == andy->getInventory()) {
+if (door.hasAttribute("isLocked")) {
+door.setAttribute("isLocked", false);
+cout << "You unlock the door";
+} else {cout << "The door is already unlocked";
+}
+}
+goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (door.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(door.getName())) {
@@ -180,9 +238,10 @@ cout << door.getName();
 }
 } else {cout << "You cannont pick up the ";
 cout << door.getName();
+cout << ", what were you thinking...";
 }
 goto main_loop;}
-if (verb == "open" || verb == "unlock") {
+if (verb == "open") {
 if (door.hasAttribute("isLocked")) {
 cout << "You cannot open the door it is locked";
 } else {secretHall->setNorth(tortureRoom);
@@ -192,7 +251,7 @@ goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << door.getDescription();
 goto main_loop;}
-if (verb == "drop") {
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(door.getName())) {
 andy->getLocation()->addItem(door.getName(), &door);
 cout << "You drop the ";
@@ -206,9 +265,10 @@ goto main_loop;
 }if ((toLower(noun) == toLower("key")) && (andy->getLocation()->hasItem("key") || andy->getInventory()->hasItem("key"))) {
 if (verb == "use") {
 if (andy->getLocation() == secretHall) {
-cout << "You struggle to turn the key in the old door but manage to unlock it";
+cout << "You struggle to turn the key in the old door but manage to unlock it.";
 secretHall->setNorth(tortureRoom);
 door.setAttribute("isLocked", false);
+} else {cout << "You can't you the key here.";
 }
 goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
@@ -225,12 +285,13 @@ cout << key.getName();
 }
 } else {cout << "You cannont pick up the ";
 cout << key.getName();
+cout << ", what were you thinking...";
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << key.getDescription();
 goto main_loop;}
-if (verb == "drop") {
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(key.getName())) {
 andy->getLocation()->addItem(key.getName(), &key);
 cout << "You drop the ";
@@ -256,6 +317,7 @@ cout << lamp.getName();
 }
 } else {cout << "You cannont pick up the ";
 cout << lamp.getName();
+cout << ", what were you thinking...";
 }
 goto main_loop;}
 if (verb == "off" || verb == "turnoff" || verb == "turn-off") {
@@ -277,7 +339,7 @@ goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << lamp.getDescription();
 goto main_loop;}
-if (verb == "drop") {
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(lamp.getName())) {
 andy->getLocation()->addItem(lamp.getName(), &lamp);
 cout << "You drop the ";
@@ -310,12 +372,13 @@ cout << mirror.getName();
 }
 } else {cout << "You cannont pick up the ";
 cout << mirror.getName();
+cout << ", what were you thinking...";
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << mirror.getDescription();
 goto main_loop;}
-if (verb == "drop") {
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(mirror.getName())) {
 andy->getLocation()->addItem(mirror.getName(), &mirror);
 cout << "You drop the ";
@@ -325,6 +388,55 @@ cout << mirror.getName();
 }
 goto main_loop;}
 cout << "Sorry you can not '" << verb << "' on '" << "mirror" << "'" << endl;
+goto main_loop;
+}if ((toLower(noun) == toLower("skull")) && (andy->getLocation()->hasItem("skull") || andy->getInventory()->hasItem("skull"))) {
+if (verb == "wear") {
+if (skull.getLocation() == andy->getInventory()) {
+cout << "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have have provided this skull with a new skeleton...";
+break;
+} else {cout << "You don't have the skull in your inventory";
+}
+goto main_loop;}
+if (verb == "use" || verb == "show") {
+if (skull.getLocation() == andy->getInventory()) {
+if (andy->getLocation() == tortureRoom) {
+cout << "The skull upon being near the apparation begins to contort and grow, before too long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes at the apparation... The apparation disapates and dies... again. .. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
+break;
+} else {cout << "You wave the skull around like a demented lunatic";
+}
+} else {cout << "You don't have that item";
+}
+goto main_loop;}
+if (verb == "pickup" || verb == "pick-up" || verb == "get") {
+if (skull.hasAttribute("canPickup")) {
+if (andy->getInventory()->hasItem(skull.getName())) {
+cout << "You already have the ";
+cout << skull.getName();
+} else {if (andy->canCarry()) {
+andy->getInventory()->addItem(skull.getName(), &skull);
+cout << "You pickup the ";
+cout << skull.getName();
+} else {cout << "You are carrying too much already.";
+}
+}
+} else {cout << "You cannont pick up the ";
+cout << skull.getName();
+cout << ", what were you thinking...";
+}
+goto main_loop;}
+if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+cout << skull.getDescription();
+goto main_loop;}
+if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
+if (andy->getInventory()->hasItem(skull.getName())) {
+andy->getLocation()->addItem(skull.getName(), &skull);
+cout << "You drop the ";
+cout << skull.getName();
+} else {cout << "I don't have ";
+cout << skull.getName();
+}
+goto main_loop;}
+cout << "Sorry you can not '" << verb << "' on '" << "skull" << "'" << endl;
 goto main_loop;
 }cout << "I can't find a " << noun << " here";
 }

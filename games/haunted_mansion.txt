@@ -26,10 +26,11 @@ ItemDefaults {
         } else {
         	print "You cannont pick up the ";
         	print inputItem;
+        	print ", what were you thinking...";
         }
     }
 
-    Verb "drop" {
+    Verb "drop or discard or throwout or throw-out" {
         if (andy hasItem inputItem) {
             inputItem setLocation currentLocation;
 			print "You drop the ";
@@ -191,7 +192,7 @@ Item mirror {
         } else {
             print "You admire yourself in the mirror.";
         }
-    }
+    }`
 }
 
 Item door {
@@ -200,12 +201,22 @@ Item door {
 	location = secretHall;
 	hasAttributes = "isLocked !canPickup";
 	
-	Verb = "open or unlock" {
+	Verb = "open" {
 		if (door hasAttribute isLocked) {
 		print "You cannot open the door it is locked";
 		} else {
 			secretHall setNorth tortureRoom;
 			print "The door swings open";
+		}
+	}
+	Verb = "unlock" {
+		if(key inLocation andy) {
+			if (door hasAttribute isLocked) {
+				door setAttribute !isLocked;
+				print "You unlock the door";
+			} else {
+				print "The door is already unlocked";
+			}
 		}
 	}
 }
@@ -218,16 +229,18 @@ Item key {
 	
 	Verb = "use" {
 		if(andy inLocation secretHall) {
-			print "You struggle to turn the key in the old door but manage to unlock it";
+			print "You struggle to turn the key in the old door but manage to unlock it.";
 			secretHall setNorth tortureRoom;
 			door setAttribute !isLocked;
+		} else {
+			print "You can't you the key here.";
 		}
 	}
 }
 
 Item bed {
 	name = "bed";
-	description = "A massive bed... you can see something glinting in the lamp light under it";
+	description = "A massive bed... you can see something glinting in the lamp light under it.";
 	location = deadSpace;
 	hasAttributes = "!canPickup";
 	
@@ -240,4 +253,51 @@ Item bed {
 		}
 	}
 }
+
+Item box {
+	name = "box";
+	description = "A large wooden box";
+	location = secretHall;
+	hasAttributes = "!isOpen !canPickup";
+	
+	Verb = "open" { 
+		if (box hasAttribute isOpen) {
+			print "The box is already open...";
+		} else {
+			skull setLocation secretHall;
+			print "You open the box and discover a human skull... the body is nowhere to been seen";
+		}
+	}
+}
+
+Item skull {
+	name = "skull"
+	description = "A cracked human skull";
+	location = deadSpace;
+	hasAttributes = "canPickup";
+	
+	Verb = "wear" {
+		if (skull inLocation andy) {
+			print "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have have provided this skull with a new skeleton...";
+			gameOver;
+		} else {
+			print "You don't have the skull in your inventory";
+		}
+	}
+	
+	Verb = "use or show" {
+		if (skull inLocation andy) {
+			if(andy inLocation tortureRoom) {
+				print "The skull upon being near the apparation begins to contort and grow, before too long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes at the apparation... The apparation disapates and dies... again. .. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
+				gameOver;
+			} else {
+				print "You wave the skull around like a demented lunatic";
+			}
+			} else {
+				print "You don't have that item";
+			}
+		}
+	}
+}
+
 
