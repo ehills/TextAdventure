@@ -192,12 +192,12 @@ void Compiler::Compile() {
 	output += "\n\
 			if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
 			cout << " + parser->player->getVariableName() + "->getInventory()->listItems() << endl;\n\
-			cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
+			cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems();\n\
 			goto main_loop;\n\
 			}\n\n\
 			\n";
 
-	output += "cout << \"I don't know how to \" << verb << \" here\" << endl;\n";
+	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
 
 	// SINGLE VERB END / VERB NOUN START
 	output += "} else {\n";
@@ -208,7 +208,7 @@ void Compiler::Compile() {
 				"goto main_loop;\n"
 				"}";
 	}
-	output += "cout << \"I can't find a \" << noun << \" here\" << endl;\n";
+	output += "cout << \"I can't find a \" << noun << \" here\";\n";
 	//  VERB NOUN END
 	output += "}\n";
 
@@ -310,7 +310,7 @@ string Compiler::CompileVerb(string line) {
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
 			//output += "cout << \"<<<\" << " + parser->player->getVariableName() + "->getLocation()->getName() << \">>>\" << endl;\n";
-			output += "cout << \" \" << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
+			output += "cout << \" \" << " + parser->player->getVariableName() + "->getLocation()->getDescription();\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
 		} else if (line.compare("gameOver;") == 0) {
@@ -325,15 +325,15 @@ string Compiler::CompileVerb(string line) {
 			string item = getItem(line);
 			if (location != "") {
 				if (line.find(".description()") < line.length()) {
-					output += "cout << " + location + "->getDescription() << endl;\n";
+					output += "cout << " + location + "->getDescription();\n";
 				} else {
-					output += "cout << " + location + "->getName() << endl;\n";
+					output += "cout << " + location + "->getName();\n";
 				}
 			} else if (item != "") {
 				if (line.find(".description()") < line.length()) {
-					output += "cout << " + item + ".getDescription() << endl;\n";
+					output += "cout << " + item + ".getDescription();\n";
 				} else {
-					output += "cout << " + item + ".getName() << endl;\n";
+					output += "cout << " + item + ".getName();\n";
 				}
 			} else {
 				cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;

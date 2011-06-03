@@ -72,8 +72,7 @@ if (verb == "east" || verb == "e"){
 if (andy->getLocation()->hasEast()) {
 andy->setLocation(andy->getLocation()->getEast()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << 
-" " << andy->getLocation()->getDescription() << endl;
+cout << " " << andy->getLocation()->getDescription();
 } else {cout << "You cannot go east";
 }
 
@@ -83,8 +82,7 @@ if (andy->getLocation() == tortureRoom) {
 cout << "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 break;
 } else {cout << andy->getLocation()->listItems() << endl;
-cout << 
-" " << andy->getLocation()->getDescription() << endl;
+cout << " " << andy->getLocation()->getDescription();
 }
 
 goto main_loop;}
@@ -92,8 +90,7 @@ if (verb == "north" || verb == "n" || verb == "nth"){
 if (andy->getLocation()->hasNorth()) {
 andy->setLocation(andy->getLocation()->getNorth()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << 
-" " << andy->getLocation()->getDescription() << endl;
+cout << " " << andy->getLocation()->getDescription();
 } else {cout << "You cannot go north";
 }
 
@@ -106,8 +103,7 @@ break;
 if (andy->getLocation()->hasSouth()) {
 andy->setLocation(andy->getLocation()->getSouth()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << 
-" " << andy->getLocation()->getDescription() << endl;
+cout << " " << andy->getLocation()->getDescription();
 } else {cout << "You cannot go south";
 }
 
@@ -116,8 +112,7 @@ if (verb == "west" || verb == "w"){
 if (andy->getLocation()->hasWest()) {
 andy->setLocation(andy->getLocation()->getWest()); 
 cout << andy->getLocation()->listItems() << endl;
-cout << 
-" " << andy->getLocation()->getDescription() << endl;
+cout << " " << andy->getLocation()->getDescription();
 } else {cout << "You cannot go west";
 }
 
@@ -125,40 +120,40 @@ goto main_loop;}
 
 			if ((verb == "i") || (verb == "inventory") || (verb == "invent")) {
 			cout << andy->getInventory()->listItems() << endl;
-			cout << andy->getNumberOfItems() << "/" << andy->getMaxItems() << endl;
+			cout << andy->getNumberOfItems() << "/" << andy->getMaxItems();
 			goto main_loop;
 			}
 
 			
-cout << "I don't know how to " << verb << " here" << endl;
+cout << "I don't know how to " << verb << " here";
 } else {
 if ((toLower(noun) == toLower("bed")) && (andy->getLocation()->hasItem("bed") || andy->getInventory()->hasItem("bed"))) {
 if (verb == "drop") {
 if (andy->getInventory()->hasItem(bed.getName())) {
 andy->getLocation()->addItem(bed.getName(), &bed);
 cout << "You drop the ";
-cout << bed.getName() << endl;
+cout << bed.getName();
 } else {cout << "I don't have ";
-cout << bed.getName() << endl;
+cout << bed.getName();
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex""look") {
-cout << bed.getDescription() << endl;
+cout << bed.getDescription();
 goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(bed.getName())) {
 cout << "You already have the ";
-cout << bed.getName() << endl;
+cout << bed.getName();
 } else {if (andy->canCarry()) {
 andy->getInventory()->addItem(bed.getName(), &bed);
 cout << "You pickup the ";
-cout << bed.getName() << endl;
+cout << bed.getName();
 } else {cout << "You are carrying too much already.";
 }
 }
 } else {cout << "You cannont pick up the ";
-cout << bed.getName() << endl;
+cout << bed.getName();
 }
 goto main_loop;}
 if (verb == "under" || verb == "look") {
@@ -172,13 +167,13 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(door.getName())) {
 andy->getLocation()->addItem(door.getName(), &door);
 cout << "You drop the ";
-cout << door.getName() << endl;
+cout << door.getName();
 } else {cout << "I don't have ";
-cout << door.getName() << endl;
+cout << door.getName();
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex""look") {
-cout << door.getDescription() << endl;
+cout << door.getDescription();
 goto main_loop;}
 if (verb == "open" || verb == "unlock") {
 if (door.hasAttribute("isLocked")) {
@@ -191,16 +186,16 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (door.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(door.getName())) {
 cout << "You already have the ";
-cout << door.getName() << endl;
+cout << door.getName();
 } else {if (andy->canCarry()) {
 andy->getInventory()->addItem(door.getName(), &door);
 cout << "You pickup the ";
-cout << door.getName() << endl;
+cout << door.getName();
 } else {cout << "You are carrying too much already.";
 }
 }
 } else {cout << "You cannont pick up the ";
-cout << door.getName() << endl;
+cout << door.getName();
 }
 goto main_loop;}
 cout << "Sorry you can not '" << verb << "' on '" << "door" << "'" << endl;
@@ -210,28 +205,28 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(key.getName())) {
 andy->getLocation()->addItem(key.getName(), &key);
 cout << "You drop the ";
-cout << key.getName() << endl;
+cout << key.getName();
 } else {cout << "I don't have ";
-cout << key.getName() << endl;
+cout << key.getName();
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex""look") {
-cout << key.getDescription() << endl;
+cout << key.getDescription();
 goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (key.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(key.getName())) {
 cout << "You already have the ";
-cout << key.getName() << endl;
+cout << key.getName();
 } else {if (andy->canCarry()) {
 andy->getInventory()->addItem(key.getName(), &key);
 cout << "You pickup the ";
-cout << key.getName() << endl;
+cout << key.getName();
 } else {cout << "You are carrying too much already.";
 }
 }
 } else {cout << "You cannont pick up the ";
-cout << key.getName() << endl;
+cout << key.getName();
 }
 goto main_loop;}
 if (verb == "use") {
@@ -248,13 +243,13 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(lamp.getName())) {
 andy->getLocation()->addItem(lamp.getName(), &lamp);
 cout << "You drop the ";
-cout << lamp.getName() << endl;
+cout << lamp.getName();
 } else {cout << "I don't have ";
-cout << lamp.getName() << endl;
+cout << lamp.getName();
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex""look") {
-cout << lamp.getDescription() << endl;
+cout << lamp.getDescription();
 goto main_loop;}
 if (verb == "light" || verb == "use" || verb == "turn-on" || verb == "turnon") {
 if (lamp.getLocation() == andy->getInventory()) {
@@ -276,16 +271,16 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (lamp.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(lamp.getName())) {
 cout << "You already have the ";
-cout << lamp.getName() << endl;
+cout << lamp.getName();
 } else {if (andy->canCarry()) {
 andy->getInventory()->addItem(lamp.getName(), &lamp);
 cout << "You pickup the ";
-cout << lamp.getName() << endl;
+cout << lamp.getName();
 } else {cout << "You are carrying too much already.";
 }
 }
 } else {cout << "You cannont pick up the ";
-cout << lamp.getName() << endl;
+cout << lamp.getName();
 }
 goto main_loop;}
 cout << "Sorry you can not '" << verb << "' on '" << "lamp" << "'" << endl;
@@ -295,28 +290,28 @@ if (verb == "drop") {
 if (andy->getInventory()->hasItem(mirror.getName())) {
 andy->getLocation()->addItem(mirror.getName(), &mirror);
 cout << "You drop the ";
-cout << mirror.getName() << endl;
+cout << mirror.getName();
 } else {cout << "I don't have ";
-cout << mirror.getName() << endl;
+cout << mirror.getName();
 }
 goto main_loop;}
 if (verb == "examine" || verb == "x" || verb == "ex""look") {
-cout << mirror.getDescription() << endl;
+cout << mirror.getDescription();
 goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mirror.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(mirror.getName())) {
 cout << "You already have the ";
-cout << mirror.getName() << endl;
+cout << mirror.getName();
 } else {if (andy->canCarry()) {
 andy->getInventory()->addItem(mirror.getName(), &mirror);
 cout << "You pickup the ";
-cout << mirror.getName() << endl;
+cout << mirror.getName();
 } else {cout << "You are carrying too much already.";
 }
 }
 } else {cout << "You cannont pick up the ";
-cout << mirror.getName() << endl;
+cout << mirror.getName();
 }
 goto main_loop;}
 if (verb == "use" || verb == "lookat" || verb == "look-at") {
@@ -328,7 +323,7 @@ break;
 goto main_loop;}
 cout << "Sorry you can not '" << verb << "' on '" << "mirror" << "'" << endl;
 goto main_loop;
-}cout << "I can't find a " << noun << " here" << endl;
+}cout << "I can't find a " << noun << " here";
 }
 }
 }
