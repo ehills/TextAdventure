@@ -20,42 +20,43 @@ using namespace std;
 
 class Parser {
 public:
-    Parser(char* filename);
-    
-    // returns the errors
-    list<string> ParseFile();
-    
-    // Object Deletion
-    ~Parser(void);
-    
+	Parser(char* filename);
 
-    string initialDescription;
-    Location *initialLocation;
-    list<string> errors;
-    map<string, Location*> locations;
-    map<string, Item*> items;
-    map<string, string> default_verb_expressions;
-    map<string, string> default_location_verb_expressions;
-    map<string, bool> default_attribute_values;
-    Player* player;
+	// returns the errors
+	list<string> ParseFile();
+
+	// Object Deletion
+	~Parser(void);
+
+	string gameName;
+	string credits;
+	string initialDescription;
+	Location *initialLocation;
+	list<string> errors;
+	map<string, Location*> locations;
+	map<string, Item*> items;
+	map<string, string> default_verb_expressions;
+	map<string, string> default_location_verb_expressions;
+	map<string, bool> default_attribute_values;
+	Player* player;
 private:
-    //comment striping code
-    int stripComments();
-    int ParseAttributes();
-    int ParseDefaults();
-    int ParseLocations();
-    int ParsePlayer();
-    int ParseItems();
-    
-    // Parses the attributes
-    void ParseLocation(string data, Location* location);
-    
-    // Parses the attributes
-    void ParseItem(string data, Item* item);
-    //Player ParsePlayer();
-    
-        // Parsing Data
-    string file_data;
+	//comment striping code
+	int stripComments();
+	int ParseAttributes();
+	int ParseDefaults();
+	int ParseLocations();
+	int ParsePlayer();
+	int ParseItems();
+
+	// Parses the attributes
+	void ParseLocation(string data, Location* location);
+
+	// Parses the attributes
+	void ParseItem(string data, Item* item);
+	//Player ParsePlayer();
+
+	// Parsing Data
+	string file_data;
 };
 
 

@@ -9,7 +9,7 @@ inline bool validAttribute(string attribute) {
     return attribute.compare(BAD_ATTRIBUTE) != 0;
 }
 
-string ParseStringData(string data, string attribute) {
+string ParseStringData(string data, string attribute, string default_return=BAD_ATTRIBUTE) {
     unsigned int start, end, size;
     start = data.find(attribute);
     if (start < data.size()) {
@@ -18,7 +18,7 @@ string ParseStringData(string data, string attribute) {
         size = end - start;
         return data.substr(start, size);
     }
-    return BAD_ATTRIBUTE;
+    return default_return;
 }
 
 // Tools for scanning data

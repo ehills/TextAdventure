@@ -1,3 +1,6 @@
+gameName = "---The Haunted Mansion---";
+credits = "By Edward Hills, George Phillips, Samuel Garner, Stephen Herd";
+
 Player andy  {
     name =  "Andy";
     description = "An amateur ghost hunter.";
@@ -48,56 +51,55 @@ LocationDefaults {
             print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 			gameOver;
 		} else {
-			list;
 			describe;
-			
+			list;	
 		}
     }
     Verb "north or n or nth" {
     	if(andy inLocation hasNorth) {
     		andy setLocation toNorth;
-    		list;
-			describe;
+    		describe;
+			list;
     	} else {
-    		print "You cannot go north";
+    		print "You cannot go north.";
     	}
     }
     Verb "south or s or sth" {
     	if(andy inLocation tortureRoom) {
-    		print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead..."
+    		print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead.";
     		gameOver;
     	}
     	if(andy inLocation hasSouth) {
     		andy setLocation toSouth;
-    		list;
-			describe;
+    		describe;
+			list;
     	} else {
-    		print "You cannot go south";
+    		print "You cannot go south.";
     	}
     }
     Verb "east or e" {
     	if(andy inLocation hasEast) {
     		andy setLocation toEast;
-    		list;
-			describe;
+    		describe;
+			list;
     	} else {
-    		print "You cannot go east";
+    		print "You cannot go east.";
     	}
     }
     Verb "west or w" {
     	if(andy inLocation hasWest) {
     		andy setLocation toWest;
-    		list;
-			describe;
+    		describe;
+			list;
     	} else {
-    		print "You cannot go west";
+    		print "You cannot go west.";
     	}
     }
 }
 
 initialLocation = garden;
 
-initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job and find yourself in an overgrown garden, to the north is the old, abandoned mansion locals say to be haunted by a sadistic cultist who once inhabited it many years ago. This is the perfect place to hone your ghost-busting skills.";
+initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is the old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
 
 // Location to store game items
 Location deadSpace {
@@ -107,14 +109,12 @@ Location deadSpace {
 
 Location garden {
     name = "The overgrown garden";
-    description = "You are in the overgrown garden in front of the mansion.";
-
-    north = entranceHall;
+    description = "You are in the overgrown garden in front of the mansion. The front door is bolted shut.";
 }
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You find yourself in a dimly lit expansive entrance hall illuminated only by the faint moonlight filtering through the dusty windows. You can only see darkness to the north and doorways to the east and west.";
+    description = "You climb through the window and find yourself in a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west.";
 
     west = masterBedroom;
     east = diningRoom;
@@ -123,34 +123,33 @@ Location entranceHall {
 
 Location diningRoom {
     name = "The dining room";
-    description = "You find yourself in an old dusty dining room, complete with ornate chandeliers. To the west is the Entrance hall where you just entered from.";
-
-    west = entranceHall;
+    description = "You find yourself in an old dining room, complete with ornate chandeliers.";
+ 	west = entranceHall;
 }
 
 Location masterBedroom {
     name = "The master bedroom";
-    description = "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you. To the east is the Entrance hall where you just entered from.";
+    description = "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
     east = entranceHall;
 }
 
 Location secretHall {
     name = "The secret hall";
-    description = "A long narrow hallway expands out in front of you, you see an opening at the end of the hall which you can feel a dark forbidding presence coming from it.";
+    description = "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.";
 
     south = entranceHall;
 }
 
 Location tortureRoom {
     name = "The torture room";
-    description = "You enter a cold stone room and instantly feel terrified. You see pentagrams carved into the stone floors which look to be covered in fresh blood. A hooded apparition materializes in front of you, wielding a menacing scythe. You can see your death is it's eyes.";
+    description = "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.";
 
     south = secretHall;
 }
 
 Item lamp {
     name = "lamp";
-    description = "A rusty old lamp but still looks like it might work.";
+    description = "An old lamp but still looks like it might work.";
     location = diningRoom;
     hasAttributes = "canPickup";
 
@@ -169,7 +168,7 @@ Item lamp {
 	
 	Verb "off or turnoff or turn-off" {
 		if(lamp inLocation andy) {
-			entranceHall setDescription "You find yourself in a dimly lit expansive  entrance hall, only illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north.";
+			entranceHall setDescription "You find yourself in a dimly lit expansive entrance hall, illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north.";
 			entranceHall removeNorth;
 			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
 			print "You switch off the old lamp.";
@@ -181,7 +180,7 @@ Item lamp {
 
 Item mirror {
     name = "mirror";
-    description = "You see your handsome, confident reflection in the mirror. This mirror could be useful...";
+    description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
     location = deadSpace;
     hasAttributes = "canPickup";
 
@@ -196,26 +195,26 @@ Item mirror {
 }
 
 Item door {
-	name = "door"
-	description = "A solid wooden door is located in the north wall. You notice a small keyhole";
+	name = "door";
+	description = "A solid wooden door is located in the north wall. You notice a small keyhole.";
 	location = secretHall;
 	hasAttributes = "isLocked !canPickup";
 	
 	Verb = "open" {
 		if (door hasAttribute isLocked) {
-		print "You cannot open the door it is locked";
+		print "You cannot open the door it is locked.";
 		} else {
 			secretHall setNorth tortureRoom;
-			print "The door swings open";
+			print "The door swings open.";
 		}
 	}
 	Verb = "unlock" {
 		if(key inLocation andy) {
 			if (door hasAttribute isLocked) {
 				door setAttribute !isLocked;
-				print "You unlock the door";
+				print "You unlock the door with the small key.";
 			} else {
-				print "The door is already unlocked";
+				print "The door is already unlocked.";
 			}
 		}
 	}
@@ -233,7 +232,7 @@ Item key {
 			secretHall setNorth tortureRoom;
 			door setAttribute !isLocked;
 		} else {
-			print "You can't you the key here.";
+			print "You can't use the key here.";
 		}
 	}
 }
@@ -248,7 +247,7 @@ Item bed {
 		if (key inLocation andy) {
 			print " A massive bed";
 		} else {
-			print "You see a small key glinting under the bed";
+			print "You find a small key glinting under the bed.";
 			key setLocation masterBedroom;	
 		}
 	}
@@ -265,39 +264,79 @@ Item box {
 			print "The box is already open...";
 		} else {
 			skull setLocation secretHall;
-			print "You open the box and discover a human skull... the body is nowhere to been seen";
+			box setAttribute isOpen;
+			print "You open the box and discover a human skull... the body is nowhere to been seen.";
 		}
 	}
 }
 
 Item skull {
-	name = "skull"
+	name = "skull";
 	description = "A cracked human skull";
 	location = deadSpace;
 	hasAttributes = "canPickup";
 	
 	Verb = "wear" {
 		if (skull inLocation andy) {
-			print "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have have provided this skull with a new skeleton...";
+			print "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
 			gameOver;
 		} else {
-			print "You don't have the skull in your inventory";
+			print "You don't have the skull in your inventory.";
 		}
 	}
 	
 	Verb = "use or show" {
 		if (skull inLocation andy) {
 			if(andy inLocation tortureRoom) {
-				print "The skull upon being near the apparation begins to contort and grow, before too long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes at the apparation... The apparation disapates and dies... again. .. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
+				print "The skull begins to contort and grow, before long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes out at the apparation. The evil apparation disapates and dies... again. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
 				gameOver;
 			} else {
-				print "You wave the skull around like a demented lunatic";
+				print "You wave the skull around like a demented lunatic.";
 			}
 			} else {
-				print "You don't have that item";
+				print "You don't have that item.";
 			}
 		}
 	}
 }
 
+Item window {
+	name = "window";
+	description = "An old cracked window, seems to be your only access to the mansion.";
+	location = garden;
+	hasAttributes "isClosed";
+	
+	Verb = "open" {
+		if(window hasAttribute isClosed) {
+			print "The window seems to be jammed.";
+		} else {
+			garden setNorth entranceHall;
+			print "The old window grates open.";
+		}
+	}
+}
+
+Item wrench {
+	name = "wrench";
+	description = "An old wrench.";
+	location = garden;
+	hasAttributes = "canPickup";
+	
+	Verb = "use" {
+		if(andy inLocation garden) {
+			if(wrench inLocation andy) {
+				if(window hasAttribute isClosed) {
+					window setAttribute !isClosed;
+					print "You pry loose the window.";
+				} else {
+					print "You have already pried loose the window.";
+				}
+			} else {
+				print "You do not have the wrench.";
+			}
+		} else {
+			print "You cannot the wrench here.";
+		}
+	}
+}
 

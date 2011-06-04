@@ -71,6 +71,7 @@ string Location::printRoom(void) {
 	}
 }
 
+
 /* Adds an item to the room */
 void Location::addItem(string item_name, Item* item) {
 	if (item->hasLocation()) {
@@ -105,27 +106,24 @@ string Location::listItemsDescription(void) {
 	return the_items;
 }
 
+string Location::printNameAndDescription() {
+	string name_and_description;
+	name_and_description += "\t\t\t" + this->getName() + "\n" + this->getDescription();
+	return name_and_description;
+}
+
 /* Returns the name of each item in this location */
 string Location::listItems(void) {
-	string lines, sub, the_items;
-	int num = 0;
+	string the_items, item;
 	int count;
-
 	map<string, Item*>::iterator it;
 	for (it = items.begin(), count=0; it != items.end(); count++, ++it) {
-		sub += "[" + (it->second->getName()) + "] " ; //+ " - " + it->second->getDescription());
-		num += it->second->getName().length()+2;
+		item += "[" + (it->second->getName()) + "] ";
 	}
 	if (count == 0) {
-		num += 2;
-	}
-	for (int n=0; n < this->getName().length()+13+num; n++) {
-		lines += "-";
-	}
-	if (count == 0) {
-		the_items =  lines + "\n" + this->getName() + " -" + " Items: None\n" +  lines;
+		the_items += "Items: None";
 	} else {
-		the_items =  lines + "\n" +  this->getName() + " -" + " Items: " + sub + "\n" + lines;
+		the_items += "Items: " + item;
 	}
 	return the_items;
 }

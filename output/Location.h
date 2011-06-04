@@ -56,6 +56,7 @@ public:
     void removeItem(string item_name);
     string listItems(void);
     string listItemsDescription(void);
+    string printNameAndDescription(void);
 
     // Destructor
     ~Location(void);

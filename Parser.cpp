@@ -90,8 +90,8 @@ int Parser::ParseAttributes() {
 	while (start < this->file_data.size()) {
 		start += 10;
 		end = this->file_data.find(";", start);
-			attribute = stringTrim(this->file_data.substr(start, end - start));
-			this->default_attribute_values[attribute] = false;
+		attribute = stringTrim(this->file_data.substr(start, end - start));
+		this->default_attribute_values[attribute] = false;
 		start = this->file_data.find("Attribute ", start);
 	}
 	return NO_ERRORS;
@@ -124,7 +124,6 @@ int Parser::ParseDefaults() {
 		// REMOVE DEFAULT DATA TO AVOID COLLISION OF ITEM
 		start = this->file_data.find("ItemDefaults");
 		this->file_data.replace(start, end + 1 - start, "");
-
 	}
 
 	start = this->file_data.find("LocationDefaults");
@@ -140,8 +139,9 @@ int Parser::ParseDefaults() {
 		this->file_data.replace(start, end + 1 - start, "");
 
 	}
-
-	this->initialDescription = ParseStringData(this->file_data, "initialDescription");
+	this->gameName = ParseStringData(this->file_data, "gameName", "");
+	this->credits = ParseStringData(this->file_data, "credits", "");
+	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "");
 	return NO_ERRORS;
 }
 

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "Compiler.h"
 #include "constants.h"
-#define INVENTORY_NAME "compiler_inventory"
+#define INVENTORY_NAME "inventory"
 
 /* Removes all white space before the string */
 void ltrim(string& str) {
@@ -40,7 +40,6 @@ void Compiler::Compile() {
 
 	string inventory_name = INVENTORY_NAME;
 
-
 	// Setting up includes/defines
 	string output = "\
 			#include <iostream>\n\
@@ -51,6 +50,8 @@ void Compiler::Compile() {
 			#include \"Item.h\"\n\
 			#include \"Player.h\"\n\
 			using namespace std;\n\
+			#define GAME_NAME \"" + parser->gameName + "\"\n\
+			#define CREDITS \"" + parser->credits + "\"\n\
 			#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n\
 			#define QUIT_GAME \"quit\"\n\
 			string toLower(string text);\n";
@@ -93,7 +94,7 @@ void Compiler::Compile() {
 	}
 
 	// Output Player/Inventory
-	output += "Location* " + inventory_name + " = new Location(\"Inventory\", \"Description of the inventory\");"
+	output += "Location* " + inventory_name + " = new Location(\"inventory\", \"Description of the inventory\");"
 			"Player* " + parser->player->getVariableName() + " = new Player();"
 			"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
 			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
@@ -135,9 +136,12 @@ void Compiler::Compile() {
 
 	// START OF GAME LOOP AND WORD READING
 	output += ""
-			"cout << WELCOME_MESSAGE << endl;"
+			"cout << endl << \"\t\t\t\" << GAME_NAME << endl;"
+			"cout << CREDITS << endl << endl;"
+			"cout << WELCOME_MESSAGE << endl << endl;"
 			"prompt = \"\\n>>> \";"
-			"cout << " + parser->player->getVariableName() + "->getLocation()->printRoom() << endl;"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;"
 			"while (true) {"
 			"   main_loop:"
 			"   cout << prompt;"
@@ -191,7 +195,7 @@ void Compiler::Compile() {
 	// INVENTORY
 	output += "\n\
 			if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
-			cout << " + parser->player->getVariableName() + "->getInventory()->listItems() << endl;\n\
+			cout << " + parser->player->getVariableName() + "->getInventory()->listItems() + \" \";\n\
 			cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
 			goto main_loop;\n\
 			}\n\n\
@@ -299,9 +303,9 @@ string Compiler::CompileNounVerb(Item *item) {
 
 		// END VERB
 		output += "goto main_loop;";
-		output += "}\n";
+		output += "}";
 	}
-	output += "cout << \"Sorry you can not '\" << verb << \"' on '\" << \"" + item->getName() + "\" << \"'\" << endl;\n";
+	output += "cout << \"Sorry you can not '\" << verb << \"' on '\" << \"" + item->getName() + "\" << \"'\";\n";
 	return output;
 }
 
@@ -312,7 +316,7 @@ string Compiler::CompileVerb(string line) {
 	string output = "";
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
-			output += "cout << \" \" << " + parser->player->getVariableName() + "->getLocation()->getDescription() << endl;\n";
+			output += "cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
 		} else if (line.compare("gameOver;") == 0) {
@@ -417,7 +421,6 @@ string Compiler::CompileVerb(string line) {
 		} else if (line.find("setLocation") < line.length()) {
 			string location = getLocation(line);
 			string item = getItem(line);
-
 			if (location == "" || item == "") {
 				cout << "Unreadable setLocation Command: \"" << line << "\"" << endl;
 			} else {
