@@ -122,7 +122,7 @@ Location deadSpace {
 
 Location garden {
     name = "The overgrown garden";
-    description = "You are in an overgrown garden in front of the mansion. The front door is bolted shut.";
+    description = "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.";
 }
 
 Location entranceHall {
@@ -339,16 +339,6 @@ Item window {
 			describe;
 			list;
 		}
-	}
-}
-
-Item mansion_door {
-	name = "mansion_door";
-	description = "It looks like the locals have bolted fast the mansion door. You'll have to find another way into the mansion.";
-	location = garden;
-	
-	Verb = "open or smash" {
-		print "You try to smash open the mansion door but there is no give. You will need to find another way into the mansion.";
 	}
 }
 
