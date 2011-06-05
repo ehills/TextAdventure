@@ -46,6 +46,9 @@ ItemDefaults {
 }
 
 LocationDefaults {
+	Verb "i or inventory or invent" {
+		describeInventory;
+	}
     Verb "look" {
 		 if(andy inLocation tortureRoom) {
             print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
@@ -55,6 +58,11 @@ LocationDefaults {
 			list;	
 		}
     }
+    Verb "quit" {
+    	print "Bye bye thanks for playing!!!";
+    	gameOver;
+    }   
+    // Directions
     Verb "north or n or nth" {
     	if(andy inLocation hasNorth) {
     		andy setLocation toNorth;
@@ -99,9 +107,14 @@ LocationDefaults {
 
 initialLocation = garden;
 
-initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is the old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
+initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
 
-// Location to store game items
+Location inventory {
+	name = "Inventory";
+	description = "";
+}
+
+// Location to temporarily store game items not in use
 Location deadSpace {
 	name = "Dead space";
 	description = "Dead space";
@@ -109,12 +122,12 @@ Location deadSpace {
 
 Location garden {
     name = "The overgrown garden";
-    description = "You are in the overgrown garden in front of the mansion. The front door is bolted shut.";
+    description = "You are in an overgrown garden in front of the mansion. The front door is bolted shut.";
 }
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You climb through the window and find yourself in a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west.";
+    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west.";
 
     west = masterBedroom;
     east = diningRoom;
@@ -191,7 +204,7 @@ Item mirror {
         } else {
             print "You admire yourself in the mirror.";
         }
-    }`
+    }
 }
 
 Item door {
@@ -216,6 +229,8 @@ Item door {
 			} else {
 				print "The door is already unlocked.";
 			}
+		} else {
+			print "You do not have a key to unlock the door";
 		}
 	}
 }
@@ -304,14 +319,25 @@ Item window {
 	name = "window";
 	description = "An old cracked window, seems to be your only access to the mansion.";
 	location = garden;
-	hasAttributes "isClosed";
+	hasAttributes = "isClosed isJammed";
 	
 	Verb = "open" {
-		if(window hasAttribute isClosed) {
+		if(window hasAttribute isJammed) {
 			print "The window seems to be jammed.";
 		} else {
+			window setAttribute !isClosed;
 			garden setNorth entranceHall;
 			print "The old window grates open.";
+		}
+	}
+
+	Verb = "go or climb or enter" {
+		if(window hasAttribute isClosed) {
+			print "You can't do that the window is closed";
+		} else {
+			andy setLocation entranceHall;
+			describe;
+			list;
 		}
 	}
 }
@@ -319,14 +345,14 @@ Item window {
 Item wrench {
 	name = "wrench";
 	description = "An old wrench.";
-	location = garden;
+	location = inventory;
 	hasAttributes = "canPickup";
 	
 	Verb = "use" {
 		if(andy inLocation garden) {
 			if(wrench inLocation andy) {
-				if(window hasAttribute isClosed) {
-					window setAttribute !isClosed;
+				if(window hasAttribute isJammed) {
+					window setAttribute !isJammed;
 					print "You pry loose the window.";
 				} else {
 					print "You have already pried loose the window.";
@@ -335,7 +361,7 @@ Item wrench {
 				print "You do not have the wrench.";
 			}
 		} else {
-			print "You cannot the wrench here.";
+			print "You cannot use the wrench here.";
 		}
 	}
 }

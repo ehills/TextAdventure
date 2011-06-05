@@ -5,7 +5,6 @@
  * Description: Contains the Player object and methods needed to access it.
  **/
 #include <sstream>
-
 #include "Player.h"
 
 /* Player Class will have a description and a weight limit associated with it.*/

@@ -32,4 +32,5 @@
 #define PARSER_FAIL "The Parser did not complete without errors."
 #define FILE_DID_NOT_OPEN "The file specified was unable to be opened"
 #define NO_DEFAULT_ATTRIBUTE "There is no default attribute for that item's attribute"
+#define NO_INVENTORY "Need to set Location inventory in game file"
 #endif

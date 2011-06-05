@@ -38,42 +38,56 @@ void Compiler::Compile() {
 		return;
 	}
 
-	string inventory_name = INVENTORY_NAME;
+	if (parser->locations.count("inventory") == 0) {
+		cout << NO_INVENTORY << endl;
+		exit(EXIT_FAILURE);
+	}
 
 	// Setting up includes/defines
-	string output = "\
-			#include <iostream>\n\
-			#include <cstdlib>\n\
-			#include <string>\n\
-			#include <sstream>\n\
-			#include \"Location.h\"\n\
-			#include \"Item.h\"\n\
-			#include \"Player.h\"\n\
-			using namespace std;\n\
-			#define GAME_NAME \"" + parser->gameName + "\"\n\
-			#define CREDITS \"" + parser->credits + "\"\n\
-			#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n\
-			#define QUIT_GAME \"quit\"\n\
-			string toLower(string text);\n";
+	string output =
+			"#include <iostream>\n"
+			"#include <cstdlib>\n"
+			"#include <string>\n"
+			"#include <sstream>\n"
+			"#include \"Location.h\"\n"
+			"#include \"Item.h\"\n"
+			"#include \"Player.h\"\n"
+			"using namespace std;\n"
+			"#define GAME_NAME \"" + parser->gameName + "\"\n"
+			"#define CREDITS \"" + parser->credits + "\"\n"
+			"#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n"
+			"#define QUIT_GAME \"quit\"\n"
+			"string toLower(string text);\n";
 
 	// START OF MAIN METHOD
-	output += "\
-			int main(int argc, char **argv) {\n\
-			string username;\n\
-			string command;\n\
-			string verb;\n\
-			string noun;\n\
-			string prompt;\n\
-			int count;\n\
-			\n";
+	output +=
+			"int main(int argc, char **argv) {\n"
+			"string username;\n"
+			"string command;\n"
+			"string verb;\n"
+			"string noun;\n"
+			"string prompt;\n"
+			"int count;\n"
+			"\n";
 
+	// Create player
+	output += "Player* " + parser->player->getVariableName() + " = new Player();\n\n";
 
 	// Output locations
 	map<string, Location*>::iterator it;
-
 	for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
 		output += "Location* " + it->first + " = new Location(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\");\n";
 	}
+
+
+
+	output += "\n";
+
+	// Output Inventory
+	//"Location* " + inventory_name + " = new Location(\"inventory\", \"Description of the inventory\");"
+	output += "" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
+			"" + parser->player->getVariableName() + "->setInventory(" + INVENTORY_NAME + ");"
+			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
 	output += "\n";
 
@@ -92,13 +106,6 @@ void Compiler::Compile() {
 			output += "" + it->first + "->setWest(" + location->getWest()->getVariableName() + ");\n";
 		}
 	}
-
-	// Output Player/Inventory
-	output += "Location* " + inventory_name + " = new Location(\"inventory\", \"Description of the inventory\");"
-			"Player* " + parser->player->getVariableName() + " = new Player();"
-			"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
-			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
-			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
 	output += "\n";
 
@@ -130,41 +137,39 @@ void Compiler::Compile() {
 			}
 			temp = "";
 		} while (word);
-
-		//cout << "HERE " << objects->second->getAttributeString()<< endl;
 	}
 
 	// START OF GAME LOOP AND WORD READING
-	output += ""
-			"cout << endl << \"\t\t\t\" << GAME_NAME << endl;"
-			"cout << CREDITS << endl << endl;"
-			"cout << WELCOME_MESSAGE << endl << endl;"
-			"prompt = \"\\n>>> \";"
-			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;"
-			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;"
-			"while (true) {"
-			"   main_loop:"
-			"   cout << prompt;"
-			"   getline(cin, command);"
-			"   istringstream word(command);"
-			"   verb = \"\";"
-			"   noun = \"\";"
-			"   count = 0;"
-			"   while (word) {"
-			"      if (count > 2) {"
-			"           cout << \"I do not understand your command. Enter 2 words at most, a verb followed by a noun\" << endl;"
-			"           goto main_loop;"
-			"      }"
-			"      if (count == 0) {"
-			"           word >> verb;"
+	output +=
+			"cout << endl << \"\t\t\t\" << GAME_NAME << endl;\n"
+			"cout << CREDITS << endl << endl;\n"
+			"cout << WELCOME_MESSAGE << endl << endl;\n"
+			"prompt = \"\\n>>> \";\n"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n"
+			"while (true) { \n"
+			"   main_loop:\n"
+			"   cout << prompt;\n"
+			"   getline(cin, command);\n"
+			"   istringstream word(command);\n"
+			"   verb = \"\";\n"
+			"   noun = \"\";\n"
+			"   count = 0;\n"
+			"   while (word) {\n"
+			"      if (count > 2) {\n"
+			"           cout << \"I do not understand your command. Enter 2 words at most, a verb followed by a noun\" << endl;\n"
+			"           goto main_loop;\n"
+			"      }\n"
+			"      if (count == 0) {\n"
+			"           word >> verb;\n"
 			"      } else {"
-			"           word >> noun;"
-			"      }"
-			"      count++;"
-			"   }";
+			"           word >> noun;\n"
+			"      }\n"
+			"      count++;\n"
+			"   }\n";
 
 	//QUIT GAME METHOD
-	output += "\
+	/*output += "\
 			if (command == QUIT_GAME) {\n\
 			quit_loop:\n\
 			string quit = \"\";\n\
@@ -178,12 +183,11 @@ void Compiler::Compile() {
 			} else {\n\
 			goto quit_loop;\n\
 			}\n\
-			}";
+			}";*/
 
 
 	// SINGLE VERB
-	output += "\
-			if (verb != \"\" && noun == \"\" ) {\n";
+	output += "if (verb != \"\" && noun == \"\" ) {\n";
 
 	// VERBS
 	map<string, string>::iterator iterator;
@@ -193,13 +197,13 @@ void Compiler::Compile() {
 	}
 
 	// INVENTORY
-	output += "\n\
+	/*output += "\n\
 			if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
 			cout << " + parser->player->getVariableName() + "->getInventory()->listItems() + \" \";\n\
 			cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
 			goto main_loop;\n\
 			}\n\n\
-			\n";
+			\n";*/
 
 	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
 
@@ -317,6 +321,9 @@ string Compiler::CompileVerb(string line) {
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n";
+		} else if (line.compare("describeInventory;") == 0) {
+			output += "cout << \"Inventory \" << " + parser->player->getVariableName() + "->getInventory()->listItems() << \" \";\n";
+			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
 		} else if (line.compare("gameOver;") == 0) {
@@ -409,20 +416,24 @@ string Compiler::CompileVerb(string line) {
 				cout << BAD_BRACES << endl;
 			}
 		} else if (line.find("else") < line.length()) {
-			output += "} else {";
-		} else if (line.find("setLocation") < line.length() && line.find("toNorth") < line.length())  {
+			output += "} else {\n";
+		} else if (line.find("setLocation") < line.length() && line.find("toNorth") < line.length()) {
 			output += parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getNorth()); \n";
-		} else if (line.find("setLocation") < line.length() && line.find("toSouth") < line.length())  {
+		} else if (line.find("setLocation") < line.length() && line.find("toSouth") < line.length()) {
 			output += parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getSouth()); \n";
-		} else if (line.find("setLocation") < line.length() && line.find("setLocation") < line.length() && line.find("toEast") < line.length())  {
+		} else if (line.find("setLocation") < line.length() && line.find("setLocation") < line.length() && line.find("toEast") < line.length()) {
 			output += parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getEast()); \n";
-		} else if (line.find("setLocation") < line.length() && line.find("toWest") < line.length())  {
+		} else if (line.find("setLocation") < line.length() && line.find("toWest") < line.length()) {
 			output += parser->player->getVariableName() + "->setLocation(" + parser->player->getVariableName() + "->getLocation()->getWest()); \n";
 		} else if (line.find("setLocation") < line.length()) {
 			string location = getLocation(line);
 			string item = getItem(line);
-			if (location == "" || item == "") {
+			if (location == "" && item == "") {
 				cout << "Unreadable setLocation Command: \"" << line << "\"" << endl;
+			} else if (line.find("setLocation") < line.length()
+					&& line.find(parser->player->getVariableName()) < line.length()
+					&& item == "" && location != "") {
+				output += parser->player->getVariableName() + "->setLocation(" + location + ");\n";
 			} else {
 				output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
 			}
