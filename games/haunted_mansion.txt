@@ -344,11 +344,11 @@ Item window {
 
 Item mansion_door {
 	name = "mansion_door";
-	description = "It looks like the locals have bolted fast the mansion door. You'll have to find another way into the mansion";
+	description = "It looks like the locals have bolted fast the mansion door. You'll have to find another way into the mansion.";
 	location = garden;
 	
 	Verb = "open or smash" {
-		print "You try to smash open the mansion door but there is no give";
+		print "You try to smash open the mansion door but there is no give. You will need to find another way into the mansion.";
 	}
 }
 

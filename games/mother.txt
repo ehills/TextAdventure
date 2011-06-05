@@ -1,3 +1,6 @@
+gameName = "*****Mother(Example Game)*****";
+credits = "By randoms";
+
 Player mother{
        name = "Mother";
        description: "A concerned Mother";
@@ -28,51 +31,59 @@ ItemDefaults {
 }
 
 LocationDefaults {
+	Verb "i or inventory or invent" {
+		describeInventory;
+	}
     Verb "look" {
-		 if(mother inLocation tortureRoom) {
-            print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
-			gameOver;
-		} else {
 			describe;
-			list;
-		}
+			list;	
     }
+    Verb "quit or q" {
+    	print "Bye bye thanks for playing!!!";
+    	gameOver;
+    }   
+    // Directions
     Verb "north or n or nth" {
     	if(mother inLocation hasNorth) {
     		mother setLocation toNorth;
     		describe;
-    		list;
+			list;
     	} else {
-    		print "You cannot go north";
+    		print "You cannot go north.";
     	}
     }
     Verb "south or s or sth" {
     	if(mother inLocation hasSouth) {
     		mother setLocation toSouth;
     		describe;
-    		list;
+			list;
     	} else {
-    		print "You cannot go south";
+    		print "You cannot go south.";
     	}
     }
     Verb "east or e" {
     	if(mother inLocation hasEast) {
     		mother setLocation toEast;
     		describe;
-    		list;
+			list;
     	} else {
-    		print "You cannot go east";
+    		print "You cannot go east.";
     	}
     }
     Verb "west or w" {
     	if(mother inLocation hasWest) {
     		mother setLocation toWest;
     		describe;
-    		list;
+			list;
     	} else {
-    		print "You cannot got west";
+    		print "You cannot go west.";
     	}
     }
+}
+
+Location inventory {
+	name = "Inventory";
+	description = "";
 }
 initialLocation = living_room;
 
@@ -91,7 +102,7 @@ Location living_room{
 }
 
 Item bedroom_door {
-    name = "Bedroom Door";
+    name = "Bedroom_Door";
     description = "This is the bedroom door. There's no lock on it but the door knob is stuck. What a piece of crap";
     location = living_room;
 
