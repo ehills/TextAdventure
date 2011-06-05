@@ -342,6 +342,16 @@ Item window {
 	}
 }
 
+Item mansion_door {
+	name = "mansion_door";
+	description = "It looks like the locals have bolted fast the mansion door. You'll have to find another way into the mansion";
+	location = garden;
+	
+	Verb = "open or smash" {
+		print "You try to smash open the mansion door but there is no give";
+	}
+}
+
 Item wrench {
 	name = "wrench";
 	description = "An old wrench.";
@@ -353,7 +363,7 @@ Item wrench {
 			if(wrench inLocation andy) {
 				if(window hasAttribute isJammed) {
 					window setAttribute !isJammed;
-					print "You pry loose the window.";
+					print "You pry loose the window with the wrench. Now it can easily be opened.";
 				} else {
 					print "You have already pried loose the window.";
 				}

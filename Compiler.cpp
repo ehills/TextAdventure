@@ -79,8 +79,6 @@ void Compiler::Compile() {
 		output += "Location* " + it->first + " = new Location(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\");\n";
 	}
 
-
-
 	output += "\n";
 
 	// Output Inventory

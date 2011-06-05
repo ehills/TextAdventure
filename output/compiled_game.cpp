@@ -61,6 +61,9 @@ Item lamp("lamp", "An old lamp but still looks like it might work.");
 diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
 lamp.addAttribute("canPickup", true);
+Item mansion_door("mansion door", "It looks like the locals have bolted fast the mansion door. You'll have to find another way into the mansion");
+garden->addItem("mansion door", &mansion_door);
+mansion_door.setLocation(garden);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
 deadSpace->addItem("mirror", &mirror);
 mirror.setLocation(deadSpace);
@@ -392,6 +395,41 @@ cout << lamp.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "lamp" << "'";
 goto main_loop;
+}if ((toLower(noun) == toLower("mansion door")) && (andy->getLocation()->hasItem("mansion door") || andy->getInventory()->hasItem("mansion door"))) {
+if (verb == "pickup" || verb == "pick-up" || verb == "get") {
+if (door.hasAttribute("canPickup")) {
+if (andy->getInventory()->hasItem(door.getName())) {
+cout << "You already have the ";
+cout << door.getName();
+} else {
+if (andy->canCarry()) {
+andy->getInventory()->addItem(door.getName(), &door);
+cout << "You pickup the ";
+cout << door.getName();
+} else {
+cout << "You are carrying too much already.";
+}
+}
+} else {
+cout << "You cannont pick up the ";
+cout << door.getName();
+cout << ", what were you thinking...";
+}
+goto main_loop;}if (verb == "open" || verb == "smash") {
+cout << "You try to smash open the mansion door but there is no give";
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+cout << door.getDescription();
+goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
+if (andy->getInventory()->hasItem(door.getName())) {
+andy->getLocation()->addItem(door.getName(), &door);
+cout << "You drop the ";
+cout << door.getName();
+} else {
+cout << "I don't have ";
+cout << door.getName();
+}
+goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "mansion door" << "'";
+goto main_loop;
 }if ((toLower(noun) == toLower("mirror")) && (andy->getLocation()->hasItem("mirror") || andy->getInventory()->hasItem("mirror"))) {
 if (verb == "use" || verb == "lookat" || verb == "look-at") {
 if (andy->getLocation() == tortureRoom) {
@@ -538,7 +576,7 @@ if (andy->getLocation() == garden) {
 if (wrench.getLocation() == andy->getInventory()) {
 if (window.hasAttribute("isJammed")) {
 window.setAttribute("isJammed", false);
-cout << "You pry loose the window.";
+cout << "You pry loose the window with the wrench. Now it can easily be opened.";
 } else {
 cout << "You have already pried loose the window.";
 }

@@ -84,7 +84,7 @@ int Parser::stripComments() {
 
 /* Parses the attributes associated with an item */
 int Parser::ParseAttributes() {
-	unsigned int start, end, temp;
+	unsigned int start, end;
 	string attribute;
 	start = this->file_data.find("Attribute ");
 	while (start < this->file_data.size()) {
@@ -166,7 +166,6 @@ int Parser::ParseLocations() {
 				location->setVariableName(location_name);
 				this->file_data.replace(start, size, location_name + " ");
 				this->locations[location_name] = location;
-
 			}
 		}
 		if (end < this->file_data.size()) {
