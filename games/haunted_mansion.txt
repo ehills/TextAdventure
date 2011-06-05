@@ -58,7 +58,7 @@ LocationDefaults {
 			list;	
 		}
     }
-    Verb "quit" {
+    Verb "quit or q" {
     	print "Bye bye thanks for playing!!!";
     	gameOver;
     }   
@@ -127,7 +127,7 @@ Location garden {
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west.";
+    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 
     west = masterBedroom;
     east = diningRoom;
@@ -168,7 +168,7 @@ Item lamp {
 
     Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
-			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west.";
+			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and window leading south.";
 			entranceHall setNorth secretHall;
 			masterBedroom setDescription "With the aid of the lamp you find yourself in an old creepy bedroom.";
 			mirror setLocation masterBedroom;
@@ -181,7 +181,7 @@ Item lamp {
 	
 	Verb "off or turnoff or turn-off" {
 		if(lamp inLocation andy) {
-			entranceHall setDescription "You find yourself in a dimly lit expansive entrance hall, illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north.";
+			entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 			entranceHall removeNorth;
 			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
 			print "You switch off the old lamp.";

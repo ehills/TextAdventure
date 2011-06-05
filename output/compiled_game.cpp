@@ -23,7 +23,7 @@ Player* andy = new Player();
 
 Location* deadSpace = new Location("Dead space", "Dead space");
 Location* diningRoom = new Location("The dining room", "You find yourself in an old dining room, complete with ornate chandeliers.");
-Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west.");
+Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");
 Location* garden = new Location("The overgrown garden", "You are in an overgrown garden in front of the mansion. The front door is bolted shut.");
 Location* inventory = new Location("Inventory", "");
 Location* masterBedroom = new Location("The master bedroom", "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.");
@@ -139,7 +139,7 @@ cout << "You cannot go north.";
 }
 
 goto main_loop;}
-if (verb == "quit"){
+if (verb == "quit" || verb == "q"){
 cout << "Bye bye thanks for playing!!!";
 break;
 
@@ -365,14 +365,14 @@ cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "off" || verb == "turnoff" || verb == "turn-off") {
 if (lamp.getLocation() == andy->getInventory()) {
-entranceHall->setDescription("You find yourself in a dimly lit expansive entrance hall, illuminated by the faint moonlight filtering through the dusty windows. You can only make out darkness to the north.");entranceHall->setNorth(NULL);
+entranceHall->setDescription("You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");entranceHall->setNorth(NULL);
 masterBedroom->setDescription("You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.");cout << "You switch off the old lamp.";
 } else {
 cout << "You don't have that item.";
 }
 goto main_loop;}if (verb == "light" || verb == "use" || verb == "turn-on" || verb == "turnon") {
 if (lamp.getLocation() == andy->getInventory()) {
-entranceHall->setDescription("With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west.");entranceHall->setNorth(secretHall);
+entranceHall->setDescription("With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and window leading south.");entranceHall->setNorth(secretHall);
 masterBedroom->setDescription("With the aid of the lamp you find yourself in an old creepy bedroom.");masterBedroom->addItem(mirror.getName(), &mirror);
 masterBedroom->addItem(bed.getName(), &bed);
 cout << "You fiddle around with the old lamp and manage to turn it on.";
