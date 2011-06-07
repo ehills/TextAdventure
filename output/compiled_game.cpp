@@ -6,8 +6,8 @@
 #include "Item.h"
 #include "Player.h"
 using namespace std;
-#define GAME_NAME "---The Haunted Mansion---"
-#define CREDITS "By Edward Hills, George Phillips, Samuel Garner, Stephen Herd"
+#define GAME_NAME "*****The Haunted Mansion*****"
+#define CREDITS "By Edward Hills, George Phillips, Samuel Garner by Stephen Herd"
 #define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills."
 #define QUIT_GAME "quit"
 string toLower(string text);
@@ -62,7 +62,7 @@ diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
 lamp.addAttribute("canPickup", true);
 lamp.addAttribute("canPickup", true);
-Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way into the mansion");
+Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way into the mansion.");
 garden->addItem("mansion_door", &mansion_door);
 mansion_door.setLocation(garden);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
@@ -429,7 +429,7 @@ cout << mansion_door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
-cout << "The mansion door is bolted shut. You will have to find another way into the mansion";
+cout << "The mansion door is bolted shut. You will have to find another way into the mansion.";
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {

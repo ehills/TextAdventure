@@ -1,5 +1,5 @@
 gameName = "*****The Haunted Mansion*****";
-credits = "By Edward Hills, George Phillips, Samuel Garner by Stephen Herd";
+credits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
 
 Player andy  {
     name =  "Andy";
