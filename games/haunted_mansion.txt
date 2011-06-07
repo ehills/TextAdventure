@@ -107,7 +107,7 @@ LocationDefaults {
 
 initialLocation = garden;
 
-initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
+initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
 
 Location inventory {
 	name = "Inventory";
@@ -168,7 +168,7 @@ Item lamp {
 
     Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
-			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and window leading south.";
+			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and also the window leading south.";
 			entranceHall setNorth secretHall;
 			masterBedroom setDescription "With the aid of the lamp you find yourself in an old creepy bedroom.";
 			mirror setLocation masterBedroom;
@@ -259,15 +259,15 @@ Item bed {
 	
 	Verb = "under or look or examine or x or ex" {
 		if (key inLocation andy) {
-			print " A massive dusty bed.";
+			print "A massive dusty bed.";
 		} else {
 			print "You see a key glinting under the bed.";
 			key setLocation masterBedroom;	
 		}
 	}
 	
-	Verb = "sleep" {
-		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to sleep.";
+	Verb = "sleep or nap" {
+		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to take a nap.";
 		}
 }
 
@@ -331,7 +331,7 @@ Item window {
 			} else {
 				window setAttribute isOpen;
 				garden setNorth entranceHall;
-				print "With a heave the window slides open to leave a nice opening to squeeze through.";
+				print "With a heave the window slides open to leave a nice opening to enter through.";
 			}
 		} else {
 			print "The window is already open.";	
@@ -376,11 +376,11 @@ Item wrench {
 
 Item mansion_door {
 	name = "mansion_door";
-	description  = "The mansion door is bolted shut. You will have to find another way in.".
+	description  = "The mansion door is bolted shut. You will need to find another way in.".
 	location = garden;
 	
 	Verb = "open" {
-		print "The mansion door is bolted shut. You will have to find another way in.".
+		print "The mansion door is bolted shut. You will have need to another way in.".
 	}
 }
 

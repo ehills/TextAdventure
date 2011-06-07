@@ -8,7 +8,7 @@
 using namespace std;
 #define GAME_NAME "*****The Haunted Mansion*****"
 #define CREDITS "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd"
-#define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills."
+#define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills."
 #define QUIT_GAME "quit"
 string toLower(string text);
 int main(int argc, char **argv) {
@@ -39,7 +39,7 @@ masterBedroom->setEast(entranceHall);
 secretHall->setSouth(entranceHall);
 tortureRoom->setSouth(secretHall);
 
-Item bed("bed", "A massive bed... you can see something glinting in the lamp light under it.");
+Item bed("bed", "A massive bed.");
 deadSpace->addItem("bed", &bed);
 bed.setLocation(deadSpace);
 Item box("box", "A large wooden box");
@@ -62,7 +62,7 @@ diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
 lamp.addAttribute("canPickup", true);
 lamp.addAttribute("!canPickup", false);
-Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way in.");
+Item mansion_door("mansion_door", "The mansion door is bolted shut. You will need to find another way in.");
 garden->addItem("mansion_door", &mansion_door);
 mansion_door.setLocation(garden);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
@@ -189,13 +189,13 @@ cout << "I don't know how to " << verb << " here";
 if ((toLower(noun) == toLower("bed")) && (andy->getLocation()->hasItem("bed") || andy->getInventory()->hasItem("bed"))) {
 if (verb == "under" || verb == "look" || verb == "examine" || verb == "x" || verb == "ex") {
 if (key.getLocation() == andy->getInventory()) {
-cout << " A massive dusty bed.";
+cout << "A massive dusty bed.";
 } else {
 cout << "You see a key glinting under the bed.";
 masterBedroom->addItem(key.getName(), &key);
 }
-goto main_loop;}if (verb == "sleep") {
-cout << "You lay down on the bed. As your eyes close you feel somethinglay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good palce to sleep.";
+goto main_loop;}if (verb == "sleep" || verb == "nap") {
+cout << "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to take a nap.";
 goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(bed.getName())) {
@@ -393,7 +393,7 @@ cout << "You don't have that item.";
 }
 goto main_loop;}if (verb == "light" || verb == "use" || verb == "turn-on" || verb == "turnon") {
 if (lamp.getLocation() == andy->getInventory()) {
-entranceHall->setDescription("With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and window leading south.");entranceHall->setNorth(secretHall);
+entranceHall->setDescription("With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and also the window leading south.");entranceHall->setNorth(secretHall);
 masterBedroom->setDescription("With the aid of the lamp you find yourself in an old creepy bedroom.");masterBedroom->addItem(mirror.getName(), &mirror);
 masterBedroom->addItem(bed.getName(), &bed);
 cout << "You fiddle around with the old lamp and manage to turn it on.";
@@ -434,7 +434,7 @@ cout << mansion_door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
-cout << "The mansion door is bolted shut. You will have to find another way in.";
+cout << "The mansion door is bolted shut. You will have need to another way in.";
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
@@ -567,7 +567,7 @@ cout << "You cannot open the window it's jammed.";
 window.setAttribute("isOpen", true);
 window.setAttribute("!isOpen", false);
 garden->setNorth(entranceHall);
-cout << "With a heave the window slides open to leave a nice opening to squeeze through.";
+cout << "With a heave the window slides open to leave a nice opening to enter through.";
 }
 } else {
 cout << "The window is already open.";
@@ -600,7 +600,7 @@ if (wrench.getLocation() == andy->getInventory()) {
 if (window.hasAttribute("isJammed")) {
 window.setAttribute("!isJammed", true);
 window.setAttribute("isJammed", false);
-cout << "You manage to pry open the window enough to get your hands under.";
+cout << "You manage to pry open the window far enough to get your hands under.";
 } else {
 cout << "You have already pried loose the window.";
 }
