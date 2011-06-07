@@ -21,15 +21,15 @@ using namespace std;
 //}
 
 int main(int argc, char* argv[]) {
-    char* filename;
-    // Check there is a file name specified
-    if (argc != 2) {
-        cerr << ERROR_WRONG_ARGUMENTS;
-        return EXIT_FAILURE;
-    }
-    filename = argv[1];
-    Compiler *compiler = new Compiler(filename);
-    compiler->Compile();
-    //cout << "Game compiled successfully.";
-    return EXIT_SUCCESS;
+	char* filename;
+	// Check there is a file name specified
+	if (argc != 2) {
+		cerr << ERROR_WRONG_ARGUMENTS;
+		return EXIT_FAILURE;
+	}
+	filename = argv[1];
+	Compiler *compiler = new Compiler(filename);
+	compiler->Compile();
+	//cout << "Game compiled successfully.";
+	return EXIT_SUCCESS;
 }

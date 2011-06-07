@@ -341,7 +341,7 @@ string Compiler::CompileVerb(string line) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n";
 		} else if (line.compare("describeInventory;") == 0) {
 			output += "cout << \"Inventory \" << " + parser->player->getVariableName() + "->getInventory()->listItems() << \" \";\n";
-			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n";
+			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems();\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems();\n";
 		} else if (line.compare("gameOver;") == 0) {
@@ -395,7 +395,11 @@ string Compiler::CompileVerb(string line) {
 					size_t start, end;
 					start = line.find("hasAttribute");
 					end = line.find(")");
-					output += "if (" + item + "." + line.substr(start,12) + "(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+					if (line.substr(start+13, (end-start-13)).find('!') == 0) {
+						output += "if (" + item + "." + "hasAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+					} else {
+						output += "if (" + item + "." + "hasAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+					}
 				} else if (line.find("canCarry") < line.length()) {
 					if (line.find(parser->player->getVariableName()) < line.length()) {
 						output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";

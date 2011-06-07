@@ -23,7 +23,7 @@ Player* andy = new Player();
 
 Location* deadSpace = new Location("Dead space", "Dead space");
 Location* diningRoom = new Location("The dining room", "You find yourself in an old dining room, complete with ornate chandeliers.");
-Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");
+Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");
 Location* garden = new Location("The overgrown garden", "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.");
 Location* inventory = new Location("Inventory", "");
 Location* masterBedroom = new Location("The master bedroom", "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.");
@@ -132,7 +132,7 @@ cout << "You cannot go east.";
 goto main_loop;}
 if (verb == "i" || verb == "inventory" || verb == "invent" || verb == "inv"){
 cout << "Inventory " << andy->getInventory()->listItems() << " ";
-cout << andy->getNumberOfItems() << "/" << andy->getMaxItems() << endl;
+cout << andy->getNumberOfItems() << "/" << andy->getMaxItems();
 
 goto main_loop;}
 if (verb == "look" || verb == "l"){
@@ -560,21 +560,25 @@ cout << window.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
+if (window.hasAttribute("!isOpen")) {
 if (window.hasAttribute("isJammed")) {
-cout << "The window seems to be jammed.";
+cout << "You cannot open the window it is jammed.";
 } else {
 window.setAttribute("isOpen", true);
 window.setAttribute("!isOpen", false);
 garden->setNorth(entranceHall);
-cout << "The old window grates open.";
+cout << "With a heave you open the window.";
+}
+} else {
+cout << "The window is already open.";
 }
 goto main_loop;}if (verb == "go" || verb == "climb" || verb == "enter") {
-if (window.hasAttribute("isClosed")) {
-cout << "You can't do that the window is closed.";
-} else {
+if (window.hasAttribute("isOpen")) {
 andy->setLocation(entranceHall);
 cout << andy->getLocation()->printNameAndDescription() << endl;
 cout << andy->getLocation()->listItems();
+} else {
+cout << "You can't do that the window is closed.";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << window.getDescription();

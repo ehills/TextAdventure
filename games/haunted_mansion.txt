@@ -127,7 +127,7 @@ Location garden {
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 
     west = masterBedroom;
     east = diningRoom;
@@ -324,24 +324,28 @@ Item window {
 	location = garden;
 	hasAttributes = !isOpen isJammed;
 	
-	Verb = "open" {
-		if(window hasAttribute isJammed) {
-			print "The window seems to be jammed.";
+	Verb "open" {
+		if (window hasAttribute !isOpen) {
+			if (window hasAttribute isJammed) {
+				print "You cannot open the window it is jammed.";
+			} else {
+				window setAttribute isOpen;
+				garden setNorth entranceHall;
+				print "With a heave you open the window.";
+			}
 		} else {
-			window setAttribute isOpen;
-			garden setNorth entranceHall;
-			print "The old window grates open.";
-
+			print "The window is already open.";	
 		}
 	}
 
 	Verb = "go or climb or enter" {
-		if(window hasAttribute isClosed) {
-			print "You can't do that the window is closed.";
-		} else {
+		if(window hasAttribute isOpen) {
 			andy setLocation entranceHall;
 			describe;
 			list;
+		} else {
+		  	print "You can't do that the window is closed.";
+			
 		}
 	}
 }
