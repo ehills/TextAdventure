@@ -126,7 +126,7 @@ void Compiler::Compile() {
 		istringstream word(objects->second->getAttributeString());
 		do {
 			word >> temp;
-			if (temp.find('!') == 0) {
+			if (temp.find('!') != 0) {
 				pos = temp.find('!') + 1;
 				sub = temp.substr(pos);
 				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
@@ -239,12 +239,19 @@ string Compiler::getItem(string expression) {
 	string item = "";
 	map<string, Item*>::iterator objects;
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		if (expression.find(objects->first) < expression.length()) {
-			item = objects->first;
-			break;
-		}
+		istringstream word(expression);
+		do {
+			word >> item;
+			size_t pos = item.find(';');
+			if(pos != string::npos) {
+				item.erase(pos, 1);
+			}
+			if (objects->second->getName() == item) {
+				return item;
+			}
+		} while (word);
 	}
-	return item;
+	return "";
 }
 
 /* Gets the location from the expression */

@@ -42,42 +42,55 @@ tortureRoom->setSouth(secretHall);
 Item bed("bed", "A massive bed... you can see something glinting in the lamp light under it.");
 deadSpace->addItem("bed", &bed);
 bed.setLocation(deadSpace);
-bed.addAttribute("canPickup", false);
+bed.addAttribute("!canPickup", true);
+bed.addAttribute("", false);
 Item box("box", "A large wooden box");
 secretHall->addItem("box", &box);
 box.setLocation(secretHall);
-box.addAttribute("isOpen", false);
-box.addAttribute("canPickup", false);
+box.addAttribute("!isOpen", true);
+box.addAttribute("!canPickup", true);
+box.addAttribute("", false);
 Item door("door", "A solid wooden door is located in the north wall. You notice a small keyhole.");
 secretHall->addItem("door", &door);
 door.setLocation(secretHall);
-door.addAttribute("isLocked", true);
-door.addAttribute("canPickup", false);
+door.addAttribute("isLocked", false);
+door.addAttribute("!canPickup", true);
+door.addAttribute("", false);
 Item key("key", "a small key");
 deadSpace->addItem("key", &key);
 key.setLocation(deadSpace);
-key.addAttribute("canPickup", true);
+key.addAttribute("canPickup", false);
+key.addAttribute("", false);
 Item lamp("lamp", "An old lamp but still looks like it might work.");
 diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
-lamp.addAttribute("canPickup", true);
+lamp.addAttribute("canPickup", false);
+lamp.addAttribute("", false);
+Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way into the mansion");
+garden->addItem("mansion_door", &mansion_door);
+mansion_door.setLocation(garden);
+mansion_door.addAttribute("", false);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
 deadSpace->addItem("mirror", &mirror);
 mirror.setLocation(deadSpace);
-mirror.addAttribute("canPickup", true);
+mirror.addAttribute("canPickup", false);
+mirror.addAttribute("", false);
 Item skull("skull", "A cracked human skull");
 deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
-skull.addAttribute("canPickup", true);
+skull.addAttribute("canPickup", false);
+skull.addAttribute("", false);
 Item window("window", "An old cracked window, seems to be your only access to the mansion.");
 garden->addItem("window", &window);
 window.setLocation(garden);
-window.addAttribute("isClosed", true);
-window.addAttribute("isJammed", true);
+window.addAttribute("isClosed", false);
+window.addAttribute("isJammed", false);
+window.addAttribute("", false);
 Item wrench("wrench", "An old wrench.");
 inventory->addItem("wrench", &wrench);
 wrench.setLocation(inventory);
-wrench.addAttribute("canPickup", true);
+wrench.addAttribute("canPickup", false);
+wrench.addAttribute("", false);
 cout << endl << "			" << GAME_NAME << endl;
 cout << CREDITS << endl << endl;
 cout << WELCOME_MESSAGE << endl << endl;
@@ -391,6 +404,41 @@ cout << "I don't have ";
 cout << lamp.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "lamp" << "'";
+goto main_loop;
+}if ((toLower(noun) == toLower("mansion_door")) && (andy->getLocation()->hasItem("mansion_door") || andy->getInventory()->hasItem("mansion_door"))) {
+if (verb == "pickup" || verb == "pick-up" || verb == "get") {
+if (mansion_door.hasAttribute("canPickup")) {
+if (andy->getInventory()->hasItem(mansion_door.getName())) {
+cout << "You already have the ";
+cout << mansion_door.getName();
+} else {
+if (andy->canCarry()) {
+andy->getInventory()->addItem(mansion_door.getName(), &mansion_door);
+cout << "You pickup the ";
+cout << mansion_door.getName();
+} else {
+cout << "You are carrying too much already.";
+}
+}
+} else {
+cout << "You cannont pick up the ";
+cout << mansion_door.getName();
+cout << ", what were you thinking...";
+}
+goto main_loop;}if (verb == "open") {
+cout << "You cannot open the mansion door it's bolted shut";
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+cout << mansion_door.getDescription();
+goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
+if (andy->getInventory()->hasItem(mansion_door.getName())) {
+andy->getLocation()->addItem(mansion_door.getName(), &mansion_door);
+cout << "You drop the ";
+cout << mansion_door.getName();
+} else {
+cout << "I don't have ";
+cout << mansion_door.getName();
+}
+goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "mansion_door" << "'";
 goto main_loop;
 }if ((toLower(noun) == toLower("mirror")) && (andy->getLocation()->hasItem("mirror") || andy->getInventory()->hasItem("mirror"))) {
 if (verb == "use" || verb == "lookat" || verb == "look-at") {

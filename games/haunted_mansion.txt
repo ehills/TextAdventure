@@ -366,3 +366,13 @@ Item wrench {
 	}
 }
 
+Item mansion_door {
+	name = "mansion_door";
+	description  = "The mansion door is bolted shut. You will have to find another way into the mansion".
+	location = garden;
+	
+	Verb = "open" {
+		print "You cannot open the mansion door it's bolted shut";
+	}
+}
+
