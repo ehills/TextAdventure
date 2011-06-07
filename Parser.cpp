@@ -365,7 +365,7 @@ void Parser::ParseItem(string data, Item *item) {
 		cout << NO_ITEM_LOCATION << endl;
 	}
 	// Parse attributes
-	attribute = ParseStringData(data, "hasAttributes");
+	attribute = ParseVariableData(data, "hasAttributes");
 	if (validAttribute(attribute)) {
 		item->setAttributeString(attribute);
 	}

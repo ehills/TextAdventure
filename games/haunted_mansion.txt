@@ -164,7 +164,7 @@ Item lamp {
     name = "lamp";
     description = "An old lamp but still looks like it might work.";
     location = diningRoom;
-    hasAttributes = "canPickup";
+    hasAttributes = canPickup;
 
     Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
@@ -195,7 +195,7 @@ Item mirror {
     name = "mirror";
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
     location = deadSpace;
-    hasAttributes = "canPickup";
+    hasAttributes = canPickup;
 
     Verb = "use or lookat or look-at" {
         if(andy inLocation tortureRoom) {
@@ -211,7 +211,7 @@ Item door {
 	name = "door";
 	description = "A solid wooden door is located in the north wall. You notice a small keyhole.";
 	location = secretHall;
-	hasAttributes = "isLocked !canPickup";
+	hasAttributes = isLocked;
 	
 	Verb = "open" {
 		if (door hasAttribute isLocked) {
@@ -239,7 +239,7 @@ Item key {
 	name = "key";
 	description = "a small key";
 	location = deadSpace;
-	hasAttributes = "canPickup";
+	hasAttributes = canPickup;
 	
 	Verb = "use" {
 		if(andy inLocation secretHall) {
@@ -256,13 +256,12 @@ Item bed {
 	name = "bed";
 	description = "A massive bed... you can see something glinting in the lamp light under it.";
 	location = deadSpace;
-	hasAttributes = "!canPickup";
 	
 	Verb = "under or look or examine or x or ex" {
 		if (key inLocation andy) {
 			print " A massive bed";
 		} else {
-			print "You find a small key glinting under the bed.";
+			print "You see a key glinting under the bed.";
 			key setLocation masterBedroom;	
 		}
 	}
@@ -272,7 +271,7 @@ Item box {
 	name = "box";
 	description = "A large wooden box";
 	location = secretHall;
-	hasAttributes = "!isOpen !canPickup";
+	hasAttributes = !isOpen;
 	
 	Verb = "open" { 
 		if (box hasAttribute isOpen) {
@@ -289,7 +288,7 @@ Item skull {
 	name = "skull";
 	description = "A cracked human skull";
 	location = deadSpace;
-	hasAttributes = "canPickup";
+	hasAttributes = canPickup;
 	
 	Verb = "wear" {
 		if (skull inLocation andy) {
@@ -319,7 +318,7 @@ Item window {
 	name = "window";
 	description = "An old cracked window, seems to be your only access to the mansion.";
 	location = garden;
-	hasAttributes = "isClosed isJammed";
+	hasAttributes = isClosed isJammed;
 	
 	Verb = "open" {
 		if(window hasAttribute isJammed) {
@@ -346,7 +345,7 @@ Item wrench {
 	name = "wrench";
 	description = "An old wrench.";
 	location = inventory;
-	hasAttributes = "canPickup";
+	hasAttributes = canPickup isJammed;
 	
 	Verb = "use" {
 		if(andy inLocation garden) {
@@ -368,11 +367,11 @@ Item wrench {
 
 Item mansion_door {
 	name = "mansion_door";
-	description  = "The mansion door is bolted shut. You will have to find another way into the mansion".
+	description  = "The mansion door is bolted shut. You will have to find another way into the mansion.".
 	location = garden;
 	
 	Verb = "open" {
-		print "You cannot open the mansion door it's bolted shut";
+		print "The mansion door is bolted shut. You will have to find another way into the mansion.".
 	}
 }
 

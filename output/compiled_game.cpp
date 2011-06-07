@@ -42,65 +42,68 @@ tortureRoom->setSouth(secretHall);
 Item bed("bed", "A massive bed... you can see something glinting in the lamp light under it.");
 deadSpace->addItem("bed", &bed);
 bed.setLocation(deadSpace);
-bed.addAttribute("!canPickup", true);
-bed.addAttribute("", false);
 Item box("box", "A large wooden box");
 secretHall->addItem("box", &box);
 box.setLocation(secretHall);
-box.addAttribute("!isOpen", true);
-box.addAttribute("!canPickup", true);
-box.addAttribute("", false);
+box.addAttribute("isOpen", false);
+box.addAttribute("isOpen", false);
 Item door("door", "A solid wooden door is located in the north wall. You notice a small keyhole.");
 secretHall->addItem("door", &door);
 door.setLocation(secretHall);
-door.addAttribute("isLocked", false);
-door.addAttribute("!canPickup", true);
-door.addAttribute("", false);
+door.addAttribute("isLocked", true);
+door.addAttribute("isLocked", true);
 Item key("key", "a small key");
 deadSpace->addItem("key", &key);
 key.setLocation(deadSpace);
-key.addAttribute("canPickup", false);
-key.addAttribute("", false);
+key.addAttribute("canPickup", true);
+key.addAttribute("canPickup", true);
 Item lamp("lamp", "An old lamp but still looks like it might work.");
 diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
-lamp.addAttribute("canPickup", false);
-lamp.addAttribute("", false);
+lamp.addAttribute("canPickup", true);
+lamp.addAttribute("canPickup", true);
 Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way into the mansion");
 garden->addItem("mansion_door", &mansion_door);
 mansion_door.setLocation(garden);
-mansion_door.addAttribute("", false);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
 deadSpace->addItem("mirror", &mirror);
 mirror.setLocation(deadSpace);
-mirror.addAttribute("canPickup", false);
-mirror.addAttribute("", false);
+mirror.addAttribute("canPickup", true);
+mirror.addAttribute("canPickup", true);
 Item skull("skull", "A cracked human skull");
 deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
-skull.addAttribute("canPickup", false);
-skull.addAttribute("", false);
+skull.addAttribute("canPickup", true);
+skull.addAttribute("canPickup", true);
 Item window("window", "An old cracked window, seems to be your only access to the mansion.");
 garden->addItem("window", &window);
 window.setLocation(garden);
-window.addAttribute("isClosed", false);
-window.addAttribute("isJammed", false);
-window.addAttribute("", false);
+window.addAttribute("isClosed", true);
+window.addAttribute("isJammed", true);
+window.addAttribute("isJammed", true);
 Item wrench("wrench", "An old wrench.");
 inventory->addItem("wrench", &wrench);
 wrench.setLocation(inventory);
-wrench.addAttribute("canPickup", false);
-wrench.addAttribute("", false);
+wrench.addAttribute("canPickup", true);
+wrench.addAttribute("isJammed", true);
+wrench.addAttribute("isJammed", true);
 cout << endl << "			" << GAME_NAME << endl;
 cout << CREDITS << endl << endl;
 cout << WELCOME_MESSAGE << endl << endl;
 prompt = "\n>>> ";
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 while (true) { 
    main_loop:
    cout << prompt;
+   prompt = "\n>>> ";
    getline(cin, command);
+   if (command == "") {
+		prompt = ">>> "; 
+		goto main_loop; 
+	} else { 
+   	prompt = "\n>>> ";
+ 	}
    istringstream word(command);
    verb = "";
    noun = "";
@@ -121,7 +124,7 @@ if (verb == "east" || verb == "e"){
 if (andy->getLocation()->hasEast()) {
 andy->setLocation(andy->getLocation()->getEast()); 
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 } else {
 cout << "You cannot go east.";
 }
@@ -138,7 +141,7 @@ cout << "You look into the face of death and feel the scythe rip through your bo
 break;
 } else {
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 }
 
 goto main_loop;}
@@ -146,7 +149,7 @@ if (verb == "north" || verb == "n" || verb == "nth"){
 if (andy->getLocation()->hasNorth()) {
 andy->setLocation(andy->getLocation()->getNorth()); 
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 } else {
 cout << "You cannot go north.";
 }
@@ -165,7 +168,7 @@ break;
 if (andy->getLocation()->hasSouth()) {
 andy->setLocation(andy->getLocation()->getSouth()); 
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 } else {
 cout << "You cannot go south.";
 }
@@ -175,7 +178,7 @@ if (verb == "west" || verb == "w"){
 if (andy->getLocation()->hasWest()) {
 andy->setLocation(andy->getLocation()->getWest()); 
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 } else {
 cout << "You cannot go west.";
 }
@@ -188,7 +191,7 @@ if (verb == "under" || verb == "look" || verb == "examine" || verb == "x" || ver
 if (key.getLocation() == andy->getInventory()) {
 cout << " A massive bed";
 } else {
-cout << "You find a small key glinting under the bed.";
+cout << "You see a key glinting under the bed.";
 masterBedroom->addItem(key.getName(), &key);
 }
 goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
@@ -426,7 +429,7 @@ cout << mansion_door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
-cout << "You cannot open the mansion door it's bolted shut";
+cout << "The mansion door is bolted shut. You will have to find another way into the mansion";
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
@@ -565,7 +568,7 @@ cout << "You can't do that the window is closed";
 } else {
 andy->setLocation(entranceHall);
 cout << andy->getLocation()->printNameAndDescription() << endl;
-cout << andy->getLocation()->listItems() << endl;
+cout << andy->getLocation()->listItems();
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
 cout << window.getDescription();

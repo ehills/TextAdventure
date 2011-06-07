@@ -126,14 +126,13 @@ void Compiler::Compile() {
 		istringstream word(objects->second->getAttributeString());
 		do {
 			word >> temp;
-			if (temp.find('!') != 0) {
+			if (temp.find('!') != string::npos) {
 				pos = temp.find('!') + 1;
 				sub = temp.substr(pos);
 				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
 			} else if (temp != ""){
 				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
 			}
-			temp = "";
 		} while (word);
 	}
 
@@ -144,11 +143,18 @@ void Compiler::Compile() {
 			"cout << WELCOME_MESSAGE << endl << endl;\n"
 			"prompt = \"\\n>>> \";\n"
 			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n"
-			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems();\n"
 			"while (true) { \n"
 			"   main_loop:\n"
 			"   cout << prompt;\n"
+			"   prompt = \"\\n>>> \";\n"
 			"   getline(cin, command);\n"
+			"   if (command == \"\") {\n"
+			"		prompt = \">>> \"; \n"
+			"		goto main_loop; \n"
+			"	} else { \n"
+			"   	prompt = \"\\n>>> \";\n"
+			" 	}\n"
 			"   istringstream word(command);\n"
 			"   verb = \"\";\n"
 			"   noun = \"\";\n"
@@ -330,7 +336,7 @@ string Compiler::CompileVerb(string line) {
 			output += "cout << \"Inventory \" << " + parser->player->getVariableName() + "->getInventory()->listItems() << \" \";\n";
 			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n";
 		} else if (line.compare("list;") == 0) {
-			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems() << endl;\n";
+			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems();\n";
 		} else if (line.compare("gameOver;") == 0) {
 			output += "break;\n";
 		} else if (line.find("print \"") < line.length()) {

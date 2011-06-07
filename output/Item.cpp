@@ -56,7 +56,10 @@ void Item::addAttribute(string attribute_name, bool is) {
 
 /* Returns an items attribute */
 bool Item::hasAttribute(string attribute_name){
-	return this->attributes.find(attribute_name)->second;
+	if (this->attributes.count(attribute_name) > 0) {
+		return this->attributes.find(attribute_name)->second;
+	}
+	return false;
 }
 
 /* Returns an items attribute */
