@@ -139,8 +139,8 @@ int Parser::ParseDefaults() {
 		this->file_data.replace(start, end + 1 - start, "");
 
 	}
-	this->gameName = ParseStringData(this->file_data, "gameName", "");
-	this->credits = ParseStringData(this->file_data, "credits", "");
+	this->gameName = ParseStringData(this->file_data, "gameName =", "");
+	this->credits = ParseStringData(this->file_data, "credits =", "");
 	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "");
 	return NO_ERRORS;
 }

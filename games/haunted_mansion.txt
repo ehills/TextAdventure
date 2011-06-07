@@ -8,7 +8,7 @@ Player andy  {
 }
 
 ItemDefaults {
-    Verb "examine or x or ex or look" {
+    Verb "examine or x or ex or look or l" {
         print inputItem getDescription;
     }
     
@@ -39,17 +39,17 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "I don't have ";
+            print "You don't have ";
             print inputItem;
         }
     }
 }
 
 LocationDefaults {
-	Verb "i or inventory or invent" {
+	Verb "i or inventory or invent or inv" {
 		describeInventory;
 	}
-    Verb "look" {
+    Verb "look or l" {
 		 if(andy inLocation tortureRoom) {
             print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 			gameOver;
@@ -230,7 +230,7 @@ Item door {
 				print "The door is already unlocked.";
 			}
 		} else {
-			print "You do not have a key to unlock the door";
+			print "You do not have a key to unlock the door.";
 		}
 	}
 }
@@ -259,12 +259,16 @@ Item bed {
 	
 	Verb = "under or look or examine or x or ex" {
 		if (key inLocation andy) {
-			print " A massive bed";
+			print " A massive dusty bed.";
 		} else {
 			print "You see a key glinting under the bed.";
 			key setLocation masterBedroom;	
 		}
 	}
+	
+	Verb = "sleep" {
+		print "You lay down on the bed. As your eyes close you feel somethinglay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good palce to sleep.";
+		}
 }
 
 Item box {
@@ -316,7 +320,7 @@ Item skull {
 
 Item window {
 	name = "window";
-	description = "An old cracked window, seems to be your only access to the mansion.";
+	description = "An old cracked window it seems to be your only access to the mansion.";
 	location = garden;
 	hasAttributes = isClosed isJammed;
 	
@@ -332,7 +336,7 @@ Item window {
 
 	Verb = "go or climb or enter" {
 		if(window hasAttribute isClosed) {
-			print "You can't do that the window is closed";
+			print "You can't do that the window is closed.";
 		} else {
 			andy setLocation entranceHall;
 			describe;

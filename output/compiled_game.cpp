@@ -7,7 +7,7 @@
 #include "Player.h"
 using namespace std;
 #define GAME_NAME "*****The Haunted Mansion*****"
-#define CREDITS "By Edward Hills, George Phillips, Samuel Garner by Stephen Herd"
+#define CREDITS "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd"
 #define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills."
 #define QUIT_GAME "quit"
 string toLower(string text);
@@ -75,7 +75,7 @@ deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
 skull.addAttribute("canPickup", true);
 skull.addAttribute("canPickup", true);
-Item window("window", "An old cracked window, seems to be your only access to the mansion.");
+Item window("window", "An old cracked window it seems to be your only access to the mansion.");
 garden->addItem("window", &window);
 window.setLocation(garden);
 window.addAttribute("isClosed", true);
@@ -130,12 +130,12 @@ cout << "You cannot go east.";
 }
 
 goto main_loop;}
-if (verb == "i" || verb == "inventory" || verb == "invent"){
+if (verb == "i" || verb == "inventory" || verb == "invent" || verb == "inv"){
 cout << "Inventory " << andy->getInventory()->listItems() << " ";
 cout << andy->getNumberOfItems() << "/" << andy->getMaxItems() << endl;
 
 goto main_loop;}
-if (verb == "look"){
+if (verb == "look" || verb == "l"){
 if (andy->getLocation() == tortureRoom) {
 cout << "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
 break;
@@ -213,7 +213,7 @@ cout << "You cannont pick up the ";
 cout << bed.getName();
 cout << ", what were you thinking...";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << bed.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(bed.getName())) {
@@ -254,7 +254,7 @@ secretHall->addItem(skull.getName(), &skull);
 box.setAttribute("isOpen", true);
 cout << "You open the box and discover a human skull... the body is nowhere to been seen.";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << box.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(box.getName())) {
@@ -305,7 +305,7 @@ cout << "You cannot open the door it is locked.";
 secretHall->setNorth(tortureRoom);
 cout << "The door swings open.";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(door.getName())) {
@@ -346,7 +346,7 @@ cout << "You cannont pick up the ";
 cout << key.getName();
 cout << ", what were you thinking...";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << key.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(key.getName())) {
@@ -395,7 +395,7 @@ cout << "You fiddle around with the old lamp and manage to turn it on.";
 } else {
 cout << "You don't have that item.";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << lamp.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(lamp.getName())) {
@@ -430,7 +430,7 @@ cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
 cout << "The mansion door is bolted shut. You will have to find another way into the mansion.";
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(mansion_door.getName())) {
@@ -470,7 +470,7 @@ cout << "You cannont pick up the ";
 cout << mirror.getName();
 cout << ", what were you thinking...";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mirror.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(mirror.getName())) {
@@ -521,7 +521,7 @@ cout << "You cannont pick up the ";
 cout << skull.getName();
 cout << ", what were you thinking...";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << skull.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(skull.getName())) {
@@ -570,7 +570,7 @@ andy->setLocation(entranceHall);
 cout << andy->getLocation()->printNameAndDescription() << endl;
 cout << andy->getLocation()->listItems();
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << window.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(window.getName())) {
@@ -618,7 +618,7 @@ cout << "You cannont pick up the ";
 cout << wrench.getName();
 cout << ", what were you thinking...";
 }
-goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look") {
+goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << wrench.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
 if (andy->getInventory()->hasItem(wrench.getName())) {
