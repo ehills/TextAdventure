@@ -1,6 +1,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include "Compiler.h"
 #include "constants.h"
 #define INVENTORY_NAME "inventory"
@@ -122,17 +123,23 @@ void Compiler::Compile() {
 
 		// Add item attributes
 		size_t pos;
-		string temp, sub;
+		string temp;
+		string sub;
 		istringstream word(objects->second->getAttributeString());
 		do {
+			string sub = "";
 			word >> temp;
 			if (temp.find('!') != string::npos) {
 				pos = temp.find('!') + 1;
 				sub = temp.substr(pos);
+				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
 				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
 			} else if (temp != ""){
+				sub = "!" + temp;
 				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
+				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
 			}
+			temp = "";
 		} while (word);
 	}
 
@@ -483,9 +490,12 @@ string Compiler::CompileVerb(string line) {
 			start = line.find("setAttribute");
 			end = line.find(";");
 			if (line.substr(start+13, (end-start-13)).find('!') == 0) {
+				output += item + ".setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
 				output += item + ".setAttribute(" + '"' + line.substr(start+14, (end-start-14)) + '"' + ", false);\n";
 			} else {
+				string sub = "!" + line.substr(start+13, (end-start-13));
 				output += item + ".setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
+				output += item + ".setAttribute(" + '"' + sub + '"' + ", false);\n";
 			}
 		} else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length()
 				|| line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
