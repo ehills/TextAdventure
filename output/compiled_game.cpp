@@ -8,7 +8,7 @@
 using namespace std;
 #define GAME_NAME "*****The Haunted Mansion*****"
 #define CREDITS "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd"
-#define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills."
+#define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills."
 #define QUIT_GAME "quit"
 string toLower(string text);
 int main(int argc, char **argv) {
@@ -62,7 +62,7 @@ diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
 lamp.addAttribute("canPickup", true);
 lamp.addAttribute("!canPickup", false);
-Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way into the mansion.");
+Item mansion_door("mansion_door", "The mansion door is bolted shut. You will have to find another way in.");
 garden->addItem("mansion_door", &mansion_door);
 mansion_door.setLocation(garden);
 Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
@@ -82,7 +82,7 @@ window.addAttribute("!isOpen", true);
 window.addAttribute("isOpen", false);
 window.addAttribute("isJammed", true);
 window.addAttribute("!isJammed", false);
-Item wrench("wrench", "An old wrench.");
+Item wrench("wrench", "Your trusty wrench. You've used it to help you out of many a tight jam.");
 inventory->addItem("wrench", &wrench);
 wrench.setLocation(inventory);
 wrench.addAttribute("canPickup", true);
@@ -110,7 +110,7 @@ while (true) {
    count = 0;
    while (word) {
       if (count > 2) {
-           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun" << endl;
+           cout << "I do not understand your command. Enter 2 words at most, a verb followed by a noun";
            goto main_loop;
       }
       if (count == 0) {
@@ -434,7 +434,7 @@ cout << mansion_door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
-cout << "The mansion door is bolted shut. You will have to find another way into the mansion.";
+cout << "The mansion door is bolted shut. You will have to find another way in.";
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
@@ -562,12 +562,12 @@ cout << ", what were you thinking...";
 goto main_loop;}if (verb == "open") {
 if (window.hasAttribute("!isOpen")) {
 if (window.hasAttribute("isJammed")) {
-cout << "You cannot open the window it is jammed.";
+cout << "You cannot open the window it's jammed.";
 } else {
 window.setAttribute("isOpen", true);
 window.setAttribute("!isOpen", false);
 garden->setNorth(entranceHall);
-cout << "With a heave you open the window.";
+cout << "With a heave the window slides open to leave a nice opening to squeeze through.";
 }
 } else {
 cout << "The window is already open.";
@@ -600,7 +600,7 @@ if (wrench.getLocation() == andy->getInventory()) {
 if (window.hasAttribute("isJammed")) {
 window.setAttribute("!isJammed", true);
 window.setAttribute("isJammed", false);
-cout << "You pry loose the window with the wrench. Now it can easily be opened.";
+cout << "You manage to pry open the window enough to get your hands under.";
 } else {
 cout << "You have already pried loose the window.";
 }

@@ -107,7 +107,7 @@ LocationDefaults {
 
 initialLocation = garden;
 
-initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
+initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old, haunted mansion locals say to be inhabited by a long dead sycthe weilding psycho. This is the perfect place to hone your ghost busting skills.";
 
 Location inventory {
 	name = "Inventory";
@@ -327,11 +327,11 @@ Item window {
 	Verb "open" {
 		if (window hasAttribute !isOpen) {
 			if (window hasAttribute isJammed) {
-				print "You cannot open the window it is jammed.";
+				print "You cannot open the window it's jammed.";
 			} else {
 				window setAttribute isOpen;
 				garden setNorth entranceHall;
-				print "With a heave you open the window.";
+				print "With a heave the window slides open to leave a nice opening to squeeze through.";
 			}
 		} else {
 			print "The window is already open.";	
@@ -352,7 +352,7 @@ Item window {
 
 Item wrench {
 	name = "wrench";
-	description = "An old wrench.";
+	description = "Your trusty wrench. You've used it to help you out of many a tight jam.";
 	location = inventory;
 	hasAttributes = canPickup;
 	
@@ -361,7 +361,7 @@ Item wrench {
 			if(wrench inLocation andy) {
 				if(window hasAttribute isJammed) {
 					window setAttribute !isJammed;
-					print "You pry loose the window with the wrench. Now it can easily be opened.";
+					print "You manage to pry open the window far enough to get your hands under.";
 				} else {
 					print "You have already pried loose the window.";
 				}
@@ -376,11 +376,11 @@ Item wrench {
 
 Item mansion_door {
 	name = "mansion_door";
-	description  = "The mansion door is bolted shut. You will have to find another way into the mansion.".
+	description  = "The mansion door is bolted shut. You will have to find another way in.".
 	location = garden;
 	
 	Verb = "open" {
-		print "The mansion door is bolted shut. You will have to find another way into the mansion.".
+		print "The mansion door is bolted shut. You will have to find another way in.".
 	}
 }
 
