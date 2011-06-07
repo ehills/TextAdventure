@@ -254,7 +254,7 @@ Item key {
 
 Item bed {
 	name = "bed";
-	description = "A massive bed... you can see something glinting in the lamp light under it.";
+	description = "A massive bed.";
 	location = deadSpace;
 	
 	Verb = "under or look or examine or x or ex" {
@@ -267,7 +267,7 @@ Item bed {
 	}
 	
 	Verb = "sleep" {
-		print "You lay down on the bed. As your eyes close you feel somethinglay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good palce to sleep.";
+		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to sleep.";
 		}
 }
 
