@@ -5,8 +5,8 @@ We have ensured no verbs are hardcoded to give the user more control over their 
 
 Differences to BIFF
 
-gameName = "game_name";  lets a user specify a games name to be presented at the start of each game. Set to an empty string by default.
-credits = "credits_go_here"; lets a user specify a games credits to be presented after the game name. Set to an empty string by default.
+gameName = "game_name";  lets a user specify a game's name to be presented at the start of each game. Set to an empty string by default.
+credits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
 
 Synonyms
 We have implemented synonyms differently to BIFF. All the user needs to do when they initialise a new verb is to use "or" to write as many synonyms as they want.
