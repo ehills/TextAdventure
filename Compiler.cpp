@@ -71,13 +71,13 @@ void Compiler::Compile() {
 	// Output locations
 	map<string, Location*>::iterator it;
 	for (it = parser->locations.begin(); it != parser->locations.end(); it++) {
-		output += "Location* " + it->first + " = new Location(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\");\n";
+		output += "Location* " + it->first + " = new Location(\"" + it->second->getName() + "\", \"" + it->second->getDescription() + "\", \"" + it->second->getVariableName() + "\");\n";
 	}
 
 	output += "\n";
 	string inventory_name = INVENTORY_NAME;
 
-	// Output Inventory
+	// Initialise Inventory
 	output +=	"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
 			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
 			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
@@ -111,7 +111,7 @@ void Compiler::Compile() {
 	// Output Items
 	map<string, Item*>::iterator objects;
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\");\n";
+		output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\", \"" + objects->second->getVariableName() + "\");\n";
 		output += objects->second->getLocation()->getVariableName() + "->addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
 		output += objects->first + ".setLocation(" + objects->second->getLocation()->getVariableName() + ");\n";
 
@@ -185,7 +185,9 @@ void Compiler::Compile() {
 	// Verb Noun
 	output += "} else if (verb != \"\" && noun != \"\" ){\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		output += "if ((toLower(noun) == toLower(\"" + objects->second->getName() + "\")) && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
+		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
+				"|| " + parser->player->getVariableName() + "->getInventory()->hasItemVariableName(\"" + objects->second->getVariableName() + "\")) " +
+				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileNounVerb(objects->second) + ""
 				"goto main_loop;\n"
 				"}";
@@ -221,7 +223,7 @@ string Compiler::getItem(string expression) {
 			if(pos != string::npos) {
 				item.erase(pos, 1);
 			}
-			if (objects->second->getName() == item) {
+			if (objects->second->getVariableName() == item) {
 				return item;
 			}
 		} while (word);

@@ -10,7 +10,6 @@ Parser::Parser(char* filename) {
 	ifstream file;
 	string line;
 	string data;
-	unique_identifier = 0;
 	file.open(filename);
 	if (file.is_open()) {
 		while (getline(file, line)) {
@@ -34,7 +33,6 @@ list<string> Parser::ParseFile(void) {
 		this->ParsePlayer();
 		this->ParseLocations();
 		this->ParseItems();
-
 		string location_name = ParseVariableData(this->file_data, "initialLocation");
 		if (this->locations.count(location_name) > 0) {
 			this->initialLocation = this->locations.find(location_name)->second;
@@ -49,7 +47,6 @@ list<string> Parser::ParseFile(void) {
 int Parser::stripComments() {
 	// Find all block comments and remove
 	unsigned int start, end, size;
-
 	start = this->file_data.find("/*");
 	while (start < this->file_data.size()) {
 		end = this->file_data.find("*/");
@@ -122,7 +119,7 @@ int Parser::ParseDefaults() {
 			}
 		}
 
-		// REMOVE DEFAULT DATA TO AVOID COLLISION OF ITEM
+		// Remove default data to avoid collision of items
 		start = this->file_data.find("ItemDefaults");
 		this->file_data.replace(start, end + 1 - start, "");
 	}
@@ -135,7 +132,7 @@ int Parser::ParseDefaults() {
 		data = this->file_data.substr(start, end - start);
 		default_location_verb_expressions = ParseVerbs(data);
 
-		// REMOVE DEFAULT DATA TO AVOID COLLISION OF ITEM
+		// Remove default data to avoid collision of items
 		start = this->file_data.find("LocationDefaults");
 		this->file_data.replace(start, end + 1 - start, "");
 
@@ -235,12 +232,11 @@ int Parser::ParseItems() {
 		end = this->file_data.find("{", start);
 		if (end < this->file_data.size()) {
 			if (this->file_data.at(start - 1) != 't') {
-
 				start += 5;
 				size = (end) - start;
 				Item *item = new Item();
 				string item_name = stringTrim(this->file_data.substr(start, size));
-				this->file_data.replace(start, size, item_name + " ");
+				this->file_data.replace(start, size, item_name +  " ");
 				item->setVariableName(item_name);
 				this->items[item_name] = item;
 			}
@@ -282,7 +278,6 @@ void Parser::ParseLocation(string data, Location *location) {
 	} else {
 		cout << NO_LOCATION_NAME << endl;
 	}
-
 	// Parse Description(string attribute)
 	attribute = ParseStringData(data, "description");
 	if (validAttribute(attribute)) {
@@ -357,7 +352,7 @@ void Parser::ParseItem(string data, Item *item) {
 	attribute = ParseVariableData(data, "location");
 	// Player's inventory
 	if (attribute == this->player->getVariableName()) {
-		Location* player_inventory = new Location(player->getVariableName()+"->getInventory()", "inventory", "");
+		Location* player_inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");
 		this->locations.insert(pair<string, Location*>("inventory", player_inventory));
 		item->setLocation(this->locations.at("inventory"));
 	} else if (validAttribute(attribute)) {

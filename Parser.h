@@ -15,6 +15,7 @@
 #include "Location.h"
 #include "Item.h"
 #include "Player.h"
+
 using namespace std;
 
 class Parser {
@@ -27,7 +28,6 @@ class Parser {
 	void ParseLocation(string data, Location* location);
 	void ParseItem(string data, Item* item);
 	string file_data;
-	int unique_identifier;
 public:
 	Parser(char* filename);
 	list<string> ParseFile(); // Returns the errors

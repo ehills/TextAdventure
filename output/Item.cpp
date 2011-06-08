@@ -1,13 +1,18 @@
 #include "Item.h"
 
 /* Constructor sets up initial variables */
-Item::Item(string name, string description) {
+Item::Item(string name, string description, string variable_name) {
 	this->name = name;
 	this->description = description;
 	this->location = NULL;
+	this->variable_name = variable_name;
 }
 
 Item::Item() {
+}
+
+string Item::getVariableName() {
+	return this->variable_name;
 }
 
 string Item::getName(void) {

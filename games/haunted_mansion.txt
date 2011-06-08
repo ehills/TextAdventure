@@ -163,9 +163,9 @@ Item lamp {
 
     Verb "light or use or turn-on or turnon" {
 		if(lamp inLocation andy) {
-			entranceHall setDescription "With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and also the window leading south.";
+			entranceHall setDescription "With the aid of the lamp you can now make out a doorway to the north. The other exits are doorways to the east and west and the window leading south.";
 			entranceHall setNorth secretHall;
-			masterBedroom setDescription "With the aid of the lamp you find yourself in an old creepy bedroom.";
+			masterBedroom setDescription "With the lamp illuminating your surroundings you find yourself in a creepy old bedroom decorated with many mirrors. You keep seeing things move in them out of the corner of your eye. There is also a massive bed taking up most of the room. You can see many things glinting under it.";
 			mirror setLocation masterBedroom;
 			bed setLocation masterBedroom;
 			print "You fiddle around with the old lamp and manage to turn it on.";
@@ -204,28 +204,33 @@ Item mirror {
 
 Item door {
 	name = "door";
-	description = "A solid wooden door is located in the north wall. You notice a small keyhole.";
+	description = "A solid wooden door is located in the north wall. You notice a small key hole.";
 	location = secretHall;
-	hasAttributes = isLocked;
+	hasAttributes = isLocked !isOpen;
 	
 	Verb = "open" {
-		if (door hasAttribute isLocked) {
-		print "You cannot open the door it is locked.";
+		if(door hasAttribute !isOpen) {
+			if (door hasAttribute isLocked) {
+			print "You cannot open the door it is locked.";
+			} else {
+				door setAttribute isOpen;
+				secretHall setNorth tortureRoom;
+				print "The door swings open.";
+			}
 		} else {
-			secretHall setNorth tortureRoom;
-			print "The door swings open.";
+			print "The door is already open";
 		}
 	}
 	Verb = "unlock" {
 		if(key inLocation andy) {
 			if (door hasAttribute isLocked) {
 				door setAttribute !isLocked;
-				print "You unlock the door with the small key.";
+				print "You struggle to turn the key in the old door but manage to unlock it.";
 			} else {
 				print "The door is already unlocked.";
 			}
 		} else {
-			print "You do not have a key to unlock the door.";
+				print "You do not have a key to unlock the door.";
 		}
 	}
 }
@@ -237,19 +242,23 @@ Item key {
 	hasAttributes = canPickup;
 	
 	Verb = "use" {
-		if(andy inLocation secretHall) {
-			print "You struggle to turn the key in the old door but manage to unlock it.";
-			secretHall setNorth tortureRoom;
-			door setAttribute !isLocked;
+		if(door hasAttribute isLocked) {
+			if(andy inLocation secretHall) {
+				print "You struggle to turn the key in the old door but manage to unlock it.";
+				secretHall setNorth tortureRoom;
+				door setAttribute !isLocked;
+			} else {
+				print "You can't use the key here.";
+			}
 		} else {
-			print "You can't use the key here.";
+				print "The door is already unlocked.";
 		}
 	}
 }
 
 Item bed {
 	name = "bed";
-	description = "A massive bed.";
+	description = "A massive dusty bed.";
 	location = deadSpace;
 	
 	Verb = "under or look or examine or x or ex" {
@@ -370,12 +379,12 @@ Item wrench {
 }
 
 Item mansion_door {
-	name = "mansion_door";
-	description  = "The mansion door is bolted shut. You will need to find another way in.".
+	name = "door";
+	description  = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 	
 	Verb = "open" {
-		print "The mansion door is bolted shut. You will need to find another way in.".
+		print "The mansion door is bolted shut. You will need to find another way in.";
 	}
 }
 

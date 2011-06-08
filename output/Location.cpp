@@ -16,13 +16,14 @@ string toLower(string text) {
 	return ret;
 }
 
-Location::Location(string name, string description) {
+Location::Location(string name, string description, string variable_name) {
 	this->name = name;
 	this->description = description;
 	this->north = NULL;
 	this->south = NULL;
 	this->west = NULL;
 	this->east = NULL;
+	this->variable_name = variable_name;
 }
 
 Location::Location() {
@@ -30,6 +31,11 @@ Location::Location() {
 	this->south = NULL;
 	this->west = NULL;
 	this->east = NULL;
+	this->variable_name = variable_name;
+}
+
+string Location::getVariableName() {
+	return this->variable_name;
 }
 
 string Location::getName(void) {
@@ -56,8 +62,24 @@ void Location::addItem(string item_name, Item* item) {
 	this->items.insert(pair<string, Item*> (toLower(item_name), item));
 }
 
+bool Location::hasItemVariableName(string item_variable_name) {
+	map<string, Item*>::iterator it;
+	for (it = items.begin(); it != items.end(); it++) {
+		if (it->second->getVariableName() ==  item_variable_name) {
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Location::hasItem(string item_name) {
-	return this->items.count(toLower(item_name)) != 0;
+	map<string, Item*>::iterator it;
+	for(it = items.begin(); it != items.end(); it++) {
+		if(it->second->getName() == item_name) {
+			return true;
+		}
+	}
+	return false;
 }
 
 int Location::getItemCount() {

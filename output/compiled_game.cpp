@@ -21,14 +21,14 @@ int count;
 
 Player* andy = new Player();
 
-Location* deadSpace = new Location("Dead space", "Dead space");
-Location* diningRoom = new Location("The dining room", "You find yourself in an old dining room, complete with ornate chandeliers.");
-Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");
-Location* garden = new Location("The overgrown garden", "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.");
-Location* inventory = new Location("inventory", "");
-Location* masterBedroom = new Location("The master bedroom", "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.");
-Location* secretHall = new Location("The secret hall", "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.");
-Location* tortureRoom = new Location("The torture room", "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.");
+Location* deadSpace = new Location("Dead space", "Dead space", "deadSpace");
+Location* diningRoom = new Location("The dining room", "You find yourself in an old dining room, complete with ornate chandeliers.", "diningRoom");
+Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.", "entranceHall");
+Location* garden = new Location("The overgrown garden", "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.", "garden");
+Location* inventory = new Location("inventory", "Player's inventory.", "andy->getInventory()");
+Location* masterBedroom = new Location("The master bedroom", "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.", "masterBedroom");
+Location* secretHall = new Location("The secret hall", "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.", "secretHall");
+Location* tortureRoom = new Location("The torture room", "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.", "tortureRoom");
 
 andy->setLocation(garden);andy->setInventory(inventory);andy->setMaxItems(4);
 diningRoom->setWest(entranceHall);
@@ -39,50 +39,52 @@ masterBedroom->setEast(entranceHall);
 secretHall->setSouth(entranceHall);
 tortureRoom->setSouth(secretHall);
 
-Item bed("bed", "A massive bed.");
+Item bed("bed", "A massive dusty bed.", "bed");
 deadSpace->addItem("bed", &bed);
 bed.setLocation(deadSpace);
-Item box("box", "A large wooden box");
+Item box("box", "A large wooden box", "box");
 secretHall->addItem("box", &box);
 box.setLocation(secretHall);
 box.addAttribute("!isOpen", true);
 box.addAttribute("isOpen", false);
-Item door("door", "A solid wooden door is located in the north wall. You notice a small keyhole.");
+Item door("door", "A solid wooden door is located in the north wall. You notice a small key hole.", "door");
 secretHall->addItem("door", &door);
 door.setLocation(secretHall);
 door.addAttribute("isLocked", true);
 door.addAttribute("!isLocked", false);
-Item key("key", "a small key");
+door.addAttribute("!isOpen", true);
+door.addAttribute("isOpen", false);
+Item key("key", "a small key", "key");
 deadSpace->addItem("key", &key);
 key.setLocation(deadSpace);
 key.addAttribute("canPickup", true);
 key.addAttribute("!canPickup", false);
-Item lamp("lamp", "An old lamp but still looks like it might work.");
+Item lamp("lamp", "An old lamp but still looks like it might work.", "lamp");
 diningRoom->addItem("lamp", &lamp);
 lamp.setLocation(diningRoom);
 lamp.addAttribute("canPickup", true);
 lamp.addAttribute("!canPickup", false);
-Item mansion_door("mansion_door", "The mansion door is bolted shut. You will need to find another way in.");
-garden->addItem("mansion_door", &mansion_door);
+Item mansion_door("door", "The mansion door is bolted shut. You will need to find another way in.", "mansion_door");
+garden->addItem("door", &mansion_door);
 mansion_door.setLocation(garden);
-Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.");
+Item mirror("mirror", "You see your handsome, confident reflection in the mirror. This mirror could be useful.", "mirror");
 deadSpace->addItem("mirror", &mirror);
 mirror.setLocation(deadSpace);
 mirror.addAttribute("canPickup", true);
 mirror.addAttribute("!canPickup", false);
-Item skull("skull", "A cracked human skull");
+Item skull("skull", "A cracked human skull", "skull");
 deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
 skull.addAttribute("canPickup", true);
 skull.addAttribute("!canPickup", false);
-Item window("window", "An old cracked window it seems to be your only access to the mansion.");
+Item window("window", "An old cracked window it seems to be your only access to the mansion.", "window");
 garden->addItem("window", &window);
 window.setLocation(garden);
 window.addAttribute("!isOpen", true);
 window.addAttribute("isOpen", false);
 window.addAttribute("isJammed", true);
 window.addAttribute("!isJammed", false);
-Item wrench("wrench", "Your trusty wrench. You've used it to help you out of many a tight jam.");
+Item wrench("wrench", "Your trusty wrench. You've used it to help you out of many a tight jam.", "wrench");
 andy->getInventory()->addItem("wrench", &wrench);
 wrench.setLocation(andy->getInventory());
 wrench.addAttribute("canPickup", true);
@@ -186,7 +188,7 @@ cout << "You cannot go west.";
 goto main_loop;}
 cout << "I don't know how to " << verb << " here";
 } else if (verb != "" && noun != "" ){
-if ((toLower(noun) == toLower("bed")) && (andy->getLocation()->hasItem("bed") || andy->getInventory()->hasItem("bed"))) {
+if ((andy->getLocation()->getVariableName() == bed.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("bed")) && (toLower(noun) == toLower("bed"))) {
 if (verb == "under" || verb == "look" || verb == "examine" || verb == "x" || verb == "ex") {
 if (key.getLocation() == andy->getInventory()) {
 cout << "A massive dusty bed.";
@@ -228,7 +230,7 @@ cout << bed.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "bed" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("box")) && (andy->getLocation()->hasItem("box") || andy->getInventory()->hasItem("box"))) {
+}if ((andy->getLocation()->getVariableName() == box.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("box")) && (toLower(noun) == toLower("box"))) {
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (box.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(box.getName())) {
@@ -270,13 +272,13 @@ cout << box.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "box" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("door")) && (andy->getLocation()->hasItem("door") || andy->getInventory()->hasItem("door"))) {
+}if ((andy->getLocation()->getVariableName() == door.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("door")) && (toLower(noun) == toLower("door"))) {
 if (verb == "unlock") {
 if (key.getLocation() == andy->getInventory()) {
 if (door.hasAttribute("isLocked")) {
 door.setAttribute("!isLocked", true);
 door.setAttribute("isLocked", false);
-cout << "You unlock the door with the small key.";
+cout << "You struggle to turn the key in the old door but manage to unlock it.";
 } else {
 cout << "The door is already unlocked.";
 }
@@ -303,11 +305,17 @@ cout << door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
+if (door.hasAttribute("!isOpen")) {
 if (door.hasAttribute("isLocked")) {
 cout << "You cannot open the door it is locked.";
 } else {
+door.setAttribute("isOpen", true);
+door.setAttribute("!isOpen", false);
 secretHall->setNorth(tortureRoom);
 cout << "The door swings open.";
+}
+} else {
+cout << "The door is already open";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << door.getDescription();
@@ -322,8 +330,9 @@ cout << door.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "door" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("key")) && (andy->getLocation()->hasItem("key") || andy->getInventory()->hasItem("key"))) {
+}if ((andy->getLocation()->getVariableName() == key.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("key")) && (toLower(noun) == toLower("key"))) {
 if (verb == "use") {
+if (door.hasAttribute("isLocked")) {
 if (andy->getLocation() == secretHall) {
 cout << "You struggle to turn the key in the old door but manage to unlock it.";
 secretHall->setNorth(tortureRoom);
@@ -331,6 +340,9 @@ door.setAttribute("!isLocked", true);
 door.setAttribute("isLocked", false);
 } else {
 cout << "You can't use the key here.";
+}
+} else {
+cout << "The door is already unlocked.";
 }
 goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (key.hasAttribute("canPickup")) {
@@ -364,7 +376,7 @@ cout << key.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "key" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("lamp")) && (andy->getLocation()->hasItem("lamp") || andy->getInventory()->hasItem("lamp"))) {
+}if ((andy->getLocation()->getVariableName() == lamp.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("lamp")) && (toLower(noun) == toLower("lamp"))) {
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (lamp.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(lamp.getName())) {
@@ -393,8 +405,8 @@ cout << "You don't have that item.";
 }
 goto main_loop;}if (verb == "light" || verb == "use" || verb == "turn-on" || verb == "turnon") {
 if (lamp.getLocation() == andy->getInventory()) {
-entranceHall->setDescription("With light eminating from the lamp you can now make out a doorway to the north as long with the doorways to the east and west and also the window leading south.");entranceHall->setNorth(secretHall);
-masterBedroom->setDescription("With the aid of the lamp you find yourself in an old creepy bedroom.");masterBedroom->addItem(mirror.getName(), &mirror);
+entranceHall->setDescription("With the aid of the lamp you can now make out a doorway to the north. The other exits are doorways to the east and west and the window leading south.");entranceHall->setNorth(secretHall);
+masterBedroom->setDescription("With the lamp illuminating your surroundings you find yourself in a creepy old bedroom decorated with many mirrors. You keep seeing things move in them out of the corner of your eye. There is also a massive bed taking up most of the room. You can see many things glinting under it.");masterBedroom->addItem(mirror.getName(), &mirror);
 masterBedroom->addItem(bed.getName(), &bed);
 cout << "You fiddle around with the old lamp and manage to turn it on.";
 } else {
@@ -413,7 +425,7 @@ cout << lamp.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "lamp" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("mansion_door")) && (andy->getLocation()->hasItem("mansion_door") || andy->getInventory()->hasItem("mansion_door"))) {
+}if ((andy->getLocation()->getVariableName() == mansion_door.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("mansion_door")) && (toLower(noun) == toLower("door"))) {
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mansion_door.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(mansion_door.getName())) {
@@ -446,9 +458,9 @@ cout << mansion_door.getName();
 cout << "You don't have ";
 cout << mansion_door.getName();
 }
-goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "mansion_door" << "'";
+goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "door" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("mirror")) && (andy->getLocation()->hasItem("mirror") || andy->getInventory()->hasItem("mirror"))) {
+}if ((andy->getLocation()->getVariableName() == mirror.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("mirror")) && (toLower(noun) == toLower("mirror"))) {
 if (verb == "use" || verb == "lookat" || verb == "look-at") {
 if (andy->getLocation() == tortureRoom) {
 cout << "You pull out out the mirror, the ghost upon seeing it's horrific reflection flees in terror. Congratulations you have busted your first ghost!";
@@ -488,7 +500,7 @@ cout << mirror.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "mirror" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("skull")) && (andy->getLocation()->hasItem("skull") || andy->getInventory()->hasItem("skull"))) {
+}if ((andy->getLocation()->getVariableName() == skull.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("skull")) && (toLower(noun) == toLower("skull"))) {
 if (verb == "wear") {
 if (skull.getLocation() == andy->getInventory()) {
 cout << "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
@@ -539,7 +551,7 @@ cout << skull.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "skull" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("window")) && (andy->getLocation()->hasItem("window") || andy->getInventory()->hasItem("window"))) {
+}if ((andy->getLocation()->getVariableName() == window.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("window")) && (toLower(noun) == toLower("window"))) {
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (window.hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(window.getName())) {
@@ -593,7 +605,7 @@ cout << window.getName();
 }
 goto main_loop;}cout << "Sorry you can not '" << verb << "' on '" << "window" << "'";
 goto main_loop;
-}if ((toLower(noun) == toLower("wrench")) && (andy->getLocation()->hasItem("wrench") || andy->getInventory()->hasItem("wrench"))) {
+}if ((andy->getLocation()->getVariableName() == wrench.getLocation()->getVariableName() || andy->getInventory()->hasItemVariableName("wrench")) && (toLower(noun) == toLower("wrench"))) {
 if (verb == "use") {
 if (andy->getLocation() == garden) {
 if (wrench.getLocation() == andy->getInventory()) {
