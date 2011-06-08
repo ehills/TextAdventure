@@ -26,7 +26,6 @@ void btrim(string& str) {
 	rtrim(str);
 }
 
-/* Constructor */
 Compiler::Compiler(char* filename) {
 	this->parser = new Parser(filename);
 	parser->ParseFile();
@@ -55,7 +54,7 @@ void Compiler::Compile() {
 			"#define QUIT_GAME \"quit\"\n"
 			"string toLower(string text);\n";
 
-	// START OF MAIN METHOD
+	// Start of main method
 	output +=
 			"int main(int argc, char **argv) {\n"
 			"string username;\n"
@@ -77,8 +76,9 @@ void Compiler::Compile() {
 
 	output += "\n";
 	string inventory_name = INVENTORY_NAME;
+
 	// Output Inventory
-	 output +=	"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
+	output +=	"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
 			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
 			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
@@ -102,7 +102,7 @@ void Compiler::Compile() {
 
 	output += "\n";
 
-	//Output default attributes
+	// Output default attributes
 	/*map<string, bool>::iterator at;
 	for (at = parser->default_attribute_values.begin(); at != parser->default_attribute_values.end(); at++) {
 		output += "Attribute* " + at->first + " = new Attribute(" + '"' + at->first + '"' + ");\n";
@@ -137,7 +137,7 @@ void Compiler::Compile() {
 		} while (word);
 	}
 
-	// START OF GAME LOOP AND WORD READING
+	// Start of game loop and word reading
 	output +=
 			"cout << endl << \"\t\t\t\" << GAME_NAME << endl;\n"
 			"cout << CREDITS << endl << endl;\n"
@@ -173,39 +173,17 @@ void Compiler::Compile() {
 			"      count++;\n"
 			"   }\n";
 
-	//QUIT GAME METHOD
-	/*output += "\
-			if (command == QUIT_GAME) {\n\
-			quit_loop:\n\
-			string quit = \"\";\n\
-			cout << \"Do you really want to quit?: [y]or[n] \";\
-			getline(cin, quit);\n\
-			if (quit == \"y\") {\n\
-			cout << \"Thanks for playing!\" << endl;\n\
-			break;\n\
-			} else if (quit == \"n\") {\n\
-			goto main_loop;\n\
-			} else {\n\
-			goto quit_loop;\n\
-			}\n\
-			}";*/
-
-
-	// SINGLE VERB
+	// Single verb
 	output += "if (verb != \"\" && noun == \"\" ) {\n";
-
-	// VERBS
 	map<string, string>::iterator iterator;
 	for (iterator = parser->default_location_verb_expressions.begin(); iterator != parser->default_location_verb_expressions.end(); iterator++) {
 		string verbs = getVerbSynonyms(iterator->first);
 		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
 	}
-
 	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
 
-	// SINGLE VERB END / VERB NOUN START
+	// Verb Noun
 	output += "} else if (verb != \"\" && noun != \"\" ){\n";
-
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "if ((toLower(noun) == toLower(\"" + objects->second->getName() + "\")) && (" + parser->player->getVariableName() + "->getLocation()->hasItem(\"" + objects->second->getName() + "\") || " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileNounVerb(objects->second) + ""
@@ -213,13 +191,13 @@ void Compiler::Compile() {
 				"}";
 	}
 	output += "cout << \"I can't find a \" << noun << \" here\";\n";
-	//  VERB NOUN END
+	// Verb Noun end
 	output += "}\n";
 
-	// END OF GAME LOOP
+	// End of game loop
 	output += "}\n";
 
-	// END OF MAIN METHOD
+	// End of main method
 	output += "}";
 
 	ofstream file;
@@ -229,7 +207,6 @@ void Compiler::Compile() {
 		file.flush();
 		file.close();
 	}
-
 }
 
 /* Gets the item from the expression */
@@ -293,14 +270,14 @@ string Compiler::CompileNounVerb(Item *item) {
 	for (rit = verbs.rbegin(); rit != verbs.rend(); rit++) {
 		string data = rit->second;
 
-		// REPLACE inputItem
+		// Replace inputItem
 		size_t pos = data.find("inputItem");
 		while (pos < data.size()) {
 			data.replace(pos, 9, item->getVariableName());
 			pos = data.find("inputItem");
 		}
 
-		// START VERB
+		// Start verb
 		string verbs = getVerbSynonyms(rit->first);
 		output += "if (" + verbs + ") {\n";
 		istringstream lines(data);
@@ -308,7 +285,7 @@ string Compiler::CompileNounVerb(Item *item) {
 			output += CompileVerb(line);
 		}
 
-		// END VERB
+		// End verb
 		output += "goto main_loop;";
 		output += "}";
 	}
@@ -528,5 +505,4 @@ string Compiler::getVerbSynonyms(string words) {
 }
 
 Compiler::~Compiler() {
-
 }

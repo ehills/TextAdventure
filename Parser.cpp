@@ -10,6 +10,7 @@ Parser::Parser(char* filename) {
 	ifstream file;
 	string line;
 	string data;
+	unique_identifier = 0;
 	file.open(filename);
 	if (file.is_open()) {
 		while (getline(file, line)) {
@@ -24,7 +25,7 @@ Parser::Parser(char* filename) {
 	this->file_data = data;
 }
 
-/* Calls all methods associated with parseing the file */
+/* Calls all methods associated with parsing the file */
 list<string> Parser::ParseFile(void) {
 	if (this->errors.size() == 0) {
 		this->stripComments();

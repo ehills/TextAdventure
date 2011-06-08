@@ -12,8 +12,16 @@
 #include <map>
 using namespace std;
 class Item;
+
 /* Location class will store all information relevant to a particular location*/
 class Location {
+	string name;
+	string variable_name;
+	string description;
+	Location* south;
+	Location* north;
+	Location* east;
+	Location* west;
 public:
 	Location(string, string, string);
 	Location();
@@ -39,16 +47,8 @@ public:
 	void setSouth(Location* location);
 	void setEast(Location* location);
 	void setWest(Location* location);
-	// Object Deletion
+
 	~Location(void);
-private:
-	string name;
-	string variable_name;
-	string description;
-	Location* south;
-	Location* north;
-	Location* east;
-	Location* west;
 };
 
 #endif

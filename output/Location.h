@@ -24,18 +24,15 @@ class Location {
     Location* west;
     map<string, Item*> items;
 public:
-    // Constructors
     Location(string, string);
     Location();
-
-    // Attributes
     string getName(void);
     void setName(string name);
     string getDescription(void);
     void setDescription(string description);
     string printRoom(void);
 
-    /* This set of methods will deal with Location linkage */
+    // These methods will deal with Location links
     Location* getNorth(void);
     Location* getSouth(void);
     Location* getEast(void);
@@ -49,17 +46,13 @@ public:
     bool hasEast(void);
     bool hasWest(void);
 
-    /* This set of methods will deal with Items stored in this location */
+    // These methods will deal with Items stored in this location
     void addItem(string item_name, Item* item);
     int getItemCount();
     bool hasItem(string item_name);
     void removeItem(string item_name);
     string listItems(void);
-    string listItemsDescription(void);
     string printNameAndDescription(void);
-
-    // Destructor
     ~Location(void);
 };
-
 #endif

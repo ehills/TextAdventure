@@ -30,6 +30,5 @@ int main(int argc, char* argv[]) {
 	filename = argv[1];
 	Compiler *compiler = new Compiler(filename);
 	compiler->Compile();
-	//cout << "Game compiled successfully.";
 	return EXIT_SUCCESS;
 }

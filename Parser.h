@@ -17,17 +17,20 @@
 #include "Player.h"
 using namespace std;
 
-
 class Parser {
+	int stripComments(); // Comment striping code
+	int ParseAttributes();
+	int ParseDefaults();
+	int ParseLocations();
+	int ParsePlayer();
+	int ParseItems();
+	void ParseLocation(string data, Location* location);
+	void ParseItem(string data, Item* item);
+	string file_data;
+	int unique_identifier;
 public:
 	Parser(char* filename);
-
-	// returns the errors
-	list<string> ParseFile();
-
-	// Object Deletion
-	~Parser(void);
-
+	list<string> ParseFile(); // Returns the errors
 	string gameName;
 	string credits;
 	string initialDescription;
@@ -39,25 +42,6 @@ public:
 	map<string, string> default_location_verb_expressions;
 	map<string, bool> default_attribute_values;
 	Player* player;
-private:
-	//comment striping code
-	int stripComments();
-	int ParseAttributes();
-	int ParseDefaults();
-	int ParseLocations();
-	int ParsePlayer();
-	int ParseItems();
-
-	// Parses the attributes
-	void ParseLocation(string data, Location* location);
-
-	// Parses the attributes
-	void ParseItem(string data, Item* item);
-	//Player ParsePlayer();
-
-	// Parsing Data
-	string file_data;
+	~Parser(void);
 };
-
-
 #endif

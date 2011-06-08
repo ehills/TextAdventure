@@ -8,17 +8,17 @@
  *
  */
 void copy_file(char* filename, char* new_filename) {
-   int c;
-   FILE *in,*out;
-   in = fopen(filename, "r" );
-   out = fopen( new_filename, "w" );
-   if(in==NULL || !in) {
-      return;
-   } else if(out==NULL || !out) {
-      return;
-   }
-   while((c=getc(in))!=EOF)
-      putc(c,out);
-   fclose(in);
-   fclose(out);
+	int c;
+	FILE *in,*out;
+	in = fopen(filename, "r" );
+	out = fopen( new_filename, "w" );
+	if(in==NULL || !in) {
+		return;
+	} else if(out==NULL || !out) {
+		return;
+	}
+	while((c=getc(in))!=EOF)
+		putc(c,out);
+	fclose(in);
+	fclose(out);
 }

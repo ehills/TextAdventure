@@ -22,46 +22,20 @@ class Player {
    Location* current_location;
    Location* inventory;
  public:
-   /* Constructor */
    Player();
-
-   /* Destructor */
-   ~Player();
-
-   /* Gets player name */
    string getName(void);
-
-   /* Sets player name */
    void setName(string name);
-
-   /* Gets player description */
    string getDescription(void);
-
-   /* Sets player description */
    void setDescription(string description);
-
    bool canCarry(void);
-   /* Returns the number of items currently held by the player */
    int getNumberOfItems(void);
-
-   /* Returns the max number of items the player can hold */
    int getMaxItems(void);
-
-   /* Sets the number of max items the player can hold */
    void setMaxItems(int max_items);
-
-   /* Returns the players starting location */
    Location* getLocation(void);
-
-   /* Sets the players starting location */
    void setLocation(Location* location);
-
-   /* Returns the players inventory location */
    Location* getInventory(void);
-
-   /* Sets the players inventory location */
    void setInventory(Location* inventory);
+   ~Player();
 };
-
 #endif
 
