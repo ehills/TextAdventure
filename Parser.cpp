@@ -30,9 +30,9 @@ list<string> Parser::ParseFile(void) {
 		this->stripComments();
 		this->ParseAttributes();
 		this->ParseDefaults();
+		this->ParsePlayer();
 		this->ParseLocations();
 		this->ParseItems();
-		this->ParsePlayer();
 
 		string location_name = ParseVariableData(this->file_data, "initialLocation");
 		if (this->locations.count(location_name) > 0) {
@@ -220,7 +220,6 @@ int Parser::ParsePlayer() {
 			player->setMaxItems(atoi(attribute.c_str()));
 		}
 	}
-
 	return NO_ERRORS;
 }
 
@@ -355,7 +354,12 @@ void Parser::ParseItem(string data, Item *item) {
 	}
 	// Parse location
 	attribute = ParseVariableData(data, "location");
-	if (validAttribute(attribute)) {
+	// Player's inventory
+	if (attribute == this->player->getVariableName()) {
+		Location* player_inventory = new Location(player->getVariableName()+"->getInventory()", "inventory", "");
+		this->locations.insert(pair<string, Location*>("inventory", player_inventory));
+		item->setLocation(this->locations.at("inventory"));
+	} else if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
 			item->setLocation(this->locations.at(attribute));
 		} else {

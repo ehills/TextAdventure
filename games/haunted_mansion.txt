@@ -109,11 +109,6 @@ initialLocation = garden;
 
 initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
 
-Location inventory {
-	name = "Inventory";
-	description = "";
-}
-
 // Location to temporarily store game items not in use
 Location deadSpace {
 	name = "Dead space";
@@ -331,7 +326,7 @@ Item window {
 			} else {
 				window setAttribute isOpen;
 				garden setNorth entranceHall;
-				print "With a heave the window slides open to leave a nice opening to enter through.";
+				print "With a heave the window grates open to leave a nice opening to enter through.";
 			}
 		} else {
 			print "The window is already open.";	
@@ -353,7 +348,7 @@ Item window {
 Item wrench {
 	name = "wrench";
 	description = "Your trusty wrench. You've used it to help you out of many a tight jam.";
-	location = inventory;
+	location = andy;
 	hasAttributes = canPickup;
 	
 	Verb = "use" {
@@ -380,7 +375,7 @@ Item mansion_door {
 	location = garden;
 	
 	Verb = "open" {
-		print "The mansion door is bolted shut. You will have need to another way in.".
+		print "The mansion door is bolted shut. You will need to find another way in.".
 	}
 }
 

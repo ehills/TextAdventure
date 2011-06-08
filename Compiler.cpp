@@ -39,11 +39,6 @@ void Compiler::Compile() {
 		return;
 	}
 
-	if (parser->locations.count("inventory") == 0) {
-		cout << NO_INVENTORY << endl;
-		exit(EXIT_FAILURE);
-	}
-
 	// Setting up includes/defines
 	string output =
 			"#include <iostream>\n"
@@ -81,11 +76,10 @@ void Compiler::Compile() {
 	}
 
 	output += "\n";
-
+	string inventory_name = INVENTORY_NAME;
 	// Output Inventory
-	//"Location* " + inventory_name + " = new Location(\"inventory\", \"Description of the inventory\");"
-	output += "" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
-			"" + parser->player->getVariableName() + "->setInventory(" + INVENTORY_NAME + ");"
+	 output +=	"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
+			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
 			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
 	output += "\n";
@@ -206,15 +200,6 @@ void Compiler::Compile() {
 		string verbs = getVerbSynonyms(iterator->first);
 		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
 	}
-
-	// INVENTORY
-	/*output += "\n\
-			if ((verb == \"i\") || (verb == \"inventory\") || (verb == \"invent\")) {\n\
-			cout << " + parser->player->getVariableName() + "->getInventory()->listItems() + \" \";\n\
-			cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems() << endl;\n\
-			goto main_loop;\n\
-			}\n\n\
-			\n";*/
 
 	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
 

@@ -25,7 +25,7 @@ Location* deadSpace = new Location("Dead space", "Dead space");
 Location* diningRoom = new Location("The dining room", "You find yourself in an old dining room, complete with ornate chandeliers.");
 Location* entranceHall = new Location("The entrance hall", "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.");
 Location* garden = new Location("The overgrown garden", "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.");
-Location* inventory = new Location("Inventory", "");
+Location* inventory = new Location("inventory", "");
 Location* masterBedroom = new Location("The master bedroom", "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.");
 Location* secretHall = new Location("The secret hall", "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.");
 Location* tortureRoom = new Location("The torture room", "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.");
@@ -83,8 +83,8 @@ window.addAttribute("isOpen", false);
 window.addAttribute("isJammed", true);
 window.addAttribute("!isJammed", false);
 Item wrench("wrench", "Your trusty wrench. You've used it to help you out of many a tight jam.");
-inventory->addItem("wrench", &wrench);
-wrench.setLocation(inventory);
+andy->getInventory()->addItem("wrench", &wrench);
+wrench.setLocation(andy->getInventory());
 wrench.addAttribute("canPickup", true);
 wrench.addAttribute("!canPickup", false);
 cout << endl << "			" << GAME_NAME << endl;
@@ -434,7 +434,7 @@ cout << mansion_door.getName();
 cout << ", what were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
-cout << "The mansion door is bolted shut. You will have need to another way in.";
+cout << "The mansion door is bolted shut. You will need to find another way in.";
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mansion_door.getDescription();
 goto main_loop;}if (verb == "drop" || verb == "discard" || verb == "throwout" || verb == "throw-out") {
@@ -567,7 +567,7 @@ cout << "You cannot open the window it's jammed.";
 window.setAttribute("isOpen", true);
 window.setAttribute("!isOpen", false);
 garden->setNorth(entranceHall);
-cout << "With a heave the window slides open to leave a nice opening to enter through.";
+cout << "With a heave the window grates open to leave a nice opening to enter through.";
 }
 } else {
 cout << "The window is already open.";
