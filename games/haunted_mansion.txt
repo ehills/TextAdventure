@@ -331,7 +331,7 @@ Item window {
 	Verb "open" {
 		if (window hasAttribute !isOpen) {
 			if (window hasAttribute isJammed) {
-				print "You cannot open the window it's jammed.";
+				print "You cannot open the window it is jammed.";
 			} else {
 				window setAttribute isOpen;
 				garden setNorth entranceHall;
