@@ -107,7 +107,7 @@ LocationDefaults {
 
 initialLocation = garden;
 
-initialDescription = "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
+initialDescription = "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
 
 // Location to temporarily store game items not in use
 Location deadSpace {
