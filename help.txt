@@ -30,7 +30,7 @@ list - prints out the items in the current location.
 setDescription - sets the description of an item or location.
 getDescription - gets the description of an item or location.
 hasItem - checks to see if a location has an item. Good to use to check inventory.
-setLocation - sets a location for a room.
+setLocation - sets an item to a location or to the player.
 inLocation - checks to see if player or item is in a certain location.
 hasAttribute - checks to see if an item has a certain attribute.
 setAttribute - sets an attribute to !attributeName(false) or attributeName(true)
