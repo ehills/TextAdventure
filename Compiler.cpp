@@ -161,7 +161,7 @@ void Compiler::Compile() {
 			"   count = 0;\n"
 			"   while (word) {\n"
 			"      if (count > 2) {\n"
-			"           cout << \"I do not understand your command. Enter 2 words at most, a verb followed by a noun\";\n"
+			"           cout << \"I do not understand your command. Enter 2 words at most, a verb followed by a noun.\";\n"
 			"           goto main_loop;\n"
 			"      }\n"
 			"      if (count == 0) {\n"

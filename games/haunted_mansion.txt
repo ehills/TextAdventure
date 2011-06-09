@@ -39,7 +39,7 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "You don't have a";
+            print "You don't have a ";
             print inputItem;
         }
     }
@@ -122,7 +122,7 @@ Location garden {
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 
     west = masterBedroom;
     east = diningRoom;
