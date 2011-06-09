@@ -335,10 +335,15 @@ string Compiler::CompileVerb(string line) {
 			}
 		} else if (line.find("setDescription") < line.length()) {
 			string location = getLocation(line);
+			string item = getItem(line);
 			size_t start, end;
 			start = line.find("\"") + 1;
 			end = line.find("\"", start);
-			output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");";
+			if (location != "") {
+				output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");";
+			} else {
+				output += item + ".setDescription(\"" + line.substr(start, end - start) + "\");";
+			}
 		} else if (line.find("if") < line.length()) {
 			size_t open, close;
 			open = line.find("(");

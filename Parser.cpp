@@ -10,6 +10,7 @@ Parser::Parser(char* filename) {
 	ifstream file;
 	string line;
 	string data;
+	location_init = true;
 	file.open(filename);
 	if (file.is_open()) {
 		while (getline(file, line)) {
@@ -352,9 +353,15 @@ void Parser::ParseItem(string data, Item *item) {
 	attribute = ParseVariableData(data, "location");
 	// Player's inventory
 	if (attribute == this->player->getVariableName()) {
-		Location* player_inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");
-		this->locations.insert(pair<string, Location*>("inventory", player_inventory));
-		item->setLocation(this->locations.at("inventory"));
+		if(location_init) {
+			location_init = false;
+			inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");
+			this->locations.insert(pair<string, Location*>("inventory", inventory));
+			item->setLocation(this->locations.at("inventory"));
+		} else {
+			this->locations.insert(pair<string, Location*>("inventory", inventory));
+			item->setLocation(this->locations.at("inventory"));
+		}
 	} else if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
 			item->setLocation(this->locations.at(attribute));

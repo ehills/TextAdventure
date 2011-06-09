@@ -28,6 +28,8 @@ class Parser {
 	void ParseLocation(string data, Location* location);
 	void ParseItem(string data, Item* item);
 	string file_data;
+	Location* inventory;
+	bool location_init;
 public:
 	Parser(char* filename);
 	list<string> ParseFile(); // Returns the errors

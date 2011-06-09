@@ -77,7 +77,7 @@ deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
 skull.addAttribute("canPickup", true);
 skull.addAttribute("!canPickup", false);
-Item window("window", "An old cracked window it seems to be your only access to the mansion.", "window");
+Item window("window", "A cracked window it seems to be your only access to the mansion.", "window");
 garden->addItem("window", &window);
 window.setLocation(garden);
 window.addAttribute("!isOpen", true);
@@ -574,9 +574,9 @@ cout << ", what were you thinking...";
 goto main_loop;}if (verb == "open") {
 if (window.hasAttribute("!isOpen")) {
 if (window.hasAttribute("isJammed")) {
-cout << "You cannot open the window it's jammed.";
+cout << "You cannot open the window it is jammed.";
 } else {
-window.setAttribute("isOpen", true);
+window.setDescription("The window is open allowing you access to the mansion.");window.setAttribute("isOpen", true);
 window.setAttribute("!isOpen", false);
 garden->setNorth(entranceHall);
 cout << "With a heave the window grates open to leave a nice opening to enter through.";

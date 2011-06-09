@@ -324,7 +324,7 @@ Item skull {
 
 Item window {
 	name = "window";
-	description = "An old cracked window it seems to be your only access to the mansion.";
+	description = "A cracked window it seems to be your only access to the mansion.";
 	location = garden;
 	hasAttributes = !isOpen isJammed;
 	
@@ -333,6 +333,7 @@ Item window {
 			if (window hasAttribute isJammed) {
 				print "You cannot open the window it is jammed.";
 			} else {
+				window setDescription "The window is open allowing you access to the mansion.";
 				window setAttribute isOpen;
 				garden setNorth entranceHall;
 				print "With a heave the window grates open to leave a nice opening to enter through.";
@@ -349,7 +350,6 @@ Item window {
 			list;
 		} else {
 		  	print "You can't do that the window is closed.";
-			
 		}
 	}
 }
@@ -387,4 +387,3 @@ Item mansion_door {
 		print "The mansion door is bolted shut. You will need to find another way in.";
 	}
 }
-

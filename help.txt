@@ -22,13 +22,13 @@ credits - sets a games credits.
 initialLocation - sets starting location for game.
 InitialDescription - sets the game's intoduction.
 inputItem - gets the item to be used for item default verbs. 
-print – print out specified information to user.
+print – print out specified information to game player.
 describe - prints out the current location's name and description.
 describeInventory - prints out the players inventory.
 gameOver - quits the game.
 list - prints out the items in the current location.
-setDescription - sets a description to a location.
-getDescription - gets a description of an item or location.
+setDescription - sets the description of an item or location.
+getDescription - gets the description of an item or location.
 hasItem - checks to see if a location has an item. Good to use to check inventory.
 setLocation - sets a location for a room.
 inLocation - checks to see if player or item is in a certain location.
@@ -66,7 +66,7 @@ Location location_name (This needs to be unique) {
 
 Creates an item in the game.
 Item item_name (This needs to be unique) {
-	name = "name_goes_here"; 
+	name = "name_goes_here"; (The name of the item in game)
 	(Be careful not to have items with the same name in the same location)
 	description = "description_goes_here";
 	location = location_name;
