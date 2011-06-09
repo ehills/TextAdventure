@@ -179,7 +179,7 @@ void Compiler::Compile() {
 		string verbs = getVerbSynonyms(iterator->first);
 		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
 	}
-	output += "cout << \"I don't know how to \" << verb << \" here\";\n";
+	output += "\ncout << \"I don't know how to \" << verb << \" here.\";\n\n";
 
 	// Verb Noun
 	output += "} else if (verb != \"\" && noun != \"\" ){\n";
@@ -189,9 +189,9 @@ void Compiler::Compile() {
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileNounVerb(objects->second) + ""
 				"goto main_loop;\n"
-				"}";
+				"}\n\n";
 	}
-	output += "cout << \"I can't find a \" << noun << \" here\";\n";
+	output += "cout << \"I can't find a \" << noun << \" here.\";\n";
 	// Verb Noun end
 	output += "}\n";
 
@@ -290,7 +290,7 @@ string Compiler::CompileNounVerb(Item *item) {
 		output += "goto main_loop;";
 		output += "}";
 	}
-	output += "cout << \"Sorry you can not '\" << verb << \"' on '\" << \"" + item->getName() + "\" << \"'\";\n";
+	output += "cout << \"Sorry you can not \" << verb << \" on \" << \"" + item->getName() + "\" << \".\";\n";
 	return output;
 }
 
