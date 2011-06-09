@@ -39,7 +39,7 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "You don't have ";
+            print "You don't have a";
             print inputItem;
         }
     }

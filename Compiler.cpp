@@ -51,7 +51,6 @@ void Compiler::Compile() {
 			"#define GAME_NAME \"" + parser->gameName + "\"\n"
 			"#define CREDITS \"" + parser->credits + "\"\n"
 			"#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n"
-			"#define QUIT_GAME \"quit\"\n"
 			"string toLower(string text);\n";
 
 	// Start of main method
@@ -186,7 +185,7 @@ void Compiler::Compile() {
 	output += "} else if (verb != \"\" && noun != \"\" ){\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
-				"|| " + parser->player->getVariableName() + "->getInventory()->hasItemVariableName(\"" + objects->second->getVariableName() + "\")) " +
+				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileNounVerb(objects->second) + ""
 				"goto main_loop;\n"
@@ -357,7 +356,7 @@ string Compiler::CompileVerb(string line) {
 					if (location == "" || item == "") {
 						cout << INCOMPLETE_EXPRESSION << endl;
 					} else {
-						output += "if (" + location + "->hasItem(" + item + ".getName())) {\n";
+						output += "if (" + location + "->hasItem(" + item + ".getVariableName())) {\n";
 					}
 				} else if (line.find("hasAttribute") < line.length()) {
 					string item = getItem(expression);

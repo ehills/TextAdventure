@@ -62,20 +62,10 @@ void Location::addItem(string item_name, Item* item) {
 	this->items.insert(pair<string, Item*> (toLower(item_name), item));
 }
 
-bool Location::hasItemVariableName(string item_variable_name) {
+bool Location::hasItem(string item_variable_name) {
 	map<string, Item*>::iterator it;
 	for (it = items.begin(); it != items.end(); it++) {
 		if (it->second->getVariableName() ==  item_variable_name) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool Location::hasItem(string item_name) {
-	map<string, Item*>::iterator it;
-	for(it = items.begin(); it != items.end(); it++) {
-		if(it->second->getName() == item_name) {
 			return true;
 		}
 	}

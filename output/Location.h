@@ -50,10 +50,9 @@ public:
 	// These methods will deal with Items stored in this location
 	void addItem(string item_name, Item* item);
 	int getItemCount();
-	bool hasItem(string item_name);
 	void removeItem(string item_name);
 	string listItems(void);
-	bool hasItemVariableName(string);
+	bool hasItem(string);
 	string printNameAndDescription(void);
 	~Location(void);
 };
