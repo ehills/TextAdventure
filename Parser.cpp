@@ -5,7 +5,6 @@
 
 #define NEWLINE_HACK "(*-*)"
 
-/* Constructor */
 Parser::Parser(char* filename) {
 	ifstream file;
 	string line;
@@ -195,9 +194,8 @@ int Parser::ParsePlayer() {
 	// Find all block comments and remove
 	unsigned int start, end, size;
 	string attribute, data;
-	/*
-	 * Parse the Items first time through
-	 */
+
+	// Parse the Items first time through*/
 	start = this->file_data.find("Player ");
 	if (start < this->file_data.size()) {
 		end = this->file_data.find("{", start);
@@ -226,7 +224,6 @@ int Parser::ParsePlayer() {
 int Parser::ParseItems() {
 	// Find all block comments and remove
 	unsigned int start, end, size;
-
 	// Parse the Items first time through
 	start = this->file_data.find("Item ");
 	while (start < this->file_data.size()) {
@@ -244,8 +241,7 @@ int Parser::ParseItems() {
 		}
 		start = this->file_data.find("Item ", end);
 	}
-
-	//Parse the Item details second time through
+	// Parse the Item details second time through
 	map<string, Item*>::iterator it;
 	for (it = this->items.begin(); it != this->items.end(); it++) {
 		string search = "Item " + it->first + " {";
@@ -257,10 +253,8 @@ int Parser::ParseItems() {
 			ParseItem(data, it->second);
 		} else {
 			cout << NO_ITEM << endl;
-
 		}
 	}
-
 	return NO_ERRORS;
 }
 
@@ -279,7 +273,7 @@ void Parser::ParseLocation(string data, Location *location) {
 	} else {
 		cout << NO_LOCATION_NAME << endl;
 	}
-	// Parse Description(string attribute)
+	// Parse Description
 	attribute = ParseStringData(data, "description");
 	if (validAttribute(attribute)) {
 		location->setDescription(attribute);
@@ -299,7 +293,6 @@ void Parser::ParseLocation(string data, Location *location) {
 			cerr << NO_JOINED_LOCATION << attribute << endl;
 		}
 	}
-
 	attribute = ParseVariableData(data, "south");
 	if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
@@ -309,7 +302,6 @@ void Parser::ParseLocation(string data, Location *location) {
 			cerr << NO_JOINED_LOCATION << attribute << endl;
 		}
 	}
-
 	attribute = ParseVariableData(data, "east");
 	if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
@@ -319,7 +311,6 @@ void Parser::ParseLocation(string data, Location *location) {
 			cerr << NO_JOINED_LOCATION << attribute << endl;
 		}
 	}
-
 	attribute = ParseVariableData(data, "west");
 	if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
@@ -376,7 +367,6 @@ void Parser::ParseItem(string data, Item *item) {
 	if (validAttribute(attribute)) {
 		item->setAttributeString(attribute);
 	}
-
 	item->addVerbs(this->default_verb_expressions);
 	item->addVerbs(ParseVerbs(data));
 
@@ -397,17 +387,14 @@ void Parser::ParseItem(string data, Item *item) {
 	item->setAttributes(attributes);
 }
 
-/* Destructor */
 Parser::~Parser() {
 	map<string, Location*>::iterator locations;
 	for (locations = this->locations.begin(); locations != this->locations.end(); locations++) {
 		delete locations->second;
 	}
-
 	map<string, Item*>::iterator objects;
 	for (objects = this->items.begin(); objects != this->items.end(); objects++) {
 		delete objects->second;
 	}
-
 	delete this->player;
 }
