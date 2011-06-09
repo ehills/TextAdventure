@@ -20,7 +20,7 @@ Game Library
 gameName - sets a games name.
 credits - sets a games credits.
 initialLocation - sets starting location for game.
-InitialDescription - sets the game's intoduction.
+initialDescription - sets the game's intoduction.
 inputItem - gets the item to be used for item default verbs. 
 print - prints out specified information to game player.
 describe - prints out the current location's name and description.
