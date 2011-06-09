@@ -27,9 +27,9 @@ ItemDefaults {
                 }
             }
         } else {
-        	print "You cannont pick up the ";
+        	print "You cannot pick up the ";
         	print inputItem;
-        	print ", what were you thinking...";
+        	print " What were you thinking...";
         }
     }
 

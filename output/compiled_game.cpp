@@ -214,9 +214,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << bed.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << bed.getDescription();
@@ -249,9 +249,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << box.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
 if (box.hasAttribute("isOpen")) {
@@ -305,9 +305,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << door.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
 if (door.hasAttribute("!isOpen")) {
@@ -366,9 +366,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << key.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << key.getDescription();
@@ -401,9 +401,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << lamp.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "off" || verb == "turnoff" || verb == "turn-off") {
 if (lamp.getLocation() == andy->getInventory()) {
@@ -452,9 +452,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << mansion_door.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
 cout << "The mansion door is bolted shut. You will need to find another way in.";
@@ -496,9 +496,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << mirror.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << mirror.getDescription();
@@ -549,9 +549,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << skull.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << skull.getDescription();
@@ -584,9 +584,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << window.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "open") {
 if (window.hasAttribute("!isOpen")) {
@@ -656,9 +656,9 @@ cout << "You are carrying too much already.";
 }
 }
 } else {
-cout << "You cannont pick up the ";
+cout << "You cannot pick up the ";
 cout << wrench.getName() << ".";
-cout << ", what were you thinking...";
+cout << " What were you thinking...";
 }
 goto main_loop;}if (verb == "examine" || verb == "x" || verb == "ex" || verb == "look" || verb == "l") {
 cout << wrench.getDescription();
