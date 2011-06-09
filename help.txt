@@ -22,7 +22,7 @@ credits - sets a games credits.
 initialLocation - sets starting location for game.
 InitialDescription - sets the game's intoduction.
 inputItem - gets the item to be used for item default verbs. 
-print – print out specified information to game player.
+print - prints out specified information to game player.
 describe - prints out the current location's name and description.
 describeInventory - prints out the players inventory.
 gameOver - quits the game.
