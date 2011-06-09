@@ -89,7 +89,6 @@ ItemDefaults {
 	Verb "examine or x or look" {rules_go_here}
 }	
 	
-
 Game Example 
 
 gameName = "*****The Haunted Mansion*****";
@@ -121,9 +120,9 @@ ItemDefaults {
                 }
             }
         } else {
-        	print "You cannont pick up the ";
+        	print "You cannot pick up the ";
         	print inputItem;
-        	print ", what were you thinking...";
+        	print " What were you thinking...";
         }
     }
 
@@ -133,7 +132,7 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "You don't have ";
+            print "You don't have a ";
             print inputItem;
         }
     }
@@ -145,7 +144,7 @@ LocationDefaults {
 	}
     Verb "look or l" {
 		 if(andy inLocation tortureRoom) {
-            print "You look into the face of death and feel the scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune...";
+            print "You look into the face of death and feel his scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune.";
 			gameOver;
 		} else {
 			describe;
@@ -216,7 +215,7 @@ Location garden {
 
 Location entranceHall {
     name = "The entrance hall";
-    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 
     west = masterBedroom;
     east = diningRoom;
