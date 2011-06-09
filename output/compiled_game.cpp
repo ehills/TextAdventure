@@ -229,7 +229,7 @@ cout << bed.getName() << ".";
 cout << "You don't have a ";
 cout << bed.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "bed" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "bed" << ".";
 goto main_loop;
 }
 
@@ -273,7 +273,7 @@ cout << box.getName() << ".";
 cout << "You don't have a ";
 cout << box.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "box" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "box" << ".";
 goto main_loop;
 }
 
@@ -333,7 +333,7 @@ cout << door.getName() << ".";
 cout << "You don't have a ";
 cout << door.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "door" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "door" << ".";
 goto main_loop;
 }
 
@@ -381,7 +381,7 @@ cout << key.getName() << ".";
 cout << "You don't have a ";
 cout << key.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "key" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "key" << ".";
 goto main_loop;
 }
 
@@ -432,7 +432,7 @@ cout << lamp.getName() << ".";
 cout << "You don't have a ";
 cout << lamp.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "lamp" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "lamp" << ".";
 goto main_loop;
 }
 
@@ -469,7 +469,7 @@ cout << mansion_door.getName() << ".";
 cout << "You don't have a ";
 cout << mansion_door.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "door" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "door" << ".";
 goto main_loop;
 }
 
@@ -511,7 +511,7 @@ cout << mirror.getName() << ".";
 cout << "You don't have a ";
 cout << mirror.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "mirror" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "mirror" << ".";
 goto main_loop;
 }
 
@@ -564,7 +564,7 @@ cout << skull.getName() << ".";
 cout << "You don't have a ";
 cout << skull.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "skull" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "skull" << ".";
 goto main_loop;
 }
 
@@ -620,7 +620,7 @@ cout << window.getName() << ".";
 cout << "You don't have a ";
 cout << window.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "window" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "window" << ".";
 goto main_loop;
 }
 
@@ -671,7 +671,7 @@ cout << wrench.getName() << ".";
 cout << "You don't have a ";
 cout << wrench.getName() << ".";
 }
-goto main_loop;}cout << "Sorry you can not " << verb << " on " << "wrench" << ".";
+goto main_loop;}cout << "Sorry you can not " << verb << " the " << "wrench" << ".";
 goto main_loop;
 }
 

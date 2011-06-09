@@ -290,7 +290,7 @@ string Compiler::CompileNounVerb(Item *item) {
 		output += "goto main_loop;";
 		output += "}";
 	}
-	output += "cout << \"Sorry you can not \" << verb << \" on \" << \"" + item->getName() + "\" << \".\";\n";
+	output += "cout << \"Sorry you can not \" << verb << \" the \" << \"" + item->getName() + "\" << \".\";\n";
 	return output;
 }
 
