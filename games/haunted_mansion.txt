@@ -192,7 +192,7 @@ Item mirror {
     location = deadSpace;
     hasAttributes = canPickup;
 
-    Verb = "use or lookat or look-at" {
+    Verb "use or lookat or look-at" {
         if(andy inLocation tortureRoom) {
             print "You pull out out the mirror, the ghost upon seeing it's horrific reflection flees in terror. Congratulations you have busted your first ghost!";
             gameOver;
@@ -208,7 +208,7 @@ Item door {
 	location = secretHall;
 	hasAttributes = isLocked !isOpen;
 	
-	Verb = "open" {
+	Verb "open" {
 		if(door hasAttribute !isOpen) {
 			if (door hasAttribute isLocked) {
 			print "You cannot open the door it is locked.";
@@ -221,7 +221,7 @@ Item door {
 			print "The door is already open";
 		}
 	}
-	Verb = "unlock" {
+	Verb "unlock" {
 		if(key inLocation andy) {
 			if (door hasAttribute isLocked) {
 				door setAttribute !isLocked;
@@ -241,7 +241,7 @@ Item key {
 	location = deadSpace;
 	hasAttributes = canPickup;
 	
-	Verb = "use" {
+	Verb "use" {
 		if(door hasAttribute isLocked) {
 			if(andy inLocation secretHall) {
 				print "You struggle to turn the key in the old door but manage to unlock it.";
@@ -261,7 +261,7 @@ Item bed {
 	description = "A massive dusty bed.";
 	location = deadSpace;
 	
-	Verb = "under or look or examine or x or ex" {
+	Verb "under or look or examine or x or ex" {
 		if (key inLocation andy) {
 			print "A massive dusty bed.";
 		} else {
@@ -270,7 +270,7 @@ Item bed {
 		}
 	}
 	
-	Verb = "sleep or nap" {
+	Verb "sleep or nap" {
 		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to take a nap.";
 		}
 }
@@ -281,7 +281,7 @@ Item box {
 	location = secretHall;
 	hasAttributes = !isOpen;
 	
-	Verb = "open" { 
+	Verb "open" { 
 		if (box hasAttribute isOpen) {
 			print "The box is already open...";
 		} else {
@@ -298,7 +298,7 @@ Item skull {
 	location = deadSpace;
 	hasAttributes = canPickup;
 	
-	Verb = "wear" {
+	Verb "wear" {
 		if (skull inLocation andy) {
 			print "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
 			gameOver;
@@ -307,7 +307,7 @@ Item skull {
 		}
 	}
 	
-	Verb = "use or show" {
+	Verb "use or show" {
 		if (skull inLocation andy) {
 			if(andy inLocation tortureRoom) {
 				print "The skull begins to contort and grow, before long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes out at the apparation. The evil apparation disapates and dies... again. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
@@ -343,7 +343,7 @@ Item window {
 		}
 	}
 
-	Verb = "go or climb or enter" {
+	Verb "go or climb or enter" {
 		if(window hasAttribute isOpen) {
 			andy setLocation entranceHall;
 			describe;
@@ -379,7 +379,7 @@ Item wrench {
 }
 
 Item mansion_door {
-	name = "door";
+	name "door";
 	description  = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 	

@@ -8,7 +8,7 @@
 using namespace std;
 #define GAME_NAME "*****The Haunted Mansion*****"
 #define CREDITS "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd"
-#define WELCOME_MESSAGE "Your name is Andy an amateur ghost hunter. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills."
+#define WELCOME_MESSAGE "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills."
 #define QUIT_GAME "quit"
 string toLower(string text);
 int main(int argc, char **argv) {
