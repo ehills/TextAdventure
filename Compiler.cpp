@@ -322,13 +322,13 @@ string Compiler::CompileVerb(string line) {
 				if (line.find("getDescription;") < line.length() && line.find(item) < line.length()) {
 					output += "cout << " + location + "->getDescription();\n";
 				} else {
-					output += "cout << " + location + "->getName();\n";
+					output += "cout << " + location + "->getName() << \".\";\n";
 				}
 			} else if (item != "") {
 				if (line.find("getDescription") < line.length()) {
 					output += "cout << " + item + ".getDescription();\n";
 				} else {
-					output += "cout << " + item + ".getName();\n";
+					output += "cout << " + item + ".getName() << \".\";\n";
 				}
 			} else {
 				cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;

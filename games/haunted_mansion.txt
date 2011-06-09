@@ -237,7 +237,7 @@ Item door {
 
 Item key {
 	name = "key";
-	description = "a small key";
+	description = "A small key.";
 	location = deadSpace;
 	hasAttributes = canPickup;
 	
@@ -277,7 +277,7 @@ Item bed {
 
 Item box {
 	name = "box";
-	description = "A large wooden box";
+	description = "A large wooden box.";
 	location = secretHall;
 	hasAttributes = !isOpen;
 	
@@ -294,7 +294,7 @@ Item box {
 
 Item skull {
 	name = "skull";
-	description = "A cracked human skull";
+	description = "A cracked human skull.";
 	location = deadSpace;
 	hasAttributes = canPickup;
 	
