@@ -33,16 +33,16 @@ hasItem - checks to see if a location has an item. Good to use to check inventor
 setLocation - sets an item to a location or to the player.
 inLocation - checks to see if player or item is in a certain location.
 hasAttribute - checks to see if an item has a certain attribute.
-setAttribute - sets an attribute to !attributeName(false) or attributeName(true)
+setAttribute - sets an item's attribute to true or false.
 canCarry - checks to see if there's room in your inventory.
 hasNorth - checks to see if a location has a location to it's north.
 hasSouth - checks to see if a location has a location to it's south.
 hasEast - checks to see if a location has a location to it's east.
 hasWest - checks to see if a location has a location to it's west.
-toNorth - used with setLocation to set a location north of another location.
-toSouth - used with setLocation to set a location south of another location.
-toEast - used with setLocation to set a location east of another location.
-toWest - used with setLocation to set a location west of another location.
+toNorth - used with setLocation to move player north of current location.
+toSouth - used with setLocation to move the player south of current location.
+toEast - used with setLocation to move the player east of current location.
+toWest - used with setLocation to move the player west of current location.
 
 Game objects
 
