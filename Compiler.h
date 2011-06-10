@@ -11,8 +11,6 @@ class Compiler {
 	string CompileVerbNounJoin(Item *item);
 	string CompileVerb(string line);
 	string getSynonyms(string, string);
-	string getJoin(string words);
-	string getJoinNoun(string words);
 public:
 	Parser* parser;
 	Compiler(char* filename);

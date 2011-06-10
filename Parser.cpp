@@ -320,7 +320,6 @@ void Parser::ParseLocation(string data, Location *location) {
 			cerr << NO_JOINED_LOCATION << attribute << endl;
 		}
 	}
-
 }
 
 /* Parses a particular item */

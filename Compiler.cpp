@@ -324,7 +324,7 @@ string Compiler::CompileVerbNoun(Item *item) {
 	return output;
 }
 
-/* Compiles the verb, noun, join, and noun pattern */
+/* Compiles the verb, noun, join and noun pattern */
 string Compiler::CompileVerbNounJoin(Item *item) {
 	map<string, string> verbs = item->getVerbs();
 	map<string, string>::reverse_iterator rit;
@@ -582,14 +582,6 @@ string Compiler::getSynonyms(string words, string type) {
 		temp = "";
 	} while (word);
 	return synonyms;
-}
-
-string Compiler::getJoin(string words) {
-	return "";
-}
-
-string Compiler::getJoinNoun(string words) {
-	return "";
 }
 
 Compiler::~Compiler() {
