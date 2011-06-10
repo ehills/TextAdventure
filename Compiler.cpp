@@ -58,8 +58,11 @@ void Compiler::Compile() {
 			"int main(int argc, char **argv) {\n"
 			"string username;\n"
 			"string command;\n"
+			"string command_word;\n"
 			"string verb;\n"
 			"string noun;\n"
+			"string join;\n"
+			"string second_noun;\n"
 			"string prompt;\n"
 			"int count;\n"
 			"\n";
@@ -144,7 +147,7 @@ void Compiler::Compile() {
 			"prompt = \"\\n>>> \";\n"
 			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n"
 			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems();\n"
-			"while (true) { \n"
+			"\nwhile (true) { \n"
 			"   main_loop:\n"
 			"   cout << prompt;\n"
 			"   prompt = \"\\n>>> \";\n"
@@ -156,44 +159,68 @@ void Compiler::Compile() {
 			"   	prompt = \"\\n>>> \";\n"
 			" 	}\n"
 			"   istringstream word(command);\n"
+			"   command_word = \"\";\n"
 			"   verb = \"\";\n"
 			"   noun = \"\";\n"
+			"   join = \"\";\n"
+			"   second_noun = \"\";\n"
 			"   count = 0;\n"
-			"   while (word) {\n"
-			"      if (count > 2) {\n"
-			"           cout << \"I do not understand your command. Enter 2 words at most, a verb followed by a noun.\";\n"
-			"           goto main_loop;\n"
+			"   do {\n"
+			"      word >> command_word;\n"
+			"      if (count == 0 && command_word != \"\") {\n"
+			"           verb = command_word;\n"
+			"           count++;\n"
+			"      } else if (count == 1 && command_word != \"\") {\n"
+			"           noun = command_word;\n"
+			"           count++;\n"
+			"      } else if (count == 2 && command_word != \"\") {\n"
+			"           join = command_word;\n"
+			"           count++;\n"
+			"      } else if (count == 3 && command_word != \"\") {\n"
+			"           second_noun = command_word;\n"
+			"           count++;\n"
+			"      } else if (count == 4 && command_word != \"\") {\n"
+			"           count++;\n"
+			"           break;\n"
 			"      }\n"
-			"      if (count == 0) {\n"
-			"           word >> verb;\n"
-			"      } else {"
-			"           word >> noun;\n"
-			"      }\n"
-			"      count++;\n"
-			"   }\n";
+			"      command_word = \"\";\n"
+			"    } while (word);\n\n"
+			"if (count == 3 || count > 4) {\n"
+			"	 cout << \"Enter 1, 2 or 4 words: a (verb) or a (verb and noun) or a (verb, noun, join and noun).\";\n"
+			"	goto main_loop;\n"
+			"}\n\n";
 
 	// Single verb
-	output += "if (verb != \"\" && noun == \"\" ) {\n";
+	output += "if (count == 1) {\n\n";
 	map<string, string>::iterator iterator;
 	for (iterator = parser->default_location_verb_expressions.begin(); iterator != parser->default_location_verb_expressions.end(); iterator++) {
-		string verbs = getVerbSynonyms(iterator->first);
+		string verbs = getSynonyms(iterator->first, "verb");
 		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
 	}
 	output += "\ncout << \"I don't know how to \" << verb << \" here.\";\n\n";
 
-	// Verb Noun
-	output += "} else if (verb != \"\" && noun != \"\" ){\n";
+	// Verb and noun
+	output += "} else if (count == 2){\n\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
 				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
-				"" + CompileNounVerb(objects->second) + ""
+				"" + CompileVerbNoun(objects->second) + ""
 				"goto main_loop;\n"
 				"}\n\n";
 	}
 	output += "cout << \"I can't find a \" << noun << \" here.\";\n";
-	// Verb Noun end
-	output += "}\n";
+
+	// Verb, noun, join and noun
+	output += "} else if (count == 4){\n\n";
+	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
+		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
+				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
+				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
+				"" + CompileVerbNounJoin(objects->second) + ""
+				"goto main_loop;\n"
+				"}\n";
+	}
 
 	// End of game loop
 	output += "}\n";
@@ -262,7 +289,7 @@ string Compiler::CompileSingleVerb(string commands) {
 }
 
 /* Compiles the noun and verb together */
-string Compiler::CompileNounVerb(Item *item) {
+string Compiler::CompileVerbNoun(Item *item) {
 	map<string, string> verbs = item->getVerbs();
 	map<string, string>::reverse_iterator rit;
 	string line, output = "";
@@ -278,19 +305,66 @@ string Compiler::CompileNounVerb(Item *item) {
 			pos = data.find("inputItem");
 		}
 
-		// Start verb
-		string verbs = getVerbSynonyms(rit->first);
-		output += "if (" + verbs + ") {\n";
-		istringstream lines(data);
-		while (getline(lines, line)) {
-			output += CompileVerb(line);
-		}
+		// Make sure verb and noun pattern is not a verb, noun and join pattern.
+		if (rit->first.find("Join:") == string::npos && rit->first.find("Item:") == string::npos) {
+			// Start verb
+			string verbs = getSynonyms(rit->first, "verb");
+			output += "if (" + verbs + ") {\n";
+			istringstream lines(data);
+			while (getline(lines, line)) {
+				output += CompileVerb(line);
+			}
 
-		// End verb
-		output += "goto main_loop;";
-		output += "}";
+			// End verb
+			output += "goto main_loop;";
+			output += "}";
+		}
 	}
 	output += "cout << \"Sorry you can not \" << verb << \" the \" << \"" + item->getName() + "\" << \".\";\n";
+	return output;
+}
+
+/* Compiles the verb, noun, join, and noun pattern */
+string Compiler::CompileVerbNounJoin(Item *item) {
+	map<string, string> verbs = item->getVerbs();
+	map<string, string>::reverse_iterator rit;
+	string line, output = "";
+	string object;
+
+	// Reverse iterate so that predefined item verbs get precedence over item default verbs.
+	for (rit = verbs.rbegin(); rit != verbs.rend(); rit++) {
+		string data = rit->second;
+
+		// Replace inputItem
+		size_t pos = data.find("inputItem");
+		while (pos < data.size()) {
+			data.replace(pos, 9, item->getVariableName());
+			pos = data.find("inputItem");
+		}
+
+		// Make sure verb is a verb, noun, join and noun pattern.
+		if (rit->first.find("Join:") != string::npos && rit->first.find("Item:") != string::npos) {
+			// Start verb
+			size_t start, end;
+			start = rit->first.find("Join:");
+			end = rit->first.find("Item:")-2;
+			string joins = getSynonyms(rit->first.substr(start+6, end - start - 5), "join");
+			string verbs = getSynonyms(rit->first, "verb");
+			verbs.erase(start);
+			object = rit->first.substr(end+8);
+			string condition = "(" + verbs + ") && (" + joins + ")";
+			output += "if (" + condition + ") {\n";
+			istringstream lines(data);
+			while (getline(lines, line)) {
+				output += CompileVerb(line);
+			}
+
+			// End verb
+			output += "goto main_loop;";
+			output += "}";
+		}
+	}
+	output += "cout << \"Sorry you can not \" << verb << \" the \" <<  noun  << \" \" << join << \" the \" << second_noun << \".\";\n";
 	return output;
 }
 
@@ -494,20 +568,28 @@ string Compiler::CompileVerb(string line) {
 	return output;
 }
 
-string Compiler::getVerbSynonyms(string words) {
-	string verbs = "verb == ";
+string Compiler::getSynonyms(string words, string type) {
+	string synonyms = type + " == ";
 	string temp;
 	istringstream word(words);
 	do {
 		word >> temp;
 		if (temp != "or" && temp != "") {
-			verbs = verbs + '"' + temp + '"';
+			synonyms +=  '"' + temp + '"';
 		} else if (temp != "") {
-			verbs = verbs + " || verb == ";
+			synonyms += " || " + type + " == ";
 		}
 		temp = "";
 	} while (word);
-	return verbs;
+	return synonyms;
+}
+
+string Compiler::getJoin(string words) {
+	return "";
+}
+
+string Compiler::getJoinNoun(string words) {
+	return "";
 }
 
 Compiler::~Compiler() {

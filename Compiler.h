@@ -4,12 +4,15 @@
 using namespace std;
 
 class Compiler {
-	string CompileNounVerb(Item *item);
 	string getItem(string expression);
 	string getLocation(string expression);
 	string CompileSingleVerb(string commands);
+	string CompileVerbNoun(Item *item);
+	string CompileVerbNounJoin(Item *item);
 	string CompileVerb(string line);
-	string getVerbSynonyms(string);
+	string getSynonyms(string, string);
+	string getJoin(string words);
+	string getJoinNoun(string words);
 public:
 	Parser* parser;
 	Compiler(char* filename);

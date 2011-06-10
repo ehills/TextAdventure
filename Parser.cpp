@@ -362,14 +362,16 @@ void Parser::ParseItem(string data, Item *item) {
 	} else {
 		cout << NO_ITEM_LOCATION << endl;
 	}
+
+	// Parse verbs
+	item->addVerbs(this->default_verb_expressions);
+	item->addVerbs(ParseVerbs(data));
+
 	// Parse attributes
 	attribute = ParseVariableData(data, "hasAttributes");
 	if (validAttribute(attribute)) {
 		item->setAttributeString(attribute);
 	}
-	item->addVerbs(this->default_verb_expressions);
-	item->addVerbs(ParseVerbs(data));
-
 	map<string, bool>::iterator it;
 	unsigned int start, end;
 	start = 0;
