@@ -28,7 +28,7 @@ Game Library
 gameName - sets a games name.
 credits - sets a games credits.
 initialLocation - sets starting location for game.
-initialDescription - sets the game's intoduction.
+initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
 itemIs - used in an if statement with inputItem so see if an item is the same as inputItem.
 print - prints out specified information to game player.
@@ -81,20 +81,20 @@ Item item_name (This needs to be unique.) {
 	location = location_name;
 	hasAttributes = attribute's_names_go_here;
 
-An item's verbs go here in the item object.
+Item verbs go here insisde the item object.
  	Verb “enter or go or climb”{rules_go_here} (used for 2 word pattern - verb and noun.)
- 	Verb "put or place Join: into or on or inside Item: box"{rules_got_here} (used for 4 word pattern - verb, noun, join and noun.)
+ 	Verb "put or place Join: into or in or inside Item: box"{rules_got_here} (used for 4 word pattern - verb, noun, join and noun.)
 }
 
 Default verbs
 
-Item defaults used to create verb noun defaults.
+ItemDefaults used to create verb noun defaults.
 
 ItemDefaults { 
 	Verb "examine or x or look" {rules_go_here}
 }	
 
-Location defaults used to create single verb defaults.
+LocationDefaults used to create single verb defaults.
 
 LocationDefaults {
 	Verb "i or inventory or inv" {rules_go_here}
