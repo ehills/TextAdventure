@@ -368,10 +368,9 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 	return output;
 }
 
-/* Compiles a single verb from the input command */
+/* Compiles the verb expressions */
 string Compiler::CompileVerb(string line) {
 	btrim(line);
-
 	string output = "";
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
