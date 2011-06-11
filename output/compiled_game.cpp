@@ -795,30 +795,37 @@ if ((andy->getLocation()->getVariableName() == bed.getLocation()->getVariableNam
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == box.getLocation()->getVariableName() || andy->getInventory()->hasItem("box")) && (toLower(noun) == toLower("box"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == door.getLocation()->getVariableName() || andy->getInventory()->hasItem("door")) && (toLower(noun) == toLower("door"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == key.getLocation()->getVariableName() || andy->getInventory()->hasItem("key")) && (toLower(noun) == toLower("key"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == lamp.getLocation()->getVariableName() || andy->getInventory()->hasItem("lamp")) && (toLower(noun) == toLower("lamp"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == mansion_door.getLocation()->getVariableName() || andy->getInventory()->hasItem("mansion_door")) && (toLower(noun) == toLower("door"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == mirror.getLocation()->getVariableName() || andy->getInventory()->hasItem("mirror")) && (toLower(noun) == toLower("mirror"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == skull.getLocation()->getVariableName() || andy->getInventory()->hasItem("skull")) && (toLower(noun) == toLower("skull"))) {
 if ((verb == "put") && (join == "into" || join == "in" || join == "inside")) {
 if (andy->getLocation() == secretHall) {
@@ -839,13 +846,16 @@ cout << "You cannot do that here.";
 goto main_loop;}cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == window.getLocation()->getVariableName() || andy->getInventory()->hasItem("window")) && (toLower(noun) == toLower("window"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 if ((andy->getLocation()->getVariableName() == wrench.getLocation()->getVariableName() || andy->getInventory()->hasItem("wrench")) && (toLower(noun) == toLower("wrench"))) {
 cout << "Sorry you can not " << verb << " the " <<  noun  << " " << join << " the " << second_noun << ".";
 goto main_loop;
 }
+
 }
 }

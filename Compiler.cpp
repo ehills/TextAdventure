@@ -219,7 +219,7 @@ void Compiler::Compile() {
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileVerbNounJoin(objects->second) + ""
 				"goto main_loop;\n"
-				"}\n";
+				"}\n\n";
 	}
 
 	// End of game loop
