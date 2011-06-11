@@ -431,13 +431,13 @@ string Compiler::CompileVerb(string line) {
 				if(expression.find(" and ") < line.length()) {
 					size_t start;
 					start = expression.find(" and ");
-					expression_sub = expression.substr(start+1);
+					expression_sub = expression.substr(start);
 					expression = expression.substr(0, start);
 					// Loop to compile "and" conditions
 					if (count != 0) {
 						and_conditions_loop:
 						count++;
-						expression_sub = expression_sub.substr(4);
+						expression_sub = expression_sub.substr(5);
 						start = expression_sub.find(" and ");
 						expression = expression_sub.substr(0, start);
 						expression_sub = expression_sub.substr(start+1);
@@ -506,7 +506,7 @@ string Compiler::CompileVerb(string line) {
 				cout << BAD_BRACES << endl;
 			}
 			// Look to see if expression has an "and" in it and go to the and conditions loop
-			if(expression_sub.find("and ") < expression.length()){
+			if(expression_sub.find(" and ") < expression.length()){
 				goto and_conditions_loop;
 			}
 			// Add end braces for amount of "and" conditions in expression

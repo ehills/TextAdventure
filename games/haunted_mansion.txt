@@ -54,11 +54,8 @@ LocationDefaults {
 	}
     Verb "look or l" {
 		 if(andy inLocation tortureRoom) {
-            print "You look into the face of death and feel his scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune.";
-			gameOver;
-		} else {
-			describe;
-			list;	
+          	describe;
+			list;
 		}
     }
     Verb "quit or q" {
