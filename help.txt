@@ -55,7 +55,8 @@ toWest - used with setLocation to move the player west of current location.
 
 Game objects
 
-Creates the player in the game.
+Create the player in the game.
+
 Player player_name {
 	name = "name_goes_here";
 	description = "description_goes_here";
@@ -63,6 +64,7 @@ Player player_name {
 }
 
 Creates a location in the game.
+
 Location location_name (This needs to be unique.) {
     	name = "name_goes_here";
     	description = "description_goes_here.";
@@ -74,6 +76,7 @@ Location location_name (This needs to be unique.) {
 }
 
 Creates an item in the game.
+
 Item item_name (This needs to be unique.) {
 	name = "name_goes_here"; (The name of the item in game.)
 	(Be careful not to have items with the same name in the same location.)
@@ -219,7 +222,7 @@ initialLocation = garden;
 
 initialDescription = "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
 
-// Location to temporarily store game items not in use
+// Dead space is a location to store game items until needed.
 Location deadSpace {
 	name = "Dead space";
 	description = "Dead space";
