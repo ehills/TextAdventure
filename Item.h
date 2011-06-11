@@ -8,7 +8,7 @@ using namespace std;
 
 /* Item class stores all information relevant to a particular item object */
 class Item {
-	string variable_name;
+	string variable_name; // Used as an item's unique identifier.
 	string name;
 	string description;
 	string attribute_string;

@@ -22,7 +22,7 @@ class Item {
 	string name;
 	string description;
 	map<string, bool> attributes;
-	string variable_name;
+	string variable_name; // Used as an item's unique identifier.
 public:
 	/* Constructor sets up initial variables */
 	Item(string name, string description, string variable_name);

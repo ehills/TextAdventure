@@ -16,7 +16,7 @@ class Item;
 /* Location class will store all information relevant to a particular location*/
 class Location {
 	string name;
-	string variable_name;
+	string variable_name; // Used as a locations unique identifier.
 	string description;
 	Location* south;
 	Location* north;
