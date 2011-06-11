@@ -23,7 +23,7 @@ class Location {
 	Location* east;
 	Location* west;
 	map<string, Item*> items;
-	string variable_name;
+	string variable_name; // Used as a locations unique identifier.
 public:
 	Location(string, string, string);
 	Location();
