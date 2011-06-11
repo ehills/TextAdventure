@@ -114,7 +114,7 @@ initialLocation = garden;
 
 initialDescription = "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
 
-// Dead space is a location to store game items until needed.
+// Dead space is a location to store game items until needed
 Location deadSpace {
 	name = "Dead space";
 	description = "Dead space";
