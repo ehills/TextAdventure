@@ -789,6 +789,7 @@ goto main_loop;
 }
 
 cout << "I can't find a " << noun << " here.";
+
 } else if (count == 4){
 
 if ((andy->getLocation()->getVariableName() == bed.getLocation()->getVariableName() || andy->getInventory()->hasItem("bed")) && (toLower(noun) == toLower("bed"))) {

@@ -209,7 +209,7 @@ void Compiler::Compile() {
 				"goto main_loop;\n"
 				"}\n\n";
 	}
-	output += "cout << \"I can't find a \" << noun << \" here.\";\n";
+	output += "cout << \"I can't find a \" << noun << \" here.\";\n\n";
 
 	// Verb, noun, join and noun
 	output += "} else if (count == 4){\n\n";
