@@ -432,6 +432,13 @@ string Compiler::CompileVerb(string line) {
 					} else {
 						output += "if (" + location + "->hasItem(" + item + ".getVariableName())) {\n";
 					}
+				} else if (line.find("isItem") < line.length()) {
+					size_t start, end;
+					string item = getItem(expression);
+					start = line.find("isItem") + 7;
+					end = line.find(")");
+					string other_item = line.substr(start, end - start);
+					output += "if (" + item + "." + "getVariableName() == " + other_item + "." + "getVariableName()) {\n";
 				} else if (line.find("hasAttribute") < line.length()) {
 					string item = getItem(expression);
 					size_t start, end;

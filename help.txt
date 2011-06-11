@@ -30,6 +30,7 @@ credits - sets a games credits.
 initialLocation - sets starting location for game.
 initialDescription - sets the game's intoduction.
 inputItem - gets the item to be used for item default verbs. 
+itemIs - used in an if statement with inputItem so see if an item is the same as inputItem.
 print - prints out specified information to game player.
 describe - prints out the current location's name and description.
 describeInventory - prints out the players inventory.
@@ -62,7 +63,7 @@ Player player_name {
 }
 
 Creates a location in the game.
-Location location_name (This needs to be unique) {
+Location location_name (This needs to be unique.) {
     	name = "name_goes_here";
     	description = "description_goes_here.";
 	north, south, east and west are set to NULL by default.
@@ -73,31 +74,34 @@ Location location_name (This needs to be unique) {
 }
 
 Creates an item in the game.
-Item item_name (This needs to be unique) {
-	name = "name_goes_here"; (The name of the item in game)
-	(Be careful not to have items with the same name in the same location)
+Item item_name (This needs to be unique.) {
+	name = "name_goes_here"; (The name of the item in game.)
+	(Be careful not to have items with the same name in the same location.)
 	description = "description_goes_here";
 	location = location_name;
 	hasAttributes = attribute's_names_go_here;
 
 An item's verbs go here in the item object.
- 	Verb “enter or go or climb”{rules_go_here}
+ 	Verb “enter or go or climb”{rules_go_here} (used for 2 word pattern - verb and noun.)
+ 	Verb "put or place Join: into or on or inside Item: box"{rules_got_here} (used for 4 word pattern - verb, noun, join and noun.)
 }
 
 Default verbs
 
+Item defaults used to create verb noun defaults.
+
+ItemDefaults { 
+	Verb "examine or x or look" {rules_go_here}
+}	
+
 Location defaults used to create single verb defaults.
+
 LocationDefaults {
 	Verb "i or inventory or inv" {rules_go_here}
 	Verb "s or sth" {rules_go_here}
 }
 
-Item defaults used to create verb noun defaults.
-ItemDefaults { 
-	Verb "examine or x or look" {rules_go_here}
-}	
-	
-Game Example 
+Example Game 
 
 gameName = "*****The Haunted Mansion*****";
 credits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
@@ -115,6 +119,11 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
+			if (andy inLocation secretHall) {
+				if (inputItem isItem skull) {
+					box setAttribute !hasSkull;
+				}
+			}
 			 if (andy hasItem inputItem) {
 	            print "You already have the ";
 	            print inputItem;
@@ -380,15 +389,40 @@ Item box {
 	name = "box";
 	description = "A large wooden box.";
 	location = secretHall;
-	hasAttributes = !isOpen;
+	hasAttributes = !isOpen hasSkull;
 	
 	Verb "open" { 
-		if (box hasAttribute isOpen) {
-			print "The box is already open...";
+		if (box hasAttribute !isOpen) {
+			if(box hasAttribute hasSkull) {
+				skull setLocation secretHall;
+				box setAttribute isOpen;
+				print "You open the box and discover a human skull. The body is nowhere to been seen.";
+			} else {
+				box setAttribute isOpen;
+				print "You open the box to find nothing inside.";
+			}
 		} else {
-			skull setLocation secretHall;
-			box setAttribute isOpen;
-			print "You open the box and discover a human skull... the body is nowhere to been seen.";
+			print "The box is already open.";
+		}
+	}
+	
+	Verb "close" {
+		if(box hasAttribute isOpen) {
+			if(skull inLocation secretHall){
+				if(box hasAttribute hasSkull){
+					skull setLocation deadSpace;
+					box setAttribute !isOpen;
+					print "You shut the creepy looking skull back into the box.";
+				} else {
+					box setAttribute !isOpen;
+					print "You shut the box.";
+				}
+			} else {
+				box setAttribute !isOpen;
+				print "You shut the box.";
+			}
+		} else {
+			print "The box is already closed.";
 		}
 	}
 }
@@ -399,9 +433,27 @@ Item skull {
 	location = deadSpace;
 	hasAttributes = canPickup;
 	
+	Verb "put or place Join: into or in or inside Item: box" {
+		if(andy inLocation secretHall) {
+			if(skull inLocation Andy) {
+				if(box hasAttribute isOpen) {
+					box setAttribute hasSkull;
+					skull setLocation currentLocation;
+					print "You return the skull to the box.";
+				} else {
+					print "You cannot do that the box is closed.";
+				}
+			} else {
+				print "You do not have the skull.";
+			}
+		} else {
+			print "You cannot do that here.";
+		}
+	}
+
 	Verb "wear" {
 		if (skull inLocation andy) {
-			print "For some perverse reason you shove the skull onto your head... Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
+			print "For some perverse reason you shove the skull onto your head. Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
 			gameOver;
 		} else {
 			print "You don't have the skull in your inventory.";
