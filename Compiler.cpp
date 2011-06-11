@@ -186,7 +186,7 @@ void Compiler::Compile() {
 			"      command_word = \"\";\n"
 			"    } while (word);\n\n"
 			"if (count == 3 || count > 4) {\n"
-			"	 cout << \"Enter 1, 2 or 4 words: a (verb) or a (verb and noun) or a (verb, noun, join and noun).\";\n"
+			"	 cout << \"Sorry you need to enter 1, 2 or 4 words: a (verb) or a (verb and noun) or a (verb, noun, join and noun).\";\n"
 			"	goto main_loop;\n"
 			"}\n\n";
 
@@ -197,7 +197,7 @@ void Compiler::Compile() {
 		string verbs = getSynonyms(iterator->first, "verb");
 		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
 	}
-	output += "\ncout << \"I don't know how to \" << verb << \" here.\";\n\n";
+	output += "\ncout << \"I do not know how to \" << verb << \" here.\";\n\n";
 
 	// Verb and noun
 	output += "} else if (count == 2){\n\n";
@@ -209,7 +209,7 @@ void Compiler::Compile() {
 				"goto main_loop;\n"
 				"}\n\n";
 	}
-	output += "cout << \"I can't find a \" << noun << \" here.\";\n\n";
+	output += "cout << \"I cannot find a \" << noun << \" here.\";\n\n";
 
 	// Verb, noun, join and noun
 	output += "} else if (count == 4){\n\n";
@@ -320,7 +320,7 @@ string Compiler::CompileVerbNoun(Item *item) {
 			output += "}";
 		}
 	}
-	output += "cout << \"Sorry you can not \" << verb << \" the \" << \"" + item->getName() + "\" << \".\";\n";
+	output += "cout << \"Sorry you cannot \" << verb << \" the \" << \"" + item->getName() + "\" << \".\";\n";
 	return output;
 }
 
@@ -364,7 +364,7 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			output += "}";
 		}
 	}
-	output += "cout << \"Sorry you can not \" << verb << \" the \" <<  noun  << \" \" << join << \" the \" << second_noun << \".\";\n";
+	output += "cout << \"Sorry you cannot \" << verb << \" the \" <<  noun  << \" \" << join << \" the \" << second_noun << \".\";\n";
 	return output;
 }
 

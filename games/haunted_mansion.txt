@@ -42,7 +42,7 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "You don't have a ";
+            print "You do not have a ";
             print inputItem;
         }
     }
@@ -170,7 +170,7 @@ Item lamp {
 			bed setLocation masterBedroom;
 			print "You fiddle around with the old lamp and manage to turn it on.";
 		} else {
-			print "You don't have that item.";
+			print "You do not have that item.";
 		}
     }
 	
@@ -181,7 +181,7 @@ Item lamp {
 			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
 			print "You switch off the old lamp.";
 		} else {
-			print "You don't have that item.";
+			print "You do not have that item.";
 		}
     }
 }
@@ -248,7 +248,7 @@ Item key {
 				secretHall setNorth tortureRoom;
 				door setAttribute !isLocked;
 			} else {
-				print "You can't use the key here.";
+				print "You can not use the key here.";
 			}
 		} else {
 				print "The door is already unlocked.";
@@ -271,7 +271,7 @@ Item bed {
 	}
 	
 	Verb "sleep or nap" {
-		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to take a nap.";
+		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
 		}
 }
 
@@ -346,7 +346,7 @@ Item skull {
 			print "For some perverse reason you shove the skull onto your head. Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
 			gameOver;
 		} else {
-			print "You don't have the skull in your inventory.";
+			print "You do not have the skull in your inventory.";
 		}
 	}
 	
@@ -359,7 +359,7 @@ Item skull {
 				print "You wave the skull around like a demented lunatic.";
 			}
 			} else {
-				print "You don't have that item.";
+				print "You do not have that item.";
 			}
 		}
 	}
@@ -392,14 +392,14 @@ Item window {
 			describe;
 			list;
 		} else {
-		  	print "You can't do that the window is closed.";
+		  	print "You cannot do that the window is closed.";
 		}
 	}
 }
 
 Item wrench {
 	name = "wrench";
-	description = "Your trusty wrench. You've used it to help you out of many a tight jam.";
+	description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
 	location = andy;
 	hasAttributes = canPickup;
 	
