@@ -14,16 +14,14 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
-			if (andy inLocation secretHall) {
-				if (inputItem isItem skull) {
-					box setAttribute !hasSkull;
-				}
+			if (andy inLocation secretHall and inputItem isItem skull) {
+				box setAttribute !hasSkull;
 			}
-			 if (andy hasItem inputItem) {
+			if (andy hasItem inputItem) {
 	            print "You already have the ";
 	            print inputItem;
 	        } else {
-	            if (andy canCarry) {
+	         	if (andy canCarry) {
 	                inputItem setLocation andy;
 					print "You pickup the ";
 					print inputItem;

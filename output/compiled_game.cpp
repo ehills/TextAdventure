@@ -229,9 +229,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (bed.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(bed.getVariableName())) {
 cout << "You already have the ";
@@ -270,9 +270,9 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (box.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (box.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(box.getVariableName())) {
 cout << "You already have the ";
@@ -359,9 +359,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (door.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (door.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(door.getVariableName())) {
 cout << "You already have the ";
@@ -426,9 +426,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (key.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (key.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(key.getVariableName())) {
 cout << "You already have the ";
@@ -467,9 +467,9 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (lamp.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (lamp.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(lamp.getVariableName())) {
 cout << "You already have the ";
@@ -524,9 +524,9 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mansion_door.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (mansion_door.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(mansion_door.getVariableName())) {
 cout << "You already have the ";
@@ -574,9 +574,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mirror.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (mirror.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(mirror.getVariableName())) {
 cout << "You already have the ";
@@ -633,9 +633,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (skull.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(skull.getVariableName())) {
 cout << "You already have the ";
@@ -674,9 +674,9 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (window.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(window.getVariableName())) {
 cout << "You already have the ";
@@ -752,9 +752,9 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (wrench.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
+} 
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
-}
 }
 if (andy->getInventory()->hasItem(wrench.getVariableName())) {
 cout << "You already have the ";

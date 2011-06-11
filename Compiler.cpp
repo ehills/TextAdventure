@@ -372,6 +372,10 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 string Compiler::CompileVerb(string line) {
 	btrim(line);
 	string output = "";
+	string expression;
+	string expression_sub; // Used for "and" conditions
+	int count = 0;        // Counts how many "and" conditions there are
+
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n";
@@ -422,8 +426,24 @@ string Compiler::CompileVerb(string line) {
 			close = line.find(")");
 			if (open < line.length() && close < line.length()) {
 				open++;
-				string expression = line.substr(open, close - open);
-				if (line.find("hasItem") < line.length()) {
+				expression = line.substr(open, close - open);
+
+				if(expression.find(" and ") < line.length()) {
+					size_t start;
+					start = expression.find(" and ");
+					expression_sub = expression.substr(start+1);
+					expression = expression.substr(0, start);
+					// Loop to compile "and" conditions
+					if (count != 0) {
+						and_conditions_loop:
+						count++;
+						expression_sub = expression_sub.substr(4);
+						start = expression_sub.find(" and ");
+						expression = expression_sub.substr(0, start);
+						expression_sub = expression_sub.substr(start+1);
+					}
+				}
+				if (expression.find("hasItem") < expression.length()) {
 					string location = getLocation(expression);
 					string item = getItem(expression);
 					if (location == "" || item == "") {
@@ -431,47 +451,47 @@ string Compiler::CompileVerb(string line) {
 					} else {
 						output += "if (" + location + "->hasItem(" + item + ".getVariableName())) {\n";
 					}
-				} else if (line.find("isItem") < line.length()) {
+				} else if (expression.find("isItem") < expression.length()) {
 					size_t start, end;
 					string item = getItem(expression);
-					start = line.find("isItem") + 7;
-					end = line.find(")");
-					string other_item = line.substr(start, end - start);
+					start = expression.find("isItem") + 7;
+					end = expression.find(")");
+					string other_item = expression.substr(start, end - start);
 					output += "if (" + item + "." + "getVariableName() == " + other_item + "." + "getVariableName()) {\n";
-				} else if (line.find("hasAttribute") < line.length()) {
+				} else if (expression.find("hasAttribute") < expression.length()) {
 					string item = getItem(expression);
 					size_t start, end;
-					start = line.find("hasAttribute");
-					end = line.find(")");
-					if (line.substr(start+13, (end-start-13)).find('!') == 0) {
-						output += "if (" + item + "." + "hasAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+					start = expression.find("hasAttribute");
+					end = expression.find(")");
+					if (expression.substr(start+13, (end-start-13)).find('!') == 0) {
+						output += "if (" + item + "." + "hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 					} else {
-						output += "if (" + item + "." + "hasAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+						output += "if (" + item + "." + "hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 					}
-				} else if (line.find("canCarry") < line.length()) {
-					if (line.find(parser->player->getVariableName()) < line.length()) {
+				} else if (expression.find("canCarry") < expression.length()) {
+					if (expression.find(parser->player->getVariableName()) < expression.length()) {
 						output += "if (" + parser->player->getVariableName() + "->canCarry()) {\n";
 					} else {
 						cout << BAD_CARRIABLE_EXPRESSION << endl;
 					}
-				} else if (line.find("inLocation") < line.length()) {
+				} else if (expression.find("inLocation") < expression.length()) {
 					string location = getLocation(expression);
 					string item = getItem(expression);
 					if (location != "" && item != "") {
 						output += "if (" + item + ".getLocation() == " + location + ") {\n";
 					} else if (item != "") {
-						size_t pos = line.find(parser->player->getVariableName());
-						if (pos < line.length()) {
+						size_t pos = expression.find(parser->player->getVariableName());
+						if (pos < expression.length()) {
 							output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
 						}
 					} else if (location != "") {
-						if (line.find("hasNorth") < line.length()){
+						if (expression.find("hasNorth") < expression.length()){
 							output += "if (" + parser->player->getVariableName() + "->getLocation()->hasNorth()) {\n";
-						} else if(line.find("hasSouth") < line.length()) {
+						} else if(expression.find("hasSouth") < expression.length()) {
 							output += "if (" + parser->player->getVariableName() + "->getLocation()->hasSouth()) {\n";
-						} else if(line.find("hasEast") < line.length()) {
+						} else if(expression.find("hasEast") < expression.length()) {
 							output += "if (" + parser->player->getVariableName() + "->getLocation()->hasEast()) {\n";
-						} else if(line.find("hasWest") < line.length()) {
+						} else if(expression.find("hasWest") < expression.length()) {
 							output += "if (" + parser->player->getVariableName() + "->getLocation()->hasWest()) {\n";
 						} else {
 							output += "if (" + parser->player->getVariableName() + "->getLocation() == " + location + ") {\n";
@@ -484,6 +504,16 @@ string Compiler::CompileVerb(string line) {
 				}
 			} else {
 				cout << BAD_BRACES << endl;
+			}
+			// Look to see if expression has an "and" in it and go to the and conditions loop
+			if(expression_sub.find("and ") < expression.length()){
+				goto and_conditions_loop;
+			}
+			// Add end braces for amount of "and" conditions in expression
+			if (count != 0) {
+				for(int n=0; n < count; n++) {
+					output += "} \n";
+				}
 			}
 		} else if (line.find("else") < line.length()) {
 			output += "} else {\n";
