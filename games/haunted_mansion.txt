@@ -372,7 +372,7 @@ Item skull {
 
 Item window {
 	name = "window";
-	description = "A cracked window it seems to be your only access to the mansion.";
+	description = "A cracked window that seems to be your only access to the mansion.";
 	location = garden;
 	hasAttributes = !isOpen isJammed;
 	

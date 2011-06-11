@@ -81,7 +81,7 @@ deadSpace->addItem("skull", &skull);
 skull.setLocation(deadSpace);
 skull.addAttribute("canPickup", true);
 skull.addAttribute("!canPickup", false);
-Item window("window", "A cracked window it seems to be your only access to the mansion.", "window");
+Item window("window", "A cracked window that seems to be your only access to the mansion.", "window");
 garden->addItem("window", &window);
 window.setLocation(garden);
 window.addAttribute("!isOpen", true);
