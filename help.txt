@@ -41,6 +41,7 @@ getDescription - gets the description of an item or location.
 hasItem - checks to see if a location has an item. Good to use to check inventory.
 setLocation - sets an item to a location or to the player.
 inLocation - checks to see if player or item is in a certain location.
+currentLocation - used with setLocation or inLocation to set or check the player's current location.
 hasAttribute - checks to see if an item has a certain attribute.
 setAttribute - sets an item's attribute to true or false.
 canCarry - checks to see if there's room in your inventory.
@@ -66,12 +67,12 @@ Player player_name {
 Creates a location in the game.
 
 Location location_name (This needs to be unique.) {
-    	name = "name_goes_here";
-    	description = "description_goes_here.";
-	north, south, east and west are set to NULL by default.
+   	name = "name_goes_here";
+   	description = "description_goes_here.";
+    (north, south, east and west are set to NULL by default.)
 	west = location_goes_here;  
-    	east = location_goes_here;
-    	south = location_goes_here;
+    east = location_goes_here;
+    south = location_goes_here;
 	north = location_goes_here;
 }
 
@@ -122,16 +123,14 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
-			if (andy inLocation secretHall) {
-				if (inputItem isItem skull) {
-					box setAttribute !hasSkull;
-				}
+			if (andy inLocation secretHall and inputItem isItem skull) {
+				box setAttribute !hasSkull;
 			}
-			 if (andy hasItem inputItem) {
+			if (andy hasItem inputItem) {
 	            print "You already have the ";
 	            print inputItem;
 	        } else {
-	            if (andy canCarry) {
+	         	if (andy canCarry) {
 	                inputItem setLocation andy;
 					print "You pickup the ";
 					print inputItem;
@@ -152,7 +151,7 @@ ItemDefaults {
 			print "You drop the ";
 			print inputItem;
         } else {
-            print "You don't have a ";
+            print "You do not have a ";
             print inputItem;
         }
     }
@@ -164,11 +163,8 @@ LocationDefaults {
 	}
     Verb "look or l" {
 		 if(andy inLocation tortureRoom) {
-            print "You look into the face of death and feel his scythe rip through your body. You flop over in agony and slowly die with the last thing you hear being the spectre cackling at your misfortune.";
-			gameOver;
-		} else {
-			describe;
-			list;	
+          	describe;
+			list;
 		}
     }
     Verb "quit or q" {
@@ -283,7 +279,7 @@ Item lamp {
 			bed setLocation masterBedroom;
 			print "You fiddle around with the old lamp and manage to turn it on.";
 		} else {
-			print "You don't have that item.";
+			print "You do not have that item.";
 		}
     }
 	
@@ -294,7 +290,7 @@ Item lamp {
 			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
 			print "You switch off the old lamp.";
 		} else {
-			print "You don't have that item.";
+			print "You do not have that item.";
 		}
     }
 }
@@ -361,7 +357,7 @@ Item key {
 				secretHall setNorth tortureRoom;
 				door setAttribute !isLocked;
 			} else {
-				print "You can't use the key here.";
+				print "You can not use the key here.";
 			}
 		} else {
 				print "The door is already unlocked.";
@@ -384,7 +380,7 @@ Item bed {
 	}
 	
 	Verb "sleep or nap" {
-		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there's nobody there. You decide this is not a good place to take a nap.";
+		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
 		}
 }
 
@@ -459,7 +455,7 @@ Item skull {
 			print "For some perverse reason you shove the skull onto your head. Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
 			gameOver;
 		} else {
-			print "You don't have the skull in your inventory.";
+			print "You do not have the skull in your inventory.";
 		}
 	}
 	
@@ -472,7 +468,7 @@ Item skull {
 				print "You wave the skull around like a demented lunatic.";
 			}
 			} else {
-				print "You don't have that item.";
+				print "You do not have that item.";
 			}
 		}
 	}
@@ -505,14 +501,14 @@ Item window {
 			describe;
 			list;
 		} else {
-		  	print "You can't do that the window is closed.";
+		  	print "You cannot do that the window is closed.";
 		}
 	}
 }
 
 Item wrench {
 	name = "wrench";
-	description = "Your trusty wrench. You've used it to help you out of many a tight jam.";
+	description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
 	location = andy;
 	hasAttributes = canPickup;
 	
@@ -536,7 +532,7 @@ Item wrench {
 
 Item mansion_door {
 	name "door";
-	description  = "The mansion door is bolted shut. You will need to find another way in.";
+	description = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 	
 	Verb = "open" {

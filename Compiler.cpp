@@ -512,7 +512,7 @@ string Compiler::CompileVerb(string line) {
 			// Add end braces for amount of "and" conditions in expression
 			if (count != 0) {
 				for(int n=0; n < count; n++) {
-					output += "} \n";
+					output += "}\n";
 				}
 			}
 		} else if (line.find("else") < line.length()) {
