@@ -162,10 +162,8 @@ cout << andy->getNumberOfItems() << "/" << andy->getMaxItems();
 
 goto main_loop;}
 if (verb == "look" || verb == "l"){
-if (andy->getLocation() == tortureRoom) {
 cout << andy->getLocation()->printNameAndDescription() << endl;
 cout << andy->getLocation()->listItems();
-}
 
 goto main_loop;}
 if (verb == "north" || verb == "n" || verb == "nth"){
@@ -226,7 +224,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (bed.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -267,7 +265,7 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (box.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (box.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -356,7 +354,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (door.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (door.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -423,7 +421,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (key.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (key.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -464,7 +462,7 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (lamp.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (lamp.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -521,7 +519,7 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mansion_door.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (mansion_door.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -571,7 +569,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mirror.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (mirror.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -630,7 +628,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (skull.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -671,7 +669,7 @@ if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (window.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }
@@ -749,7 +747,7 @@ goto main_loop;}if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (wrench.hasAttribute("canPickup")) {
 if (andy->getLocation() == secretHall) {
 if (skull.getVariableName() == skull.getVariableName()) {
-} 
+}
 box.setAttribute("!hasSkull", true);
 box.setAttribute("hasSkull", false);
 }

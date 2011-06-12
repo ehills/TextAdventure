@@ -162,10 +162,8 @@ LocationDefaults {
 		describeInventory;
 	}
     Verb "look or l" {
-		 if(andy inLocation tortureRoom) {
           	describe;
 			list;
-		}
     }
     Verb "quit or q" {
     	print "Bye bye thanks for playing!!!";
