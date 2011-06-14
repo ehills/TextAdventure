@@ -6,7 +6,7 @@ We have ensured no verbs are hardcoded to give the user more control over their 
 Differences to BIFF
 
 gameName = "game_name";  lets a user specify a game's name to be presented at the start of each game. Set to an empty string by default.
-credits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
+gameCredits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
 
 Four word (verb noun join noun) user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
 by using the keyword "Join:" for the join word and synonyms and "Item:" to specify the second noun in the sentence.
@@ -26,7 +26,8 @@ Item attributes are initialised the same as in BIFF but we saw no reason to set 
 Game Library
 
 gameName - sets a games name.
-credits - sets a games credits.
+gameCredits - sets a games credits.
+defaultResponse = prints out to game player a response if thier command is unknown. Currently it will append a space and the command used at the end of the response.
 initialLocation - sets starting location for game.
 initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
@@ -108,7 +109,8 @@ LocationDefaults {
 Example Game 
 
 gameName = "*****The Haunted Mansion*****";
-credits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
+gameCredits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
+defaultResponse = "I don not know how to";
 
 Player andy  {
     name =  "Andy";
@@ -123,8 +125,10 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
-			if (andy inLocation secretHall and inputItem isItem skull) {
+			if (andy inLocation secretHall) {
+				if(inputItem isItem skull) {
 				box setAttribute !hasSkull;
+				}
 			}
 			if (andy hasItem inputItem) {
 	            print "You already have the ";
@@ -280,7 +284,7 @@ Item lamp {
 			print "You do not have that item.";
 		}
     }
-	
+
 	Verb "off or turnoff or turn-off" {
 		if(lamp inLocation andy) {
 			entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
@@ -314,7 +318,7 @@ Item door {
 	description = "A solid wooden door is located in the north wall. You notice a small key hole.";
 	location = secretHall;
 	hasAttributes = isLocked !isOpen;
-	
+
 	Verb "open" {
 		if(door hasAttribute !isOpen) {
 			if (door hasAttribute isLocked) {
@@ -347,7 +351,7 @@ Item key {
 	description = "A small key.";
 	location = deadSpace;
 	hasAttributes = canPickup;
-	
+
 	Verb "use" {
 		if(door hasAttribute isLocked) {
 			if(andy inLocation secretHall) {
@@ -367,7 +371,7 @@ Item bed {
 	name = "bed";
 	description = "A massive dusty bed.";
 	location = deadSpace;
-	
+
 	Verb "under or look or examine or x or ex" {
 		if (key inLocation andy) {
 			print "A massive dusty bed.";
@@ -376,7 +380,7 @@ Item bed {
 			key setLocation masterBedroom;	
 		}
 	}
-	
+
 	Verb "sleep or nap" {
 		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
 		}
@@ -387,7 +391,7 @@ Item box {
 	description = "A large wooden box.";
 	location = secretHall;
 	hasAttributes = !isOpen hasSkull;
-	
+
 	Verb "open" { 
 		if (box hasAttribute !isOpen) {
 			if(box hasAttribute hasSkull) {
@@ -402,7 +406,7 @@ Item box {
 			print "The box is already open.";
 		}
 	}
-	
+
 	Verb "close" {
 		if(box hasAttribute isOpen) {
 			if(skull inLocation secretHall){
@@ -429,15 +433,15 @@ Item skull {
 	description = "A cracked human skull.";
 	location = deadSpace;
 	hasAttributes = canPickup;
-	
+
 	Verb "put or place Join: into or in or inside Item: box" {
 		if(andy inLocation secretHall) {
 			if(skull inLocation Andy) {
 				if(box hasAttribute isOpen) {
 					box setAttribute hasSkull;
-					skull setLocation currentLocation;
+					skull setLocation secretHall;
 					print "You return the skull to the box.";
-				} else {
+				} else 
 					print "You cannot do that the box is closed.";
 				}
 			} else {
@@ -456,7 +460,7 @@ Item skull {
 			print "You do not have the skull in your inventory.";
 		}
 	}
-	
+
 	Verb "use or show" {
 		if (skull inLocation andy) {
 			if(andy inLocation tortureRoom) {
@@ -477,7 +481,7 @@ Item window {
 	description = "A cracked window that seems to be your only access to the mansion.";
 	location = garden;
 	hasAttributes = !isOpen isJammed;
-	
+
 	Verb "open" {
 		if (window hasAttribute !isOpen) {
 			if (window hasAttribute isJammed) {
@@ -509,7 +513,7 @@ Item wrench {
 	description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
 	location = andy;
 	hasAttributes = canPickup;
-	
+
 	Verb = "use" {
 		if(andy inLocation garden) {
 			if(wrench inLocation andy) {
@@ -532,7 +536,7 @@ Item mansion_door {
 	name "door";
 	description = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
-	
+
 	Verb = "open" {
 		print "The mansion door is bolted shut. You will need to find another way in.";
 	}

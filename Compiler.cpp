@@ -49,8 +49,9 @@ void Compiler::Compile() {
 			"#include \"Player.h\"\n"
 			"using namespace std;\n"
 			"#define GAME_NAME \"" + parser->gameName + "\"\n"
-			"#define CREDITS \"" + parser->credits + "\"\n"
+			"#define CREDITS \"" + parser->gameCredits + "\"\n"
 			"#define WELCOME_MESSAGE \"" + parser->initialDescription + "\"\n"
+			"#define DEFAULT_RESPONSE \"" + parser->defaultResponse + "\"\n"
 			"string toLower(string text);\n";
 
 	// Start of main method
@@ -185,19 +186,15 @@ void Compiler::Compile() {
 			"      }\n"
 			"      command_word = \"\";\n"
 			"    } while (word);\n\n"
-			"if (count == 3 || count > 4) {\n"
-			"	 cout << \"Sorry you need to enter 1, 2 or 4 words: a (verb) or a (verb and noun) or a (verb, noun, join and noun).\";\n"
-			"	goto main_loop;\n"
-			"}\n\n";
+			"\n\n";
 
 	// Single verb
 	output += "if (count == 1) {\n\n";
 	map<string, string>::iterator iterator;
 	for (iterator = parser->default_location_verb_expressions.begin(); iterator != parser->default_location_verb_expressions.end(); iterator++) {
 		string verbs = getSynonyms(iterator->first, "verb");
-		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;}\n";
+		output += "if (" + verbs + "){\n" + CompileSingleVerb(iterator->second) + "\ngoto main_loop;\n}\n";
 	}
-	output += "\ncout << \"I do not know how to \" << verb << \" here.\";\n\n";
 
 	// Verb and noun
 	output += "} else if (count == 2){\n\n";
@@ -206,21 +203,20 @@ void Compiler::Compile() {
 				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileVerbNoun(objects->second) + ""
-				"goto main_loop;\n"
 				"}\n\n";
 	}
-	output += "cout << \"I cannot find a \" << noun << \" here.\";\n\n";
 
 	// Verb, noun, join and noun
 	output += "} else if (count == 4){\n\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
-				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
-				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
-				"" + CompileVerbNounJoin(objects->second) + ""
-				"goto main_loop;\n"
-				"}\n\n";
+		output += CompileVerbNounJoin(objects->second);
 	}
+
+	// End Verb, noun, join and noun
+	output += "}\n";
+
+	// Response to not knowing a command
+	output += "cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n\n";
 
 	// End of game loop
 	output += "}\n";
@@ -306,7 +302,10 @@ string Compiler::CompileVerbNoun(Item *item) {
 		}
 
 		// Make sure verb and noun pattern is not a verb, noun and join pattern.
-		if (rit->first.find("Join:") == string::npos && rit->first.find("Item:") == string::npos) {
+		size_t found_join, found_item;
+		found_join = rit->first.find("Join:");
+		found_item = rit->first.find("Item:");
+		if (found_join == string::npos && found_item == string::npos) {
 			// Start verb
 			string verbs = getSynonyms(rit->first, "verb");
 			output += "if (" + verbs + ") {\n";
@@ -314,13 +313,11 @@ string Compiler::CompileVerbNoun(Item *item) {
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
 			}
-
 			// End verb
 			output += "goto main_loop;";
-			output += "}";
+			output += "\n}\n";
 		}
 	}
-	output += "cout << \"Sorry you cannot \" << verb << \" the \" << \"" + item->getName() + "\" << \".\";\n";
 	return output;
 }
 
@@ -334,7 +331,6 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 	// Reverse iterate so that predefined item verbs get precedence over item default verbs.
 	for (rit = verbs.rbegin(); rit != verbs.rend(); rit++) {
 		string data = rit->second;
-
 		// Replace inputItem
 		size_t pos = data.find("inputItem");
 		while (pos < data.size()) {
@@ -343,28 +339,32 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 		}
 
 		// Make sure verb is a verb, noun, join and noun pattern.
-		if (rit->first.find("Join:") != string::npos && rit->first.find("Item:") != string::npos) {
+		size_t found_join, found_item;
+		found_join = rit->first.find("Join:");
+		found_item = rit->first.find("Item:");
+		if (found_join != string::npos && found_item != string::npos) {
 			// Start verb
 			size_t start, end;
 			start = rit->first.find("Join:");
 			end = rit->first.find("Item:")-2;
 			string joins = getSynonyms(rit->first.substr(start+6, end - start - 5), "join");
-			string verbs = getSynonyms(rit->first, "verb");
-			verbs.erase(start);
+			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
-			output += "if (" + condition + ") {\n";
+			output += "if (" + condition + " && " + object + ".getName() ==  second_noun) {\n";
 			istringstream lines(data);
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
 			}
-
 			// End verb
 			output += "goto main_loop;";
-			output += "}";
+			output += "\n}\n";
+			output = "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + ".getLocation()->getVariableName()" + " "
+					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\")) " +
+					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))) {\n"
+					"" + output + "\n}";
 		}
 	}
-	output += "cout << \"Sorry you cannot \" << verb << \" the \" <<  noun  << \" \" << join << \" the \" << second_noun << \".\";\n";
 	return output;
 }
 
@@ -372,10 +372,6 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 string Compiler::CompileVerb(string line) {
 	btrim(line);
 	string output = "";
-	string expression;
-	string expression_sub; // Used for "and" conditions
-	int count = 0;        // Counts how many "and" conditions there are
-
 	if (line.length() > 0) {
 		if (line.compare("describe;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n";
@@ -395,7 +391,7 @@ string Compiler::CompileVerb(string line) {
 			string location = getLocation(line);
 			string item = getItem(line);
 			if (location != "") {
-				if (line.find("getDescription;") < line.length() && line.find(item) < line.length()) {
+				if (line.find("getDescription") < line.length() && line.find(item) < line.length()) {
 					output += "cout << " + location + "->getDescription();\n";
 				} else {
 					output += "cout << " + location + "->getName() << \".\";\n";
@@ -426,23 +422,7 @@ string Compiler::CompileVerb(string line) {
 			close = line.find(")");
 			if (open < line.length() && close < line.length()) {
 				open++;
-				expression = line.substr(open, close - open);
-
-				if(expression.find(" and ") < line.length()) {
-					size_t start;
-					start = expression.find(" and ");
-					expression_sub = expression.substr(start);
-					expression = expression.substr(0, start);
-					// Loop to compile "and" conditions
-					if (count != 0) {
-						and_conditions_loop:
-						count++;
-						expression_sub = expression_sub.substr(5);
-						start = expression_sub.find(" and ");
-						expression = expression_sub.substr(0, start);
-						expression_sub = expression_sub.substr(start+1);
-					}
-				}
+				string expression = line.substr(open, close - open);
 				if (expression.find("hasItem") < expression.length()) {
 					string location = getLocation(expression);
 					string item = getItem(expression);
@@ -504,16 +484,6 @@ string Compiler::CompileVerb(string line) {
 				}
 			} else {
 				cout << BAD_BRACES << endl;
-			}
-			// Look to see if expression has an "and" in it and go to the and conditions loop
-			if(expression_sub.find(" and ") < expression.length()){
-				goto and_conditions_loop;
-			}
-			// Add end braces for amount of "and" conditions in expression
-			if (count != 0) {
-				for(int n=0; n < count; n++) {
-					output += "}\n";
-				}
 			}
 		} else if (line.find("else") < line.length()) {
 			output += "} else {\n";

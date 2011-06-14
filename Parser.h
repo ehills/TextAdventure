@@ -34,8 +34,9 @@ public:
 	Parser(char* filename);
 	list<string> ParseFile(); // Returns the errors
 	string gameName;
-	string credits;
+	string gameCredits;
 	string initialDescription;
+	string defaultResponse;
 	Location *initialLocation;
 	list<string> errors;
 	map<string, Location*> locations;

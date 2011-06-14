@@ -1,25 +1,26 @@
-gameName = "*****Mother(Example Game)*****";
-credits = "By randoms";
+gameName = "*****(Mother Example Game) *****";
+gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie";
+defaultResponse = "I do not know how to";
 
 Player mother{
        name = "Mother";
-       description: "A concerned Mother";
+       description = "A concerned Mother";
        carryLimit = 4;
 }
 
 ItemDefaults {
-    Verb "examine" {
-        print inputItem.description();
+    Verb "examine or x" {
+        print inputItem getDescription;
     }
-    Verb "pickup" {
+    Verb "pickup or get" {
         if (mother canCarry) {
-            inputItem setLocation mother ;
+            inputItem setLocation mother;
         } else {
             print "You are carrying too much already";
         }
     }
 
-    Verb "drop" {
+    Verb "drop or discard or throwout" {
         if (mother hasItem inputItem ) {
             inputItem setLocation currentLocation;
         } else {
@@ -81,32 +82,65 @@ LocationDefaults {
     }
 }
 
-Location inventory {
-	name = "Inventory";
-	description = "";
-}
 initialLocation = living_room;
 
 initialDescription = "You have just returned from the supermarket. You put the key into the keyhole, turn it and open the door. As you pickup your groceries and enter the house, you hear a baby crying. Oh, no! You forgot about your baby and left it at home while you went out shopping. To make things worse, you can't reemember where in the house you put it. You are a terrible mother! Now there is nonly one thing on your mind... Where is the baby crying?";
 
-Location dead_space{
+Location dead_space {
     name = "Dead Space";
     description = "The game dump";
 }
 
-Location living_room{
+Location living_room {
      name = "Living room";
      description = "A room with a small television and a couch. There is not much else in here. It's hard to afford nice things with a young child. There is a jammed door to the north that leads to the bedroom and a door to the west that leads to a hallway. The front door to the south leads you outside, but I wouldn't leave the baby unattended again...";
 
      west = hallway;
 }
 
+Location bedroom {
+  name = "Bedroom";
+  description = "You wake up from this terrible nightmare! To be continued...";
+  south = living_room;
+}
+
+Location hallway {
+    name = "Hallway";
+    description = "This square of land connects four rooms together. To the north is the kitchen. To the south is the bathroom. To the west is the toilet. To the east is the living room.";
+
+    north = kitchen;
+    south = bathroom;
+    east = living_room;
+    west = toilet_room;
+}
+
+
+Location kitchen {
+    name = "Kitchen";
+    description = "This room is empty. Maybe you should wait for me to finish the game first!";
+    south = hallway;
+}
+
+
+Location bathroom {
+    name = "Bathroom";
+    description = "This room is empty. Maybe you should wait for me to finish the game first!";
+    north = hallway;
+}
+
+Location toilet_room {
+    name = "Toilet Room";
+    description "This is where the toilet is. You can exit to the east when you've finished business.";
+
+    east = hallway;
+}
+
 Item bedroom_door {
     name = "Bedroom_Door";
     description = "This is the bedroom door. There's no lock on it but the door knob is stuck. What a piece of crap";
-    location = living_room;
+    location = bedroom;
 
-    Verb = "open"{
+    Verb "put"{
          print "You turn the door handle but unfortunately the door doesn't open.";
     }
 }
@@ -116,7 +150,7 @@ Item television{
     location = living_room;
     description = "An ancient CRT TV from the early 2000s Definitely not HD ready.";
 
-    Verb "on" {
+    Verb "on or turnon" {
          print "Now is not the time to watch TV!!! You have a  more important task at hand.";
     }
 }
@@ -136,36 +170,6 @@ Item couch {
     }
 }
 
-Location hallway {
-    name = "Hallway";
-    description = "This square of land connects four rooms together. To the north is the kitchen. To the south is the bathroom. To the west is the toilet. To the east is the living room.";
-
-    north = kitchen;
-    south = bathroom;
-    east = living_room;
-    west = toilet_room;
-}
-
-
-Location kitchen{
-    name = "Kitchen";
-    description = "This room is empty. Maybe you should wait for me to finish the game first!";
-    south = hallway;
-}
-
-
-Location bathroom{
-    name = "Bathroom";
-    description = "This room is empty. Maybe you should wait for me to finish the game first!";
-    north = hallway;
-}
-
-Location toilet_room {
-    name = "Toilet Room";
-    description "This is where the toilet is. You can exit to the east when you've finished business.";
-
-    east = hallway;
-}
 
 Item toilet{
     name = "Toilet";
@@ -216,11 +220,6 @@ Item brick{
 
 }
 
-Location bedroom{
-  name = "Bedroom";
-  description = "You wake up from this terrible nightmare! To be continued...";
-  south = living_room;
-}
 
 
 

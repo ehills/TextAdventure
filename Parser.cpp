@@ -137,9 +137,10 @@ int Parser::ParseDefaults() {
 		this->file_data.replace(start, end + 1 - start, "");
 
 	}
-	this->gameName = ParseStringData(this->file_data, "gameName =", "");
-	this->credits = ParseStringData(this->file_data, "credits =", "");
+	this->gameName = ParseStringData(this->file_data, "gameName", "");
+	this->gameCredits = ParseStringData(this->file_data, "gameCredits", "");
 	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "");
+	this->defaultResponse = ParseStringData(this->file_data, "defaultResponse", "You do not know how to");
 	return NO_ERRORS;
 }
 
@@ -342,16 +343,14 @@ void Parser::ParseItem(string data, Item *item) {
 	// Parse location
 	attribute = ParseVariableData(data, "location");
 	// Player's inventory
+	if(location_init) {
+		location_init = false;
+		inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");		this->locations.insert(pair<string, Location*>("inventory", inventory));
+		this->locations.insert(pair<string, Location*>("inventory", inventory));
+	}
 	if (attribute == this->player->getVariableName()) {
-		if(location_init) {
-			location_init = false;
-			inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");
-			this->locations.insert(pair<string, Location*>("inventory", inventory));
-			item->setLocation(this->locations.at("inventory"));
-		} else {
-			this->locations.insert(pair<string, Location*>("inventory", inventory));
-			item->setLocation(this->locations.at("inventory"));
-		}
+		this->locations.insert(pair<string, Location*>("inventory", inventory));
+		item->setLocation(this->locations.at("inventory"));
 	} else if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
 			item->setLocation(this->locations.at(attribute));
