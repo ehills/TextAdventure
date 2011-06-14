@@ -216,7 +216,7 @@ void Compiler::Compile() {
 	}
 
 	// End Verb, noun, join and noun
-	//output += "}\n";
+	output += "}\n";
 
 	// Response to not knowing a command
 	output += "cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n\n";
@@ -360,12 +360,12 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 				output += CompileVerb(line);
 			}
 			// End verb
-			output += "goto main_loop;";
 			output += "\n}\n";
+			output += "goto main_loop;";
 			output = "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + ".getLocation()->getVariableName()" + " "
 					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\")) " +
 					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))) {\n"
-					"" + output + "\n}";
+					"" + output + "\n";
 		}
 	}
 	return output;
