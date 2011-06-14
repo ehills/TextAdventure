@@ -262,7 +262,7 @@ Item bed {
 	description = "A massive dusty bed.";
 	location = deadSpace;
 
-	Verb "under or look or examine or x or ex" {
+	Verb "under or look or examine or x or ex or l" {
 		if (key inLocation andy) {
 			print "A massive dusty bed.";
 		} else {
@@ -331,13 +331,13 @@ Item skull {
 					box setAttribute hasSkull;
 					skull setLocation secretHall;
 					print "You return the skull to the box.";
-				} else 
+				} else {
 					print "You cannot do that the box is closed.";
 				}
 			} else {
 				print "You do not have the skull.";
 			}
-		} else {
+		 } else {
 			print "You cannot do that here.";
 		}
 	}

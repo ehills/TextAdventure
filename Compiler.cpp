@@ -186,7 +186,10 @@ void Compiler::Compile() {
 			"      }\n"
 			"      command_word = \"\";\n"
 			"    } while (word);\n\n"
-			"\n\n";
+			"if (count == 3 || count > 4) {\n"
+			"   cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n"
+			"	goto main_loop;\n"
+			"}\n\n";
 
 	// Single verb
 	output += "if (count == 1) {\n\n";
@@ -213,7 +216,7 @@ void Compiler::Compile() {
 	}
 
 	// End Verb, noun, join and noun
-	output += "}\n";
+	//output += "}\n";
 
 	// Response to not knowing a command
 	output += "cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n\n";
