@@ -1,0 +1,138 @@
+Player sam {
+	name = "sam";
+	description  = "josh";
+	carryLimit = 200;
+}	
+
+ItemDefaults {
+    Verb "examine or x or ex or look or l" {
+        print inputItem getDescription;
+    }
+    
+	Verb "pickup or pick-up or get" {
+		if (inputItem hasAttribute canPickup) {
+			if (sam hasItem inputItem) {
+	            print "You already have the ";
+	            print inputItem;
+	        } else {
+	         	if (sam canCarry) {
+	                inputItem setLocation sam;
+					print "You pickup the ";
+					print inputItem;
+	            } else {
+	                print "You are carrying too much already.";
+                }
+            }
+        } else {
+        	print "You cannot pick up the ";
+        	print inputItem;
+        	print " What were you thinking...";
+        }
+    }
+
+    Verb "drop or discard or throwout or throw-out" {
+        if (sam hasItem inputItem) {
+            inputItem setLocation currentLocation;
+			print "You drop the ";
+			print inputItem;
+        } else {
+            print "You do not have a ";
+            print inputItem;
+        }
+    }
+}
+
+LocationDefaults {
+	Verb "i or inventory or invent or inv" {
+		describeInventory;
+	}
+    Verb "look or l" {
+          	describe;
+			list;
+    }
+    Verb "quit or q" {
+    	print "Bye bye thanks for playing!!!";
+    	gameOver;
+    }   
+    // Directions
+    Verb "north or n or nth" {
+    	if(sam inLocation hasNorth) {
+    		sam setLocation toNorth;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go north.";
+    	}
+    }
+    Verb "south or s or sth" {
+    	if(sam inLocation hasSouth) {
+    		sam setLocation toSouth;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go south.";
+    	}
+    }
+    Verb "east or e" {
+    	if(sam inLocation hasEast) {
+    		sam setLocation toEast;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go east.";
+    	}
+    }
+    Verb "west or w" {
+    	if(sam inLocation hasWest) {
+    		sam setLocation toWest;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go west.";
+    	}
+    }
+}
+
+initialLocation = corn_field;
+
+Location corn_field {
+	name = "field.";
+	description = "Barren field voild of life, cros are buzzing around the corpsesof some impaled farmers.";
+	
+	south = brothel;
+}
+
+Location brothel {
+	name = "Skanky brother";
+	description = "This is your favourite place to spend your time.";
+	
+	north = corn_field;
+	south = fuck_room;
+}
+
+Location fuck_room {
+	name = "The busines room";
+	description= "Lotsa fucking to do in here.";
+	south = brothel;
+	}
+
+Item brothel_door {
+	name = "door";
+	description = "An old door with many cum stains on the doorknob.";
+	location = brothel;
+	Verb "enter or go or move" {
+		brothel setNorth fuck_room ;
+		print "You enter the brotherl and smell the sweet scent of cunt.";
+		}
+}
+
+Item sword {
+	name = "sword";
+	description = "a rusty old sword.";
+	location = sam;
+	hasAttribute = canPickup;
+	
+	Verb "swing or stab or thrust" {
+		print "You swing your sword and manage to to do fuck all.";
+	}
+}
