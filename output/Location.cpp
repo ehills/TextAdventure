@@ -94,9 +94,9 @@ string Location::listItems(void) {
 		item += "[" + (it->second->getName()) + "] ";
 	}
 	if (count == 0) {
-		the_items += "Items: None";
+		the_items = "Items: None";
 	} else {
-		the_items += "Items: " + item;
+		the_items = "Items: " + item;
 	}
 	return the_items;
 }
