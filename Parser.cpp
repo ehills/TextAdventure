@@ -28,7 +28,6 @@ Parser::Parser(char* filename) {
 list<string> Parser::ParseFile(void) {
 	if (this->errors.size() == 0) {
 		this->stripComments();
-		this->ParseAttributes();
 		this->ParseDefaults();
 		this->ParsePlayer();
 		this->ParseLocations();
@@ -80,21 +79,6 @@ int Parser::stripComments() {
 	return NO_ERRORS;
 }
 
-/* Parses the attributes associated with an item */
-int Parser::ParseAttributes() {
-	unsigned int start, end;
-	string attribute;
-	start = this->file_data.find("Attribute ");
-	while (start < this->file_data.size()) {
-		start += 10;
-		end = this->file_data.find(";", start);
-		attribute = stringTrim(this->file_data.substr(start, end - start));
-		this->default_attribute_values[attribute] = false;
-		start = this->file_data.find("Attribute ", start);
-	}
-	return NO_ERRORS;
-}
-
 /* Parses the default settings for verbs */
 int Parser::ParseDefaults() {
 	unsigned int start, end;
@@ -106,18 +90,6 @@ int Parser::ParseDefaults() {
 		end = ParseEndBrace(start, this->file_data);
 		data = this->file_data.substr(start, end - start);
 		default_verb_expressions = ParseVerbs(data);
-
-		// Parse All attributes
-		map<string, bool>::iterator it;
-		for (it = this->default_attribute_values.begin(); it != this->default_attribute_values.end(); it++) {
-			string attribute = it->first;
-			unsigned int pos = this->file_data.find(attribute, start);
-			if (pos < end) {
-				if (this->file_data.at(pos - 1) != '!') {
-					this->default_attribute_values[attribute] = true;
-				}
-			}
-		}
 
 		// Remove default data to avoid collision of items
 		start = this->file_data.find("ItemDefaults");
@@ -370,21 +342,6 @@ void Parser::ParseItem(string data, Item *item) {
 	if (validAttribute(attribute)) {
 		item->setAttributeString(attribute);
 	}
-	map<string, bool>::iterator it;
-	unsigned int start, end;
-	start = 0;
-	end = data.size();
-	map<string, bool> attributes(this->default_attribute_values);
-	for (it = attributes.begin(); it != attributes.end(); it++) {
-		string attribute = it->first;
-		unsigned int pos = data.find(attribute, start);
-		if (pos < end) {
-			if (pos - 1 > 0 && data.at(pos - 1) != '!') {
-				attributes[attribute] = true;
-			}
-		}
-	}
-	item->setAttributes(attributes);
 }
 
 Parser::~Parser() {

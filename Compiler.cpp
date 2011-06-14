@@ -4,7 +4,6 @@
 #include <string>
 #include "Compiler.h"
 #include "constants.h"
-#define INVENTORY_NAME "inventory"
 
 /* Removes all white space before the string */
 void ltrim(string& str) {
@@ -78,11 +77,10 @@ void Compiler::Compile() {
 	}
 
 	output += "\n";
-	string inventory_name = INVENTORY_NAME;
 
 	// Initialise Inventory
 	output +=	"" + parser->player->getVariableName() + "->setLocation(" + parser->initialLocation->getVariableName() + ");"
-			"" + parser->player->getVariableName() + "->setInventory(" + inventory_name + ");"
+			"" + parser->player->getVariableName() + "->setInventory(inventory);"
 			"" + parser->player->getVariableName() + "->setMaxItems(" + parser->player->getMaxItemsString() + ");";
 
 	output += "\n";
@@ -104,12 +102,6 @@ void Compiler::Compile() {
 	}
 
 	output += "\n";
-
-	// Output default attributes
-	/*map<string, bool>::iterator at;
-	for (at = parser->default_attribute_values.begin(); at != parser->default_attribute_values.end(); at++) {
-		output += "Attribute* " + at->first + " = new Attribute(" + '"' + at->first + '"' + ");\n";
-	}*/
 
 	// Output Items
 	map<string, Item*>::iterator objects;
@@ -185,11 +177,8 @@ void Compiler::Compile() {
 			"           break;\n"
 			"      }\n"
 			"      command_word = \"\";\n"
-			"    } while (word);\n\n"
-			"if (count == 3 || count > 4) {\n"
-			"   cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n"
-			"	goto main_loop;\n"
-			"}\n\n";
+			"    } while (word);\n\n";
+
 
 	// Single verb
 	output += "if (count == 1) {\n\n";
@@ -200,17 +189,17 @@ void Compiler::Compile() {
 	}
 
 	// Verb and noun
-	output += "} else if (count == 2){\n\n";
+	output += "\n} else if (count == 2) {\n\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
 				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileVerbNoun(objects->second) + ""
-				"}\n\n";
+				"}\n";
 	}
 
 	// Verb, noun, join and noun
-	output += "} else if (count == 4){\n\n";
+	output += "\n} else if (count == 4) {\n\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
 		output += CompileVerbNounJoin(objects->second);
 	}
@@ -219,7 +208,7 @@ void Compiler::Compile() {
 	output += "}\n";
 
 	// Response to not knowing a command
-	output += "cout << DEFAULT_RESPONSE << \" \" << command << \" here.\";\n\n";
+	output += "cout << DEFAULT_RESPONSE << \" \" << command;\n";
 
 	// End of game loop
 	output += "}\n";
@@ -318,7 +307,7 @@ string Compiler::CompileVerbNoun(Item *item) {
 			}
 			// End verb
 			output += "goto main_loop;";
-			output += "\n}\n";
+			output += "}\n";
 		}
 	}
 	return output;
@@ -346,11 +335,12 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 		found_join = rit->first.find("Join:");
 		found_item = rit->first.find("Item:");
 		if (found_join != string::npos && found_item != string::npos) {
+
 			// Start verb
 			size_t start, end;
 			start = rit->first.find("Join:");
 			end = rit->first.find("Item:")-2;
-			string joins = getSynonyms(rit->first.substr(start+6, end - start - 5), "join");
+			string joins = getSynonyms(rit->first.substr(start+6, end-start-5), "join");
 			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
@@ -359,13 +349,27 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
 			}
-			// End verb
-			output += "\n}\n";
+			// Hack to get closing braces
+			int open = 0;
+			int close = 0;
+			string::iterator it;
+			for(it = output.begin(); it != output.end(); it++) {
+				if (*it == '{') {
+					open++;
+				}
+				if (*it == '}') {
+					close++;
+				}
+			}
+			int difference = open-close;
+			for (int i=0; i < difference; i++) {
+				output += "}\n";
+			}
 			output += "goto main_loop;";
 			output = "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + ".getLocation()->getVariableName()" + " "
 					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\")) " +
 					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))) {\n"
-					"" + output + "\n";
+					"" + output + "\n}\n";
 		}
 	}
 	return output;

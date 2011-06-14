@@ -20,7 +20,6 @@ using namespace std;
 
 class Parser {
 	int stripComments(); // Comment striping code
-	int ParseAttributes();
 	int ParseDefaults();
 	int ParseLocations();
 	int ParsePlayer();
@@ -43,7 +42,6 @@ public:
 	map<string, Item*> items;
 	map<string, string> default_verb_expressions;
 	map<string, string> default_location_verb_expressions;
-	map<string, bool> default_attribute_values;
 	Player* player;
 	~Parser(void);
 };

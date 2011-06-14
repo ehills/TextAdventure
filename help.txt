@@ -110,7 +110,7 @@ Example Game
 
 gameName = "*****The Haunted Mansion*****";
 gameCredits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
-defaultResponse = "I don not know how to";
+defaultResponse = "You do not know how to";
 
 Player andy  {
     name =  "Andy";
@@ -372,7 +372,7 @@ Item bed {
 	description = "A massive dusty bed.";
 	location = deadSpace;
 
-	Verb "under or look or examine or x or ex" {
+	Verb "under or look or examine or x or ex or l" {
 		if (key inLocation andy) {
 			print "A massive dusty bed.";
 		} else {
@@ -441,7 +441,7 @@ Item skull {
 					box setAttribute hasSkull;
 					skull setLocation secretHall;
 					print "You return the skull to the box.";
-				} else 
+				} else {
 					print "You cannot do that the box is closed.";
 				}
 			} else {

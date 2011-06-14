@@ -1,4 +1,4 @@
-gameName = "*****(Mother Example Game) *****";
+gameName = "*****Mother Example Game) *****";
 gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie";
 defaultResponse = "I do not know how to";
 
@@ -150,7 +150,7 @@ Item television{
     location = living_room;
     description = "An ancient CRT TV from the early 2000s Definitely not HD ready.";
 
-    Verb "on or turnon" {
+    Verb "on" {
          print "Now is not the time to watch TV!!! You have a  more important task at hand.";
     }
 }

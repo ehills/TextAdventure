@@ -337,7 +337,7 @@ Item skull {
 			} else {
 				print "You do not have the skull.";
 			}
-		 } else {
+		} else {
 			print "You cannot do that here.";
 		}
 	}

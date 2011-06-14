@@ -6,7 +6,7 @@
 #include "Item.h"
 #include "Player.h"
 using namespace std;
-#define GAME_NAME "*****(Mother Example Game) *****"
+#define GAME_NAME "*****Mother (Example Game) *****"
 #define CREDITS "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie"
 #define WELCOME_MESSAGE "You have just returned from the supermarket. You put the key into the keyhole, turn it and open the door. As you pickup your groceries and enter the house, you hear a baby crying. Oh, no! You forgot about your baby and left it at home while you went out shopping. To make things worse, you can't reemember where in the house you put it. You are a terrible mother! Now there is nonly one thing on your mind... Where is the baby crying?"
 #define DEFAULT_RESPONSE "I do not know how to"
@@ -105,11 +105,6 @@ while (true) {
       command_word = "";
     } while (word);
 
-if (count == 3 || count > 4) {
-   cout << DEFAULT_RESPONSE << " " << command << " here.";
-	goto main_loop;
-}
-
 if (count == 1) {
 
 if (verb == "east" || verb == "e"){
@@ -174,25 +169,23 @@ cout << "You cannot go west.";
 
 goto main_loop;
 }
-} else if (count == 2){
+
+} else if (count == 2) {
 
 if ((mother->getLocation()->getVariableName() == bedroom_door.getLocation()->getVariableName() || mother->getInventory()->hasItem("bedroom_door")) && (toLower(noun) == toLower("Bedroom_Door"))) {
 if (verb == "put") {
 cout << "You turn the door handle but unfortunately the door doesn't open.";
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "pickup" || verb == "get") {
 if (mother->canCarry()) {
 bedroom->addItem(bedroom_door.getName(), &bedroom_door);
 } else {
 cout << "You are carrying too much already";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "examine" || verb == "x") {
 cout << bedroom->getDescription();
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "drop" || verb == "discard" || verb == "throwout") {
 if (bedroom->hasItem(bedroom_door.getVariableName())) {
 bedroom->addItem(bedroom_door.getName(), &bedroom_door);
@@ -201,10 +194,8 @@ cout << "I don't have ";
 cout << bedroom->getName() << ".";
 cout << ".";
 }
-goto main_loop;
+goto main_loop;}
 }
-}
-
 if ((mother->getLocation()->getVariableName() == brick.getLocation()->getVariableName() || mother->getInventory()->hasItem("brick")) && (toLower(noun) == toLower("brick"))) {
 if (verb == "throw") {
 if (mother->getLocation() == living_room) {
@@ -214,24 +205,20 @@ living_room->setNorth(bedroom);
 bedroom->setDescription("A room with a small television and a couch. There is not much else in here. It's hard to afford nice things with a young child. There is an open door to the north that leads to the bedroom and a door to the west that leads to a hallway. The front door to the south leads you outside, but I wouldn't leave the baby unattended again...");} else {
 cout << "What is throwing a brick going to accomplish?";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "take") {
 cout << "You take the brick. it's quite wet in your pocket.";
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "pickup" || verb == "get") {
 if (mother->canCarry()) {
 mother->getInventory()->addItem(brick.getName(), &brick);
 } else {
 cout << "You are carrying too much already";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "examine" || verb == "x") {
 cout << brick.getDescription();
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "drop" || verb == "discard" || verb == "throwout") {
 if (mother->getInventory()->hasItem(brick.getVariableName())) {
 mother->getLocation()->addItem(brick.getName(), &brick);
@@ -240,32 +227,26 @@ cout << "I don't have ";
 cout << brick.getName() << ".";
 cout << ".";
 }
-goto main_loop;
+goto main_loop;}
 }
-}
-
 if ((mother->getLocation()->getVariableName() == couch.getLocation()->getVariableName() || mother->getInventory()->hasItem("couch")) && (toLower(noun) == toLower("Couch"))) {
 if (verb == "sit") {
 cout << "You sit on the couch and fall asleep. When you wake up it's silent.\nThe baby's dead";
 break;
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "pickup" || verb == "get") {
 if (mother->canCarry()) {
 mother->getInventory()->addItem(couch.getName(), &couch);
 } else {
 cout << "You are carrying too much already";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "lift") {
 cout << "You lift the couch up from one side. No baby under here.";
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "examine" || verb == "x") {
 cout << couch.getDescription();
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "drop" || verb == "discard" || verb == "throwout") {
 if (mother->getInventory()->hasItem(couch.getVariableName())) {
 mother->getLocation()->addItem(couch.getName(), &couch);
@@ -274,10 +255,8 @@ cout << "I don't have ";
 cout << couch.getName() << ".";
 cout << ".";
 }
-goto main_loop;
+goto main_loop;}
 }
-}
-
 if ((mother->getLocation()->getVariableName() == television.getLocation()->getVariableName() || mother->getInventory()->hasItem("television")) && (toLower(noun) == toLower("television"))) {
 if (verb == "pickup" || verb == "get") {
 if (mother->canCarry()) {
@@ -285,16 +264,13 @@ mother->getInventory()->addItem(television.getName(), &television);
 } else {
 cout << "You are carrying too much already";
 }
-goto main_loop;
-}
-if (verb == "on" || verb == "turnon") {
+goto main_loop;}
+if (verb == "on") {
 cout << "Now is not the time to watch TV!!! You have a  more important task at hand.";
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "examine" || verb == "x") {
 cout << television.getDescription();
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "drop" || verb == "discard" || verb == "throwout") {
 if (mother->getInventory()->hasItem(television.getVariableName())) {
 mother->getLocation()->addItem(television.getName(), &television);
@@ -303,23 +279,19 @@ cout << "I don't have ";
 cout << television.getName() << ".";
 cout << ".";
 }
-goto main_loop;
+goto main_loop;}
 }
-}
-
 if ((mother->getLocation()->getVariableName() == toilet.getLocation()->getVariableName() || mother->getInventory()->hasItem("toilet")) && (toLower(noun) == toLower("Toilet"))) {
 if (verb == "sit") {
 cout << "You sit on the toilet. The crying isn't very loud isn't very loud in here, you may want to try looking elsewhere";
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "pickup" || verb == "get") {
 if (mother->canCarry()) {
 mother->getInventory()->addItem(toilet.getName(), &toilet);
 } else {
 cout << "You are carrying too much already";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "open") {
 cout << "You lift the toilet lid.";
 if (mother->getLocation() == toilet_room) {
@@ -330,12 +302,10 @@ toilet_room->addItem(brick.getName(), &brick);
 cout << "The toilet is empty";
 }
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "examine" || verb == "x") {
 cout << toilet.getDescription();
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "drop" || verb == "discard" || verb == "throwout") {
 if (mother->getInventory()->hasItem(toilet.getVariableName())) {
 mother->getLocation()->addItem(toilet.getName(), &toilet);
@@ -344,21 +314,18 @@ cout << "I don't have ";
 cout << toilet.getName() << ".";
 cout << ".";
 }
-goto main_loop;
-}
+goto main_loop;}
 if (verb == "close") {
 cout << "You put down the toilet lid.";
 if (brick.getLocation() == toilet_room) {
 dead_space->addItem(brick.getName(), &brick);
 }
-goto main_loop;
-}
+goto main_loop;}
 }
 
-} else if (count == 4){
+} else if (count == 4) {
 
 }
-cout << DEFAULT_RESPONSE << " " << command << " here.";
-
+cout << DEFAULT_RESPONSE << " " << command;
 }
 }

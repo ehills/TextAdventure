@@ -81,8 +81,7 @@ void Location::removeItem(string item_name) {
 }
 
 string Location::printNameAndDescription() {
-	string name_and_description;
-	name_and_description += "\t\t\t" + this->getName() + "\n" + this->getDescription();
+	string  name_and_description = "***" + this->getName() + "***\n" + this->getDescription();
 	return name_and_description;
 }
 
