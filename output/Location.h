@@ -1,10 +1,3 @@
-/* 
- * File: Location.h
- * Name: Location
- * Description: Header file for Location class
- * Created on May 17, 2011, 5:26 PM
- */
-
 #ifndef LOCATION_H_
 #define	LOCATION_H_
 #include <iostream>

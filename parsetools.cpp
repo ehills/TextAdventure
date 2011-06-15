@@ -1,9 +1,8 @@
+/* Tools for scanning data */
+
 using namespace std;
 #define NO_ERRORS 0
 #define BAD_ATTRIBUTE "(*****@@@*@**@*@*)@*!)@*#!)#*!)*#)@*!)@*#!)*$!^%#&!%(&!@%!(&^!@%(#!&@^)"
-
-
-/* Tools for scanning data */
 
 inline bool validAttribute(string attribute) {
 	return attribute.compare(BAD_ATTRIBUTE) != 0;

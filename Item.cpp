@@ -1,9 +1,4 @@
-/**
- * Class: Item
- * File: Item.cpp
- * Date: May 17 2011
- * Description: This will be the object that is created for an item
- **/
+/* Description: This will be the object that is created for an item */
 
 #include "Item.h"
 

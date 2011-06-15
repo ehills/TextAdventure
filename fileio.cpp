@@ -5,7 +5,6 @@
 /*
  * This method is implemented from help given from:
  * http://www.gamedev.net/topic/399558-how-to-copy-a-file-in-c/
- *
  */
 void copy_file(char* filename, char* new_filename) {
 	int c;

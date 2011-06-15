@@ -1,10 +1,3 @@
-/* 
- * File:   Parser.h
- * Author: gphillips
- *
- * Created on May 17, 2011, 5:26 PM
- */
-
 #ifndef LOCATION_H_
 #define	LOCATION_H_
 #include <iostream>

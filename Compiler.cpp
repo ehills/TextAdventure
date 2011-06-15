@@ -25,6 +25,22 @@ void btrim(string& str) {
 	rtrim(str);
 }
 
+string getSynonyms(string words, string type) {
+	string synonyms = type + " == ";
+	string temp;
+	istringstream word(words);
+	do {
+		word >> temp;
+		if (temp != "or" && temp != "") {
+			synonyms +=  '"' + temp + '"';
+		} else if (temp != "") {
+			synonyms += " || " + type + " == ";
+		}
+		temp = "";
+	} while (word);
+	return synonyms;
+}
+
 Compiler::Compiler(char* filename) {
 	this->parser = new Parser(filename);
 	parser->ParseFile();
@@ -581,21 +597,6 @@ string Compiler::CompileVerb(string line) {
 	return output;
 }
 
-string Compiler::getSynonyms(string words, string type) {
-	string synonyms = type + " == ";
-	string temp;
-	istringstream word(words);
-	do {
-		word >> temp;
-		if (temp != "or" && temp != "") {
-			synonyms +=  '"' + temp + '"';
-		} else if (temp != "") {
-			synonyms += " || " + type + " == ";
-		}
-		temp = "";
-	} while (word);
-	return synonyms;
-}
 
 Compiler::~Compiler() {
 }

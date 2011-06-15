@@ -10,7 +10,6 @@ class Compiler {
 	string CompileVerbNoun(Item *item);
 	string CompileVerbNounJoin(Item *item);
 	string CompileVerb(string line);
-	string getSynonyms(string, string);
 public:
 	Parser* parser;
 	Compiler(char* filename);

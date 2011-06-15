@@ -1,9 +1,5 @@
-/**
- * Class: Location
- * File: Location.cpp
- * Date: May 17 2011
- * Description: This will be the object that is created for each room
- **/
+/* Description: This will be the object that is created for each room */
+
 #include "Location.h"
 
 Location::Location() {

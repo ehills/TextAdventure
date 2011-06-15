@@ -1,9 +1,3 @@
-/**
- * Class: Player Header File
- * File: Player.h
- * Date: May 16 2011
- * Description: Contains the Player header.
- **/
 #ifndef PLAYER_H_
 #define PLAYER_H_
 #include <cstdlib>

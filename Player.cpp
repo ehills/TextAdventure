@@ -1,9 +1,5 @@
-/**
- * Class: Player
- * File: Player.cpp
- * Date: May 16 2011
- * Description: Contains the Player object and methods needed to access it.
- **/
+/* Description: Contains the Player object and methods needed to access it. */
+
 #include <sstream>
 #include "Player.h"
 

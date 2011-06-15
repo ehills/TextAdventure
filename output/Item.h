@@ -1,10 +1,3 @@
-/* 
- * File:   Item.h
- * Author: gphillips
- *
- * Created on May 22, 2011, 9:26 PM
- */
-
 #ifndef ITEM_H
 #define	ITEM_H
 

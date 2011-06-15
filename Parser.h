@@ -1,10 +1,3 @@
-/* 
- * File:   Parser.h
- * Author: gphillips
- *
- * Created on May 17, 2011, 5:26 PM
- */
-
 #ifndef PARSER_H_
 #define	PARSER_H_
 #include <fstream>
