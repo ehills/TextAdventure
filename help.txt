@@ -25,16 +25,16 @@ Item attributes are initialised the same as in BIFF but we saw no reason to set 
 	
 Game Library
 
-gameName - sets a games name.
-gameCredits - sets a games credits.
-defaultResponse = prints out to game player a response if thier command is unknown. Currently it will append a space and the command used at the end of the response.
+gameName - sets a game's name.
+gameCredits - sets a game's credits.
+defaultResponse = response to be prtined out if a command is unknown. Currently it will append a space followed by the command at end of the response.
 initialLocation - sets starting location for game.
 initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
 itemIs - used in an if statement with inputItem so see if an item is the same as inputItem.
 print - prints out specified information to game player.
 describe - prints out the current location's name and description.
-describeInventory - prints out the players inventory.
+describeInventory - prints out the player's inventory.
 gameOver - quits the game.
 list - prints out the items in the current location.
 setDescription - sets the description of an item or location.
