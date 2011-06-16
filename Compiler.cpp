@@ -122,9 +122,9 @@ void Compiler::Compile() {
 	// Output Items
 	map<string, Item*>::iterator objects;
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		output += "Item " + objects->first + "(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\", \"" + objects->second->getVariableName() + "\");\n";
-		output += objects->second->getLocation()->getVariableName() + "->addItem(\"" + objects->second->getName() + "\", &" + objects->first + ");\n";
-		output += objects->first + ".setLocation(" + objects->second->getLocation()->getVariableName() + ");\n";
+		output += "Item* " + objects->first +  " = new Item(\"" + objects->second->getName() + "\", \"" + objects->second->getDescription() + "\", \"" + objects->second->getVariableName() + "\");\n";
+		output += objects->second->getLocation()->getVariableName() + "->addItem(\"" + objects->second->getName() + "\", " + objects->first + ");\n";
+		output += objects->first + "->setLocation(" + objects->second->getLocation()->getVariableName() + ");\n";
 
 		// Add item attributes
 		size_t pos;
@@ -137,12 +137,12 @@ void Compiler::Compile() {
 			if (temp.find('!') != string::npos) {
 				pos = temp.find('!') + 1;
 				sub = temp.substr(pos);
-				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
-				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
+				output += objects->first + "->addAttribute(" + '"' + temp + '"' + ", true);\n";
+				output += objects->first + "->addAttribute(" + '"' + sub + '"' + ", false);\n";
 			} else if (temp != ""){
 				sub = "!" + temp;
-				output += objects->first + ".addAttribute(" + '"' + temp + '"' + ", true);\n";
-				output += objects->first + ".addAttribute(" + '"' + sub + '"' + ", false);\n";
+				output += objects->first + "->addAttribute(" + '"' + temp + '"' + ", true);\n";
+				output += objects->first + "->addAttribute(" + '"' + sub + '"' + ", false);\n";
 			}
 			temp = "";
 		} while (word);
@@ -207,7 +207,7 @@ void Compiler::Compile() {
 	// Verb and noun
 	output += "\n} else if (count == 2) {\n\n";
 	for (objects = parser->items.begin(); objects != parser->items.end(); objects++) {
-		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + ".getLocation()->getVariableName()" + " "
+		output += "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + objects->second->getVariableName() + "->getLocation()->getVariableName()" + " "
 				"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + objects->second->getVariableName() + "\")) " +
 				"&& (toLower(noun) == toLower(\"" + objects->second->getName() + "\"))) {\n"
 				"" + CompileVerbNoun(objects->second) + ""
@@ -360,7 +360,7 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
-			output += "if (" + condition + " && " + object + ".getName() ==  second_noun) {\n";
+			output += "if (" + condition + " && " + object + "->getName() ==  second_noun) {\n";
 			istringstream lines(data);
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
@@ -382,7 +382,7 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 				output += "}\n";
 			}
 			output += "goto main_loop;";
-			output = "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + ".getLocation()->getVariableName()" + " "
+			output = "if ((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + "->getLocation()->getVariableName()" + " "
 					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\")) " +
 					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))) {\n"
 					"" + output + "\n}\n";
@@ -421,9 +421,9 @@ string Compiler::CompileVerb(string line) {
 				}
 			} else if (item != "") {
 				if (line.find("getDescription") < line.length()) {
-					output += "cout << " + item + ".getDescription();\n";
+					output += "cout << " + item + "->getDescription();\n";
 				} else {
-					output += "cout << " + item + ".getName() << \".\";\n";
+					output += "cout << " + item + "->getName() << \".\";\n";
 				}
 			} else {
 				cout << UNKNOWN_PRINT_STATEMENT << ":" << line << endl;
@@ -437,7 +437,7 @@ string Compiler::CompileVerb(string line) {
 			if (location != "") {
 				output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");";
 			} else {
-				output += item + ".setDescription(\"" + line.substr(start, end - start) + "\");";
+				output += item + "->setDescription(\"" + line.substr(start, end - start) + "\");";
 			}
 		} else if (line.find("if") < line.length()) {
 			size_t open, close;
@@ -452,7 +452,7 @@ string Compiler::CompileVerb(string line) {
 					if (location == "" || item == "") {
 						cout << INCOMPLETE_EXPRESSION << endl;
 					} else {
-						output += "if (" + location + "->hasItem(" + item + ".getVariableName())) {\n";
+						output += "if (" + location + "->hasItem(" + item + "->getVariableName())) {\n";
 					}
 				} else if (expression.find("isItem") < expression.length()) {
 					size_t start, end;
@@ -460,16 +460,16 @@ string Compiler::CompileVerb(string line) {
 					start = expression.find("isItem") + 7;
 					end = expression.find(")");
 					string other_item = expression.substr(start, end - start);
-					output += "if (" + item + "." + "getVariableName() == " + other_item + "." + "getVariableName()) {\n";
+					output += "if (" + item + "->getVariableName() == " + other_item + "->" + "getVariableName()) {\n";
 				} else if (expression.find("hasAttribute") < expression.length()) {
 					string item = getItem(expression);
 					size_t start, end;
 					start = expression.find("hasAttribute");
 					end = expression.find(")");
 					if (expression.substr(start+13, (end-start-13)).find('!') == 0) {
-						output += "if (" + item + "." + "hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+						output += "if (" + item + "->hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 					} else {
-						output += "if (" + item + "." + "hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
+						output += "if (" + item + "->hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 					}
 				} else if (expression.find("canCarry") < expression.length()) {
 					if (expression.find(parser->player->getVariableName()) < expression.length()) {
@@ -481,11 +481,11 @@ string Compiler::CompileVerb(string line) {
 					string location = getLocation(expression);
 					string item = getItem(expression);
 					if (location != "" && item != "") {
-						output += "if (" + item + ".getLocation() == " + location + ") {\n";
+						output += "if (" + item + "->getLocation() == " + location + ") {\n";
 					} else if (item != "") {
 						size_t pos = expression.find(parser->player->getVariableName());
 						if (pos < expression.length()) {
-							output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + ".getLocation()) {\n";
+							output += "if (" + parser->player->getVariableName() + "->getInventory() == " + item + "->getLocation()) {\n";
 						}
 					} else if (location != "") {
 						if (expression.find("hasNorth") < expression.length()){
@@ -528,7 +528,7 @@ string Compiler::CompileVerb(string line) {
 					&& item == "" && location != "") {
 				output += parser->player->getVariableName() + "->setLocation(" + location + ");\n";
 			} else {
-				output += location + "->addItem(" + item + ".getName(), &" + item + ");\n";
+				output += location + "->addItem(" + item + "->getName(), " + item + ");\n";
 			}
 		} else if (line.find("setNorth") < line.length() || line.find("setEast") < line.length()
 				|| line.find("setWest") < line.length() || line.find("setSouth") < line.length()) {
@@ -565,12 +565,12 @@ string Compiler::CompileVerb(string line) {
 			start = line.find("setAttribute");
 			end = line.find(";");
 			if (line.substr(start+13, (end-start-13)).find('!') == 0) {
-				output += item + ".setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
-				output += item + ".setAttribute(" + '"' + line.substr(start+14, (end-start-14)) + '"' + ", false);\n";
+				output += item + "->setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
+				output += item + "->setAttribute(" + '"' + line.substr(start+14, (end-start-14)) + '"' + ", false);\n";
 			} else {
 				string sub = "!" + line.substr(start+13, (end-start-13));
-				output += item + ".setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
-				output += item + ".setAttribute(" + '"' + sub + '"' + ", false);\n";
+				output += item + "->setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
+				output += item + "->setAttribute(" + '"' + sub + '"' + ", false);\n";
 			}
 		} else if (line.find("removeNorth") < line.length() || line.find("removeEast") < line.length()
 				|| line.find("removeWest") < line.length() || line.find("removeSouth") < line.length()) {
