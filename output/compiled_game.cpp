@@ -414,10 +414,9 @@ if ((andy->getLocation()->getVariableName() == key->getLocation()->getVariableNa
 if (verb == "use") {
 if (door->hasAttribute("isLocked")) {
 if (andy->getLocation() == secretHall) {
-cout << "You struggle to turn the key in the old door but manage to unlock it.";
-secretHall->setNorth(tortureRoom);
 door->setAttribute("!isLocked", true);
 door->setAttribute("isLocked", false);
+cout << "You struggle to turn the key in the old door but manage to unlock it.";
 } else {
 cout << "You can not use the key here.";
 }
