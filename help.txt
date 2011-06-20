@@ -8,12 +8,14 @@ Differences to BIFF
 
 gameName = "game_name";  lets a user specify a game's name to be presented at the start of each game. Set to an empty string by default.
 gameCredits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
+defaultInventoryName = "inventory_name"; sets the name of the inventory.
+defaultInteractiveName = "default_interactive_name"; sets the default heading name for interactive objects in the game.
 
 Four word (verb noun join noun) user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
 by using the keyword "Join:" for the join word and synonyms and "Item:" to specify the second noun in the sentence.
 Example: 
+User command = put key into box
 Item key {
-	key details here: name, description and exits etc.
 	Verb "put or place Join: into or in or inside Item: box" {rules_go_here}
 }
 
@@ -28,10 +30,10 @@ Game Library
 
 gameName - sets a game's name.
 gameCredits - sets a game's credits.
-defaultResponse = response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
-defaultInventoryName = sets the name of the inventory.
-defaultInteractiveName = sets default name of interactive objects in the game.
-initialLocation - sets starting location for game.
+defaultResponse - response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
+defaultInventoryName - sets the name of the inventory.
+defaultInteractiveName - sets the default heading name of interactive objects in the game.
+initialLocation - sets the starting location for game.
 initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
 print - prints out specified information to game player.
