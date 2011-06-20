@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES= compiled_game.cpp Location.cpp Player.cpp Item.cpp
+SOURCES= compiled_game.cpp Location.cpp Player.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=Play
 

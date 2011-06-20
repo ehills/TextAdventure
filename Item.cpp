@@ -9,9 +9,12 @@ Item::Item(string name, string description,
 	this->name = name;
 	this->description = description;
 	this->verb_expressions = verb_expressions;
+	this->showItems = true;
 }
 
 Item::Item() {
+	this->location = NULL;
+	this->showItems = true;
 }
 
 string Item::getName(void) {
@@ -65,6 +68,14 @@ void Item::removeVerb(string verb) {
 	this->verb_expressions.erase(verb);
 }
 
+void Item::setItem(Item* item) {
+	this->item = item;
+}
+
+Item* Item::getItem(void) {
+	return this->item;
+}
+
 string Item::getVerbExpression(string verb) {
 	map<string, string>::iterator it;
 	it = verb_expressions.find(verb);
@@ -95,6 +106,14 @@ void Item::setAttributeString(string attribute_string) {
 
 string Item::getAttributeString(void) {
 	return this->attribute_string;
+}
+
+void Item::setShowItems(bool is) {
+	this->showItems = is;
+}
+
+bool Item::getShowItems(void) {
+	return this->showItems;
 }
 
 Item::~Item(void) {

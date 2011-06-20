@@ -3,9 +3,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <map>
-#include "Item.h"
 
 using namespace std;
+
+class Location;
 
 /* Location class will store all information relevant to a particular location*/
 class Location {
@@ -15,8 +16,11 @@ class Location {
 	Location* north;
 	Location* east;
 	Location* west;
-	map<string, Item*> items;
+	map<string, Location*> items;
+	map<string, bool> attributes;
+	Location* location;
 	string variable_name; // Used as a locations unique identifier.
+	bool showItems;
 public:
 	Location(string, string, string);
 	Location();
@@ -39,14 +43,23 @@ public:
 	bool hasSouth(void);
 	bool hasEast(void);
 	bool hasWest(void);
+	void addAttribute(string, bool);
+	bool hasAttribute(string);
+	void setAttribute(string, bool);
 
 	// These methods will deal with Items stored in this location
-	void addItem(string item_name, Item* item);
+	void addItem(string item_name, Location* item);
 	int getItemCount();
 	void removeItem(string item_name);
-	string listItems(void);
+	string listItems(string default_item_name="");
 	bool hasItem(string);
+	bool hasLocation(void);
+	Location* getLocation(void);
+	void setLocation(Location* location);
 	string printNameAndDescription(void);
+	void setShowItems(bool showItems);
+	bool getShowItems();
+	bool itemHasItem(string);
 	~Location(void);
 };
 #endif

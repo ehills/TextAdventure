@@ -113,6 +113,8 @@ int Parser::ParseDefaults() {
 	this->gameCredits = ParseStringData(this->file_data, "gameCredits", "BY RANDOM PERSON");
 	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "WELCOME TO MY GAME");
 	this->defaultResponse = ParseStringData(this->file_data, "defaultResponse", "You do not know how to");
+	this->defaultInventoryName = ParseStringData(this->file_data, "defaultInventoryName", "Inventory: ");
+	this->defaultInteractiveName = ParseStringData(this->file_data, "defaultInteractiveName", "Objects: ");
 	return NO_ERRORS;
 }
 
@@ -293,6 +295,10 @@ void Parser::ParseLocation(string data, Location *location) {
 			cerr << NO_JOINED_LOCATION << attribute << endl;
 		}
 	}
+	// Parse hide items
+	if (data.find("hideItems;") != string::npos) {
+		location->setShowItems(false);
+	}
 }
 
 /* Parses a particular item */
@@ -317,7 +323,7 @@ void Parser::ParseItem(string data, Item *item) {
 	// Player's inventory
 	if(location_init) {
 		location_init = false;
-		inventory = new Location(this->player->getVariableName()+"->getInventory()", "inventory", "Player's inventory.");		this->locations.insert(pair<string, Location*>("inventory", inventory));
+		inventory = new Location("inventory", "inventory", "Player's inventory.");
 		this->locations.insert(pair<string, Location*>("inventory", inventory));
 	}
 	if (attribute == this->player->getVariableName()) {
@@ -326,6 +332,8 @@ void Parser::ParseItem(string data, Item *item) {
 	} else if (validAttribute(attribute)) {
 		if (this->locations.count(attribute) > 0) {
 			item->setLocation(this->locations.at(attribute));
+		} else if (this->items.count(attribute) > 0) {
+			item->setItem(this->items.at(attribute));
 		} else {
 			cerr << BAD_LOCATION << attribute << endl;
 		}
@@ -341,6 +349,10 @@ void Parser::ParseItem(string data, Item *item) {
 	attribute = ParseVariableData(data, "hasAttributes");
 	if (validAttribute(attribute)) {
 		item->setAttributeString(attribute);
+	}
+	// Parse hide items
+	if (data.find("hideItems;") != string::npos) {
+		item->setShowItems(false);
 	}
 }
 

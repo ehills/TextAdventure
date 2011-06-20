@@ -18,6 +18,7 @@ Location::Location(string name, string description, string variable_name) {
 	this->west = NULL;
 	this->east = NULL;
 	this->variable_name = variable_name;
+	this->showItems = true;
 }
 
 Location::Location() {
@@ -26,6 +27,7 @@ Location::Location() {
 	this->west = NULL;
 	this->east = NULL;
 	this->variable_name = variable_name;
+	this->showItems = true;
 }
 
 string Location::getVariableName() {
@@ -48,18 +50,28 @@ void Location::setDescription(string description) {
 	this->description = description;
 }
 
-void Location::addItem(string item_name, Item* item) {
+void Location::addItem(string item_name, Location* item) {
 	if (item->hasLocation()) {
 		item->getLocation()->removeItem(item_name);
 	}
 	item->setLocation(this);
-	this->items.insert(pair<string, Item*> (toLower(item_name), item));
+	this->items.insert(pair<string, Location*> (toLower(item_name), item));
 }
 
 bool Location::hasItem(string item_variable_name) {
-	map<string, Item*>::iterator it;
+	map<string, Location*>::iterator it;
 	for (it = items.begin(); it != items.end(); it++) {
 		if (it->second->getVariableName() ==  item_variable_name) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Location::itemHasItem(string item_name) {
+	map<string, Location*>::iterator it;
+	for (it = items.begin(); it != items.end(); it++) {
+		if (it->second->hasItem(item_name) && it->second->getShowItems()) {
 			return true;
 		}
 	}
@@ -79,18 +91,20 @@ string Location::printNameAndDescription() {
 	return name_and_description;
 }
 
-/* Returns the name of each item in this location */
-string Location::listItems(void) {
-	string the_items, item;
+string Location::listItems(string default_item_name) {
+	string the_items;
 	int count;
-	map<string, Item*>::iterator it;
+	map<string, Location*>::iterator it;
 	for (it = items.begin(), count=0; it != items.end(); count++, ++it) {
-		item += "[" + (it->second->getName()) + "] ";
+		the_items += "[" + (it->second->getName()) + "] ";
+		if(it->second->getItemCount() > 0  && it->second->getShowItems()) {
+			the_items += it->second->listItems("");
+		}
 	}
-	if (count == 0) {
-		the_items = "Items: None";
+	if (count == 0 || !showItems) {
+		the_items = default_item_name + "None";
 	} else {
-		the_items = "Items: " + item;
+		the_items = default_item_name + the_items;
 	}
 	return the_items;
 }
@@ -141,6 +155,41 @@ void Location::setEast(Location* location) {
 
 void Location::setWest(Location* location) {
 	this->west = location;
+}
+
+bool Location::hasLocation(void) {
+	return (this->location != NULL);
+}
+
+Location* Location::getLocation(void) {
+	return this->location;
+}
+
+void Location::setLocation(Location* location) {
+	this->location = location;
+}
+
+void Location::addAttribute(string attribute_name, bool is) {
+	this->attributes.insert(pair<string, bool>(attribute_name, is));
+}
+
+bool Location::hasAttribute(string attribute_name){
+	if (this->attributes.count(attribute_name) > 0) {
+		return this->attributes[attribute_name];
+	}
+	return false;
+}
+
+void Location::setAttribute(string attribute_name, bool is) {
+	this->attributes[attribute_name] = is;
+}
+
+void Location::setShowItems(bool showItems) {
+	this->showItems = showItems;
+}
+
+bool Location::getShowItems() {
+	return this->showItems;
 }
 
 Location::~Location(void) {

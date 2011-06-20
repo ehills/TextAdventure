@@ -15,6 +15,7 @@ class Location {
 	Location* north;
 	Location* east;
 	Location* west;
+	bool showItems;
 public:
 	Location(string, string, string);
 	Location();
@@ -26,6 +27,8 @@ public:
 	void setVariableName(string variable_name);
 	string getDescription(void);
 	void setDescription(string description);
+	void setShowItems(bool);
+	bool getShowItems(void);
 
 	// Directions
 	Location* getNorth(void);

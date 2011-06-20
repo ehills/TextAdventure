@@ -13,8 +13,11 @@ class Item {
 	string description;
 	string attribute_string;
 	map<string, string> verb_expressions;
+	map<string, Item*> items;
 	map<string, bool> attributes;
 	Location* location;
+	Item* item;
+	bool showItems;
 public:
 	/* Constructor sets up initial variables */
 	Item(string name, string description, map<string, string>);
@@ -36,8 +39,12 @@ public:
 	string getVerbExpression(string verb);
 	Location* getLocation(void);
 	void setLocation(Location* location);
+	void setItem(Item* item);
+	Item* getItem(void);
 	void setAttributeString(string);
 	string getAttributeString(void);
+	void setShowItems(bool);
+	bool getShowItems(void);
 	~Item();
 };
 #endif

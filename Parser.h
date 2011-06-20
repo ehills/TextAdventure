@@ -29,6 +29,8 @@ public:
 	string gameCredits;
 	string initialDescription;
 	string defaultResponse;
+	string defaultInventoryName;
+	string defaultInteractiveName;
 	Location *initialLocation;
 	list<string> errors;
 	map<string, Location*> locations;

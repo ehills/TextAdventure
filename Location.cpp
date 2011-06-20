@@ -7,6 +7,7 @@ Location::Location() {
 	this->south = NULL;
 	this->west = NULL;
 	this->east = NULL;
+	this->showItems = true;
 }
 
 Location::Location(string variable_name, string name, string description) {
@@ -17,6 +18,7 @@ Location::Location(string variable_name, string name, string description) {
 	this->south = NULL;
 	this->west = NULL;
 	this->east = NULL;
+	this->showItems = true;
 }
 
 string Location::getName(void) {
@@ -89,6 +91,14 @@ void Location::setEast(Location* location) {
 
 void Location::setWest(Location* location) {
 	this->west = location;
+}
+
+void Location::setShowItems(bool is) {
+	this->showItems = is;
+}
+
+bool Location::getShowItems(void) {
+	return this->showItems;
 }
 
 Location::~Location(void) {

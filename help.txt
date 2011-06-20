@@ -1,7 +1,8 @@
 Team: Samuel Garner, Stephen Herd, George Phillips and Edward Hills.
 
 This is a user guide for our adaptation of BIFF. 
-We have ensured no verbs are hardcoded to give the user more control over their game. Check out the example game at the end to see how everything works.
+We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be 
+defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.
 
 Differences to BIFF
 
@@ -27,16 +28,19 @@ Game Library
 
 gameName - sets a game's name.
 gameCredits - sets a game's credits.
-defaultResponse = response to be prtined out if a command is unknown. Currently it will append a space followed by the command at end of the response.
+defaultResponse = response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
+defaultInventoryName = sets the name of the inventory.
+defaultInteractiveName = sets default name of interactive objects in the game.
 initialLocation - sets starting location for game.
 initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
-itemIs - used in an if statement with inputItem so see if an item is the same as inputItem.
 print - prints out specified information to game player.
 describe - prints out the current location's name and description.
 describeInventory - prints out the player's inventory.
 gameOver - quits the game.
-list - prints out the items in the current location.
+list - prints out the items in the current location (list) or in a particular item (item_name list).
+hideItems - hides the items in an item or location. During the creation of an object or location (hideItems) or inside a verb (item_name or location_name hideItems).
+showItems - shows the items in an item or location. This is the default. Inside a verb (item_name or location_name showItems).
 setDescription - sets the description of an item or location.
 getDescription - gets the description of an item or location.
 hasItem - checks to see if a location has an item. Good to use to check inventory.
@@ -111,6 +115,8 @@ Example Game
 gameName = "*****The Haunted Mansion*****";
 gameCredits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
 defaultResponse = "You do not know how to";
+defaultInventoryName = "Inventory: ";
+defaultInteractiveName = "Objects: ";
 
 Player andy  {
     name =  "Andy";
@@ -125,11 +131,6 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
-			if (andy inLocation secretHall) {
-				if(inputItem isItem skull) {
-				box setAttribute !hasSkull;
-				}
-			}
 			if (andy hasItem inputItem) {
 	            print "You already have the ";
 	            print inputItem;
@@ -250,6 +251,7 @@ Location masterBedroom {
     name = "The master bedroom";
     description = "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
     east = entranceHall;
+    hideItems;
 }
 
 Location secretHall {
@@ -277,8 +279,7 @@ Item lamp {
 			entranceHall setDescription "With the aid of the lamp you can now make out a doorway to the north. The other exits are doorways to the east and west and the window leading south.";
 			entranceHall setNorth secretHall;
 			masterBedroom setDescription "With the lamp illuminating your surroundings you find yourself in a creepy old bedroom decorated with many mirrors. You keep seeing things move in them out of the corner of your eye. There is also a massive bed taking up most of the room. You can see many things glinting under it.";
-			mirror setLocation masterBedroom;
-			bed setLocation masterBedroom;
+			masterBedroom showItems;
 			print "You fiddle around with the old lamp and manage to turn it on.";
 		} else {
 			print "You do not have that item.";
@@ -290,6 +291,7 @@ Item lamp {
 			entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
 			entranceHall removeNorth;
 			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
+			masterBedroom hideItems;
 			print "You switch off the old lamp.";
 		} else {
 			print "You do not have that item.";
@@ -300,7 +302,7 @@ Item lamp {
 Item mirror {
     name = "mirror";
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
-    location = deadSpace;
+    location = masterBedroom;
     hasAttributes = canPickup;
 
     Verb "use or lookat or look-at" {
@@ -370,7 +372,7 @@ Item key {
 Item bed {
 	name = "bed";
 	description = "A massive dusty bed.";
-	location = deadSpace;
+	location = masterBedroom;
 
 	Verb "under or look or examine or x or ex or l" {
 		if (key inLocation andy) {
@@ -390,18 +392,15 @@ Item box {
 	name = "box";
 	description = "A large wooden box.";
 	location = secretHall;
-	hasAttributes = !isOpen hasSkull;
+	hasAttributes = !isOpen;
+	hideItems;
 
 	Verb "open" { 
 		if (box hasAttribute !isOpen) {
-			if(box hasAttribute hasSkull) {
-				skull setLocation secretHall;
-				box setAttribute isOpen;
-				print "You open the box and discover a human skull. The body is nowhere to been seen.";
-			} else {
-				box setAttribute isOpen;
-				print "You open the box to find nothing inside.";
-			}
+			box showItems;
+			box setAttribute isOpen;
+			print "You open the box and find a ";
+			box list;
 		} else {
 			print "The box is already open.";
 		}
@@ -409,19 +408,9 @@ Item box {
 
 	Verb "close" {
 		if(box hasAttribute isOpen) {
-			if(skull inLocation secretHall){
-				if(box hasAttribute hasSkull){
-					skull setLocation deadSpace;
-					box setAttribute !isOpen;
-					print "You shut the creepy looking skull back into the box.";
-				} else {
-					box setAttribute !isOpen;
-					print "You shut the box.";
-				}
-			} else {
-				box setAttribute !isOpen;
-				print "You shut the box.";
-			}
+			box hideItems;
+			box setAttribute !isOpen;
+			print "You close the box.";
 		} else {
 			print "The box is already closed.";
 		}
@@ -431,15 +420,14 @@ Item box {
 Item skull {
 	name = "skull";
 	description = "A cracked human skull.";
-	location = deadSpace;
+	location = box;
 	hasAttributes = canPickup;
 
 	Verb "put or place Join: into or in or inside Item: box" {
 		if(andy inLocation secretHall) {
 			if(skull inLocation Andy) {
 				if(box hasAttribute isOpen) {
-					box setAttribute hasSkull;
-					skull setLocation secretHall;
+					skull setLocation box;
 					print "You return the skull to the box.";
 				} else {
 					print "You cannot do that the box is closed.";
