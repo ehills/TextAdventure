@@ -6,7 +6,7 @@
 #include "Player.h"
 using namespace std;
 #define GAME_NAME "*****The Haunted Mansion*****"
-#define CREDITS "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd"
+#define CREDITS "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd"
 #define WELCOME_MESSAGE "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills."
 #define DEFAULT_RESPONSE "You do not know how to"
 #define DEFAULT_INVENTORY_NAME "Inventory: "
@@ -37,7 +37,7 @@ Location* tortureRoom = new Location("The torture room", "You enter a cold stone
 andy->setLocation(garden);
 inventory->setName(DEFAULT_INVENTORY_NAME);
 andy->setInventory(inventory);
-andy->setMaxItems(4);
+andy->setMaxItems(0);
 
 diningRoom->setWest(entranceHall);
 entranceHall->setSouth(garden);

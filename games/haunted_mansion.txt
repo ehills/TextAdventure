@@ -1,12 +1,10 @@
 gameName = "*****The Haunted Mansion*****";
-gameCredits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
+gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
 defaultResponse = "You do not know how to";
 defaultInventoryName = "Inventory: ";
 defaultInteractiveName = "Objects: ";
 
 Player andy  {
-    name =  "Andy";
-    description = "An amateur ghost hunter.";
     carryLimit = 4;
 }
 

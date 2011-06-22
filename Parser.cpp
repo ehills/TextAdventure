@@ -9,7 +9,6 @@ Parser::Parser(char* filename) {
 	ifstream file;
 	string line;
 	string data;
-	location_init = true;
 	file.open(filename);
 	if (file.is_open()) {
 		while (getline(file, line)) {
@@ -31,6 +30,9 @@ list<string> Parser::ParseFile(void) {
 		this->ParseDefaults();
 		this->ParsePlayer();
 		this->ParseLocations();
+		// Player's inventory
+		inventory = new Location("inventory", "inventory", "Player's inventory.");
+		this->locations.insert(pair<string, Location*>("inventory", inventory));
 		this->ParseItems();
 		string location_name = ParseVariableData(this->file_data, "initialLocation");
 		if (this->locations.count(location_name) > 0) {
@@ -181,12 +183,6 @@ int Parser::ParsePlayer() {
 			attribute = stringTrim(this->file_data.substr(start, size));
 			player->setVariableName(attribute);
 			end++;
-			data = this->file_data.substr(end, ParseEndBrace(end, this->file_data));
-			attribute = ParseStringData(data, "name");
-			player->setName(attribute);
-
-			attribute = ParseStringData(data, "description");
-			player->setDescription(attribute);
 
 			attribute = ParseVariableData(data, "carryLimit");
 			player->setMaxItems(atoi(attribute.c_str()));
@@ -320,12 +316,6 @@ void Parser::ParseItem(string data, Item *item) {
 	}
 	// Parse location
 	attribute = ParseVariableData(data, "location");
-	// Player's inventory
-	if(location_init) {
-		location_init = false;
-		inventory = new Location("inventory", "inventory", "Player's inventory.");
-		this->locations.insert(pair<string, Location*>("inventory", inventory));
-	}
 	if (attribute == this->player->getVariableName()) {
 		this->locations.insert(pair<string, Location*>("inventory", inventory));
 		item->setLocation(this->locations.at("inventory"));
