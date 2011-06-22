@@ -111,9 +111,9 @@ int Parser::ParseDefaults() {
 		this->file_data.replace(start, end + 1 - start, "");
 
 	}
-	this->gameName = ParseStringData(this->file_data, "gameName", "*****MY AWESOME GAME*****");
-	this->gameCredits = ParseStringData(this->file_data, "gameCredits", "BY RANDOM PERSON");
-	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "WELCOME TO MY GAME");
+	this->gameName = ParseStringData(this->file_data, "gameName", "");
+	this->gameCredits = ParseStringData(this->file_data, "gameCredits", "");
+	this->initialDescription = ParseStringData(this->file_data, "initialDescription", "");
 	this->defaultResponse = ParseStringData(this->file_data, "defaultResponse", "You do not know how to");
 	this->defaultInventoryName = ParseStringData(this->file_data, "defaultInventoryName", "Inventory: ");
 	this->defaultInteractiveName = ParseStringData(this->file_data, "defaultInteractiveName", "Objects: ");
