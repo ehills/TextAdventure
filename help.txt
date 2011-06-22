@@ -66,8 +66,6 @@ Game objects
 Create the player in the game.
 
 Player player_name {
-	name = "name_goes_here";
-	description = "description_goes_here";
 	carryLimit = carryLimit_goes_here; as an integer.
 }
 
@@ -115,14 +113,12 @@ LocationDefaults {
 Example Game 
 
 gameName = "*****The Haunted Mansion*****";
-gameCredits = "By Edward Hills, George Phillips, Samuel Garner and Stephen Herd";
+gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
 defaultResponse = "You do not know how to";
 defaultInventoryName = "Inventory: ";
 defaultInteractiveName = "Objects: ";
 
 Player andy  {
-    name =  "Andy";
-    description = "An amateur ghost hunter.";
     carryLimit = 4;
 }
 
