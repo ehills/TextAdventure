@@ -1,11 +1,9 @@
-gameName = "*****Mother Example Game) *****";
+gameName = "*****Mother(Example Game) *****";
 gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie";
 defaultResponse = "I do not know how to";
 
 Player mother{
        name = "Mother";
-       description = "A concerned Mother";
-       carryLimit = 4;
 }
 
 ItemDefaults {
