@@ -427,7 +427,7 @@ string Compiler::CompileVerb(string line) {
 			output += "cout << inventory->getName() << " + parser->player->getVariableName() + "->getInventory()->listItems(\"\") << \" \";\n";
 			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems();\n";
 		} else if (line.find("list;") < line.length() && getItem(line) != "") {
-			output += "cout << " + getItem(line) + "->listItems(DEFAULT_INTERACTIVE_NAME);\n";
+			output += "cout << " + getItem(line) + "->listItems("");\n";
 		} else if (line.compare("list;") == 0) {
 			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems(DEFAULT_INTERACTIVE_NAME);\n";
 		} else if (line.compare("gameOver;") == 0) {

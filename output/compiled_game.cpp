@@ -291,7 +291,7 @@ box->setShowItems(true);
 box->setAttribute("isOpen", true);
 box->setAttribute("!isOpen", false);
 cout << "You open the box and find a ";
-cout << box->listItems(DEFAULT_INTERACTIVE_NAME);
+cout << box->listItems();
 } else {
 cout << "The box is already open.";
 }

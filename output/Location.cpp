@@ -102,7 +102,7 @@ string Location::listItems(string default_item_name) {
 		}
 	}
 	if (count == 0 || !showItems) {
-		the_items = default_item_name + "None";
+		the_items = default_item_name;
 	} else {
 		the_items = default_item_name + the_items;
 	}
