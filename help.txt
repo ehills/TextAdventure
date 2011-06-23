@@ -21,7 +21,7 @@ Item key {
 
 Synonyms
 We have implemented synonyms differently to BIFF. All the user needs to do when they initialise a new verb is to use "or" to write as many synonyms as they want.
-Example: Verb = "go or climb or enter" {rules_go_here}.  
+Example: Verb "go or climb or enter" {rules_go_here}.  
 
 Attributes
 Item attributes are initialised the same as in BIFF but we saw no reason to set global attributes as they are set to false by default. 
