@@ -183,7 +183,7 @@ int Parser::ParsePlayer() {
 			attribute = stringTrim(this->file_data.substr(start, size));
 			player->setVariableName(attribute);
 			end++;
-
+			data = this->file_data.substr(end, ParseEndBrace(end, this->file_data));
 			attribute = ParseVariableData(data, "carryLimit");
 			player->setMaxItems(atoi(attribute.c_str()));
 		}
