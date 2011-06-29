@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <map>
+#include <string>
 
 using namespace std;
 

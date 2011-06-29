@@ -241,7 +241,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (bed->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(bed->getVariableName())) {
-cout << "You already have the bed";
+cout << "You already have the bed.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(bed->getName(), bed);
@@ -270,7 +270,7 @@ if (((andy->getLocation()->getVariableName() == box->getLocation()->getVariableN
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (box->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(box->getVariableName())) {
-cout << "You already have the box";
+cout << "You already have the box.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(box->getName(), box);
@@ -305,7 +305,7 @@ cout << "You drop the box.";
 cout << "You do not have a box.";
 }
 goto main_loop;}
-if (verb == "close") {
+if (verb == "close" || verb == "shut") {
 if (box->hasAttribute("isOpen")) {
 box->setShowItems(false);
 box->setAttribute("!isOpen", true);
@@ -333,7 +333,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (door->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(door->getVariableName())) {
-cout << "You already have the door";
+cout << "You already have the door.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(door->getName(), door);
@@ -390,7 +390,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (key->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(key->getVariableName())) {
-cout << "You already have the key";
+cout << "You already have the key.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(key->getName(), key);
@@ -419,7 +419,7 @@ if (((andy->getLocation()->getVariableName() == lamp->getLocation()->getVariable
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (lamp->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(lamp->getVariableName())) {
-cout << "You already have the lamp";
+cout << "You already have the lamp.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(lamp->getName(), lamp);
@@ -466,7 +466,7 @@ if (((andy->getLocation()->getVariableName() == mansion_door->getLocation()->get
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mansion_door->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(mansion_door->getVariableName())) {
-cout << "You already have the mansion_door";
+cout << "You already have the mansion_door.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(mansion_door->getName(), mansion_door);
@@ -506,7 +506,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (mirror->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(mirror->getVariableName())) {
-cout << "You already have the mirror";
+cout << "You already have the mirror.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(mirror->getName(), mirror);
@@ -555,7 +555,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (skull->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(skull->getVariableName())) {
-cout << "You already have the skull";
+cout << "You already have the skull.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(skull->getName(), skull);
@@ -584,7 +584,7 @@ if (((andy->getLocation()->getVariableName() == window->getLocation()->getVariab
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (window->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(window->getVariableName())) {
-cout << "You already have the window";
+cout << "You already have the window.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(window->getName(), window);
@@ -653,7 +653,7 @@ goto main_loop;}
 if (verb == "pickup" || verb == "pick-up" || verb == "get") {
 if (wrench->hasAttribute("canPickup")) {
 if (andy->getInventory()->hasItem(wrench->getVariableName())) {
-cout << "You already have the wrench";
+cout << "You already have the wrench.";
 } else {
 if (andy->canCarry()) {
 andy->getInventory()->addItem(wrench->getName(), wrench);

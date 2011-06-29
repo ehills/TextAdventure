@@ -403,7 +403,7 @@ Item wrench {
 }
 
 Item mansion_door {
-	name "door";
+	name = "door";
 	description = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 
