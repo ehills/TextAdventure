@@ -633,6 +633,5 @@ string Compiler::CompileVerb(string line) {
 	return output;
 }
 
-
 Compiler::~Compiler() {
 }
