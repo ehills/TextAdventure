@@ -16,7 +16,7 @@ ItemDefaults {
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
 			if (andy hasItem inputItem) {
-	            print "You already have the inputItem";
+	            print "You already have the inputItem.";
 	        } else {
 	         	if (andy canCarry) {
 	                inputItem setLocation andy;
