@@ -4,7 +4,7 @@ defaultResponse = "You do not know how to";
 defaultInventoryName = "Inventory: ";
 defaultInteractiveName = "Objects: ";
 
-Player andy  {
+Player andy {
     carryLimit = 4;
 }
 

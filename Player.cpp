@@ -19,10 +19,6 @@ Player::Player(string name, string description , int max_items,
 	this->inventory = inventory;
 }
 
-Player::~Player(){
-
-}
-
 string Player::getName(void) {return name;}
 
 void Player::setName(string name) {this->name = name;}
@@ -62,3 +58,5 @@ void Player::setLocation(Location location) {
 Location Player::getInventory(void) {return inventory;}
 
 void Player::setInventory(Location inventory) {this->inventory = inventory;}
+
+Player::~Player(){}

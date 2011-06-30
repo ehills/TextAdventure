@@ -1,12 +1,8 @@
-gameName = "*****The Haunted Mansion*****";
-gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
-defaultResponse = "You do not know how to";
-defaultInventoryName = "Inventory: ";
-defaultInteractiveName = "Objects: ";
-
-Player andy  {
-    carryLimit = 4;
-}
+Player sam {
+	name = "sam";
+	description  = "josh";
+	carryLimit = 200;
+}	
 
 ItemDefaults {
     Verb "examine or x or ex or look or l" {
@@ -15,50 +11,35 @@ ItemDefaults {
     
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
-			if (andy hasItem inputItem) {
-	            print "You already have the inputItem.";
+			if (sam hasItem inputItem) {
+	            print "You already have the ";
+	            print inputItem;
 	        } else {
-	         	if (andy canCarry) {
-	                inputItem setLocation andy;
-					print "You pickup the inputItem.";
+	         	if (sam canCarry) {
+	                inputItem setLocation sam;
+					print "You pickup the ";
+					print inputItem;
 	            } else {
 	                print "You are carrying too much already.";
                 }
             }
         } else {
-        	print "You cannot pick up the inputItem what were you thinking...";
+        	print "You cannot pick up the ";
+        	print inputItem;
+        	print " What were you thinking...";
         }
     }
 
     Verb "drop or discard or throwout or throw-out" {
-        if (andy hasItem inputItem) {
+        if (sam hasItem inputItem) {
             inputItem setLocation currentLocation;
-			print "You drop the inputItem.";
+			print "You drop the ";
+			print inputItem;
         } else {
-            print "You do not have a inputItem.";
+            print "You do not have a ";
+            print inputItem;
         }
     }
-    
-    Verb "put or place Join: into or in or inside Item: box" {
-		if(inputItem hasAttribute putBox) {
-			if(andy inLocation secretHall) {
-				if(inputItem inLocation Andy) {
-					if(box hasAttribute isOpen) {
-						inputItem setLocation box;
-						print "You put the inputItem into the box.";
-					} else {
-						print "You cannot do that the box is closed.";
-					}
-				} else {
-					print "You do not have the inputItem.";
-				}
-			} else {
-				print "You cannot do that here.";
-			}
-		} else {
-			print "You cannot put the inputItem in the box.";
-		}
-	}
 }
 
 LocationDefaults {
@@ -75,8 +56,8 @@ LocationDefaults {
     }   
     // Directions
     Verb "north or n or nth" {
-    	if(andy inLocation hasNorth) {
-    		andy setLocation toNorth;
+    	if(sam inLocation hasNorth) {
+    		sam setLocation toNorth;
     		describe;
 			list;
     	} else {
@@ -84,12 +65,8 @@ LocationDefaults {
     	}
     }
     Verb "south or s or sth" {
-    	if(andy inLocation tortureRoom) {
-    		print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead.";
-    		gameOver;
-    	}
-    	if(andy inLocation hasSouth) {
-    		andy setLocation toSouth;
+    	if(sam inLocation hasSouth) {
+    		sam setLocation toSouth;
     		describe;
 			list;
     	} else {
@@ -97,8 +74,8 @@ LocationDefaults {
     	}
     }
     Verb "east or e" {
-    	if(andy inLocation hasEast) {
-    		andy setLocation toEast;
+    	if(sam inLocation hasEast) {
+    		sam setLocation toEast;
     		describe;
 			list;
     	} else {
@@ -106,8 +83,8 @@ LocationDefaults {
     	}
     }
     Verb "west or w" {
-    	if(andy inLocation hasWest) {
-    		andy setLocation toWest;
+    	if(sam inLocation hasWest) {
+    		sam setLocation toWest;
     		describe;
 			list;
     	} else {
@@ -116,298 +93,46 @@ LocationDefaults {
     }
 }
 
-initialLocation = garden;
+initialLocation = corn_field;
 
-initialDescription = "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
-
-// Dead space is a location to store game items until needed
-Location deadSpace {
-	name = "Dead space";
-	description = "Dead space";
+Location corn_field {
+	name = "field.";
+	description = "Barren field voild of life, cros are buzzing around the corpsesof some impaled farmers.";
+	
+	south = brothel;
 }
 
-Location garden {
-    name = "The overgrown garden";
-    description = "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.";
+Location brothel {
+	name = "Skanky brother";
+	description = "This is your favourite place to spend your time.";
+	
+	north = corn_field;
+	south = fuck_room;
 }
 
-Location entranceHall {
-    name = "The entrance hall";
-    description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+Location fuck_room {
+	name = "The busines room";
+	description= "Lotsa fucking to do in here.";
+	south = brothel;
+	}
 
-    west = masterBedroom;
-    east = diningRoom;
-    south = garden;
-}
-
-Location diningRoom {
-    name = "The dining room";
-    description = "You find yourself in an old dining room, complete with ornate chandeliers.";
- 	west = entranceHall;
-}
-
-Location masterBedroom {
-    name = "The master bedroom";
-    description = "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
-    east = entranceHall;
-    hideItems;
-}
-
-Location secretHall {
-    name = "The secret hall";
-    description = "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.";
-
-    south = entranceHall;
-}
-
-Location tortureRoom {
-    name = "The torture room";
-    description = "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.";
-
-    south = secretHall;
-}
-
-Item lamp {
-    name = "lamp";
-    description = "An old lamp but still looks like it might work.";
-    location = diningRoom;
-    hasAttributes = canPickup;
-
-    Verb "light or use or turn-on or turnon" {
-		if(lamp inLocation andy) {
-			entranceHall setDescription "With the aid of the lamp you can now make out a doorway to the north. The other exits are doorways to the east and west and the window leading south.";
-			entranceHall setNorth secretHall;
-			masterBedroom setDescription "With the lamp illuminating your surroundings you find yourself in a creepy old bedroom decorated with many mirrors. You keep seeing things move in them out of the corner of your eye. There is also a massive bed taking up most of the room. You can see many things glinting under it.";
-			masterBedroom showItems;
-			print "You fiddle around with the old lamp and manage to turn it on.";
-		} else {
-			print "You do not have that item.";
-		}
-    }
-
-	Verb "off or turnoff or turn-off" {
-		if(lamp inLocation andy) {
-			entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
-			entranceHall removeNorth;
-			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
-			masterBedroom hideItems;
-			print "You switch off the old lamp.";
-		} else {
-			print "You do not have that item.";
-		}
-    }
-}
-
-Item mirror {
-    name = "mirror";
-    description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
-    location = masterBedroom;
-    hasAttributes = canPickup putBox;
-
-    Verb "use or lookat or look-at" {
-        if(andy inLocation tortureRoom) {
-            print "You pull out out the mirror, the ghost upon seeing it's horrific reflection flees in terror. Congratulations you have busted your first ghost!";
-            gameOver;
-        } else {
-            print "You admire yourself in the mirror.";
-        }
-    }
-}
-
-Item door {
+Item brothel_door {
 	name = "door";
-	description = "A solid wooden door is located in the north wall. You notice a small key hole.";
-	location = secretHall;
-	hasAttributes = isLocked !isOpen;
-
-	Verb "open" {
-		if(door hasAttribute !isOpen) {
-			if (door hasAttribute isLocked) {
-			print "You cannot open the door it is locked.";
-			} else {
-				door setAttribute isOpen;
-				secretHall setNorth tortureRoom;
-				print "The door swings open.";
-			}
-		} else {
-			print "The door is already open";
-		}
-	}
-	Verb "unlock" {
-		if(key inLocation andy) {
-			if (door hasAttribute isLocked) {
-				door setAttribute !isLocked;
-				print "You struggle to turn the key in the old door but manage to unlock it.";
-			} else {
-				print "The door is already unlocked.";
-			}
-		} else {
-				print "You do not have a key to unlock the door.";
-		}
-	}
-}
-
-Item key {
-	name = "key";
-	description = "A small key.";
-	location = deadSpace;
-	hasAttributes = canPickup putBox;
-
-	Verb "use" {
-		if(door hasAttribute isLocked) {
-			if(andy inLocation secretHall) {
-				print "You struggle to turn the key in the old door but manage to unlock it.";
-				secretHall setNorth tortureRoom;
-				door setAttribute !isLocked;
-			} else {
-				print "You can not use the key here.";
-			}
-		} else {
-				print "The door is already unlocked.";
-		}
-	}
-}
-
-Item bed {
-	name = "bed";
-	description = "A massive dusty bed.";
-	location = masterBedroom;
-
-	Verb "under or look or examine or x or ex or l" {
-		if (key inLocation andy) {
-			print "A massive dusty bed.";
-		} else {
-			print "You see a key glinting under the bed.";
-			key setLocation masterBedroom;	
-		}
-	}
-
-	Verb "sleep or nap" {
-		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
+	description = "An old door with many cum stains on the doorknob.";
+	location = brothel;
+	Verb "enter or go or move" {
+		brothel setNorth fuck_room ;
+		print "You enter the brotherl and smell the sweet scent of cunt.";
 		}
 }
 
-Item box {
-	name = "box";
-	description = "A large wooden box.";
-	location = secretHall;
-	hasAttributes = !isOpen;
-	hideItems;
-
-	Verb "open" { 
-		if (box hasAttribute !isOpen) {
-			box showItems;
-			box setAttribute isOpen;
-			print "You open the box and find a ";
-			box list;
-		} else {
-			print "The box is already open.";
-		}
-	}
-
-	Verb "close or shut" {
-		if(box hasAttribute isOpen) {
-			box hideItems;
-			box setAttribute !isOpen;
-			print "You close the box.";
-		} else {
-			print "The box is already closed.";
-		}
-	}
-}
-
-Item skull {
-	name = "skull";
-	description = "A cracked human skull.";
-	location = box;
-	hasAttributes = canPickup putBox;
-
-	Verb "wear" {
-		if (skull inLocation andy) {
-			print "For some perverse reason you shove the skull onto your head. Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
-			gameOver;
-		} else {
-			print "You do not have the skull in your inventory.";
-		}
-	}
-
-	Verb "use or show" {
-		if (skull inLocation andy) {
-			if(andy inLocation tortureRoom) {
-				print "The skull begins to contort and grow, before long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes out at the apparation. The evil apparation disapates and dies... again. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
-				gameOver;
-			} else {
-				print "You wave the skull around like a demented lunatic.";
-			}
-			} else {
-				print "You do not have that item.";
-			}
-		}
-	}
-}
-
-Item window {
-	name = "window";
-	description = "A cracked window that seems to be your only access to the mansion.";
-	location = garden;
-	hasAttributes = !isOpen isJammed;
-
-	Verb "open" {
-		if (window hasAttribute !isOpen) {
-			if (window hasAttribute isJammed) {
-				print "You cannot open the window it is jammed.";
-			} else {
-				window setDescription "The window is open allowing you access to the mansion.";
-				window setAttribute isOpen;
-				garden setNorth entranceHall;
-				print "With a heave the window grates open to leave a nice opening to enter through.";
-			}
-		} else {
-			print "The window is already open.";	
-		}
-	}
-
-	Verb "go or climb or enter" {
-		if(window hasAttribute isOpen) {
-			andy setLocation entranceHall;
-			describe;
-			list;
-		} else {
-		  	print "You cannot do that the window is closed.";
-		}
-	}
-}
-
-Item wrench {
-	name = "wrench";
-	description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
-	location = andy;
-	hasAttributes = canPickup putBox;
-
-	Verb = "use" {
-		if(andy inLocation garden) {
-			if(wrench inLocation andy) {
-				if(window hasAttribute isJammed) {
-					window setAttribute !isJammed;
-					print "You manage to pry open the window far enough to get your hands under.";
-				} else {
-					print "You have already pried loose the window.";
-				}
-			} else {
-				print "You do not have the wrench.";
-			}
-		} else {
-			print "You cannot use the wrench here.";
-		}
-	}
-}
-
-Item mansion_door {
-	name = "door";
-	description = "The mansion door is bolted shut. You will need to find another way in.";
-	location = garden;
-
-	Verb = "open" {
-		print "The mansion door is bolted shut. You will need to find another way in.";
+Item sword {
+	name = "sword";
+	description = "a rusty old sword.";
+	location = sam;
+	hasAttribute = canPickup;
+	
+	Verb "swing or stab or thrust" {
+		print "You swing your sword and manage to to do fuck all.";
 	}
 }

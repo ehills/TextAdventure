@@ -30,3 +30,5 @@ void Player::setLocation(Location* location) {this->current_location = location;
 Location* Player::getInventory(void) {return inventory;}
 
 void Player::setInventory(Location* inventory) {this->inventory = inventory;}
+
+Player::~Player(void) {}

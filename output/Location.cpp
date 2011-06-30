@@ -19,6 +19,7 @@ Location::Location(string name, string description, string variable_name) {
 	this->east = NULL;
 	this->variable_name = variable_name;
 	this->showItems = true;
+	this->location = NULL;
 }
 
 Location::Location() {
@@ -28,6 +29,7 @@ Location::Location() {
 	this->east = NULL;
 	this->variable_name = variable_name;
 	this->showItems = true;
+	this->location = NULL;
 }
 
 string Location::getVariableName() {
@@ -54,7 +56,7 @@ void Location::addItem(string item_name, Location* item) {
 	if (item->hasLocation()) {
 		item->getLocation()->removeItem(item_name);
 	}
-	item->setLocation(this);
+	item->setLocation(this->getLocation());
 	this->items.insert(pair<string, Location*> (toLower(item_name), item));
 }
 

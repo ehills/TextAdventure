@@ -1,9 +1,9 @@
-CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
-SOURCES=main.cpp fileio.cpp Parser.cpp Player.cpp Location.cpp Item.cpp Compiler.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=TextAdventure
+CC = g++
+CFLAGS = -c -Wall
+LDFLAGS =
+SOURCES = main.cpp fileio.cpp Parser.cpp Player.cpp Location.cpp Item.cpp Compiler.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+EXECUTABLE = TextAdventure
 
 all: $(SOURCES) $(EXECUTABLE)
 
