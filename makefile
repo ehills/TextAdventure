@@ -1,17 +1,18 @@
-CC = cl
-CPPFLAGS = /EHsc
+CC = g++
+CFLAGS = -c -Wall
+LDFLAGS =
 SOURCES = main.cpp fileio.cpp Parser.cpp Player.cpp Location.cpp Item.cpp Compiler.cpp
-OBJECTS = $(SOURCES:.cpp=.obj)
+OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = TextAdventure
 
 all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	del *.exe *.obj *.o $(EXECUTABLE)
+	rm -rf *o $(EXECUTABLE)
 

@@ -1,17 +1,18 @@
-CC = cl
-CPPFLAGS = /EHsc
+CC = g++
+CFLAGS = -c -Wall
+LDFLAGS =
 SOURCES = Location.cpp Player.cpp compiled_game.cpp 
-OBJECTS = $(SOURCES:.cpp=.obj)
+OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = Play
 
 all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	del *.exe *.obj *.o $(EXECUTABLE)
+	rm -rf *o $(EXECUTABLE)
 
