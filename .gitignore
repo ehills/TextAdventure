@@ -1,12 +1,12 @@
 *~
 *.o
 *.obj
-TextAdventure
+TextAdventure.exe
 nbproject
 output/compiled_game.cpp
 output/*.o
 output/*.obj
-output/Play
+output/Play.exe
 \#*
 *.gch
 output/\#*
