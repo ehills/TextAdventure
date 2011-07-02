@@ -3,7 +3,7 @@ gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie"
 defaultResponse = "I do not know how to";
 
 Player mother{
-       name = "Mother";
+       carryLimit = 5;
 }
 
 ItemDefaults {
