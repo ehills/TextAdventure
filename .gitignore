@@ -1,9 +1,11 @@
 *~
 *.o
+*.obj
 TextAdventure
 nbproject
 output/compiled_game.cpp
 output/*.o
+output/*.obj
 output/Play
 \#*
 *.gch
