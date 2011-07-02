@@ -3,6 +3,8 @@
 *.obj
 TextAdventure.exe
 nbproject
+.cproject
+.project
 output/compiled_game.cpp
 output/*.o
 output/*.obj
