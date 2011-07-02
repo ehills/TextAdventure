@@ -10,6 +10,7 @@ gameName = "game_name";  lets a user specify a game's name to be presented at th
 gameCredits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
 defaultInventoryName = "inventory_name"; sets the name of the inventory. Defaults to "Inventory: ".
 defaultInteractiveName = "default_interactive_name"; sets the default heading name for interactive objects in the game. Defaults to "Objects: ".
+defaultNoObjects = "default_word_for_no_items_in_a_location"; sets the word to be used if there are no interactive objects in a room. Defaults to "None".
 
 Four word (verb noun join noun) user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
 by using the keyword "Join:" for the join word and synonyms and "Item:" to specify the second noun in the sentence.
@@ -32,7 +33,8 @@ gameName - sets a game's name.
 gameCredits - sets a game's credits.
 defaultResponse - response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response. Defaults to "You do not know how to".
 defaultInventoryName - sets the name of the inventory.
-defaultInteractiveName - sets the default heading name of interactive objects in the game.
+defaultInteractiveName - sets the heading for interactive objects in the game.
+defaultNoObjects - sets the word to be used if there are no iteractive objects in a room. Defaults to "None".
 initialLocation - sets the starting location for game.
 initialDescription - sets the game's introduction.
 inputItem - gets the item to be used for item default verbs. 
@@ -117,8 +119,9 @@ gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd"
 defaultResponse = "You do not know how to";
 defaultInventoryName = "Inventory: ";
 defaultInteractiveName = "Objects: ";
+defaultNoObjects = "None";
 
-Player andy  {
+Player andy {
     carryLimit = 4;
 }
 
@@ -130,34 +133,49 @@ ItemDefaults {
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
 			if (andy hasItem inputItem) {
-	            print "You already have the ";
-	            print inputItem;
+	            print "You already have the inputItem.";
 	        } else {
 	         	if (andy canCarry) {
 	                inputItem setLocation andy;
-					print "You pickup the ";
-					print inputItem;
+					print "You pickup the inputItem.";
 	            } else {
 	                print "You are carrying too much already.";
                 }
             }
         } else {
-        	print "You cannot pick up the ";
-        	print inputItem;
-        	print " What were you thinking...";
+        	print "You cannot pick up the inputItem what were you thinking...";
         }
     }
 
     Verb "drop or discard or throwout or throw-out" {
         if (andy hasItem inputItem) {
             inputItem setLocation currentLocation;
-			print "You drop the ";
-			print inputItem;
+			print "You drop the inputItem.";
         } else {
-            print "You do not have a ";
-            print inputItem;
+            print "You do not have a inputItem.";
         }
     }
+    
+    Verb "put or place Join: into or in or inside Item: box" {
+		if(inputItem hasAttribute putBox) {
+			if(andy inLocation secretHall) {
+				if(inputItem inLocation Andy) {
+					if(box hasAttribute isOpen) {
+						inputItem setLocation box;
+						print "You put the inputItem into the box.";
+					} else {
+						print "You cannot do that the box is closed.";
+					}
+				} else {
+					print "You do not have the inputItem.";
+				}
+			} else {
+				print "You cannot do that here.";
+			}
+		} else {
+			print "You cannot put the inputItem in the box.";
+		}
+	}
 }
 
 LocationDefaults {
@@ -301,7 +319,7 @@ Item mirror {
     name = "mirror";
     description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
     location = masterBedroom;
-    hasAttributes = canPickup;
+    hasAttributes = canPickup putBox;
 
     Verb "use or lookat or look-at" {
         if(andy inLocation tortureRoom) {
@@ -350,7 +368,7 @@ Item key {
 	name = "key";
 	description = "A small key.";
 	location = deadSpace;
-	hasAttributes = canPickup;
+	hasAttributes = canPickup putBox;
 
 	Verb "use" {
 		if(door hasAttribute isLocked) {
@@ -404,7 +422,7 @@ Item box {
 		}
 	}
 
-	Verb "close" {
+	Verb "close or shut" {
 		if(box hasAttribute isOpen) {
 			box hideItems;
 			box setAttribute !isOpen;
@@ -419,24 +437,7 @@ Item skull {
 	name = "skull";
 	description = "A cracked human skull.";
 	location = box;
-	hasAttributes = canPickup;
-
-	Verb "put or place Join: into or in or inside Item: box" {
-		if(andy inLocation secretHall) {
-			if(skull inLocation Andy) {
-				if(box hasAttribute isOpen) {
-					skull setLocation box;
-					print "You return the skull to the box.";
-				} else {
-					print "You cannot do that the box is closed.";
-				}
-			} else {
-				print "You do not have the skull.";
-			}
-		} else {
-			print "You cannot do that here.";
-		}
-	}
+	hasAttributes = canPickup putBox;
 
 	Verb "wear" {
 		if (skull inLocation andy) {
@@ -498,7 +499,7 @@ Item wrench {
 	name = "wrench";
 	description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
 	location = andy;
-	hasAttributes = canPickup;
+	hasAttributes = canPickup putBox;
 
 	Verb = "use" {
 		if(andy inLocation garden) {
@@ -519,7 +520,7 @@ Item wrench {
 }
 
 Item mansion_door {
-	name "door";
+	name = "door";
 	description = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 

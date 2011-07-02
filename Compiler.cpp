@@ -68,6 +68,7 @@ void Compiler::Compile() {
 			"#define DEFAULT_RESPONSE \"" + parser->defaultResponse + "\"\n"
 			"#define DEFAULT_INVENTORY_NAME \"" + parser->defaultInventoryName + "\"\n"
 			"#define DEFAULT_INTERACTIVE_NAME \"" + parser->defaultInteractiveName + "\"\n"
+			"#define DEFAULT_NO_OBJECTS \"" + parser->defaultNoObjects+ "\"\n"
 			"string toLower(string text);\n";
 
 	// Start of main method
@@ -174,7 +175,7 @@ void Compiler::Compile() {
 			"cout << WELCOME_MESSAGE << endl << endl;\n"
 			"prompt = \"\\n>>> \";\n"
 			"cout << " + parser->player->getVariableName() + "->getLocation()->printNameAndDescription() << endl;\n"
-			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems(DEFAULT_INTERACTIVE_NAME);\n"
+			"cout << " + parser->player->getVariableName() + "->getLocation()->listItems(DEFAULT_INTERACTIVE_NAME, DEFAULT_NO_OBJECTS);\n"
 			"\nwhile (true) { \n"
 			"   main_loop:\n"
 			"   cout << prompt;\n"
@@ -427,9 +428,9 @@ string Compiler::CompileVerb(string line) {
 			output += "cout << inventory->getName() << " + parser->player->getVariableName() + "->getInventory()->listItems(\"\") << \" \";\n";
 			output += "cout << " + parser->player->getVariableName() + "->getNumberOfItems() << \"/\" << " + parser->player->getVariableName() + "->getMaxItems();\n";
 		} else if (line.find("list;") < line.length() && getItem(line) != "") {
-			output += "cout << " + getItem(line) + "->listItems("");\n";
+			output += "cout << " + getItem(line) + "->listItems();\n";
 		} else if (line.compare("list;") == 0) {
-			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems(DEFAULT_INTERACTIVE_NAME);\n";
+			output += "cout << " + parser->player->getVariableName() + "->getLocation()->listItems(DEFAULT_INTERACTIVE_NAME, DEFAULT_NO_OBJECTS);\n";
 		} else if (line.compare("gameOver;") == 0) {
 			output += "break;\n";
 		} else if (line.find("print \"") < line.length()) {
@@ -474,9 +475,9 @@ string Compiler::CompileVerb(string line) {
 			start = line.find("\"") + 1;
 			end = line.find("\"", start);
 			if (location != "") {
-				output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");";
+				output += location + "->setDescription(\"" + line.substr(start, end - start) + "\");\n";
 			} else {
-				output += item + "->setDescription(\"" + line.substr(start, end - start) + "\");";
+				output += item + "->setDescription(\"" + line.substr(start, end - start) + "\");\n";
 			}
 		} else if (line.find("if") < line.length()) {
 			size_t open, close;

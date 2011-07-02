@@ -56,7 +56,7 @@ void Location::addItem(string item_name, Location* item) {
 	if (item->hasLocation()) {
 		item->getLocation()->removeItem(item_name);
 	}
-	item->setLocation(this->getLocation());
+	item->setLocation(this);
 	this->items.insert(pair<string, Location*> (toLower(item_name), item));
 }
 
@@ -93,18 +93,18 @@ string Location::printNameAndDescription() {
 	return name_and_description;
 }
 
-string Location::listItems(string default_item_name) {
+string Location::listItems(string default_item_name, string default_no_items) {
 	string the_items;
 	int count;
 	map<string, Location*>::iterator it;
 	for (it = items.begin(), count=0; it != items.end(); count++, ++it) {
 		the_items += "[" + (it->second->getName()) + "] ";
 		if(it->second->getItemCount() > 0  && it->second->getShowItems()) {
-			the_items += it->second->listItems("");
+			the_items += it->second->listItems("", "");
 		}
 	}
 	if (count == 0 || !showItems) {
-		the_items = default_item_name;
+		the_items = default_item_name + default_no_items;
 	} else {
 		the_items = default_item_name + the_items;
 	}

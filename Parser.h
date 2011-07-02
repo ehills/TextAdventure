@@ -30,6 +30,7 @@ public:
 	string defaultResponse;
 	string defaultInventoryName;
 	string defaultInteractiveName;
+	string defaultNoObjects;
 	Location *initialLocation;
 	list<string> errors;
 	map<string, Location*> locations;

@@ -3,6 +3,7 @@ gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd"
 defaultResponse = "You do not know how to";
 defaultInventoryName = "Inventory: ";
 defaultInteractiveName = "Objects: ";
+defaultNoObjects = "None";
 
 Player andy {
     carryLimit = 4;

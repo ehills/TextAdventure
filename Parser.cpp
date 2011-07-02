@@ -117,6 +117,7 @@ int Parser::ParseDefaults() {
 	this->defaultResponse = ParseStringData(this->file_data, "defaultResponse", "You do not know how to");
 	this->defaultInventoryName = ParseStringData(this->file_data, "defaultInventoryName", "Inventory: ");
 	this->defaultInteractiveName = ParseStringData(this->file_data, "defaultInteractiveName", "Objects: ");
+	this->defaultNoObjects = ParseStringData(this->file_data, "defaultNoObjects", "None ");
 	return NO_ERRORS;
 }
 

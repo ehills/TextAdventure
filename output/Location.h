@@ -52,7 +52,7 @@ public:
 	void addItem(string item_name, Location* item);
 	int getItemCount();
 	void removeItem(string item_name);
-	string listItems(string default_item_name="");
+	string listItems(string default_item_name="", string default_no_items="");
 	bool hasItem(string);
 	bool hasLocation(void);
 	Location* getLocation(void);
