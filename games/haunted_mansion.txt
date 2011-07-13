@@ -197,6 +197,18 @@ Item lamp {
 			print "You do not have that item.";
 		}
     }
+    
+    Verb "drop or discard or throwout or throw-out" {
+        if (lamp inLocation andy) {
+            entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+			entranceHall removeNorth;
+			masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
+			masterBedroom hideItems;
+			print "You drop the lamp.";
+        } else {
+            print "You do not have that item.";
+        }
+    }
 }
 
 Item mirror {

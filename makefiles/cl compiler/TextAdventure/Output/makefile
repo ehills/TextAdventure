@@ -13,5 +13,5 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $< -o $@
 
 clean:
-	del *.exe *.obj *.o $(EXECUTABLE)
+	del *.exe *.obj $(EXECUTABLE)
 
