@@ -77,7 +77,7 @@ list: prints out the items in the current location or in a particular item.
 	
 hideItems: hide the items in an item or location so that they cannot be seen by the player.
 	// Hide items in an item or location during the creation of an item or location. Show items is the default.
-	eg.	name = "box";           
+	eg. name = "box";           
 	    description = "A large wooden box.";
 	    location = bedRoom;
 	    hideItems;
@@ -120,7 +120,7 @@ setAttribute: sets an item's attribute to true or false.
 	eg. window setAttribute !isopen // Sets the window's isOpen attribute to false.
 	
 canCarry: used with the player's name to check if there's room in your inventory.
-	if (playerName canCarry) {}
+	eg. if (playerName canCarry) {}
 
 hasNorth: used with 'playerName inLocation' to check if a location has a location to it's north.
 	eg. if (playerName inLocation hasNorth){} // Checks to see if the current location has a location to the north.
