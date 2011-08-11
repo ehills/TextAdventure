@@ -1,118 +1,202 @@
-Team: Samuel Garner, Stephen Herd, George Phillips and Edward Hills.
+TEAM: Samuel Garner, Stephen Herd, George Phillips and Edward Hills.
 
-This is a user guide for our adaptation of BIFF. 
+THIS IS OUR USER GUIDE FOR OUR ADAPTATION OF BIFF 
 We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be 
 defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.
 
-Differences to BIFF
+SYNONYMS
+We have implemented synonyms differently to BIFF. The user need only use "or" between verbs to write as many synonyms as they want.
+	eg. Verb "north or n or nth" {}.  // North, n, and nth all refer to the same verb.
 
-gameName = "game_name";  lets a user specify a game's name to be presented at the start of each game. Set to an empty string by default.
-gameCredits = "credits_go_here"; lets a user specify a game's credits to be presented after the game name. Set to an empty string by default.
-defaultInventoryName = "inventory_name"; sets the name of the inventory. Defaults to "Inventory: ".
-defaultInteractiveName = "default_interactive_name"; sets the default heading name for interactive objects in the game. Defaults to "Objects: ".
-defaultNoObjects = "default_word_for_no_items_in_a_location"; sets the word to be used if there are no interactive objects in a room. Defaults to "None".
-
-Four word (verb noun join noun) user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
-by using the keyword "Join:" for the join word and synonyms and "Item:" to specify the second noun in the sentence.
-Example: 
-User command = put key into box
-Item key {
-	Verb "put or place Join: into or in or inside Item: box" {rules_go_here}
-}
-
-Synonyms
-We have implemented synonyms differently to BIFF. All the user needs to do when they initialise a new verb is to use "or" to write as many synonyms as they want.
-Example: Verb "go or climb or enter" {rules_go_here}.  
-
-Attributes
-Item attributes are initialised the same as in BIFF but we saw no reason to set global attributes as they are set to false by default. 
+ATTRIBUTES
+Item attributes are initialised during the creation of an Item. These attributes are either true or false. False is indicated by having an '!' at the start 
+of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global 
+attributes as they are set to false by default.
+	// The door is closed but not locked.
+	eg. Item door { 
+			hasAttributes = isClosed !islocked;
+		} 
 	
-Game Library
+FOUR WORD COMMAND
+Four word 'verb noun join noun' user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
+by using the keyword "Join:" for the join word and synonyms, and "Item:" to specify the second noun in the sentence.
+	eg. User command = put key into box
+		Item key {
+		Verb "put or place Join: into or in or inside Item: box" {} // Put or place the key into or in or inside the box.
+		}
+	
+GAME LIBRARY
+defaultInteractiveName: sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".
+	eg. defaultInteractiveName = "Items: ";	
 
-gameName - sets a game's name.
-gameCredits - sets a game's credits.
-defaultResponse - response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response. Defaults to "You do not know how to".
-defaultInventoryName - sets the name of the inventory.
-defaultInteractiveName - sets the heading for interactive objects in the game.
-defaultNoObjects - sets the word to be used if there are no iteractive objects in a room. Defaults to "None".
-initialLocation - sets the starting location for game.
-initialDescription - sets the game's introduction.
-inputItem - gets the item to be used for item default verbs. 
-print - prints out specified information to game player.
-describe - prints out the current location's name and description.
-describeInventory - prints out the player's inventory.
-gameOver - quits the game.
-list - prints out the items in the current location (list) or in a particular item (item_name list).
-hideItems - hides the items in an item or location. During the creation of an object or location (hideItems) or inside a verb (item_name or location_name hideItems).
-showItems - shows the items in an item or location. This is the default. Inside a verb (item_name or location_name showItems).
-setDescription - sets the description of an item or location.
-getDescription - gets the description of an item or location.
-hasItem - checks to see if a location has an item. Good to use to check inventory.
-setLocation - sets an item to a location or to the player.
-inLocation - checks to see if player or item is in a certain location.
-currentLocation - used with setLocation or inLocation to set or check the player's current location.
-hasAttribute - checks to see if an item has a certain attribute.
-setAttribute - sets an item's attribute to true or false.
-canCarry - checks to see if there's room in your inventory.
-hasNorth - checks to see if a location has a location to it's north.
-hasSouth - checks to see if a location has a location to it's south.
-hasEast - checks to see if a location has a location to it's east.
-hasWest - checks to see if a location has a location to it's west.
-toNorth - used with setLocation to move player north of current location.
-toSouth - used with setLocation to move the player south of current location.
-toEast - used with setLocation to move the player east of current location.
-toWest - used with setLocation to move the player west of current location.
+defaultInventoryName: sets the name of the inventory. If not defined it defaults to "Inventory".
+	eg. defaultInventoryName = "Game objects: ";
 
-Game objects
+defaultNoObjects: sets the word to be used if there are no iteractive objects in a room. Defaults to "None".
+	eg. defaultNoObjects = "None";
 
-Create the player in the game.
+defaultResponse: response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response. 
+If not defined it defaults to "You do not know how to".
+	eg. defaultResponse = "You cannot ";	
 
-Player player_name {
-	carryLimit = carryLimit_goes_here; as an integer.
+gameName: sets a game's name. If not defined this will default to an empty string.
+	eg. gameName = "My Awesome Game*";
+
+gameCredits: sets a game's credits. If not defined this will default to an empty string.
+	eg. gameCredits = "By Frodo, Gandalf and Bilbo";
+
+initialDescription: sets the game's introduction. This must be set in order for the game to work.
+	eg. initialDescription  = "Hi there welcome to My Awesome Game.";
+	
+initialLocation: sets the starting location for game. This must be set in order for the game to work.
+	eg. initialLocation = startLocation;
+	
+GAME LIBRARY USED INSIDE VERBS
+Note: the player's inventory is used like a location denoted by using the name you gave the player.
+
+gameOver: quits the game.
+	eg. gameOver;
+
+inputItem: used only inside ItemDefault verbs to get the item being used. 
+	eg. print "You do not have the inputItem."; // Inside a string.
+	eg. print inputItem getDescription; // Using other game commands.
+	
+print: prints out specified information to the game player.
+	eg. print "You cannot go that way."; // Print a string.
+	eg. print currentLocation getDescription; // Using other game commands.
+	
+describe: prints out the current location's name and description.
+	eg. describe;
+	
+describeInventory: prints out the player's inventory.
+	eg. describeInventory;
+	
+list: prints out the items in the current location or in a particular item.
+	eg. list; // Items in the current location.
+	eg. box list; // Items in the box.
+	
+hideItems: hide the items in an item or location so that they cannot be seen by the player.
+	// Hide items in an item or location during the creation of an item or location. Show items is the default.
+	eg.	name = "box";           
+	    description = "A large wooden box.";
+	    location = bedRoom;
+	    hideItems;
+	eg. hideItems bedroom; // Hide items inside the bedroom.
+	eg. hideItems box; // Hide items inside the box.
+		
+showItems: shows the items in an item or location. This is the default.
+	eg. hideItems bedroom; // Show items inside the bedroom.
+	eg. hideItems box; // Show items inside the box.
+	
+setDescription: sets the description of an item or location.
+	eg. bedroom setDescription "The bedroom is now dark."; // Set description of the bedroom location.
+	eg. lamp setDescription "The lamp is now turned on."; // Set description of the lamp item.
+	
+getDescription: gets the description of an item or location.
+	eg. bedroom getDescription; // Gets the description of the bedroom location.
+	eg. lamp getDescription; // Gets the description of the lamp item.
+	
+hasItem: checks to see if an item is in a location. 
+	eg. if(playerName hasItem wrench){} // Check to see if the player has a wrench item. 
+	
+setLocation: moves the player or an item to a location.
+	eg. playerName setLocation bedroom; // Moves the player to the bedroom location.
+	eg. wrench setLocation playerName; // Sets the wrench item to the player's inventory location.
+	
+inLocation: checks to see if the player or item is in a certain location.
+	eg. if(playerName inLocation Bedroom){} // Checks to see if the player is in the bedroom.
+	eg. if(wrench inLocation playerName){} // Checks to see if the player has the wrench.
+	
+currentLocation: used with setLocation or inLocation to set or check the player's current location.
+	eg. if(door inLocation currentLocation){} // Checks to see if the wrench is in the currentLocation.
+	eg. wrench setLocation currentLocation){} // Move the wrench to the currentLocation.
+
+hasAttribute: checks to see if an item has a certain attribute.
+	eg. if(window hasAttribute isOpen){} // Checks to see if the window is open.
+	eg. if(window hasAttribute !isOpen){} // Checks to see if the window is not open.
+
+setAttribute: sets an item's attribute to true or false.
+	eg. window setAttribute isOpen; // Sets the window's isOpen attribute to true.
+	eg. window setAttribute !isopen // Sets the window's isOpen attribute to false.
+	
+canCarry: used with the player's name to check if there's room in your inventory.
+	if (playerName canCarry) {}
+
+hasNorth: used with 'playerName inLocation' to check if a location has a location to it's north.
+	eg. if (playerName inLocation hasNorth){} // Checks to see if the current location has a location to the north.
+	
+hasSouth: used with 'playerName inLocation' to check if a location has a location to it's south.
+	eg. if (playerName inLocation hasSouth){} // Checks to see if the current location has a location to the south.
+	
+hasEast: used with 'playerName inLocation' to check if a location has a location to it's East.
+	eg. if (playerName inLocation hasEast){} // Checks to see if the current location has a location to the east.
+	
+hasWest: used with 'playerName inLocation' to check if a location has a location to it's West.
+	eg. if (playerName inLocation hasWest){} // Checks to see if the current location has a location to the west.
+	
+toNorth: used with setLocation to move player north of current location.
+	eg. playerName setLocation toNorth; // Moves the player north.
+	
+toSouth: used with setLocation to move the player south of current location.
+	eg. playerName setLocation toSouth; // Moves the player south.
+	
+toEast: used with setLocation to move the player east of current location.
+	eg. playerName setLocation toEast; // Moves the player east.
+
+toWest: used with setLocation to move the player west of current location.
+	eg. playerName setLocation toWest; // Moves the player west.
+
+CREATE THE PLAYER IN THE GAME
+Note: Create only one player per game.
+
+// Creates a player called sam with a carry limit of 5.
+Player sam { 
+	carryLimit = 5; // carryLimit must be set.
 }
 
-Creates a location in the game.
+CREATE A LOCATION IN THE GAME
+Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west
+that location has to be created.
 
-Location location_name (This needs to be unique.) {
-   	name = "name_goes_here";
-   	description = "description_goes_here.";
-    (north, south, east and west are set to NULL by default.)
-	west = location_goes_here;  
-    east = location_goes_here;
-    south = location_goes_here;
-	north = location_goes_here;
+// Creates location myBedrooom with a hallway to the west and toilet to the east. There are no locations to north and south.
+Location myBedroom  { // This needs to be unique. 
+   	name = "bedroom"; // The name of myBedroom that you see in game. Name must be set.
+   	description = "My bedroom is messy as always"; // Description must be set.
+    west = hallway;  // Setting north, south, east and west is optional.
+    east = toilet;
 }
 
-Creates an item in the game.
+CREATE AN ITEM IN THE GAME
+Note: Be careful not to have items with the same name in the same location.
 
-Item item_name (This needs to be unique.) {
-	name = "name_goes_here"; (The name of the item in game.)
-	(Be careful not to have items with the same name in the same location.)
-	description = "description_goes_here";
-	location = location_name;
-	hasAttributes = attribute's_names_go_here;
+Item wrench { // This needs to be unique.
+	name = "wrench"; // The name of the item in game. Name must be set.
+	description = "Your trusty wrench."; // Description must be set.
+	location = sam; // The wrench will start in sam's inventory. Location must be set.
+	hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. HasAttributes is optional.
 
-Item verbs go here insisde the item object.
- 	Verb “enter or go or climb”{rules_go_here} (used for 2 word pattern - verb and noun.)
- 	Verb "put or place Join: into or in or inside Item: box"{rules_got_here} (used for 4 word pattern - verb, noun, join and noun.)
+ITEM VERBS GO HERE INSIDE THE ITEM
+ 	Verb "enter or go or climb"{rules_go_here} // Used for 2 word command pattern, verb and noun.
+ 	Verb "put or place Join: into or in or inside Item: box"{rules_got_here} // Used for 4 word command pattern, verb, noun, join and noun.
 }
 
-Default verbs
 
-ItemDefaults used to create verb noun defaults.
+ITEM DEFAULT VERBS
+ItemDefaults are used to create verb noun defaults.
 
 ItemDefaults { 
 	Verb "examine or x or look" {rules_go_here}
 }	
 
-LocationDefaults used to create single verb defaults.
+LOCATION DEFAULT VERBS
+LocationDefaults are used to create single verb defaults.
 
 LocationDefaults {
 	Verb "i or inventory or inv" {rules_go_here}
 	Verb "s or sth" {rules_go_here}
 }
 
-Example Game 
+EXAMPLE GAME
 
 gameName = "*****The Haunted Mansion*****";
 gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
