@@ -45,7 +45,7 @@ This feature is implemented inside LocationDefaults.
 	    LocationDefaults {
 			Verb "north or n or nth" {rules go here} // If the rules are set correctly the the player will move north.
 		}
-	eg.	User command = i
+	eg. User command = i
 	    LocationDefaults {
 			Verb "i or inventory or inv" {rules go here} // If the rules are set correctly the player's inventory will be shown.
 		}
@@ -55,7 +55,7 @@ The two word command pattern is used to do stuff like: "get wrench", "open door"
 an item's verb or inside ItemDefaults.
 	eg. User command = get key
 	    Item Key {
-		    Verb "get or pickup" {rules go here} // get or pickup the key.
+			Verb "get or pickup" {rules go here} // get or pickup the key.
 		}
 	eg. ItemDefaults { 
 			Verb "examine or x or look" {rules go here} // All items in the game will have this verb.
@@ -70,7 +70,7 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
 	    }
 	eg. ItemDefaults { 
 			Verb "take or get Join: from Item: box" {rules go here} // All items in the game will have this verb and join command.
-		}	
+	    }	
 
 SYNONYMS
 We have implemented synonyms differently to BIFF. The user need only use "or" between verbs to write as many synonyms as they want.
@@ -84,7 +84,7 @@ ways.
 	// The door is closed but not locked.
 	eg. Item door { 
 			hasAttributes = isClosed !islocked;
-		} 
+	    } 
 		
 COMMENTS
 Single line comments // and block comments /* */ can be used in the gamefile.
