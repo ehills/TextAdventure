@@ -21,9 +21,9 @@ FOUR WORD COMMAND
 Four word 'verb noun join noun' user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
 by using the keyword "Join:" for the join word and synonyms, and "Item:" to specify the second noun in the sentence.
 	eg. User command = put key into box
-		Item key {
+	    Item key {
 			Verb "put or place Join: into or in or inside Item: box" {} // Put or place the key into or in or inside the box.
-		}
+	    }
 	
 GAME LIBRARY
 defaultInteractiveName: sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".
