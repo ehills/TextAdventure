@@ -76,11 +76,7 @@ list: prints out the items in the current location or in a particular item.
 	eg. box list; // Items in the box.
 	
 hideItems: hide the items in an item or location so that they cannot be seen by the player.
-	// Hide items in an item or location during the creation of an item or location. Show items is the default.
-	eg. name = "box";           
-	    description = "A large wooden box.";
-	    location = bedRoom;
-	    hideItems;
+	eg. hideItems; // Hide items in an item or location during the creation of an item or location. Show items is the default.
 	eg. hideItems bedroom; // Hide items inside the bedroom.
 	eg. hideItems box; // Hide items inside the box.
 		
