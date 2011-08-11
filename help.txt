@@ -33,7 +33,7 @@ defaultInventoryName: sets the name of the inventory. If not defined it defaults
 	eg. defaultInventoryName = "Game objects: ";
 
 defaultNoObjects: sets the word to be used if there are no iteractive objects in a room. Defaults to "None".
-	eg. defaultNoObjects = "None";
+	eg. defaultNoObjects = "Nothing here";
 
 defaultResponse: response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response. 
 If not defined it defaults to "You do not know how to".
