@@ -22,7 +22,7 @@ Four word 'verb noun join noun' user input pattern to do stuff like "put key int
 by using the keyword "Join:" for the join word and synonyms, and "Item:" to specify the second noun in the sentence.
 	eg. User command = put key into box
 		Item key {
-		Verb "put or place Join: into or in or inside Item: box" {} // Put or place the key into or in or inside the box.
+			Verb "put or place Join: into or in or inside Item: box" {} // Put or place the key into or in or inside the box.
 		}
 	
 GAME LIBRARY
@@ -179,7 +179,6 @@ ITEM VERBS GO HERE INSIDE THE ITEM
  	Verb "enter or go or climb"{rules_go_here} // Used for 2 word command pattern, verb and noun.
  	Verb "put or place Join: into or in or inside Item: box"{rules_got_here} // Used for 4 word command pattern, verb, noun, join and noun.
 }
-
 
 ITEM DEFAULT VERBS
 ItemDefaults are used to create verb noun defaults.
