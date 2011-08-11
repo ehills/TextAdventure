@@ -18,14 +18,14 @@ attributes because if an item does not have an attribute it is set to false by d
 		} 
 	
 FOUR WORD COMMAND
-Four word 'verb noun join noun' user input pattern to do stuff like "put key into box". This feature is implemented while defining an object's verb 
-by using the keyword "Join:" for the join word and synonyms, and "Item:" to specify the second noun in the sentence.
+Four word 'verb noun join noun' user input pattern to do stuff like, "put key into box". This feature is implemented while defining an object's verb 
+by using the keyword "Join:" for the join word and synonyms, and "Item: itemName" to specify the second noun in the sentence.
 	eg. User command = put key into box
 	    Item key {
 			Verb "put or place Join: into or in or inside Item: box" {} // Put or place the key into or in or inside the box.
 	    }
 	
-GAME LIBRARY
+GAME LIBRARY: STANDALONE
 defaultInteractiveName: sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".
 	eg. defaultInteractiveName = "Items: ";	
 
@@ -51,7 +51,7 @@ initialDescription: sets the game's introduction. This must be set in order for 
 initialLocation: sets the starting location for game. This must be set in order for the game to work.
 	eg. initialLocation = startLocation;
 	
-GAME LIBRARY USED INSIDE VERBS
+GAME LIBRARY: USED INSIDE VERBS
 Note: the player's inventory is used like a location denoted by using the name you gave the player.
 
 gameOver: quits the game.
