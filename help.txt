@@ -160,10 +160,10 @@ that location has to be created.
 
 // Creates location myBedrooom with a hallway to the west and toilet to the east. There are no locations to north and south.
 Location myBedroom  { // This needs to be unique. 
-   	name = "bedroom"; // The name of myBedroom that you see in game. Name must be set.
-   	description = "My bedroom is messy as always"; // Description must be set.
-    west = hallway;  // Setting north, south, east and west is optional.
-    east = toilet;
+	name = "bedroom"; // The name of myBedroom that you see in game. Name must be set.
+	description = "My bedroom is messy as always"; // Description must be set.
+	west = hallway;  // Setting north, south, east and west is optional.
+	east = toilet;
 }
 
 CREATE AN ITEM IN THE GAME
