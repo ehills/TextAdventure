@@ -44,11 +44,11 @@ This feature is implemented inside LocationDefaults.
 	eg. User command = n
 	    LocationDefaults {
 			Verb "north or n or nth" {rules go here} // If the rules are set correctly the the player will move north.
-		}
+	    }
 	eg. User command = i
 	    LocationDefaults {
 			Verb "i or inventory or inv" {rules go here} // If the rules are set correctly the player's inventory will be shown.
-		}
+	    }
 		
 TWO WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN PATTERN) 
 The two word command pattern is used to do stuff like: "get wrench", "open door", "drop wrench", "use lamp" etc. This feature is implemented while defining 
@@ -56,10 +56,10 @@ an item's verb or inside ItemDefaults.
 	eg. User command = get key
 	    Item Key {
 			Verb "get or pickup" {rules go here} // get or pickup the key.
-		}
+	    }
 	eg. ItemDefaults { 
 			Verb "examine or x or look" {rules go here} // All items in the game will have this verb.
-		}	 
+	    }	 
 
 FOUR WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN JOIN NOUN PATTERN)
 The four word command pattern is used to do stuff like: "put key into box". This feature is implemented while defining an item's verb or inside ItemDefaults
