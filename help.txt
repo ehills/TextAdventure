@@ -11,7 +11,7 @@ We have implemented synonyms differently to BIFF. The user need only use "or" be
 ATTRIBUTES
 Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start 
 of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global 
-attributes as they are set to false by default.
+attributes because if an item does not have an attribute it is set to false by default.
 	// The door is closed but not locked.
 	eg. Item door { 
 			hasAttributes = isClosed !islocked;
