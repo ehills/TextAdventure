@@ -9,7 +9,7 @@ We have implemented synonyms differently to BIFF. The user need only use "or" be
 	eg. Verb "north or n or nth" {}.  // North, n, and nth all refer to the same verb.
 
 ATTRIBUTES
-Item attributes are initialised during the creation of an Item. These attributes are either true or false. False is indicated by having an '!' at the start 
+Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start 
 of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global 
 attributes as they are set to false by default.
 	// The door is closed but not locked.
