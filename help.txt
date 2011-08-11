@@ -27,7 +27,7 @@ Location myBedroom { // This needs to be unique.
 CREATE AN ITEM IN THE GAME
 Note: Be careful not to have items with the same name in the same location.
 
-// This creates an item called wrench which is set to sam's inventory. It can also has attributes to be dropped and picked up.
+// This creates an item called wrench which is set to sam's inventory. It also has attributes to be dropped and picked up.
 Item wrench { // This needs to be unique.
 	name = "wrench"; // The name of the item in game. Name must be set.
 	description = "Your trusty wrench."; // Description must be set.
@@ -35,7 +35,7 @@ Item wrench { // This needs to be unique.
 	hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
 
 ITEM VERBS GO HERE INSIDE THE ITEM
-Note: read further down the page to find out how to set verbs.
+Note: read further down the page to find out how to set item verbs.
 }
 
 ONE WORD USER COMMAND AND LOCATION DEFAULT VERBS
@@ -79,7 +79,7 @@ We have implemented synonyms differently to BIFF. The user need only use "or" be
 ATTRIBUTES
 Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start 
 of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global 
-attributes because if an item does not have an attribute it is set to false by default. Attributes are used in verbs to allow items to be used in certain
+attributes because if an item does not have an attribute, it is set to false by default. Item attributes are used in verbs to allow items to be used in certain
 ways.
 	// The door is closed but not locked.
 	eg. Item door { 
