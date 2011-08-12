@@ -10,6 +10,18 @@ $(document).ready(function () {
 	
 });
 
+$(".maximise").live("click", function () {
+    $(this).removeClass("maximise");
+    $(this).addClass("minimise");
+    $(this).next("ul").slideDown('fast');
+});
+
+$(".minimise").live("click", function () {
+    $(this).removeClass("minimise");
+    $(this).addClass("maximise");
+    $(this).next("ul").slideUp('fast');
+});
+
 
 function set_up_doc_headers() {
     var headers = [];
@@ -30,7 +42,7 @@ function set_up_doc_headers() {
             $(this).html("<a name='header_" + ++header_id + "'>" + $(this).html() + "</a>");
         } else {
             prev.subheaders.push($(this).text());
-			$(this).html("<a name='header_" + header_id + "_" + ++subheader_id + "'>" + $(this).html() + "</a>");
+			$(this).html("<a name='header_" + header_id + "_" + subheader_id++ + "'>" + $(this).html() + "</a>");
         }
     });
 
@@ -39,10 +51,19 @@ function set_up_doc_headers() {
     }
 	
 	var nav_bar = "<div id='docify_nav'><h1>Navigation</h1><ul>";    
-	nav_bar += "<li><a href='#'>Back To Top</a></li>"
+	nav_bar += "<li><a class='docify_nav_link' href='#'>Back To Top</a></li>"
 	header_id = 0;
 	for (i in headers) {
-		nav_bar += "<li><a href='#header_" + ++header_id + "'>" + headers[i].header + "</a></li>"
+		nav_bar += "<li><a class='docify_nav_link' href='#header_" + ++header_id + "'>";
+        nav_bar += headers[i].header + "</a>";
+        if (headers[i].subheaders.length > 0) {
+            nav_bar += "<a class='maximise'></a><ul>";
+            for (j in headers[i].subheaders) {
+                nav_bar += "<li><a href='#header_" + header_id + "_" + j + "'>" + headers[i].subheaders[j].toLowerCase() + "</a></li>";
+            }
+            nav_bar += "</ul>";
+        }
+        nav_bar += "</li>"
 	}
 	
 	

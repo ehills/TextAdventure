@@ -44,13 +44,25 @@ h2 a{
 	border-bottom: none;
 }
 
-#docify_nav > ul {
+#docify_nav ul {
 	padding: 0;
-	margin: 20px 0;
 	list-style: none;
 }
 
-#docify_nav a {
+#docify_nav > ul {
+	margin: 20px 0;
+}
+
+#docify_nav ul ul {
+    display: none;
+}
+
+
+#docify_nav li {
+    position: relative;
+}
+
+#docify_nav a.docify_nav_link {
 	cursor: pointer;
 	display: block;
 	font-size: 0.9em;
@@ -61,13 +73,40 @@ h2 a{
 	color: #777;
 }
 
-#docify_nav a:hover {
+#docify_nav a.docify_nav_link:hover {
 	background-color: #BBCEE9;
 	border-bottom: 1px solid #bbb;
 	border-top: 1px solid #bbb;
 	padding: 11px 15px;
 	color: #333;
 	z-index: 1000;
+}
+
+#docify_nav ul ul a {
+	font-size: 0.75em;
+    display: block;
+    padding: 6px 15px;
+    text-transform:capitalize;
+}
+
+a.maximise, a.minimise {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    width: 16px;
+    height: 16px;
+    background-image: url('maximise.png');
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+
+a.minimise {
+    background-image: url('minimise.png');
+}
+
+a.maximise:hover, a.minimise:hover {
+    opacity: 0.8;
 }
 
 pre {
