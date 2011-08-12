@@ -35,6 +35,12 @@ h2 {
 	font-size: 140%;
 }
 
+
+h3 {
+	font-size: 115%;
+}
+
+
 h2 a{
 	padding-top: 18px;
 }
@@ -111,4 +117,9 @@ a.maximise:hover, a.minimise:hover {
 
 pre {
 	width: auto;
+}
+
+ul {
+	padding: 0px;
+	list-style-type: none;
 }

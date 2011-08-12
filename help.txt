@@ -1,5 +1,49 @@
 TEAM: Samuel Garner, Stephen Herd, George Phillips and Edward Hills.
 
+SYNTAX THAT RESEMBLES STANDARD C
+Our little language's syntax closely resembles standard C syntax.
+	ie. Player, Location, Item, LocationDefaults, ItemDefaults, Verb, if and else statements need to start with an opening brace and finish 
+	    with a closing brace.
+	ie. Variable assigment is done with the '=' operator.
+	ie. All statements must end with a semicolon.
+	ie. If statements must have a true or false conditional inside open and closed brackets.
+	ie. A string needs to be enclosed in quotes.
+	ie. Objects and variables are referred to by their variable name.
+	ie. Single line comments // and block comments /* */ can be used.
+	ie. If and else statements can be nested.
+	ie. When creating a Player, Location or Item object, you must follow the type with a unique identifier.
+		Note: Item and Location unique identifiers cannot be the same as Items are treated as Locations in the game.
+		eg. Player uniqueID {rules}
+		eg. Location uniqeID {rules}
+		eg. Item uniqueID {rules}
+	
+SYNTAX UNIQUE TO OUR LANGUAGE
+After a Verb is created it's type must be immediately followed by a string defining the verb or verbs that refer to it.
+	eg. Verb "eat" {rules}
+	eg. Verb "north or n or nth" {rules}
+	
+When creating a Player, Location or Item object, you must follow the type with a unique identifier.
+Note: Item and Location unique identifiers cannot be the same as Items are treated as Locations in the game.
+	eg. Player uniqueID {rules}
+	eg. Location uniqeID {rules}
+	eg. Item uniqueID {rules}
+
+VERB LOGIC
+All logic is performed within a Verb by using if(condition){} statements and else{} statements. Currently, else if (condition){} statements
+are not supported. These logical operators are not supported: AND(&&), OR(||), XOR(^) and NOT(!). This means only one
+condition can be used per if statement.
+
+ADD TO PLEASANT SURPRISES
+Item verbs take precedence over ItemDefaults' verbs if their verb string is identical.
+	eg. ItemDefaults {
+			Verb "pickup or get" {rules} // You pick up the item.
+	    }
+	
+	    Item wrench {
+			Verb "pickup or get" {rules} // You cannont pick up the wrench if the rules are set for that. This takes precedence.
+		}
+We have designed our language so that no verbs are hardcoded which allows the nicety of being able to apply logic to every verb in the game.
+
 THIS IS OUR USER GUIDE FOR OUR ADAPTATION OF BIFF 
 We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be 
 defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.
@@ -86,9 +130,6 @@ ways.
 			hasAttributes = isClosed !islocked;
 	    } 
 		
-COMMENTS
-Single line comments // and block comments /* */ can be used in the gamefile.
-	
 GAME LIBRARY: STANDALONE
 defaultInteractiveName: sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".
 	eg. defaultInteractiveName = "Items: ";	

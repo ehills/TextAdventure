@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
     <link href="styles/theme.css" type="text/css" rel="stylesheet" />
     <link href="styles/style.css" type="text/css" rel="stylesheet" />
@@ -10,44 +11,188 @@
     <title>TextAdventure Documentation</title>
   </head>
   <body>
-    <h1>Text Adventure Documentation</h1>
+    <h1>Text adventure documentation</h1>
     <p>By Samuel Garner, George Phillips, Stephen Herd and Edward Hills</p>
 
     <h2>Introduction</h2>
-	<p>This is our user guide for our adaptation of BIFF</p>
+	<p>This is our user guide for our adaptation of BIFF - Basic interactive fiction format.</p>
 
-    <h2>Pleasent Suprises</h2>
-    <p>We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.</p>
-
+    <h2>Pleasant suprises</h2>
+    <p>We have designed our language so that no verbs are hardcoded, which allows the nicety of being able to apply logic to every verb in the game.</p>
+	<p>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</p>
+	<p>Item verbs take precedence over ItemDefaults' verbs if their verb string is identical, which allows a user to override ItemDefaults' verbs like so:</p>
+	<code>
+    // You pick up the item using ItemDefaults.   
+    ItemDefaults {
+        Verb "pickup or get" {rules} 
+    }
+    // You cannont pick up the wrench if the rules are set for that using an Item verb. This takes precedence over ItemDefaults.
+    Item wrench {
+        Verb "pickup or get" {rules} 
+    }
+	</code>
+	<p>Check out the example game at the end to see how everything works.</p>
+	
+	<h2>How to install the game parser</h2>    
+	<p>To compile the game parser which builds a game file, run the following command: </p>
+	<code> 
+    // On Mac or Linux from the TextAdventure directory
+    make
+    </code>
+	<code> 
+    // On Windows from the TextAdventure directory
+    nmake
+	</code>
+	
 	<h2>How to build a game</h2>    
-	<p> To build a game you simply pipe the file to the compiled textAdventure compiler. like so: </p>
+	<p>To build a game you simply pipe the file to the compiled TextAdventure compiler like so: </p>
     <code> 
+    // On Mac or Linux from the TextAdventure directory
     ./TextAdventure games/haunted_mansion.txt
+    </code>
+	<code> 
+    // On Windows from the TextAdventure directory
+    TextAdventure games/haunted_mansion.txt
     </code>
     <p>This will Generate a C++ file in the output folder where the other necessary files are already placed.</p>
 
 	<h2>How to install a game</h2>    
-	<p> After generating the game file, run the following commands to compile and run the game: </p>
+	<p>After generating the game file, run the following commands to compile and run the game: </p>
 	<code>
+    // On Mac or Linux from the TextAdventure directory
     cd output
     make
     ./Play
     </code>
-    <p>This uses a preconfigured MakeFile to compile the C++ files allong with the necessary classes.</p>
+	<code>
+    // On Windows from the TextAdventure directory
+    cd output
+    nmake
+    play
+    </code>
+	
+    <p>This uses a preconfigured MakeFile to compile using g++ (g++ is our default compiler) the C++ files along with the necessary classes.</p>
     <p>To distribute the game just send the "Play" file to the desired destination.</p>
-
-    <h2>Language Constructs</h2>
-    <h3>CREATE THE PLAYER IN THE GAME</h3>
+    
+	<h2>Makefiles</h2>
+	<p>We have supplied makefiles for the g++ compiler and the cl compiler which are found in /TextAdventure/makefiles/. There are two makefiles 
+	required to install our program, one to compile the parser which goes in /TextAdventure/ and one to compile the game file which 
+	goes in /TextAdventure/output/. To change makefiles to a different compiler simply choose the compiler you wish to 
+	use from the makefiles directory and copy/paste the two makefiles into their corresponding directories.</p>
+    
+	<h2>Language constructs</h2>
+	
+    <h3>Syntax that resembles standard C</h3>
+    <p>Our little language's syntax closely resembles that of standard C syntax.</p>
+	<ul>
+	  <li>Player, Location, Item, ItemDefaults, LocationDefaults, Verb, if and else statements need to start with an opening brace and finish 
+	    with a closing brace like so:
+		<code>
+    Player sam {Player variables go here}
+    Location hallway {Location variables go here}
+    Item book {Item variables and two word (verb noun) or four word (verb noun join noun) verbs go here}
+    Verb "run" {Verb rules go here}
+    ItemDefaults {two word (verb noun) or four word (verb noun join noun) verbs go here}
+    LocationDefaults {single word verbs go here}
+    if(condition goes here){rules go here}else{rules go here}
+        </code>
+	  </li>
+	  <li>Variable assignment is done with the '=' operator like so:
+	    <code>
+    name = "book";
+    description = "An old book.";
+    location = hallway;
+        </code>
+	  </li>
+	  <li>All statements must end with a semicolon like so:
+	    <code>
+    initialLocation = hallway;
+    print "You open the door.";
+    hallway setDescription "The hallway of your house.";
+        </code>
+	  </li>
+	  <li>If statements must have a conditional that will evaluate to either true or false inside open and closed brackets like so:
+	    <code>
+    if (currentLocation hasNorth)
+    if (currentLocation hasItem key)
+    if (wrench inLocation sam)
+        </code>
+	  </li>
+	  <li>A string needs to be enclosed in quotes like so:
+        <code>
+    print "Hi there."; // String Hi there. is enclosed in quotes.
+    Verb "get or pickup" // Verb string needs to be enclosed in quotes.
+        </code>
+	  </li>
+	  <li>Objects are referenced using their variable name like so:
+        <code>
+    location = hallway; // hallway is the name of a Location object.
+    if (book inLocation sam) // book is the name of an Item object and sam is the name of a Player object.
+        </code>
+	  </li>
+	  <li>If and else statements can be nested like so:
+	    <code>
+    if (sam inLocation hallway) {
+        if(door hasAttribute isLocked) {
+            if(key inLocation sam) {
+                print "You unlock the door.";
+            } else {
+                print "You do not have the key.";
+            }
+        } else {
+            print "The door is already open";
+        }
+    } else {
+        print "You don't know how to do that here.";
+    }
+		</code>
+	  </li>   
+	  <li>Single line comments // and block comments /* */ can be used like so:
+	    <code>
+    // Single line comment
+    
+    /*
+        This is a
+        multiline   
+        comment
+    */
+       </code> 
+	  </li>
+      <li>When creating a Player, Location or Item object, you must follow the type with a unique identifier like so:
+		<p>Note: Item and location unique identifiers cannot be the same, as items are treated as locations in a game.</p>
+		<code>
+    Player uniqueID {Player variables go here}
+    Location uniqeID {Location variables go here}
+    Item uniqueID {Item variables go here}
+		</code>
+      </li>
+    </ul>
+	
+	<h3>Syntax unique to our language</h3>
+	<ul>
+	  <li>When a Verb is first created it must immediately be followed by a string defining the verb or verbs that refer to it.
+	    <code>
+    Verb "eat" {rules} // Verb string is "eat".
+    Verb "north or n or nth" {rules} // Verb string is "north or n or nth".
+		</code>
+	  </li>
+	</ul>
+	
+	<h3>Verb logic</h3>
+	<p>All logic is performed within a Verb by using if or if else statements, else if statements are not supported. These logical operators 
+	are not supported: AND (&&), OR (||), XOR (^) and NOT (!). This means only one condition can be used per if statement, however the language
+	allows as many if else statements to be nested as required.</p>
+    
+	<h3>Create the player in the game</h3>
     <p>Note: Create only one player per game.</p>
-
-    <code> 
+	  <code> 
     // This creates a player called sam with a carry limit of 5.
     Player sam {
         carryLimit = 5; // carryLimit must be set.
     }
-    </code>
+     </code>
 
-    <h3>CREATE A LOCATION IN THE GAME</h3>
+    <h3>Create the location in the game</h3>
     <p>Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west that location has to be created..</p>
 
     <code> 
@@ -61,7 +206,7 @@
     }
     </code>
 
-    <h3>CREATE AN ITEM IN THE GAME</h3>
+    <h3>Create an item in the game</h3>
     <p>Note: Be careful not to have items with the same name in the same location.</p>
 
     <code> 
@@ -71,33 +216,18 @@
         name = "wrench"; // The name of the item in game. Name must be set.
         description = "Your trusty wrench."; // Description must be set.
         location = sam; // The wrench will start in sam's inventory. Location must be set.
+        // Note hasAttributes' value is not enclosed in quotes.
         hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
     }
     </code>
 
     <p> The actions taken with a given verb is also defined inside an Item. <a href="#verbs">go to Verb section</a></p>
-
-    <h3>CREATE AN ITEM IN THE GAME</h3>
-    <p>Note: Be careful not to have items with the same name in the same location.</p>
-
-    <code> 
-    // This creates an item called wrench which is set to sam's inventory. 
-    // It also has attributes to be dropped and picked up.
-    Item wrench { // This needs to be unique.
-        name = "wrench"; // The name of the item in game. Name must be set.
-        description = "Your trusty wrench."; // Description must be set.
-        location = sam; // The wrench will start in sam's inventory. Location must be set.
-        hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
-    }
-    </code>
-
-    <p> The actions taken with a given verb is also defined inside an Item.</p>
-    
-    <h3>ONE WORD USER COMMAND AND LOCATION DEFAULT VERBS</h3>
+   
+    <h3>One word user command and location default verbs</h3>
 	<p>The one word command is used for global verbs to be used in every location like: "north", "south", "east", "west", "quit", "inventory", "look". This feature is implemented inside LocationDefaults.</p>
 	
 	<code> 
-    // eg. command = n
+    // User command = n
     LocationDefaults {
             Verb "north or n or nth" {
                 /*
@@ -107,7 +237,7 @@
             } 
     }
 
-    // eg. User command = i
+    // User command = i
     LocationDefaults {
         Verb "i or inventory or inv" {
                 /*
@@ -118,52 +248,48 @@
     }
     </code>
 
-    <h3>TWO WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN PATTERN)</h3>
+    <h3>Two word user command and item default verbs (verb noun pattern)</h3>
     <p>The two word command pattern is used to do stuff like: "get wrench", "open door", "drop wrench", "use lamp" etc. This feature is implemented while defining
 an item's verb or inside ItemDefaults.</p>
     <code>
-    // eg. User command = get key
+    // User command = get key
     Item Key {
-        Verb "get or pickup" {
-            // get or pickup the key.
+        Verb "get or pickup" { // get or pickup the key.
         } 
     }
 
-    // eg. User command = look
+    // User command = look
     ItemDefaults {
-        Verb "examine or x or look" {
-            // All items in the game will have this verb.
+        Verb "examine or x or look" { // All items in the game will have this verb.
         }
     }
     </code>
 
-    <h3>FOUR WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN JOIN NOUN PATTERN)</h3>
+    <h3>Four word user command and item default verbs (verb noun join noun pattern)</h3>
     <p>The four word command pattern is used to do stuff like: "put key into box". This feature is implemented while defining an item's verb or inside ItemDefaults
 by using the keyword "Join:" for the join word and synonyms, and "Item: to specify the second noun in the sentence".</p>
     <code>
-    // eg. User command = put key into box
+    // User command = put key into box
     Item key {
-        Verb "put or place Join: into or in or inside Item: box" {
-             // Put or place the key into or in or inside the box.
+        Verb "put or place Join: into or in or inside Item: box" { // Put or place the key into or in or inside the box.
         }
     }
 
-    //eg. User command = put key into box
+    // User command = take key from box
     ItemDefaults {
-        Verb "take or get Join: from Item: box" {
-            // All items in the game will have this verb and join command.
+        Verb "take or get Join: from Item: box" { // All items in the game will have this verb and join command.
         }
     } 
     </code>
 
-    <h3>SYNONYMS</h3>
+    <h3>Synonyms</h3>
     <p>We have implemented synonyms differently to BIFF. The user need only use "or" between verbs to write as many synonyms as they want.</p>
     <code>
     // North, n, and nth all refer to the same verb.
     Verb "north or n or nth" {}.
     </code>
 
-    <h3>ATTRIBUTES</h3>
+    <h3>Attributes</h3>
     <p>Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global attributes because if an item does not have an attribute, it is set to false by default. Item attributes are used in verbs to allow items to be used in certain ways.</p>
     <code>
     // The door is closed but not locked.
@@ -172,22 +298,8 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
     } 
     </code>
 
-    <h3>COMMENTS</h3>
-    <p>Single line comments // and block comments /* */ can be used in the gamefile.</p>
-    <code>
-    // Single line comment
-    
-    /*
-        This is
-        a
-        multiline   
-        comment
-    */
-    </code>
-
-
-    <h2>Language Functions</h2>
-    <h3> Standalone Tags </h3>
+    <h2>Language functions</h2>
+    <h3> Standalone tags </h3>
     <dl>
       <dt>defaultInteractiveName</dt>
         <dd>
@@ -248,7 +360,7 @@ If not defined it defaults to "You do not know how to".</p>
         </dd>
     </dl>
 
-    <h3> Verb Tags </h3>
+    <h3> Verb tags </h3>
     <dl>
         <dt>gameOver</dt>
         <dd>
@@ -345,7 +457,7 @@ If not defined it defaults to "You do not know how to".</p>
             <p>checks to see if an item is in a location.</p>
             <code>
     // Check to see if the player has a wrench item. 
-    if(playerName hasItem wrench){
+    if(locationName hasItem wrench){
     } 
             </code>
         </dd>
@@ -454,33 +566,37 @@ If not defined it defaults to "You do not know how to".</p>
         <dd>
             <p>Used to check if a given location has a north link</p>
             <code>
-    
+    // Checks to see if the current location has a location to the north.
+    if (currentLocation hasNorth){}  	
             </code>
         </dd>
         <dt>hasSouth</dt>
         <dd>
             <p>Used to check if a given location has a south link</p>
             <code>
-    
+    // Checks to see if the current location has a location to the south.
+    if (currentLocation hasSouth){} 
             </code>
         </dd>
         <dt>hasEast</dt>
         <dd>
             <p>Used to check if a given location has a east link</p>
             <code>
-    
+    // Checks to see if the current location has a location to the east.
+    if (currentLocation hasEast){} 
             </code>
         </dd>
         <dt>hasWest</dt>
         <dd>
             <p>Used to check if a given location has a west link</p>
             <code>
-    
+    // Checks to see if the current location has a location to the west.
+    if (currentLocation hasWest){} 
             </code>
         </dd>
     </dl>
 
-    <h2>Example Game</h2>
+    <h2>Example game</h2>
     <p> Description of Game </p>
     <code>
     gameName = "*****The Haunted Mansion*****";
@@ -564,7 +680,7 @@ If not defined it defaults to "You do not know how to".</p>
 
         // Directions
         Verb "north or n or nth" {
-            if(andy inLocation hasNorth) {
+            if(currentLocation hasNorth) {
                 andy setLocation toNorth;
                 describe;
                 list;
@@ -578,7 +694,7 @@ If not defined it defaults to "You do not know how to".</p>
                 print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead.";
                 gameOver;
             }
-            if(andy inLocation hasSouth) {
+            if(currentLocation hasSouth) {
                 andy setLocation toSouth;
                 describe;
                 list;
@@ -588,7 +704,7 @@ If not defined it defaults to "You do not know how to".</p>
         }
 
         Verb "east or e" {
-            if(andy inLocation hasEast) {
+            if(currentLocation hasEast) {
                 andy setLocation toEast;
                 describe;
                 list;
@@ -598,7 +714,7 @@ If not defined it defaults to "You do not know how to".</p>
         }
 
         Verb "west or w" {
-            if(andy inLocation hasWest) {
+            if(currentLocation hasWest) {
                 andy setLocation toWest;
                 describe;
                 list;

@@ -510,6 +510,16 @@ string Compiler::CompileVerb(string line) {
 					} else {
 						cout << BAD_CARRIABLE_EXPRESSION << endl;
 					}
+				} else if (expression.find("currentLocation") < expression.length()){
+					if (expression.find("hasNorth") < expression.length()){
+						output += "if (" + parser->player->getVariableName() + "->getLocation()->hasNorth()) {\n";
+					} else if(expression.find("hasSouth") < expression.length()) {
+						output += "if (" + parser->player->getVariableName() + "->getLocation()->hasSouth()) {\n";
+					} else if(expression.find("hasEast") < expression.length()) {
+						output += "if (" + parser->player->getVariableName() + "->getLocation()->hasEast()) {\n";
+					} else if(expression.find("hasWest") < expression.length()) {
+						output += "if (" + parser->player->getVariableName() + "->getLocation()->hasWest()) {\n";
+					}
 				} else if (expression.find("inLocation") < expression.length()) {
 					string location = getLocation(expression);
 					string item = getItem(expression);
@@ -635,5 +645,5 @@ string Compiler::CompileVerb(string line) {
 }
 
 Compiler::~Compiler() {
-   delete parser;
+	delete parser;
 }
