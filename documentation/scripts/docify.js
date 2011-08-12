@@ -16,7 +16,7 @@ function set_up_doc_headers() {
     var prev;
     var header_id = 0;
     var subheader_id = 0; 
-    $("h2, h3").not('#header h2, #header h3').each(function () {
+    $("h2, h3").each(function () {
         if ($(this).is("h2")) {
             if (prev != null) {
                 headers.push(prev);

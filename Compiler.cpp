@@ -635,4 +635,5 @@ string Compiler::CompileVerb(string line) {
 }
 
 Compiler::~Compiler() {
+   delete parser;
 }
