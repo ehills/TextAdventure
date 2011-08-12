@@ -1,0 +1,75 @@
+body {
+	font-family: Helvetica, arial;
+	background: #fff url('background.png') repeat-y left top; 
+	color: #222;
+}
+
+
+#docify_nav {
+	width: 216px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	text-align: right;
+}
+
+#docify_body {
+	margin-left: 216px;
+	padding: 0 10px 10px 20px;
+}
+
+
+h1, h2 {
+	color: #53637D;
+	font-size: 200%;
+	font-weight: normal;
+	margin: 0;
+	padding-bottom: 4px;
+	padding-top: 13px;
+	text-shadow: white 0 1px 2px;
+	border-bottom: 1px solid #eee;
+}
+
+h2 {
+	margin: 30px 0 10px 0;
+	font-size: 140%;
+}
+
+h2 a{
+	padding-top: 18px;
+}
+
+#docify_nav h1 {
+	padding: 21px 15px 0 4px;
+	border-bottom: none;
+}
+
+#docify_nav > ul {
+	padding: 0;
+	margin: 20px 0;
+	list-style: none;
+}
+
+#docify_nav a {
+	cursor: pointer;
+	display: block;
+	font-size: 0.9em;
+	outline: none;
+	text-decoration: none;
+	text-align: end;
+	padding: 12px 15px;
+	color: #777;
+}
+
+#docify_nav a:hover {
+	background-color: #BBCEE9;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	padding: 11px 15px;
+	color: #333;
+	z-index: 1000;
+}
+
+pre {
+	width: auto;
+}

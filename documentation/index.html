@@ -1,0 +1,904 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="styles/theme.css" type="text/css" rel="stylesheet" />
+    <link href="styles/style.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="scripts/prettify.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/docify.js"></script>
+    <title>TextAdventure Documentation</title>
+  </head>
+  <body>
+    <div id="header">
+        <h1>Text Adventure Documentation</h1>
+        <p>By Samuel Garner, George Phillips, Stephen Herd and Edward Hills</p>
+	</div>
+
+    <h2>Introduction</h2>
+	<p>This is our user guide for our adaptation of BIFF</p>
+    <p>We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.</p>
+
+	<h2>How to build a game</h2>    
+	<p> Fill this in </p>
+	
+	<h2>How to install a game</h2>    
+	<p> Fill this in </p>
+	
+    <h2>Language Constructs</h2>
+    <h3>CREATE THE PLAYER IN THE GAME</h3>
+    <p>Note: Create only one player per game.</p>
+
+    <code> 
+    // This creates a player called sam with a carry limit of 5.
+    Player sam {
+        carryLimit = 5; // carryLimit must be set.
+    }
+    </code>
+
+    <h3>CREATE A LOCATION IN THE GAME</h3>
+    <p>Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west that location has to be created..</p>
+
+    <code> 
+    // This creates a location called myBedrooom with a hallway to the west and toilet to the east.    
+    // There are no locations to the north and south.
+    Location myBedroom { // This needs to be unique.
+        name = "bedroom"; // The name of myBedroom that you see in game. Name must be set.
+        description = "My bedroom is messy as always"; // Description must be set.
+        west = hallway; // Setting north, south, east and west is optional.
+        east = toilet;
+    }
+    </code>
+
+    <h3>CREATE AN ITEM IN THE GAME</h3>
+    <p>Note: Be careful not to have items with the same name in the same location.</p>
+
+    <code> 
+    // This creates an item called wrench which is set to sam's inventory. 
+    // It also has attributes to be dropped and picked up.
+    Item wrench { // This needs to be unique.
+        name = "wrench"; // The name of the item in game. Name must be set.
+        description = "Your trusty wrench."; // Description must be set.
+        location = sam; // The wrench will start in sam's inventory. Location must be set.
+        hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
+    }
+    </code>
+
+    <p> The actions taken with a given verb is also defined inside an Item. <a href="#verbs">go to Verb section</a></p>
+
+    <h3>CREATE AN ITEM IN THE GAME</h3>
+    <p>Note: Be careful not to have items with the same name in the same location.</p>
+
+    <code> 
+    // This creates an item called wrench which is set to sam's inventory. 
+    // It also has attributes to be dropped and picked up.
+    Item wrench { // This needs to be unique.
+        name = "wrench"; // The name of the item in game. Name must be set.
+        description = "Your trusty wrench."; // Description must be set.
+        location = sam; // The wrench will start in sam's inventory. Location must be set.
+        hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
+    }
+    </code>
+
+    <p> The actions taken with a given verb is also defined inside an Item.</p>
+    
+    <h3>ONE WORD USER COMMAND AND LOCATION DEFAULT VERBS</h3>
+	<p>The one word command is used for global verbs to be used in every location like: "north", "south", "east", "west", "quit", "inventory", "look". This feature is implemented inside LocationDefaults.</p>
+	
+	<code> 
+    // eg. command = n
+    LocationDefaults {
+            Verb "north or n or nth" {
+                /*
+                 * rules go here
+                 * If the rules are set correctly the the player will move north.
+                 */
+            } 
+    }
+
+    // eg. User command = i
+    LocationDefaults {
+        Verb "i or inventory or inv" {
+                /*
+                 * rules go here
+                 * If the rules are set correctly the player's inventory will be shown.
+                 */
+        } 
+    }
+    </code>
+
+    <h3>TWO WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN PATTERN)</h3>
+    <p>The two word command pattern is used to do stuff like: "get wrench", "open door", "drop wrench", "use lamp" etc. This feature is implemented while defining
+an item's verb or inside ItemDefaults.</p>
+    <code>
+    // eg. User command = get key
+    Item Key {
+        Verb "get or pickup" {
+            // get or pickup the key.
+        } 
+    }
+
+    // eg. User command = look
+    ItemDefaults {
+        Verb "examine or x or look" {
+            // All items in the game will have this verb.
+        }
+    }
+    </code>
+
+    <h3>FOUR WORD USER COMMAND AND ITEM DEFAULT VERBS (VERB NOUN JOIN NOUN PATTERN)</h3>
+    <p>The four word command pattern is used to do stuff like: "put key into box". This feature is implemented while defining an item's verb or inside ItemDefaults
+by using the keyword "Join:" for the join word and synonyms, and "Item: to specify the second noun in the sentence".</p>
+    <code>
+    // eg. User command = put key into box
+    Item key {
+        Verb "put or place Join: into or in or inside Item: box" {
+             // Put or place the key into or in or inside the box.
+        }
+    }
+
+    //eg. User command = put key into box
+    ItemDefaults {
+        Verb "take or get Join: from Item: box" {
+            // All items in the game will have this verb and join command.
+        }
+    } 
+    </code>
+
+    <h3>SYNONYMS</h3>
+    <p>We have implemented synonyms differently to BIFF. The user need only use "or" between verbs to write as many synonyms as they want.</p>
+    <code>
+    // North, n, and nth all refer to the same verb.
+    Verb "north or n or nth" {}.
+    </code>
+
+    <h3>ATTRIBUTES</h3>
+    <p>Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global attributes because if an item does not have an attribute, it is set to false by default. Item attributes are used in verbs to allow items to be used in certain ways.</p>
+    <code>
+    // The door is closed but not locked.
+    Item door {
+        hasAttributes = isClosed !islocked;
+    } 
+    </code>
+
+    <h3>COMMENTS</h3>
+    <p>Single line comments // and block comments /* */ can be used in the gamefile.</p>
+    <code>
+    // Single line comment
+    
+    /*
+        This is
+        a
+        multiline   
+        comment
+    */
+    </code>
+
+
+    <h2>Language Functions</h2>
+    <h3> Standalone Tags </h3>
+    <dl>
+      <dt>defaultInteractiveName</dt>
+        <dd>
+            <p>sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".</p>
+            <code>
+    defaultInteractiveName = "Items: "
+            </code>
+        </dd>
+     <dt>defaultInventoryName</dt>
+        <dd>
+            <p>sets the name of the inventory. If not defined it defaults to "Inventory".</p>
+            <code>
+    defaultInventoryName = "Game objects: ";
+            </code>
+        </dd>
+        <dt>defaultNoObjects</dt>
+        <dd>
+            <p>sets the word to be used if there are no iteractive objects in a room. Defaults to "None".</p>
+            <code>
+    defaultNoObjects = "Nothing here"
+            </code>
+        </dd>
+        <dt>defaultResponse</dt>
+        <dd>
+            <p>response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
+If not defined it defaults to "You do not know how to".</p>
+            <code>
+    defaultResponse = "You cannot ";
+            </code>
+        </dd>
+        <dt>gameName</dt>
+        <dd>
+            <p>sets a game's name. If not defined this will default to an empty string.</p>
+            <code>
+    gameName = "My Awesome Game*"
+            </code>
+        </dd>
+        <dt>gameCredits</dt>
+        <dd>
+            <p>sets a game's credits. If not defined this will default to an empty string.</p>
+            <code>
+    gameCredits = "By Frodo, Gandalf and Bilbo";
+            </code>
+        </dd>
+        <dt>initialDescription</dt>
+        <dd>
+            <p>sets the game's introduction. If not defined this defaults to an empty string.</p>
+            <code>
+    initialDescription  = "Hi there welcome to My Awesome Game.";
+            </code>
+        </dd>
+        <dt>initialLocation</dt>
+        <dd>
+            <p>sets the starting location for game. This must be set in order for the game to work.</p>
+            <code>
+    initialLocation = startLocation;
+            </code>
+        </dd>
+    </dl>
+
+    <h3> Verb Tags </h3>
+    <dl>
+        <dt>gameOver</dt>
+        <dd>
+            <p>quits the game.</p>
+            <code>
+    gameOver;
+            </code>
+        </dd>
+        <dt>inputItem</dt>
+        <dd>
+            <p>used only inside ItemDefault verbs to get the item being used. </p>
+            <code>
+    // Print using a string.    
+    print "You cannot go that way."; 
+    
+    // Using other game commands.
+    print currentLocation getDescription; 
+            </code>
+        </dd>
+        <dt>describe</dt>
+        <dd>
+            <p>prints out the current location's name and description.</p>
+            <code>
+    describe;
+            </code>
+        </dd>
+        <dt>describeInventory</dt>
+        <dd>
+            <p>prints out the player's inventory.</p>
+            <code>
+    describeInventory;
+            </code>
+        </dd>
+        <dt>list</dt>
+        <dd>
+            <p>prints out the items in the current location or in a particular item.</p>
+            <code>
+    // Items in the current location.
+    list;
+
+    // Items in the box.
+    box list;
+            </code>
+        </dd>
+        <dt>hideItems</dt>
+        <dd>
+            <p>hide the items in an item or location so that they cannot be seen by the player.</p>
+            <code>
+    // Hide items in an item or location during the creation of an item or location. Show items is the default.
+    hideItems;
+
+    // Hide items inside the bedroom.
+    hideItems bedroom;
+
+    // Hide items inside the box.
+    hideItems box;
+            </code>
+        </dd>
+        <dt>showItems</dt>
+        <dd>
+            <p>shows the items in an item or location. This is the default.</p>
+            <code>
+    // Show items inside the bedroom.
+    showItems bedroom;
+    
+    // Show items inside the box.
+    showItems box;
+            </code>
+        </dd>
+        <dt>setDescription</dt>
+        <dd>
+            <p>sets the description of an item or location.</p>
+            <code>
+    // Set description of the bedroom location.
+    bedroom setDescription "The bedroom is now dark.";
+
+    // Set description of the lamp item.
+    lamp setDescription "The lamp is now turned on.";
+            </code>
+        </dd>
+        <dt>getDescription</dt>
+        <dd>
+            <p>gets the description of an item or location.</p>
+            <code>
+    // Gets the description of the bedroom location.    
+    bedroom getDescription;
+
+    // Gets the description of the lamp item.
+    lamp getDescription;
+            </code>
+        </dd>
+        <dt>hasItem</dt>
+        <dd>
+            <p>checks to see if an item is in a location.</p>
+            <code>
+    // Check to see if the player has a wrench item. 
+    if(playerName hasItem wrench){
+    } 
+            </code>
+        </dd>
+        <dt>setLocation</dt>
+        <dd>
+            <p>moves the player or an item to a location.</p>
+            <code>
+    // Moves the player to the bedroom location.
+    playerName setLocation bedroom;
+
+    // Sets the wrench item to the player's inventory location.
+    wrench setLocation playerName;
+            </code>
+        </dd>
+        <dt>inLocation</dt>
+        <dd>
+            <p> checks to see if the player or item is in a certain location.</p>
+            <code>
+    // Checks to see if the player is in the bedroom.
+    if(playerName inLocation Bedroom){
+    }
+
+    // Checks to see if the player has the wrench.
+    if(wrench inLocation playerName){
+    }
+            </code>
+        </dd>
+        <dt>currentLocation</dt>
+        <dd>
+            <p>used with setLocation or inLocation to set or check the player's current location.</p>
+            <code>
+    // Checks to see if the wrench is in the currentLocation.
+    if(door inLocation currentLocation){
+    }
+
+    // Move the wrench to the currentLocation.
+    wrench setLocation currentLocation){
+    }
+            </code>
+        </dd>
+        <dt>hasAttribute</dt>
+        <dd>
+            <p>checks to see if an item has a certain attribute.</p>
+            <code>
+    // Checks to see if the window is open.
+    if(window hasAttribute isOpen){
+    }
+
+    // Checks to see if the window is not open.
+    if(window hasAttribute !isOpen){
+    }
+            </code>
+        </dd>
+        <dt>setAttribute</dt>
+        <dd>
+            <p>sets an item's attribute to true or false.</p>
+            <code>
+    // Sets the window's isOpen attribute to true.
+    window setAttribute isOpen;
+
+    // Sets the window's isOpen attribute to false.
+    window setAttribute !isOpen;
+            </code>
+        </dd>
+        <dt>canCarry</dt>
+        <dd>
+            <p>used with the player's name to check if there's room in your inventory.</p>
+            <code>
+    if (playerName canCarry) {
+    }
+            </code>
+        </dd>
+        <dt>toNorth</dt>
+        <dd>
+            <p>used with setLocation to move player north of current location.</p>
+            <code>
+    // Moves the player north.
+    playerName setLocation toNorth;
+            </code>
+        </dd>
+        <dt>toSouth</dt>
+        <dd>
+            <p>used with setLocation to move player south of current location.</p>
+            <code>
+    // Moves the player south.
+    playerName setLocation toSouth;
+            </code>
+        </dd>
+        <dt>toEast</dt>
+        <dd>
+            <p>used with setLocation to move player east of current location.</p>
+            <code>
+    // Moves the player east.
+    playerName setLocation toEast;
+            </code>
+        </dd>
+        <dt>toWest</dt>
+        <dd>
+            <p>used with setLocation to move player west of current location.</p>
+            <code>
+    // Moves the player west.
+    playerName setLocation toWest;
+            </code>
+        </dd>
+        <dt>hasNorth</dt>
+        <dd>
+            <p>Used to check if a given location has a north link</p>
+            <code>
+    
+            </code>
+        </dd>
+        <dt>hasSouth</dt>
+        <dd>
+            <p>Used to check if a given location has a south link</p>
+            <code>
+    
+            </code>
+        </dd>
+        <dt>hasEast</dt>
+        <dd>
+            <p>Used to check if a given location has a east link</p>
+            <code>
+    
+            </code>
+        </dd>
+        <dt>hasWest</dt>
+        <dd>
+            <p>Used to check if a given location has a west link</p>
+            <code>
+    
+            </code>
+        </dd>
+    </dl>
+
+    <h2>Example Game</h2>
+    <p> Description of Game </p>
+    <code>
+    gameName = "*****The Haunted Mansion*****";
+    gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
+    defaultResponse = "You do not know how to";
+    defaultInventoryName = "Inventory: ";
+    defaultInteractiveName = "Objects: ";
+    defaultNoObjects = "None";
+
+    Player andy {
+        carryLimit = 4;
+    }
+
+    ItemDefaults {
+        Verb "examine or x or ex or look or l" {
+            print inputItem getDescription;
+        }
+        
+        Verb "pickup or pick-up or get" {
+            if (inputItem hasAttribute canPickup) {
+                if (andy hasItem inputItem) {
+                    print "You already have the inputItem.";
+                } else {
+                    if (andy canCarry) {
+                        inputItem setLocation andy;
+                        print "You pickup the inputItem.";
+                    } else {
+                        print "You are carrying too much already.";
+                    }
+                }
+            } else {
+                print "You cannot pick up the inputItem what were you thinking...";
+            }
+        }
+
+        Verb "drop or discard or throwout or throw-out" {
+            if (andy hasItem inputItem) {
+                inputItem setLocation currentLocation;
+                print "You drop the inputItem.";
+            } else {
+                print "You do not have a inputItem.";
+            }
+        }
+            
+        Verb "put or place Join: into or in or inside Item: box" {
+            if(inputItem hasAttribute putBox) {
+                if(andy inLocation secretHall) {
+                    if(inputItem inLocation Andy) {
+                        if(box hasAttribute isOpen) {
+                            inputItem setLocation box;
+                            print "You put the inputItem into the box.";
+                        } else {
+                            print "You cannot do that the box is closed.";
+                        }
+                    } else {
+                        print "You do not have the inputItem.";
+                    }
+                } else {
+                print "You cannot do that here.";
+                }
+            } else {
+                print "You cannot put the inputItem in the box.";
+            }
+        }
+    }
+
+    LocationDefaults {
+        Verb "i or inventory or invent or inv" {
+            describeInventory;
+        }
+
+        Verb "look or l" {
+            describe;
+            list;
+        }
+
+        Verb "quit or q" {
+            print "Bye bye thanks for playing!!!";
+            gameOver;
+        }
+
+        // Directions
+        Verb "north or n or nth" {
+            if(andy inLocation hasNorth) {
+                andy setLocation toNorth;
+                describe;
+                list;
+            } else {
+                print "You cannot go north.";
+            }
+        }
+
+        Verb "south or s or sth" {
+            if(andy inLocation tortureRoom) {
+                print "As you turn to flee you hear a bone-chilling cackling behind you as the apparation swings his scythe. Before you can react you feel a sickening pain in your neck. You have been decapitated, your head rolls and your body crumples to the ground. You are dead.";
+                gameOver;
+            }
+            if(andy inLocation hasSouth) {
+                andy setLocation toSouth;
+                describe;
+                list;
+            } else {
+                print "You cannot go south.";
+            }
+        }
+
+        Verb "east or e" {
+            if(andy inLocation hasEast) {
+                andy setLocation toEast;
+                describe;
+                list;
+            } else {
+                print "You cannot go east.";
+            }
+        }
+
+        Verb "west or w" {
+            if(andy inLocation hasWest) {
+                andy setLocation toWest;
+                describe;
+                list;
+            } else {
+                print "You cannot go west.";
+            }
+        }
+    }
+
+    initialLocation = garden;
+
+    initialDescription = "Your name is Andy an amateur ghost buster. You have arrived at your first job armed only with your trusty wrench. Infront of you is an old mansion said to be haunted by an evil presence. This is the perfect place to hone your ghost busting skills.";
+
+    // Dead space is a location to store game items until needed
+    Location deadSpace {
+        name = "Dead space";
+        description = "Dead space";
+    }
+
+    Location garden {
+        name = "The overgrown garden";
+        description = "You are in an overgrown garden in front of the mansion. The front door has been bolted shut by locals but you notice a window near by that you might be able to squeeze through.";
+    }
+
+    Location entranceHall {
+        name = "The entrance hall";
+        description = "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are surrounded in darkness but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+
+        west = masterBedroom;
+        east = diningRoom;
+        south = garden;
+    }
+
+    Location diningRoom {
+        name = "The dining room";
+        description = "You find yourself in an old dining room, complete with ornate chandeliers.";
+        west = entranceHall;
+    }
+
+    Location masterBedroom {
+        name = "The master bedroom";
+        description = "You are surrounded in complete darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
+        east = entranceHall;
+        hideItems;
+    }
+
+    Location secretHall {
+        name = "The secret hall";
+        description = "A long narrow hallway extends out in front of you, you see a door at end of the hall which you feel a dark forbidding presence radiating from.";
+
+        south = entranceHall;
+    }
+
+    Location tortureRoom {
+        name = "The torture room";
+        description = "You enter a cold stone room and instantly feel dred. There are rotting corpses sprawled out around you eminating a foul stench. An apparition materializes in front of you wielding a menacing scythe. You have finally reached your destination.";
+
+        south = secretHall;
+    }
+
+    Item lamp {
+        name = "lamp";
+        description = "An old lamp but still looks like it might work.";
+        location = diningRoom;
+        hasAttributes = canPickup;
+
+        Verb "light or use or turn-on or turnon" {
+            if(lamp inLocation andy) {
+                entranceHall setDescription "With the aid of the lamp you can now make out a doorway to the north. The other exits are doorways to the east and west and the window leading south.";
+                entranceHall setNorth secretHall;
+                masterBedroom setDescription "With the lamp illuminating your surroundings you find yourself in a creepy old bedroom decorated with many mirrors. You keep seeing things move in them out of the corner of your eye. There is also a massive bed taking up most of the room. You can see many things glinting under it.";
+                masterBedroom showItems;
+                print "You fiddle around with the old lamp and manage to turn it on.";
+            } else {
+                print "You do not have that item.";
+            }
+        }
+
+        Verb "off or turnoff or turn-off" {
+            if(lamp inLocation andy) {
+                entranceHall setDescription "You enter a dimly lit hall illuminated only by the faint moonlight filtering through the dusty windows. You are sourrounded in darkness, but can make out doorways to the east and west. South leads out the window to the overgrown garden.";
+                entranceHall removeNorth;
+                masterBedroom setDescription "You are surrounded in darkness. You cannot see anything but can hear strange noises close by. A cold chill rushes over you.";
+                masterBedroom hideItems;
+                print "You switch off the old lamp.";
+            } else {
+                print "You do not have that item.";
+            }
+        }
+    }
+
+    Item mirror {
+        name = "mirror";
+        description = "You see your handsome, confident reflection in the mirror. This mirror could be useful.";
+        location = masterBedroom;
+        hasAttributes = canPickup putBox;
+
+        Verb "use or lookat or look-at" {
+            if(andy inLocation tortureRoom) {
+                print "You pull out out the mirror, the ghost upon seeing it's horrific reflection flees in terror. Congratulations you have busted your first ghost!";
+                gameOver;
+            } else {
+                print "You admire yourself in the mirror.";
+            }
+        }
+    }
+
+    Item door {
+        name = "door";
+        description = "A solid wooden door is located in the north wall. You notice a small key hole.";
+        location = secretHall;
+        hasAttributes = isLocked !isOpen;
+
+        Verb "open" {
+            if(door hasAttribute !isOpen) {
+                if (door hasAttribute isLocked) {
+                    print "You cannot open the door it is locked.";
+                } else {
+                    door setAttribute isOpen;
+                    secretHall setNorth tortureRoom;
+                    print "The door swings open.";
+                }
+            } else {
+                print "The door is already open";
+            }
+        }
+
+        Verb "unlock" {
+            if(key inLocation andy) {
+                if (door hasAttribute isLocked) {
+                    door setAttribute !isLocked;
+                    print "You struggle to turn the key in the old door but manage to unlock it.";
+                } else {
+                    print "The door is already unlocked.";
+                }
+            } else {
+                print "You do not have a key to unlock the door.";
+            }
+        }
+    }
+
+    Item key {
+        name = "key";
+        description = "A small key.";
+        location = deadSpace;
+        hasAttributes = canPickup putBox;
+
+        Verb "use" {
+            if(door hasAttribute isLocked) {
+                if(andy inLocation secretHall) {
+                    print "You struggle to turn the key in the old door but manage to unlock it.";
+                    secretHall setNorth tortureRoom;
+                    door setAttribute !isLocked;
+                } else {
+                    print "You can not use the key here.";
+                }
+            } else {
+                print "The door is already unlocked.";
+            }
+        }
+    }
+
+    Item bed {
+        name = "bed";
+        description = "A massive dusty bed.";
+        location = masterBedroom;
+
+        Verb "under or look or examine or x or ex or l" {
+            if (key inLocation andy) {
+                print "A massive dusty bed.";
+            } else {
+                print "You see a key glinting under the bed.";
+                key setLocation masterBedroom;
+            }
+        }
+
+        Verb "sleep or nap" {
+            print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
+        }
+    }
+
+    Item box {
+        name = "box";
+        description = "A large wooden box.";
+        location = secretHall;
+        hasAttributes = !isOpen;
+        hideItems;
+
+        Verb "open" {
+            if (box hasAttribute !isOpen) {
+                box showItems;
+                box setAttribute isOpen;
+                print "You open the box and find a ";
+                box list;
+            } else {
+                print "The box is already open.";
+            }
+        }
+
+        Verb "close or shut" {
+            if(box hasAttribute isOpen) {
+                box hideItems;
+                box setAttribute !isOpen;
+                print "You close the box.";
+            } else {
+                print "The box is already closed.";
+            }
+        }
+    }
+
+    Item skull {
+        name = "skull";
+        description = "A cracked human skull.";
+        location = box;
+        hasAttributes = canPickup putBox;
+
+        Verb "wear" {
+            if (skull inLocation andy) {
+                print "For some perverse reason you shove the skull onto your head. Your body starts to decay and rot away, before you know it you have provided this skull with a new skeleton.";
+                gameOver;
+            } else {
+                print "You do not have the skull in your inventory.";
+            }
+        }
+
+        Verb "use or show" {
+            if (skull inLocation andy) {
+                if(andy inLocation tortureRoom) {
+                    print "The skull begins to contort and grow, before long the skull has morphed into an angry looking ghost of a man. It lets out a blood curdling cry and lashes out at the apparation. The evil apparation disapates and dies... again. The man ghost turns and knods his thanks to you and vanishes. You have won congradulations!";
+                    gameOver;
+                } else {
+                    print "You wave the skull around like a demented lunatic.";
+                }
+            } else {
+                print "You do not have that item.";
+            }
+        }
+    }
+
+    Item window {
+        name = "window";
+        description = "A cracked window that seems to be your only access to the mansion.";
+        location = garden;
+        hasAttributes = !isOpen isJammed;
+
+        Verb "open" {
+            if (window hasAttribute !isOpen) {
+                if (window hasAttribute isJammed) {
+                    print "You cannot open the window it is jammed.";
+                } else {
+                    window setDescription "The window is open allowing you access to the mansion.";
+                    window setAttribute isOpen;
+                    garden setNorth entranceHall;
+                    print "With a heave the window grates open to leave a nice opening to enter through.";
+                }
+            } else {
+                print "The window is already open.";
+            }
+        }
+
+        Verb "go or climb or enter" {
+            if(window hasAttribute isOpen) {
+                andy setLocation entranceHall;
+                describe;
+                list;
+            } else {
+                print "You cannot do that the window is closed.";
+            }
+        }
+    }
+
+    Item wrench {
+        name = "wrench";
+        description = "Your trusty wrench. You have used it to help you out of many a tight jam.";
+        location = andy;
+        hasAttributes = canPickup putBox;
+
+        Verb = "use" {
+            if(andy inLocation garden) {
+                if(wrench inLocation andy) {
+                    if(window hasAttribute isJammed) {
+                        window setAttribute !isJammed;
+                        print "You manage to pry open the window far enough to get your hands under.";
+                    } else {
+                        print "You have already pried loose the window.";
+                    }
+                } else {
+                    print "You do not have the wrench.";
+                }
+            } else {
+                print "You cannot use the wrench here.";
+            }
+        }
+    }
+
+    Item mansion_door {
+        name = "door";
+        description = "The mansion door is bolted shut. You will need to find another way in.";
+        location = garden;
+
+        Verb = "open" {
+            print "The mansion door is bolted shut. You will need to find another way in.";
+        }
+    } 
+    </code>
+    
+	<h2>Known Bugs</h2>    
+	<p> Fill this in </p>
+	
+	<h2>Pleasent Suprises</h2>
+	<p> Fill this in </p>
+
+  </body>
+</html>
