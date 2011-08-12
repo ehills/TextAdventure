@@ -178,11 +178,6 @@
 	  </li>
 	</ul>
 	
-	<h3>Verb logic</h3>
-	<p>All logic is performed within a Verb by using if or if else statements, else if statements are not supported. These logical operators 
-	are not supported: AND (&#38;&#38;), OR (||), XOR (^) and NOT (!). This means only one condition can be used per if statement, however the language
-	allows as many if else statements to be nested as required.</p>
-    
 	<h3>Create the player in the game</h3>
     <p>Note: Create only one player per game.</p>
 	  <code> 
@@ -193,7 +188,7 @@
      </code>
 
     <h3>Create the location in the game</h3>
-    <p>Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west that location has to be created..</p>
+    <p>Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west that location has to be created.</p>
 
     <code> 
     // This creates a location called myBedrooom with a hallway to the west and toilet to the east.    
@@ -218,12 +213,18 @@
         location = sam; // The wrench will start in sam's inventory. Location must be set.
         // Note hasAttributes' value is not enclosed in quotes.
         hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
+        // Item verbs defined within the Item object here
+        Verb "throw or chuck" {rules} // Throw or chuck the wrench.
+        Verb "use" {rules} // Use the wrench.
     }
     </code>
-
-    <p> The actions taken with a given verb is also defined inside an Item. <a href="#verbs">go to Verb section</a></p>
    
-    <h3>One word user command and location default verbs</h3>
+    <h3>Verb rules</h3>
+	<p>All rules/logic are performed within a Verb by using if or if else statements, else if statements are not supported. These logical operators 
+	are not supported: AND (&#38;&#38;), OR (||), XOR (^) and NOT (!). This means only one condition can be used per if statement, however the language
+	allows as many if else statements to be nested as required.</p>
+	
+	<h3>One word user command and location default verbs</h3>
 	<p>The one word command is used for global verbs to be used in every location like: "north", "south", "east", "west", "quit", "inventory", "look". This feature is implemented inside LocationDefaults.</p>
 	
 	<code> 
