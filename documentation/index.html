@@ -15,6 +15,8 @@
 
     <h2>Introduction</h2>
 	<p>This is our user guide for our adaptation of BIFF</p>
+
+    <h2>Pleasent Suprises</h2>
     <p>We have ensured no verbs are hardcoded to give the user more control over their game. We have also made it possible that every word in the game can be defined by the user so that a game could be written for any language. Check out the example game at the end to see how everything works.</p>
 
 	<h2>How to build a game</h2>    
@@ -25,10 +27,14 @@
     <p>This will Generate a C++ file in the output folder where the other necessary files are already placed.</p>
 
 	<h2>How to install a game</h2>    
-	<p> Fill this in </p>
-	
-	<h2>Pleasent Suprises</h2>
-	<p> Fill this in </p>
+	<p> After generating the game file, run the following commands to compile and run the game: </p>
+	<code>
+    cd output
+    make
+    ./Play
+    </code>
+    <p>This uses a preconfigured MakeFile to compile the C++ files allong with the necessary classes.</p>
+    <p>To distribute the game just send the "Play" file to the desired destination.</p>
 
     <h2>Language Constructs</h2>
     <h3>CREATE THE PLAYER IN THE GAME</h3>
