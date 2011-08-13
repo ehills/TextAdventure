@@ -1,0 +1,38 @@
+gameName = "*****The Haunted Mansion*****";
+gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
+defaultResponse = "You do not know how to";
+defaultInventoryName = "Inventory: ";
+defaultInteractiveName = "Items: ";
+defaultNoObjects=  "Nothing here";
+
+Player sam {
+	carryLimit = 5
+}
+
+ItemDefaults {
+	Verb "get" {
+	}
+}
+
+LocationDefaults {
+	Verb "hi" {
+	}
+}
+
+
+initialLocation = bedroom;
+
+Location bedroom {
+	name = "bedroom";
+	description="My smelly room.";
+}
+
+Item book {
+	name="LOTR";
+	description="Little ones reside here.";
+	location=sam;
+	hasAttributes isOpen isClosed
+	
+	Verb "hi" {
+	}
+}

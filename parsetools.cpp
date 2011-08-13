@@ -11,6 +11,27 @@ inline bool validAttribute(string attribute) {
 string ParseStringData(string data, string attribute, string default_return=BAD_ATTRIBUTE) {
 	unsigned int start, end, size;
 	start = data.find(attribute);
+	// Check expressions for valid syntax.
+	if (data.find("\n", start) < data.length()) {
+		int newline = data.find("\n", start);
+		string expression = data.substr(start, newline-start);
+		// check for missing = operator.
+		if (expression.find("=") == string::npos) {
+			cerr << MISSING_EQUALS_OPERATOR << "\n" << expression << "\n\n";
+		}
+		// Check for missing semicolon.
+		if (expression.find(";") == string::npos) {
+			cerr << MISSING_SEMICOLON << "\n" << expression << "\n\n";
+		}
+		// Check two missing quotes.
+		if (expression.find("\"") == string::npos) {
+			cerr << MISSING_QUOTES << "\n" << expression << "\n\n" << endl;
+		}
+		// Check for one missing quote.
+		if (expression.find("\"") != string::npos && expression.find("\"", (expression.find("\"")+1)) == string::npos) {
+			cerr << MISSING_QUOTE << "\n" << expression << "\n\n" << endl;
+		}
+	}
 	if (start < data.size()) {
 		start = data.find("\"", start) + 1;
 		end = data.find("\"", start);
@@ -45,6 +66,19 @@ string ParseVariableData(string data, string attribute) {
 	unsigned int start, end, size;
 	string ret;
 	start = data.find(attribute);
+	// Check expressions for valid syntax.
+	if (data.find("\n", start) < data.length()) {
+		int newline = data.find("\n", start);
+		string expression = data.substr(start, newline-start);
+		// check for missing = operator.
+		if (expression.find("=") == string::npos) {
+			cerr << MISSING_EQUALS_OPERATOR << "\n" << expression << "\n\n";
+		}
+		// Check for missing semicolon.
+		if (expression.find(";") == string::npos) {
+			cerr << MISSING_SEMICOLON << "\n" << expression << "\n\n";
+		}
+	}
 	if (start < data.size()) {
 		start = data.find("=", start) + 1;
 		end = data.find(";", start);
@@ -85,7 +119,10 @@ map<string, string> ParseVerbs(string data) {
 		end = data.find("\"", start);
 		size = end - start;
 		string name = data.substr(start, size);
-
+		// Check for verb string
+		if (start == 0 || size == 0) {
+			cerr << BAD_VERB_STRING << endl;
+		}
 		// Parse Verb actions
 		start = data.find("{", end) + 1;
 		end = ParseEndBrace(start, data);

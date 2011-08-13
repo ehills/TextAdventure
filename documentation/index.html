@@ -20,6 +20,16 @@
     <h2>Pleasant suprises</h2>
     <p>We have designed our language so that no verbs are hardcoded, which allows the nicety of being able to apply logic to every verb in the game.</p>
 	<p>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</p>
+	<p>If a user wanted a NPC (non-player character) in their game it could be created and defined using an item object like so:</p>
+	<code>
+    // NPC creation using an item object.
+    Item shopkeeper {
+        name = "shopkeeper";
+        description = "This shopkeeper looks dodgy.";
+        location = shop;
+        Verb "talk" {rules here}
+    }
+	</code>
 	<p>Item verbs take precedence over ItemDefaults' verbs if their verb string is identical, which allows a user to override ItemDefaults' verbs like so:</p>
 	<code>
     // You pick up the item using ItemDefaults.   
@@ -309,6 +319,7 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
         <dd>
             <p>sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".</p>
             <code>
+    // Value has to be enclosed in quotes.
     defaultInteractiveName = "Items: ";
             </code>
         </dd>
@@ -316,6 +327,7 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
         <dd>
             <p>sets the name of the inventory. If not defined it defaults to "Inventory".</p>
             <code>
+     // Value has to be enclosed in quotes.
     defaultInventoryName = "Game objects: ";
             </code>
         </dd>
@@ -323,6 +335,7 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
         <dd>
             <p>sets the word to be used if there are no iteractive objects in a room. Defaults to "None".</p>
             <code>
+     // Value has to be enclosed in quotes.
     defaultNoObjects = "Nothing here";
             </code>
         </dd>
@@ -331,6 +344,7 @@ by using the keyword "Join:" for the join word and synonyms, and "Item: to speci
             <p>response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
 If not defined it defaults to "You do not know how to".</p>
             <code>
+     // Value has to be enclosed in quotes.
     defaultResponse = "You cannot ";
             </code>
         </dd>
@@ -338,6 +352,7 @@ If not defined it defaults to "You do not know how to".</p>
         <dd>
             <p>sets a game's name. If not defined this will default to an empty string.</p>
             <code>
+     // Value has to be enclosed in quotes.
     gameName = "My Awesome Game";
             </code>
         </dd>
@@ -345,6 +360,7 @@ If not defined it defaults to "You do not know how to".</p>
         <dd>
             <p>sets a game's credits. If not defined this will default to an empty string.</p>
             <code>
+     // Value has to be enclosed in quotes.
     gameCredits = "By Frodo, Gandalf and Bilbo";
             </code>
         </dd>

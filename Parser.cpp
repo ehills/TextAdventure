@@ -34,11 +34,16 @@ list<string> Parser::ParseFile(void) {
 		inventory = new Location("inventory", "inventory", "Player's inventory.");
 		this->locations.insert(pair<string, Location*>("inventory", inventory));
 		this->ParseItems();
+		// Check for initialLocation
+		if (this->file_data.find("initialLocation") == string::npos) {
+			cerr << BAD_INITIAL_LOCATION << endl;
+		}
 		string location_name = ParseVariableData(this->file_data, "initialLocation");
 		if (this->locations.count(location_name) > 0) {
 			this->initialLocation = this->locations.find(location_name)->second;
 		} else {
-			cout << BAD_LOCATION << endl;
+			cerr << BAD_LOCATION << endl;
+			exit (1);
 		}
 	}
 	return this->errors;
@@ -137,6 +142,11 @@ int Parser::ParseLocations() {
 			if (end < this->file_data.size() && end < this->file_data.find(";", start)) {
 				start += 9;
 				size = (end) - start;
+				// Check for Location variable name
+				if (size == 1) {
+					cerr << NO_LOCATION_VARIABLE_NAME << endl;
+					exit (1);
+				}
 				Location* location = new Location();
 				string location_name = stringTrim(this->file_data.substr(start, size));
 				location->setVariableName(location_name);
@@ -150,7 +160,7 @@ int Parser::ParseLocations() {
 			break;
 		}
 	}
-	//Parse the Location details second time through
+	// Parse the Location details second time through
 	map<string, Location*>::iterator it;
 	for (it = this->locations.begin(); it != this->locations.end(); it++) {
 		string search = "Location " + it->first + " {";
@@ -180,6 +190,11 @@ int Parser::ParsePlayer() {
 		if (end < this->file_data.size()) {
 			start += 7;
 			size = (end) - start;
+			// Check for Player variable name
+			if (size == 1) {
+				cerr << NO_PLAYER_VARIABLE_NAME << endl;
+				exit (1);
+			}
 			player = new Player();
 			attribute = stringTrim(this->file_data.substr(start, size));
 			player->setVariableName(attribute);
@@ -204,6 +219,11 @@ int Parser::ParseItems() {
 			if (this->file_data.at(start - 1) != 't') {
 				start += 5;
 				size = (end) - start;
+				// Check for Item variable name
+				if (size == 1) {
+					cerr << NO_ITEM_VARIABLE_NAME << endl;
+					exit (1);
+				}
 				Item *item = new Item();
 				string item_name = stringTrim(this->file_data.substr(start, size));
 				this->file_data.replace(start, size, item_name +  " ");
@@ -327,9 +347,10 @@ void Parser::ParseItem(string data, Item *item) {
 			item->setItem(this->items.at(attribute));
 		} else {
 			cerr << BAD_LOCATION << attribute << endl;
+			exit (1);
 		}
 	} else {
-		cout << NO_ITEM_LOCATION << endl;
+		cerr << NO_ITEM_LOCATION << endl;
 	}
 
 	// Parse verbs
