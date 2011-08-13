@@ -29,4 +29,6 @@
 #define FILE_DID_NOT_OPEN "The file specified was unable to be opened"
 #define NO_DEFAULT_ATTRIBUTE "There is no default attribute for that item's attribute"
 #define NO_INVENTORY "Need to set Location inventory in game file"
+#define INCOMPLETE_HASATTRIBUTE "Need to use a valid item before hasAttribute"
+#define INCOMPLETE_SETATTRIBUTE "Need to use a valid item before getAttribute"
 #endif

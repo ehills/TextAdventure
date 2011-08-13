@@ -438,16 +438,16 @@ string Compiler::CompileVerb(string line) {
 			start = line.find_first_of("\"") + 1;
 			end = line.find_last_of("\"");
 			output += "cout << \"" + line.substr(start, end - start) + "\";\n";
-		} else if ((line.find("showItems") != string::npos || line.find("showItem") != string::npos) && getItem(line) != "") {
+		} else if (line.find("showItems") != string::npos && getItem(line) != "") {
 			string item = getItem(line);
 			output += item + "->setShowItems(true);\n";
-		} else if ((line.find("hideItems") != string::npos || line.find("hideItem") != string::npos) && getItem(line) != "") {
+		} else if (line.find("hideItems") != string::npos && getItem(line) != "") {
 			string item = getItem(line);
 			output += item + "->setShowItems(false);\n";
-		} else if ((line.find("showItems") != string::npos || line.find("showItem") != string::npos) && getLocation(line) != "") {
+		} else if (line.find("showItems") != string::npos && getLocation(line) != "") {
 			string location = getLocation(line);
 			output += location + "->setShowItems(true);\n";
-		} else if ((line.find("hideItems") != string::npos || line.find("hideItem") != string::npos) && getLocation(line) != "") {
+		} else if (line.find("hideItems") != string::npos && getLocation(line) != "") {
 			string location = getLocation(line);
 			output += location + "->setShowItems(false);\n";
 		} else if (line.find("print ") < line.length()) {
@@ -499,6 +499,9 @@ string Compiler::CompileVerb(string line) {
 					size_t start, end;
 					start = expression.find("hasAttribute");
 					end = expression.find(")");
+					if (item == "") {
+						cout << INCOMPLETE_HASATTRIBUTE << endl;
+					}
 					if (expression.substr(start+13, (end-start-13)).find('!') == 0) {
 						output += "if (" + item + "->hasAttribute(" + '"' + expression.substr(start+13, (end-start-13)) + '"' + ")) {\n";
 					} else {
@@ -611,6 +614,9 @@ string Compiler::CompileVerb(string line) {
 			size_t start, end;
 			start = line.find("setAttribute");
 			end = line.find(";");
+			if (item == "") {
+				cout << INCOMPLETE_SETATTRIBUTE << endl;
+			}
 			if (line.substr(start+13, (end-start-13)).find('!') == 0) {
 				output += item + "->setAttribute(" + '"' + line.substr(start+13, (end-start-13)) + '"' + ", true);\n";
 				output += item + "->setAttribute(" + '"' + line.substr(start+14, (end-start-14)) + '"' + ", false);\n";
