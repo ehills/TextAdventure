@@ -534,6 +534,70 @@ If not defined it defaults to "You do not know how to".</p>
     }
             </code>
         </dd>
+        <dt>setNorth</dt>
+        <dd>
+            <p>Sets a location to the north of another location.</p>
+            <code>
+    // Sets the lounge north of the hallway.
+    hallway setNorth lounge;
+            </code>
+        </dd>
+		<dt>setSouth</dt>
+        <dd>
+            <p>Sets a location to the south of another location.</p>
+            <code>
+    // Sets the hallway south of the lounge.
+    lounge setSouth hallway;
+            </code>
+        </dd>
+		<dt>setEast</dt>
+        <dd>
+            <p>Sets a location to the east of another location.</p>
+            <code>
+    // Sets the kitchen east of the lounge.
+    lounge setEast kitchen;
+            </code>
+        </dd>
+		<dt>setWest</dt>
+        <dd>
+            <p>Sets a location to the west of another location.</p>
+            <code>
+    // Sets the lounge west of the kitchen.
+    kitchen setWest lounge;
+            </code>
+        </dd>
+		<dt>removeNorth</dt>
+        <dd>
+            <p>Remove the north exit of a location.</p>
+            <code>
+    // Removes the north exit of the hallway.
+    hallway removeNorth;
+            </code>
+        </dd>
+		<dt>removeSouth</dt>
+        <dd>
+            <p>Remove the south exit of a location.</p>
+            <code>
+    // Removes the south exit of the hallway.
+    hallway removeSouth;
+            </code>
+        </dd>
+		<dt>removeEast</dt>
+        <dd>
+            <p>Remove the east exit of a location.</p>
+            <code>
+    // Removes the east exit of the hallway.
+    hallway removeEast;
+            </code>
+        </dd>
+		<dt>removeWest</dt>
+        <dd>
+            <p>Remove the west exit of a location.</p>
+            <code>
+    // Removes the west exit of the hallway.
+    hallway removeWest;
+            </code>
+        </dd>
         <dt>toNorth</dt>
         <dd>
             <p>used with setLocation to move player north of current location.</p>
