@@ -198,6 +198,7 @@
         description = "My bedroom is messy as always"; // Description must be set.
         west = hallway; // Setting north, south, east and west is optional.
         east = toilet;
+        hideItems; // The items in the bedroom are hidden. Items are set to showItems by default so this is optional.
     }
     </code>
 
@@ -205,17 +206,19 @@
     <p>Note: Be careful not to have items with the same name in the same location.</p>
 
     <code> 
-    // This creates an item called wrench which is set to sam's inventory. 
-    // It also has attributes to be dropped and picked up.
-    Item wrench { // This needs to be unique.
-        name = "wrench"; // The name of the item in game. Name must be set.
-        description = "Your trusty wrench."; // Description must be set.
-        location = sam; // The wrench will start in sam's inventory. Location must be set.
+    // This creates an Item object box, which is in the hallway. 
+    // It also has an attribute to isOpen.
+    Item box{ // This needs to be unique.
+        name = "box"; // The name of the item in game. Name must be set.
+        description = "A big box."; // Description must be set.
+        location = hallway; // The box is in the hallway.
         // Note hasAttributes' value is not enclosed in quotes.
-        hasAttributes = canPickup canDrop; // The wrench can be picked up and dropped. hasAttributes is optional.
+        hasAttributes = isOpen; // The box isOpen. hasAttributes is optional.
+        hideItems; // The items in the box are hidden. Items are set to showItems by default so this is optional.
+        
         // Item verbs defined within the Item object here
-        Verb "throw or chuck" {rules} // Throw or chuck the wrench.
-        Verb "use" {rules} // Use the wrench.
+        Verb "open" {rules} // Open the box. User command = open box
+        Verb "push" {rules} // Push the box. User command = push box
     }
     </code>
    
