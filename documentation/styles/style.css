@@ -123,3 +123,11 @@ ul {
 	padding: 0px;
 	list-style-type: none;
 }
+
+li {
+ margin: 16px 0px;
+}
+
+#docify_nav li {
+	margin: 0px;
+}

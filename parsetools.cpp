@@ -120,8 +120,15 @@ map<string, string> ParseVerbs(string data) {
 		size = end - start;
 		string name = data.substr(start, size);
 		// Check for verb string
-		if (start == 0 || size == 0) {
+		if (size == 0 || start == 0) {
 			cerr << BAD_VERB_STRING << endl;
+			exit (1);
+		} else if (size == 1 && data.substr(start, size) == " ") {
+			cerr << BAD_VERB_STRING << endl;
+			exit (1);
+		} else if (size > 1 && stringTrim(data.substr(start, size)) == " ") {
+			cerr << BAD_VERB_STRING << endl;
+			exit (1);
 		}
 		// Parse Verb actions
 		start = data.find("{", end) + 1;

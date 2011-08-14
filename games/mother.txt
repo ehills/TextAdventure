@@ -1,3 +1,8 @@
+/* 
+   Mother is the example game from the BIFF specification. You play a mother trying to 
+   keep her baby alive in a normal household environment. Currently it is incomplete. 
+*/
+
 gameName = "*****Mother(Example Game) *****";
 gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie";
 defaultResponse = "I do not know how to";
@@ -37,13 +42,13 @@ LocationDefaults {
 			describe;
 			list;	
     }
-    Verb "quit or q" {
+    Verb "quit or q or exit" {
     	print "Bye bye thanks for playing!!!";
     	gameOver;
     }   
     // Directions
     Verb "north or n or nth" {
-    	if(mother inLocation hasNorth) {
+    	if(currentLocation hasNorth) {
     		mother setLocation toNorth;
     		describe;
 			list;
@@ -52,7 +57,7 @@ LocationDefaults {
     	}
     }
     Verb "south or s or sth" {
-    	if(mother inLocation hasSouth) {
+    	if(currentLocation hasSouth) {
     		mother setLocation toSouth;
     		describe;
 			list;
@@ -61,7 +66,7 @@ LocationDefaults {
     	}
     }
     Verb "east or e" {
-    	if(mother inLocation hasEast) {
+    	if(currentLocation hasEast) {
     		mother setLocation toEast;
     		describe;
 			list;
@@ -70,7 +75,7 @@ LocationDefaults {
     	}
     }
     Verb "west or w" {
-    	if(mother inLocation hasWest) {
+    	if(currentLocation hasWest) {
     		mother setLocation toWest;
     		describe;
 			list;
@@ -128,7 +133,7 @@ Location bathroom {
 
 Location toilet_room {
     name = "Toilet Room";
-    description "This is where the toilet is. You can exit to the east when you've finished business.";
+    description = "This is where the toilet is. You can exit to the east when you've finished business.";
 
     east = hallway;
 }

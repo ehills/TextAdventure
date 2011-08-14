@@ -1,38 +1,52 @@
-gameName = "*****The Haunted Mansion*****";
-gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
-defaultResponse = "You do not know how to";
-defaultInventoryName = "Inventory: ";
-defaultInteractiveName = "Items: ";
-defaultNoObjects=  "Nothing here";
+/* This file tests to see if some basic syntax is incorrect. 
+  Note: the program will exit if a Player, Item, Location or Verb string
+  error is found.
+*/
+
+// Test for a missing quote.
+gameName = "*****The Haunted Mansion*****;  
+
+// Test for both missing quotes.
+gameCredits = By Samuel Garner, George Phillips, Edward Hills and Stephen Herd.;
+
+// Test for a missing semicolon from a statement with a string value.
+defaultResponse = "You do not know how to"
+
+// Test for missing = operator from a statement with a string value.
+initialDescription  "Welcome to my awesome game.";
+
+// Test that initial location isn't set. Note initialLocation is commented out.
+// initialLocation = bedroom;
+
+/*  
+   Note: can only test one object variable ie. Player, Location and Item or Verb string per test
+   because the program will exit on incounting one of these errors. For example delete sam from Player if
+   testing for Player variable being set, but make sure all other Object variables and Verbs strings are
+   set.
+*/
 
 Player sam {
+	// Test for missing semicolon from a statement that's value is not a string.
 	carryLimit = 5
 }
 
-ItemDefaults {
-	Verb "get" {
-	}
+// Test for name and description not being set in a location.
+Location hallway {
+	
 }
 
-LocationDefaults {
-	Verb "hi" {
-	}
-}
-
-
-initialLocation = bedroom;
-
-Location bedroom {
-	name = "bedroom";
-	description="My smelly room.";
-}
-
+// Test for name, description and location not being set in an item.
 Item book {
-	name="LOTR";
-	description="Little ones reside here.";
-	location=sam;
+	
+	// Test for missing = operator from a statement that's value is not a string.
 	hasAttributes isOpen isClosed
 	
-	Verb "hi" {
-	}
+	
+	// Verb tests here just need to make sure Player, Location and Item have a variable name. Test only one of the Verb tests at a time
+	/*Verb {
+	}*/
+	
+	/*Verb "" {
+	}*/
 }
+

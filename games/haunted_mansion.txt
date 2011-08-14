@@ -1,3 +1,9 @@
+/* 
+   This game is called The Haunted Mansion. In it you play Andy, a ghost hunter. The goal 
+   of the game is to get through the haunted mansion and defeat the evil presence inside. 
+*/
+
+
 gameName = "*****The Haunted Mansion*****";
 gameCredits = "By Samuel Garner, George Phillips, Edward Hills and Stephen Herd";
 defaultResponse = "You do not know how to";
@@ -70,7 +76,7 @@ LocationDefaults {
           	describe;
 			list;
     }
-    Verb "quit or q" {
+    Verb "quit or q or exit" {
     	print "Bye bye thanks for playing!!!";
     	gameOver;
     }   

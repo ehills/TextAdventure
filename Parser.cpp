@@ -143,12 +143,19 @@ int Parser::ParseLocations() {
 				start += 9;
 				size = (end) - start;
 				// Check for Location variable name
-				if (size == 1) {
+				if (size == 0) {
+					cerr << NO_LOCATION_VARIABLE_NAME << endl;
+					exit (1);
+				} else if (size == 1 && this->file_data.substr(start, size) == " ") {
+					cerr << NO_LOCATION_VARIABLE_NAME << endl;
+					exit (1);
+				} else if (size > 1 && stringTrim(this->file_data.substr(start, size)) == " ") {
 					cerr << NO_LOCATION_VARIABLE_NAME << endl;
 					exit (1);
 				}
 				Location* location = new Location();
 				string location_name = stringTrim(this->file_data.substr(start, size));
+
 				location->setVariableName(location_name);
 				this->file_data.replace(start, size, location_name + " ");
 				this->locations[location_name] = location;
@@ -189,9 +196,15 @@ int Parser::ParsePlayer() {
 		end = this->file_data.find("{", start);
 		if (end < this->file_data.size()) {
 			start += 7;
-			size = (end) - start;
+			size = end - start;
 			// Check for Player variable name
-			if (size == 1) {
+			if (size == 0) {
+				cerr << NO_PLAYER_VARIABLE_NAME << endl;
+				exit (1);
+			} else if (size == 1 && this->file_data.substr(start, size) == " ") {
+				cerr << NO_PLAYER_VARIABLE_NAME << endl;
+				exit (1);
+			} else if (size > 1 && stringTrim(this->file_data.substr(start, size)) == " ") {
 				cerr << NO_PLAYER_VARIABLE_NAME << endl;
 				exit (1);
 			}
@@ -220,7 +233,13 @@ int Parser::ParseItems() {
 				start += 5;
 				size = (end) - start;
 				// Check for Item variable name
-				if (size == 1) {
+				if (size == 0) {
+					cerr << NO_ITEM_VARIABLE_NAME << endl;
+					exit (1);
+				} else if (size == 1 && this->file_data.substr(start, size) == " ") {
+					cerr << NO_ITEM_VARIABLE_NAME << endl;
+					exit (1);
+				} else if (size > 1 && stringTrim(this->file_data.substr(start, size)) == " ") {
 					cerr << NO_ITEM_VARIABLE_NAME << endl;
 					exit (1);
 				}

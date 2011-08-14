@@ -18,10 +18,11 @@
 	<p>This is our user guide for our adaptation of BIFF - Basic interactive fiction format.</p>
 
     <h2>Pleasant suprises</h2>
-    <p>We have designed our language so that no verbs are hardcoded, which allows the nicety of being able to apply rules/logic to every verb in the game.</p>
-	<p>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</p>
-	<p>If a user wants a NPC (non-player character) in their game, it can be created and defined using an item object like so:</p>
-	<code>
+	<ul>
+      <li>We have designed our language so that all verbs must be defined by the user, which means no verbs are hardcoded. This allows the nicety of being able to apply rules/logic to every verb in the game.</li>
+	  <li>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</li>
+	  <li>If a user wants a NPC (non-player character) in their game, it can be created and defined using an item object like so:
+	    <code>
     // NPC creation using an item object.
     Item shopkeeper {
         name = "shopkeeper";
@@ -29,9 +30,10 @@
         location = shop;
         Verb "talk" {rules here}
     }
-	</code>
-	<p>Item verbs take precedence over ItemDefaults' verbs if their verb string is identical, which allows a user to override ItemDefaults' verbs like so:</p>
-	<code>
+	    </code>
+	  </li>
+	  <li>Item verbs take precedence over ItemDefaults' verbs if their verb string is identical, which allows a user to override ItemDefaults' verbs like so:
+	    <code>
     // You pick up the item using ItemDefaults.   
     ItemDefaults {
         Verb "pickup or get" {rules} 
@@ -40,7 +42,9 @@
     Item wrench {
         Verb "pickup or get" {rules} 
     }
-	</code>
+	    </code>
+	  </li>
+	</ul>
 	<p>Check out the example game at the end to see how everything works.</p>
 	
 	<h2>How to install the game parser</h2>    
@@ -681,7 +685,8 @@ If not defined it defaults to "You do not know how to".</p>
     </dl>
 
     <h2>Error checking</h2>
-	<p>All errors caused from bad syntax, bad logic or from compiling and building a game file incorrectly are expressed to the user with these constants.</p>
+	<p>All errors caused from bad syntax, bad logic or from compiling and building a game file incorrectly are expressed to the user with these constants.
+	There is a test game found at /TextAdventure/games/test.txt that tests for most of the basic syntax errors that can be incounted while creating a game.</p>
 	<code>
     #define ERROR_WRONG_ARGUMENTS "Please enter one command line argument as the path to the file.\n"
     #define ERROR_BAD_FILE "The file specified was not able to be opened.\n"
@@ -719,10 +724,17 @@ If not defined it defaults to "You do not know how to".</p>
     #define MISSING_QUOTE "Missing a quote. This expression must contain an opening and closing quote."
 	</code>
 	
-	<h2>Known Bugs</h2>    
+	<h2>Known Bugs</h2>   
 	<p> Fill this in </p>
 	
-	    <h2>Example game</h2>
+	<h2>Future development plans</h2>
+	<ul>
+		<li>Improve error checking.</li>
+		<li>Add feature for count items.</li>
+		<li>Add feature to save and restore a game.</li>
+	</ul>
+	
+	<h2>Example game</h2>
     <p> Description of Game </p>
     <code>
     gameName = "*****The Haunted Mansion*****";
