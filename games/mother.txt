@@ -4,7 +4,7 @@
 */
 
 gameName = "*****Mother(Example Game) *****";
-gameCredits = "Tim Bennett, Johnathan Gillespie, Arron Jackson and David Cassie";
+gameCredits = "Tim Bennett, Johnathan Gillespie, Aaron Jackson and David Cassie";
 defaultResponse = "I do not know how to";
 
 Player mother{
