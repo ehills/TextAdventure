@@ -277,7 +277,7 @@ an item's verb or inside ItemDefaults.</p>
         } 
     }
 
-    // User command = look
+    // User command = look inputItem  // inputItem can be any item in the game.
     ItemDefaults {
         Verb "examine or x or look" { // All items in the game will have this verb.
         }
@@ -438,10 +438,10 @@ If not defined it defaults to "You do not know how to".</p>
     hideItems;
 
     // Hide items inside the bedroom.
-    hideItems bedroom;
+    bedroom hideItems;
 
     // Hide items inside the box.
-    hideItems box;
+    box hideItems;
             </code>
         </dd>
         <dt>showItems</dt>
@@ -449,10 +449,10 @@ If not defined it defaults to "You do not know how to".</p>
             <p>shows the items in an item or location. This is the default.</p>
             <code>
     // Show items inside the bedroom.
-    showItems bedroom;
+    bedroom showItems;
     
     // Show items inside the box.
-    showItems box;
+    box showItems;
             </code>
         </dd>
         <dt>setDescription</dt>
@@ -481,8 +481,8 @@ If not defined it defaults to "You do not know how to".</p>
         <dd>
             <p>checks to see if an item is in a location.</p>
             <code>
-    // Check to see if the player has a wrench item. 
-    if(locationName hasItem wrench){
+    // Check to see if the wrench is in the hallway. 
+    if(hallway hasItem wrench){
     } 
             </code>
         </dd>
@@ -502,7 +502,7 @@ If not defined it defaults to "You do not know how to".</p>
             <p> checks to see if the player or item is in a certain location.</p>
             <code>
     // Checks to see if the player is in the bedroom.
-    if(playerName inLocation Bedroom){
+    if(playerName inLocation bedroom){
     }
 
     // Checks to see if the player has the wrench.
@@ -515,12 +515,11 @@ If not defined it defaults to "You do not know how to".</p>
             <p>used with setLocation or inLocation to set or check the player's current location.</p>
             <code>
     // Checks to see if the wrench is in the currentLocation.
-    if(door inLocation currentLocation){
+    if(wrench inLocation currentLocation){
     }
 
     // Move the wrench to the currentLocation.
-    wrench setLocation currentLocation){
-    }
+    wrench setLocation currentLocation;
             </code>
         </dd>
         <dt>hasAttribute</dt>
@@ -549,7 +548,7 @@ If not defined it defaults to "You do not know how to".</p>
         </dd>
         <dt>canCarry</dt>
         <dd>
-            <p>used with the player's name to check if there's room in your inventory.</p>
+            <p>used with the player's name to check if there is room in your inventory.</p>
             <code>
     if (playerName canCarry) {
     }
