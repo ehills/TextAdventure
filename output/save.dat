@@ -1,8 +1,0 @@
-use wrench
-open window
-n
-e
-get lamp
-use lamp
-w
-w
