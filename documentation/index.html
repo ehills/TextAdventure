@@ -175,6 +175,11 @@
     */
        </code> 
 	  </li>
+	   <li>Can only use single quotes inside strings and not double quotes. Double quotes will cause a bug which will finish the string at the second set of double quotes.
+	    <code>
+    gameName = "This game is 'cool'...";
+       </code> 
+	  </li>
       <li>When creating a Player, Location or Item object, you must follow the type with a unique identifier like so:
 		<p>Note: Item and location unique identifiers cannot be the same, as items are treated as locations in a game.</p>
 		<code>
@@ -770,6 +775,8 @@ If not defined it defaults to "You do not know how to".</p>
 	
 	<h2>Known Bugs</h2>   
 	<p>If 'or' is used as a verb it will cause an error even though 'or' is not a verb. This can be easily fixed later on.</p>
+	<p>Can only use single quotes inside strings and not double quotes. Double quotes will cause a bug which will finish 
+	the string at the second set of double quotes.</p>
 	
 	<h2>Future development plans</h2>
 	<ul>
