@@ -31,6 +31,12 @@ public:
 	string defaultInventoryName;
 	string defaultInteractiveName;
 	string defaultNoObjects;
+	string restoreGameChoice;
+	string restoreGameMessage;
+	string newGameChoice;
+	string saveGame;
+	string saveGameMessage;
+	string gameSavedMessage;
 	Location *initialLocation;
 	list<string> errors;
 	map<string, Location*> locations;

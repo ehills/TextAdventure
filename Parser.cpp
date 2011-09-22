@@ -123,6 +123,12 @@ int Parser::ParseDefaults() {
 	this->defaultInventoryName = ParseStringData(this->file_data, "defaultInventoryName", "Inventory: ");
 	this->defaultInteractiveName = ParseStringData(this->file_data, "defaultInteractiveName", "Objects: ");
 	this->defaultNoObjects = ParseStringData(this->file_data, "defaultNoObjects", "None ");
+	this->restoreGameChoice = ParseStringData(this->file_data, "restoreGameChoice", "Restore Game.");
+	this->restoreGameMessage = ParseStringData(this->file_data, "restoreGameMessage", "Restore game from slot 0-9.");
+	this->newGameChoice = ParseStringData(this->file_data, "newGameChoice", "New Game.");
+	this->saveGame = ParseStringData(this->file_data, "saveGame", "save");
+	this->saveGameMessage = ParseStringData(this->file_data, "saveGameMessage", "Save game to slot 0-9.");
+	this->gameSavedMessage = ParseStringData(this->file_data, "gameSavedMessage", "Game successfully saved!");
 	return NO_ERRORS;
 }
 

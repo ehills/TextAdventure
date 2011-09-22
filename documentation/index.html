@@ -19,6 +19,8 @@
 
     <h2>Pleasant suprises</h2>
 	<ul>
+	  <li>Games can now be saved or restored. A game can be saved anytime during the game to slots 0-9 and restored when the game is loaded up from slots 0-9. 
+	  A game will only start with the choice to restore or start a new game if there is atleast one saved game, otherwise, the game will start a new game automatically.</li>
       <li>We have designed our language so that all verbs must be defined by the user, which means no verbs are hardcoded. This allows the nicety of being able to apply rules/logic to every verb in the game.</li>
 	  <li>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</li>
 	  <li>If a user wants a NPC (non-player character) in their game, it can be created and defined using an item object like so:
@@ -383,6 +385,48 @@ If not defined it defaults to "You do not know how to".</p>
     initialLocation = startLocation;
             </code>
         </dd>
+	<dt>saveGame</dt>
+        <dd>
+            <p>sets the word to be used when a user wants to save a game. This defaults to "save".</p>
+            <code>
+    saveGame = "save";
+            </code>
+        </dd>
+	<dt>saveGameMessage</dt>
+        <dd>
+            <p>sets the message that asks a user which slot they want to save their game too. Defaults to "Save game to slot 0-9.".</p>
+            <code>
+    saveGameMessage = "Save your game to slot 0-9";
+            </code>
+        </dd>
+	<dt>gameSavedMessage</dt>
+        <dd>
+            <p>sets the message for when a game is successfully saved. Defaults to "Game successfully saved!".</p>
+            <code>
+    gameSavedMessage = "Your game was saved.";
+            </code>
+        </dd>
+	<dt>restoreGameMessage</dt>
+        <dd>
+            <p>sets the message for chosing which slot to restore a game from. Defaults to "Restore game from slot 0-9.".</p>
+            <code>
+    restoreGameMessage = "Load game from slot 0-9";
+            </code>
+        </dd>
+	<dt>restoreGameChoice</dt>
+        <dd>
+            <p>sets the message for chosing to restore a game when a game is loaded up and a saved game is found. Defaults to "Restore Game.".</p>
+            <code>
+    restoreGameChoice = "Load game.";
+            </code>
+        </dd>
+	<dt>newGameChoice</dt>
+        <dd>
+            <p>sets the message for chosing to begin a new game when a game is loaded up and a saved game is found. Defaults to "New Game.".</p>
+            <code>
+    newGameChoice = "Begin new adventure.";
+            </code>
+        </dd>	
     </dl>
 
     <h3> Verb tags </h3>
