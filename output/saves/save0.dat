@@ -1,0 +1,11 @@
+open door
+use wrench
+l
+open window
+n
+e
+get lamp
+use lamp
+w
+w
+l

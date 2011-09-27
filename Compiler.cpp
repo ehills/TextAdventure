@@ -304,7 +304,7 @@ void Compiler::Compile() {
 			"	    }\n"
 			"   }\n"
 			"   getline(cin, command);\n"
-			"   restore_loop:"
+			"   restore_loop:\n"
 			"   if (command == \"\") {\n"
 			"		prompt = \">>> \"; \n"
 			"		goto main_loop; \n"

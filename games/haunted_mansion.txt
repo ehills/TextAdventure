@@ -305,7 +305,7 @@ Item bed {
 
 	Verb "sleep or nap" {
 		print "You lay down on the bed. As your eyes close you feel something lay down beside you. Your eyes flicker open but there is nobody there. You decide this is not a good place to take a nap.";
-		}
+	}
 }
 
 Item box {
