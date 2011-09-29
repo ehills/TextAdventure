@@ -1,0 +1,161 @@
+gameName = "Jeevesies Dialema";
+gameCredits = "By the TextAdventure team";
+defaultResponse = "Jeevesy don't have no clue how to";
+defaultInventoryName = "Jeeves' fings: ";
+defaultInteractiveName = "Other fings: ";
+defaultNoObjects = "Dere aight nufing in here";
+initialDescription = "You open your eyes slowly, as you do you realise you are in a closet at 1 o'clock in the morning. You glance down to check yourself for injury, you are fine but a name badge catches your eye. JEEVES! written in childish writing screams out at you. You begin to panic, claustrophobia grips you and drives you to take desperate measures to escape the clutches of the closet.";
+
+saveGame = "save";
+gameSavedMessage = "Jeeves's process is saved!";
+saveGameMessage = "Save game to which slot? 0-9.";
+restoreGameMessage = "Load game from which slot? 0-9.";
+restoreGameChoice = "Load Game";
+newGameChoice = "Start New Game";
+
+initialLocation = closet;
+
+Player jeeves {
+       carryLimit = 0;
+}
+
+Location swaparea {
+     name = "There is no point in having a name for this";
+     description = "There is no point in having a description for this";
+}
+
+Location closet {
+     name = "Jeevesies prison";
+     description = "The prison that Jeeves must escape. Its a pretty standard closet, lots of things to try combining.";
+}
+
+LocationDefaults {
+     Verb "look or l" {
+          describe;
+          list;
+     }
+     
+     Verb "quit or q" {
+          print "Bye bye thanks for playing!!!";
+          gameOver;
+     }
+
+     Verb "sit or sleep or rest or liedown" {
+          print "You rest your eyes for just a moment without realising the gas leak. You inhale to much gas and pass out. Tragically Jeeves dies from being deprived of oxygen. Try again!!";
+          gameOver;
+     }
+}
+
+ItemDefaults {
+
+     Verb "examine or x or ex or look or l" {
+          print inputItem getDescription;
+     }
+
+     Verb "eat or consume or scoff or swallow or drink" {
+          if (inputItem hasAttribute isEdible) {
+               print "You quickly scoff the inputItem and begin to have an allergic reaction. You can't breath at all and the lack of oxygen quick brings you closer and closer to death. You fall over and die. Well done;
+               gameOver;
+          } else {
+               print "Jeeves tried his hardest but could not get the inputItem down his gullet.";
+          }
+     }
+}
+
+Item door {
+     name = "door";
+     description = "It is a door which has push on it.";
+     location = closet;
+     hasAttributes = !isOpenable !isEdible;
+
+     Verb "open" {
+          print "How does Jeeves open it?";
+     }
+
+     Verb "push" {
+          print "The door says push but it is obviously a pull door.";
+     }
+     
+     Verb "pull" {
+          if (inputItem hasAttribute isOpenable) {
+              print "The door flies open and the morning sunrise glears into Jeeves eyes and he sighs a large sigh of relief. Thank god you were here to guide him through it.";
+              gameOver;
+          } else {
+              print "The door has no handle to pull.";
+          }
+     }
+}
+
+Item handle {
+     name = "Handle";
+     description = "A Door Handle";
+     location = closet;
+     hasAttributes = isEdible !isSticky;
+
+     Verb "use or stick or place Join: on Item: door" {
+          if (handle hasAttribute isSticky) {
+             print "You place the handle on the door and it bonds immediately. Impressive glue indeed.";
+             door setDescription "A door with a poorly attached door handle.";
+             door setAttribute isOpenable;
+             handle setLocation swaparea;
+          } else {
+             print "You stupidly place the handle on the door and it falls to the floor, there is nothing to make it stick.";
+          }
+     }
+
+     Verb "lather or use or cover or coat or apply Join: with Item: glue" {
+          print "You Smear the handle with the glue. Its now very sticky.";
+          handle setDescription "A Door Handle coated with a sticky substance.";
+          handle setAttribute isSticky;
+          glue setLocation swaparea;
+     }
+}
+
+Item glue {
+     name = "Glue";
+     description = "A Sticky substance made up of explosive flour and water, it looks very flamable";
+     location = swaparea;
+     hasAttributes = isEdible;
+
+     Verb "lather or use or apply Join: on Item: handle" {
+          print "You Smear the handle with the glue. Its now very sticky.";
+          handle setDescription "A Door Handle coated with a sticky substance.";
+          handle setAttribute isSticky;
+          glue setLocation swaparea;
+     }
+}
+
+Item flour {
+     name = "Flour";
+     description = "A Door Handle";
+     location = closet;
+     hasAttributes = isEdible;
+     
+     Verb "mix or use or combine Join: with or and Item: water" {
+          print "You combine the flour and water to create a very flammable and very sticky substance.";
+          glue setLocation closet;
+          water setLocation swaparea;
+          flour setLocation swaparea;
+     }
+}
+
+Item water {
+     name = "Water";
+     description = "A Small jug filled with brown water";
+     location = closet;
+     hasAttributes = isEdible;
+
+     Verb "mix or use or combine Join: with or and Item: flour" {
+          print "You combine the flour and water to create a very flammable and very sticky substance.";
+          glue setLocation closet;
+          water setLocation swaparea;
+          flour setLocation swaparea;
+     }
+}
+
+Item hat {
+     name = "Hat";
+     description = "A beige, Indiana Jones hat";
+     location = closet;
+     hasAttributes = isEdible;
+}
