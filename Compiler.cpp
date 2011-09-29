@@ -601,8 +601,8 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
-			string hack = "((" + verbs + ") && (" + joins + ") && (" + object + "->getName() == second_noun))";
-			output += "if (" + condition + " && (" + object + "->getName() == second_noun)) {\n";
+			string hack = "((" + verbs + ") && (" + joins + ") && (toLower(" + object + "->getName()) == toLower(second_noun)))";
+			output += "if (" + condition + " && (toLower(" + object + "->getName()) == toLower(second_noun))) {\n";
 			istringstream lines(data);
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
