@@ -601,7 +601,8 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
-			output += "if (" + condition + " && (" + object + "->getName() ==  second_noun)) {\n";
+			string hack = "((" + verbs + ") && (" + joins + ") && (" + object + "->getName() == second_noun))";
+			output += "if (" + condition + " && (" + object + "->getName() == second_noun)) {\n";
 			istringstream lines(data);
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
@@ -623,13 +624,15 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 				output += "}\n";
 			}
 
+			//output += "} else { \n cout << DEFAULT_RESPONSE << \" \" << command;\ngoto main_loop;\n";
 			output += "game_log += command +\"\\n\";\ngoto main_loop;";
 			rtr +="\nif (((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + "->getLocation()->getVariableName()" +
 					" && " + parser->player->getVariableName() + "->getLocation()->getShowItems()) " +
 					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\") " +
 					"|| " + parser->player->getVariableName() + "->getLocation()->itemHasItem(noun) " +
 					"|| " + parser->player->getVariableName() + "->getInventory()->itemHasItem(noun)) " +
-					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))) {\n"
+					"&& (toLower(noun) == toLower(\"" + item->getName() + "\"))"
+							"&& " + hack + ") {\n"
 					"" + output + "\n}\n";
 		}
 	}
