@@ -1,0 +1,202 @@
+/* Use these variables to change in-game words. They are optional. */
+
+gameName = "*****Tutorial*****";             // Set your game's name.
+gameCredits = "By Game Dev";                 // Set your game's credits.
+defaultResponse = "You do not know how to";  // Set your response if a user command is unknown.
+defaultInventoryName = "Inventory: ";        // Set the name of your inventory.
+defaultInteractiveName = "Objects: ";        // Set the word to be used for interactive objects.
+defaultNoObjects = "None";                   // Set phrase to be used if no item in a location.
+saveGame = "save";                           // Set word to be used to save a game.
+gameSavedMessage = "Game saved";             // Set message when a game is saved.
+saveGameMessage = "Save game to which slot? 0-9.";  // Set message to save game to slots 0-9.
+restoreGameMessage = "Load game from which slot? 0-9."; // Set message to load game from slot 0-9.
+restoreGameChoice = "Load Game";                        // Set message used to restore a game.
+newGameChoice = "Start New Game";                       // Set message used to start a new game.
+
+/* Create your player. A player has to be created for the game to work. */
+Player player { 
+    carryLimit = 10; // Sets how many items a player can hold.
+}
+
+/* Create Verbs that work for all items in the game. For 2 or 4 word user commands. */
+ItemDefaults {
+    
+    /* Examine an item */
+    Verb "examine or x or ex or look or l" {
+        print inputItem getDescription; // Use inputItem to refer to the item the verb is referring to
+    }
+    
+	
+	/* Pick up an item */
+	Verb "pickup or pick-up or get" {
+		if (inputItem hasAttribute canPickup) {
+			if (player hasItem inputItem) {
+	            print "You already have the inputItem.";
+	        } else {
+	         	if (player canCarry) {
+	                inputItem setLocation player;
+					print "You pickup the inputItem.";
+	            } else {
+	                print "You are carrying too much already.";
+                }
+            }
+        } else {
+        	print "You cannot pick up the inputItem what were you thinking...";
+        }
+    }
+    
+    /* Drop an item */
+    Verb "drop or discard or throwout or throw-out" {
+        if (player hasItem inputItem) {
+            inputItem setLocation currentLocation;
+			print "You drop the inputItem.";
+        } else {
+            print "You do not have a inputItem.";
+        }
+    }
+    
+    /* 4 word user command to put items in a desk if the item has the attribute putdesk and the desk is open */
+    Verb "put or place Join: into or in or inside Item: desk" {
+		if(inputItem hasAttribute putDesk) {
+				if(inputItem inLocation player) {
+					if(desk hasAttribute isOpen) {
+						inputItem setLocation desk;
+						print "You put the inputItem into the desk.";
+					} else {
+						print "You cannot do that the desk is closed.";
+					}
+				} else {
+					print "You do not have the inputItem.";
+				}
+		} else {
+			print "You cannot put the inputItem in the desk.";
+		}
+	}
+}
+
+/* Create global 1 word user commands */
+LocationDefaults {
+	
+	/* Show inventory */
+	Verb "i or inventory or invent or inv" {
+		describeInventory;
+	}
+    
+    /* Describe your current location */
+    Verb "look or l" {
+    	describe; // Describe current location.
+		list;     // Lists the items in the current location.
+    }
+    
+    /* Quit the game */
+    Verb "quit or q or exit" {
+    	print "Bye bye thanks for playing!!!";
+    	gameOver;
+    }   
+   
+  
+   Verb "north or n or nth" {
+    	if(player inLocation hasNorth) {
+    		player setLocation toNorth;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go north.";
+    	}
+    }
+    Verb "south or s or sth" {
+    	if(player inLocation hasSouth) {
+    		player setLocation toSouth;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go south.";
+    	}
+    }
+    Verb "east or e" {
+    	if(player inLocation hasEast) {
+    		player setLocation toEast;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go east.";
+    	}
+    }
+    Verb "west or w" {
+    	if(player inLocation hasWest) {
+    		player setLocation toWest;
+    		describe;
+			list;
+    	} else {
+    		print "You cannot go west.";
+    	}
+    }
+}
+
+initialLocation = lab; // Sets the starting location of the game.
+
+initialDescription = "Hi welcome to the tutorial."; // Sets the introduction of the game.
+
+/* All locations require a name and description. Exits are optional. */
+
+Location lab {
+    name = "lab";
+    description = "Place to learn.";
+}
+
+/* Create Items in the game. */
+
+Item key {
+	name = "key";
+	description = "A small key.";
+	location = lab;
+	hasAttributes = canPickup putDesk;
+
+	Verb "use" {
+		if(desk hasAttribute isLocked) {
+			if(player inLocation lab) {
+				print "You struggle to turn the key in the old desk but manage to unlock it.";
+				desk setAttribute !isLocked;
+			} else {
+				print "You can not use the key here.";
+			}
+		} else {
+				print "The desk is already unlocked.";
+		}
+	}
+}
+
+Item desk {
+	name = "desk";
+	description = "A large wooden desk.";
+	location = lab;
+	hasAttributes = !isOpen isLocked;
+	hideItems;
+
+	Verb "open" { 
+		if (desk hasAttribute !isLocked) {
+			if (desk hasAttribute !isOpen) {
+				desk showItems;
+				desk setAttribute isOpen;
+				print "You open the desk and find a ";
+				desk list;
+			} else {
+				print "The desk is already open.";
+			}
+		} else {
+			print "The desk is locked.";
+		}
+	}
+
+	Verb "close or shut" {
+		if(desk hasAttribute isOpen) {
+			desk hideItems;
+			desk setAttribute !isOpen;
+			print "You close the desk.";
+		} else {
+			print "The desk is already closed.";
+		}
+	}
+}
+
+
