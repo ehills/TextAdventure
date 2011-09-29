@@ -573,12 +573,13 @@ string Compiler::CompileVerbNoun(Item *item) {
 string Compiler::CompileVerbNounJoin(Item *item) {
 	map<string, string> verbs = item->getVerbs();
 	map<string, string>::reverse_iterator rit;
-	string line, output = "";
+	string line, rtr, output = "";
 	string object;
 
 	// Reverse iterate so that predefined item verbs get precedence over item default verbs.
 	for (rit = verbs.rbegin(); rit != verbs.rend(); rit++) {
 		string data = rit->second;
+		output = "";
 		// Replace inputItem
 		size_t pos = data.find("inputItem");
 		while (pos < data.size()) {
@@ -600,7 +601,7 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			string verbs = getSynonyms(rit->first.substr(0,start-1), "verb");
 			object = rit->first.substr(end+8);
 			string condition = "(" + verbs + ") && (" + joins + ")";
-			output += "if (" + condition + " && " + object + "->getName() ==  second_noun) {\n";
+			output += "if (" + condition + " && (" + object + "->getName() ==  second_noun)) {\n";
 			istringstream lines(data);
 			while (getline(lines, line)) {
 				output += CompileVerb(line);
@@ -621,8 +622,9 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 			for (int i=0; i < difference; i++) {
 				output += "}\n";
 			}
+
 			output += "game_log += command +\"\\n\";\ngoto main_loop;";
-			output = "if (((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + "->getLocation()->getVariableName()" +
+			rtr +="\nif (((" + parser->player->getVariableName() + "->getLocation()->getVariableName() == " + item->getVariableName() + "->getLocation()->getVariableName()" +
 					" && " + parser->player->getVariableName() + "->getLocation()->getShowItems()) " +
 					"|| " + parser->player->getVariableName() + "->getInventory()->hasItem(\"" + item->getVariableName() + "\") " +
 					"|| " + parser->player->getVariableName() + "->getLocation()->itemHasItem(noun) " +
@@ -631,7 +633,7 @@ string Compiler::CompileVerbNounJoin(Item *item) {
 					"" + output + "\n}\n";
 		}
 	}
-	return output;
+	return rtr;
 }
 
 /* Compiles the verb expressions */

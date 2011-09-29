@@ -145,6 +145,12 @@ Location lab {
     description = "Place to learn.";
 }
 
+/* Place to store items not currently being used */
+Location deadSpace {
+    name = "deadSpace";
+    description = "Dead space.";
+}
+
 /* Create Items in the game. */
 
 Item key {
@@ -199,5 +205,36 @@ Item desk {
 		}
 	}
 }
+	
+Item lighter {
+	name = "lighter";
+	description = "A lighter to burn stuff with.";
+	location = player;
+}
 
+Item ash {
+	name = "ash";
+	description = "pile of ash";
+	location = deadSpace;
+}
+	
+Item paper {
+	name = "paper";
+	description = "burn me.";
+	location = player;
+	
+	Verb "use or burn Join: with Item: lighter" {
+		if (paper inLocation player ) {
+			if (lighter inLocation player) {
+				print "You burn the paper and get a pile of ash.";
+				paper setLocation deadSpace;
+				ash setLocation player;
+			} else {
+				print "You don't have the lighter.";
+			}
+		} else {
+			print "You don't have the paper.";
+		}
+	}
+}
 
