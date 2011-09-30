@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Diff, A Different Biff</title>
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="styles/theme.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/prettify.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/interface.js"></script>
+  </head>
+
+  <body onload="">
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="index.html">Diff</a>
+          <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+			<li class="active"><a href="documentation.html">Documentation</a></li>
+			<li><a href="games.html">Games</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<a href="#" class="btn large" id="clearFormatting">Clear Code Formatting</a>
+    <div class="container">
+
+      <h1>Text adventure documentation</h1>
+
+    <h2>Introduction</h2>
+	<p>This is our user guide for our adaptation of BIFF - Basic interactive fiction format.</p>
+
+    <h2>Pleasant surprises</h2>
+	<ul>
+	  <li>Games can now be saved or restored. A game can be saved anytime during the game to slots 0-9 and restored when the game is loaded up from slots 0-9. 
+	  A game will only start with the choice to restore or start a new game if there is at least one saved game, otherwise, the game will start a new game automatically.</li>
+      <li>We have designed our language so that all verbs must be defined by the user, which means no verbs are hardcoded. This allows the nicety of being able to apply rules/logic to every verb in the game.</li>
+	  <li>We have made it possible that every word in the game can be defined by the user, so that a game can be written for any language.</li>
+	  <li>If a user wants a NPC (non-player character) in their game, it can be created and defined using an item object like so:
+	    <pre class="prettyprint">
+    // NPC creation using an item object.
+    Item shopkeeper {
+        name = "shopkeeper";
+        description = "This shopkeeper looks dodgy.";
+        location = shop;
+        Verb "talk" {rules here}
+    }
+	    </pre>
+	  </li>
+	  <li>If a user wants to override an ItemDefaults' verb with an Item's verb, all the user need do is set the Item's verb string to be identical to that of the ItemDefaults's verb string 
+	  they wish to override like so:
+	    <pre class="prettyprint">
+    // You pick up the item using ItemDefaults.   
+    ItemDefaults {
+        Verb "pickup or get" {rules} 
+    }
+    // You cannot pick up the wrench if the rules are set for that using an Item verb. This takes precedence over ItemDefaults.
+    Item wrench {
+        Verb "pickup or get" {rules} 
+    }
+	    </pre>
+	  </li>
+	</ul>
+	<p>Check out the example game at the end to see how everything works.</p>
+	
+	<h2>How to install the game parser</h2>    
+	<p>To compile the game parser which builds a game file, run the following command: </p>
+	<pre class="prettyprint"> 
+    // On Mac or Linux from the TextAdventure directory
+    make
+    </pre>
+	<pre class="prettyprint"> 
+    // On Windows from the TextAdventure directory
+    nmake
+	</pre>
+	
+	<h2>How to build a game</h2>    
+	<p>To build a game you simply pipe the file to the compiled TextAdventure compiler like so: </p>
+    <pre class="prettyprint"> 
+    // On Mac or Linux from the TextAdventure directory
+    ./TextAdventure games/haunted_mansion.txt
+    </pre>
+	<pre class="prettyprint"> 
+    // On Windows from the TextAdventure directory
+    TextAdventure games/haunted_mansion.txt
+    </pre>
+    <p>This will Generate a C++ file in the output folder where the other necessary files are already placed.</p>
+
+	<h2>How to install a game</h2>    
+	<p>After generating the game file, run the following commands to compile and run the game: </p>
+	<pre class="prettyprint">
+    // On Mac or Linux from the TextAdventure directory
+    cd output
+    make
+    ./Play
+    </pre>
+	<pre class="prettyprint">
+    // On Windows from the TextAdventure directory
+    cd output
+    nmake
+    play
+    </pre>
+	
+    <p>This uses a preconfigured MakeFile to compile using g++ (g++ is our default compiler) the C++ files along with the necessary classes.</p>
+    <p>To distribute the game just send the "Play" file to the desired destination.</p>
+    
+	<h2>Makefiles</h2>
+	<p>We have supplied makefiles for the g++ compiler and the cl compiler which are found in /TextAdventure/makefiles/. There are two makefiles 
+	required to install our program, one to compile the parser which goes in /TextAdventure/ and one to compile the game file which 
+	goes in /TextAdventure/output/. To change makefiles to a different compiler simply choose the compiler you wish to 
+	use from the makefiles directory and copy/paste the two makefiles into their corresponding directories.</p>
+    
+	<h2>Language constructs</h2>
+	
+    <h3>Syntax that resembles standard C</h3>
+    <p>Our little language's syntax closely resembles that of standard C syntax.</p>
+	<ul>
+	  <li>Player, Location, Item, ItemDefaults, LocationDefaults, Verb, if and else statements need to start with an opening brace and finish 
+	    with a closing brace like so:
+		<pre class="prettyprint">
+    Player sam {Player variables go here}
+    Location hallway {Location variables go here}
+    Item book {Item variables and two word (verb noun) or four word (verb noun join noun) verbs go here}
+    Verb "run" {Verb rules go here}
+    ItemDefaults {two word (verb noun) or four word (verb noun join noun) verbs go here}
+    LocationDefaults {single word verbs go here}
+    if(condition goes here){rules go here}else{rules go here}
+        </pre>
+	  </li>
+	  <li>Variable assignment is done with the '=' operator like so:
+	    <pre class="prettyprint">
+    name = "book";
+    description = "An old book.";
+    location = hallway;
+        </pre>
+	  </li>
+	  <li>All statements must start on a newline, end with a semicolon and there must be only one statement per line like so:
+	    <pre class="prettyprint">
+    initialLocation = hallway;
+    print "You open the door.";
+    hallway setDescription "The hallway of your house.";
+        </pre>
+	  </li>
+	  <li>If statements must have a conditional that will evaluate to either true or false inside open and closed brackets like so:
+	    <pre class="prettyprint">
+    if (currentLocation hasNorth) {rules go here}
+    if (currentLocation hasItem key) {rules go here}
+    if (wrench inLocation sam) {rules go here}
+        </pre>
+	  </li>
+	  <li>A string needs to be enclosed in quotes like so:
+        <pre class="prettyprint">
+    print "Hi there."; // String Hi there. is enclosed in quotes.
+    Verb "get or pickup" // Verb string needs to be enclosed in quotes.
+        </pre>
+	  </li>
+	  <li>Objects are referenced using their variable name like so:
+        <pre class="prettyprint">
+    location = hallway; // hallway is the name of a Location object.
+    if (book inLocation sam) // book is the name of an Item object and sam is the name of a Player object.
+        </pre>
+	  </li>
+	  <li>If and else statements can be nested like so:
+	    <pre class="prettyprint">
+    if (sam inLocation hallway) {
+        if(door hasAttribute isLocked) {
+            if(key inLocation sam) {
+                print "You unlock the door.";
+            } else {
+                print "You do not have the key.";
+            }
+        } else {
+            print "The door is already open";
+        }
+    } else {
+        print "You don't know how to do that here.";
+    }
+		</pre>
+	  </li>   
+	  <li>Single line comments // and block comments /* */ can be used like so:
+	    <pre class="prettyprint">
+    // Single line comment
+    
+    /*
+        This is a
+        multiline   
+        comment
+    */
+       </pre> 
+	  </li>
+	   <li>Can only use single quotes inside strings and not double quotes. Double quotes will cause a bug which will finish the string at the second set of double quotes.
+	    <pre class="prettyprint">
+    gameName = "This game is 'cool'...";
+       </pre> 
+	  </li>
+      <li>When creating a Player, Location or Item object, you must follow the type with a unique identifier like so:
+		<p>Note: Item and location unique identifiers cannot be the same, as items are treated as locations in a game.</p>
+		<pre class="prettyprint">
+    Player uniqueID {Player variables go here}
+    Location uniqeID {Location variables go here}
+    Item uniqueID {Item variables go here}
+		</pre>
+      </li>
+    </ul>
+	
+	<h3>Syntax unique to our language</h3>
+	<ul>
+	  <li>When a Verb is first created it must immediately be followed by a string defining the verb or verbs that refer to it.
+	    <pre class="prettyprint">
+    Verb "eat" {rules} // Verb string is "eat".
+    Verb "north or n or nth" {rules} // Verb string is "north or n or nth".
+		</pre>
+	  </li>
+		
+	  <li>Every statement must be on its own line. There must be no line breaks in the middle of a command </li>
+	</ul>
+	
+	<h3>Create the player in the game</h3>
+    <p>Note: Create only one player per game.</p>
+	  <pre class="prettyprint"> 
+    // This creates a player called sam with a carry limit of 5.
+    Player sam {
+        carryLimit = 5; // carryLimit must be set.
+    }
+     </pre>
+
+    <h3>Create the location in the game</h3>
+    <p>Note: north, south, east and west are set to NULL if not defined. Also if a location is defined as north, south, east or west that location has to be created.</p>
+
+    <pre class="prettyprint"> 
+    // This creates a location called myBedrooom with a hallway to the west and toilet to the east.    
+    // There are no locations to the north and south.
+    Location myBedroom { // This needs to be unique.
+        name = "bedroom"; // The name of myBedroom that you see in game. Name must be set.
+        description = "My bedroom is messy as always"; // Description must be set.
+        west = hallway; // Setting north, south, east and west is optional.
+        east = toilet;
+        hideItems; // The items in the bedroom are hidden. Locations are set to showItems by default so this is optional.
+    }
+    </pre>
+
+    <h3>Create an item in the game</h3>
+    <p>Note: Be careful not to have items with the same name in the same location.</p>
+
+    <pre class="prettyprint"> 
+    // This creates an Item object box, which is in the hallway. 
+    // It also has an attribute to isOpen.
+    Item box{ // This needs to be unique.
+        name = "box"; // The name of the item in game. Name must be set.
+        description = "A big box."; // Description must be set.
+        location = hallway; // The box is in the hallway.
+        // Note hasAttributes' value is not enclosed in quotes.
+        hasAttributes = isOpen; // The box isOpen. hasAttributes is optional.
+        hideItems; // The items in the box are hidden. Items are set to showItems by default so this is optional.
+        
+        // Item verbs defined within the Item object here
+        Verb "open" {rules} // Open the box. User command = open box
+        Verb "push" {rules} // Push the box. User command = push box
+    }
+    </pre>
+   
+    <h3>Verb rules</h3>
+	<p>All rules/logic are performed within a Verb by using if or if else statements, else if statements are not supported. These logical operators 
+	are not supported: AND (&#38;&#38;), OR (||), XOR (^) and NOT (!). This means only one condition can be used per if statement, however the language
+	allows as many if else statements to be nested as required.</p>
+	
+	<h3>One word user command and location default verbs</h3>
+	<p>The one word command is used as a global verb, which can be used in every location like: "north", "south", "east", "west", "quit", "inventory", "look". This feature is implemented inside LocationDefaults.</p>
+	
+	<pre class="prettyprint"> 
+    // User command = n
+    LocationDefaults {
+            Verb "north or n or nth" {
+                /*
+                 * rules go here
+                 * If the rules are set correctly the the player will move north.
+                 */
+            } 
+    }
+
+    // User command = i
+    LocationDefaults {
+        Verb "i or inventory or inv" {
+                /*
+                 * rules go here
+                 * If the rules are set correctly the player's inventory will be shown.
+                 */
+        } 
+    }
+    </pre>
+
+    <h3>Two word user command and item default verbs (verb noun pattern)</h3>
+    <p>The two word command pattern is used to do stuff like: "get wrench", "open door", "drop wrench", "use lamp" etc. This feature is implemented while defining
+an item's verb or inside ItemDefaults.</p>
+    <pre class="prettyprint">
+    // User command = get key
+    Item Key {
+        Verb "get or pickup" { // get or pickup the key.
+        } 
+    }
+
+    // User command = look inputItem  // inputItem can be any item in the game.
+    ItemDefaults {
+        Verb "examine or x or look" { // All items in the game will have this verb.
+        }
+    }
+    </pre>
+
+    <h3>Four word user command and item default verbs (verb noun join noun pattern)</h3>
+    <p>The four word command pattern is used to do stuff like: "put key into box". This feature is implemented while defining an item's verb or inside ItemDefaults
+by using the keyword "Join:" for the join word and synonyms, and "Item: to specify the second noun in the sentence".</p>
+    <pre class="prettyprint">
+    // User command = put key into box
+    Item key {
+        Verb "put or place Join: into or in or inside Item: box" { // Put or place the key into or in or inside the box.
+        }
+    }
+
+    // User command = take key from box
+    ItemDefaults {
+        Verb "take or get Join: from Item: box" { // All items in the game will have this verb and join command.
+        }
+    } 
+    </pre>
+
+    <h3>Synonyms</h3>
+    <p>We have implemented synonyms differently to BIFF. The user need only use "or" between verbs to write as many synonyms as they want.</p>
+    <pre class="prettyprint">
+    // North, n, and nth all refer to the same verb.
+    Verb "north or n or nth" {}.
+    </pre>
+
+    <h3>Attributes</h3>
+    <p>Item attributes are initialised during the creation of an item. These attributes are either true or false. False is indicated by having an '!' at the start of the attribute. The user can write as many attributes for an item as they want by using a space between them. Unlike BIFF we saw no reason to have global attributes because if an item does not have an attribute, it is set to false by default. Item attributes are used in verbs to allow items to be used in certain ways.</p>
+    <pre class="prettyprint">
+    // The door is closed but not locked.
+    Item door {
+        hasAttributes = isClosed !islocked;
+    } 
+    </pre>
+
+    <h2>Language functions</h2>
+    <h3> Standalone tags </h3>
+    <dl>
+      <dt>defaultInteractiveName</dt>
+        <dd>
+            <p>sets the heading for interactive objects in the game. If not defined it defaults to "Objects: ".</p>
+            <pre class="prettyprint">
+    // Value has to be enclosed in quotes.
+    defaultInteractiveName = "Items: ";
+            </pre>
+        </dd>
+     <dt>defaultInventoryName</dt>
+        <dd>
+            <p>sets the name of the inventory. If not defined it defaults to "Inventory".</p>
+            <pre class="prettyprint">
+     // Value has to be enclosed in quotes.
+    defaultInventoryName = "Game objects: ";
+            </pre>
+        </dd>
+        <dt>defaultNoObjects</dt>
+        <dd>
+            <p>sets the word to be used if there are no interactive objects in a room. Defaults to "None".</p>
+            <pre class="prettyprint">
+     // Value has to be enclosed in quotes.
+    defaultNoObjects = "Nothing here";
+            </pre>
+        </dd>
+        <dt>defaultResponse</dt>
+        <dd>
+            <p>response to be printed out if a command is unknown. It will append a space followed by the user's unknown command at the end of the response.
+If not defined it defaults to "You do not know how to".</p>
+            <pre class="prettyprint">
+     // Value has to be enclosed in quotes.
+    defaultResponse = "You cannot ";
+            </pre>
+        </dd>
+        <dt>gameName</dt>
+        <dd>
+            <p>sets a game's name. If not defined this will default to an empty string.</p>
+            <pre class="prettyprint">
+     // Value has to be enclosed in quotes.
+    gameName = "My Awesome Game";
+            </pre>
+        </dd>
+        <dt>gameCredits</dt>
+        <dd>
+            <p>sets a game's credits. If not defined this will default to an empty string.</p>
+            <pre class="prettyprint">
+     // Value has to be enclosed in quotes.
+    gameCredits = "By Frodo, Gandalf and Bilbo";
+            </pre>
+        </dd>
+        <dt>initialDescription</dt>
+        <dd>
+            <p>sets the game's introduction. If not defined this defaults to an empty string.</p>
+            <pre class="prettyprint">
+    initialDescription  = "Hi there welcome to My Awesome Game.";
+            </pre>
+        </dd>
+        <dt>initialLocation</dt>
+        <dd>
+            <p>sets the starting location for game. This must be set in order for the game to work.</p>
+            <pre class="prettyprint">
+    initialLocation = startLocation;
+            </pre>
+        </dd>
+	<dt>saveGame</dt>
+        <dd>
+            <p>sets the word to be used when a user wants to save a game. This defaults to "save".</p>
+            <pre class="prettyprint">
+    saveGame = "save";
+            </pre>
+        </dd>
+	<dt>saveGameMessage</dt>
+        <dd>
+            <p>sets the message that asks a user which slot they want to save their game too. Defaults to "Save game to slot 0-9.".</p>
+            <pre class="prettyprint">
+    saveGameMessage = "Save your game to slot 0-9";
+            </pre>
+        </dd>
+	<dt>gameSavedMessage</dt>
+        <dd>
+            <p>sets the message for when a game is successfully saved. Defaults to "Game successfully saved!".</p>
+            <pre class="prettyprint">
+    gameSavedMessage = "Your game was saved.";
+            </pre>
+        </dd>
+	<dt>restoreGameMessage</dt>
+        <dd>
+            <p>sets the message for chosing which slot to restore a game from. Defaults to "Restore game from slot 0-9.".</p>
+            <pre class="prettyprint">
+    restoreGameMessage = "Load game from slot 0-9";
+            </pre>
+        </dd>
+	<dt>restoreGameChoice</dt>
+        <dd>
+            <p>sets the message for chosing to restore a game when a game is loaded up and a saved game is found. Defaults to "Restore Game.".</p>
+            <pre class="prettyprint">
+    restoreGameChoice = "Load game.";
+            </pre>
+        </dd>
+	<dt>newGameChoice</dt>
+        <dd>
+            <p>sets the message for chosing to begin a new game when a game is loaded up and a saved game is found. Defaults to "New Game.".</p>
+            <pre class="prettyprint">
+    newGameChoice = "Begin new adventure.";
+            </pre>
+        </dd>	
+    </dl>
+
+    <h3> Verb tags </h3>
+    <dl>
+        <dt>gameOver</dt>
+        <dd>
+            <p>quits the game.</p>
+            <pre class="prettyprint">
+    gameOver;
+            </pre>
+        </dd>
+        <dt>inputItem</dt>
+        <dd>
+            <p>used only inside ItemDefault verbs to get the item being used. </p>
+            <pre class="prettyprint">
+    // Print using a string.    
+    print "You cannot go that way."; 
+    
+    // Using other game commands.
+    print currentLocation getDescription; 
+            </pre>
+        </dd>
+        <dt>describe</dt>
+        <dd>
+            <p>prints out the current location's name and description.</p>
+            <pre class="prettyprint">
+    describe;
+            </pre>
+        </dd>
+        <dt>describeInventory</dt>
+        <dd>
+            <p>prints out the player's inventory.</p>
+            <pre class="prettyprint">
+    describeInventory;
+            </pre>
+        </dd>
+        <dt>list</dt>
+        <dd>
+            <p>prints out the items in the current location or in a particular item.</p>
+            <pre class="prettyprint">
+    // Items in the current location.
+    list;
+
+    // Items in the box.
+    box list;
+            </pre>
+        </dd>
+        <dt>hideItems</dt>
+        <dd>
+            <p>hide the items in an item or location so that they cannot be seen by the player.</p>
+            <pre class="prettyprint">
+    // Hide items in an item or location during the creation of an item or location. Show items is the default.
+    hideItems;
+
+    // Hide items inside the bedroom.
+    bedroom hideItems;
+
+    // Hide items inside the box.
+    box hideItems;
+            </pre>
+        </dd>
+        <dt>showItems</dt>
+        <dd>
+            <p>shows the items in an item or location. This is the default.</p>
+            <pre class="prettyprint">
+    // Show items inside the bedroom.
+    bedroom showItems;
+    
+    // Show items inside the box.
+    box showItems;
+            </pre>
+        </dd>
+        <dt>setDescription</dt>
+        <dd>
+            <p>sets the description of an item or location.</p>
+            <pre class="prettyprint">
+    // Set description of the bedroom location.
+    bedroom setDescription "The bedroom is now dark.";
+
+    // Set description of the lamp item.
+    lamp setDescription "The lamp is now turned on.";
+            </pre>
+        </dd>
+        <dt>getDescription</dt>
+        <dd>
+            <p>gets the description of an item or location.</p>
+            <pre class="prettyprint">
+    // Gets the description of the bedroom location.    
+    bedroom getDescription;
+
+    // Gets the description of the lamp item.
+    lamp getDescription;
+            </pre>
+        </dd>
+        <dt>hasItem</dt>
+        <dd>
+            <p>checks to see if an item is in a location.</p>
+            <pre class="prettyprint">
+    // Check to see if the wrench is in the hallway. 
+    if(hallway hasItem wrench){
+    } 
+            </pre>
+        </dd>
+        <dt>setLocation</dt>
+        <dd>
+            <p>moves the player or an item to a location.</p>
+            <pre class="prettyprint">
+    // Moves the player to the bedroom location.
+    playerName setLocation bedroom;
+
+    // Sets the wrench item to the player's inventory location.
+    wrench setLocation playerName;
+            </pre>
+        </dd>
+        <dt>inLocation</dt>
+        <dd>
+            <p> checks to see if the player or item is in a certain location.</p>
+            <pre class="prettyprint">
+    // Checks to see if the player is in the bedroom.
+    if(playerName inLocation bedroom){
+    }
+
+    // Checks to see if the player has the wrench.
+    if(wrench inLocation playerName){
+    }
+            </pre>
+        </dd>
+        <dt>currentLocation</dt>
+        <dd>
+            <p>used with setLocation or inLocation to set or check the player's current location.</p>
+            <pre class="prettyprint">
+    // Checks to see if the wrench is in the currentLocation.
+    if(wrench inLocation currentLocation){
+    }
+
+    // Move the wrench to the currentLocation.
+    wrench setLocation currentLocation;
+            </pre>
+        </dd>
+        <dt>hasAttribute</dt>
+        <dd>
+            <p>checks to see if an item has a certain attribute.</p>
+            <pre class="prettyprint">
+    // Checks to see if the window is open.
+    if(window hasAttribute isOpen){
+    }
+
+    // Checks to see if the window is not open.
+    if(window hasAttribute !isOpen){
+    }
+            </pre>
+        </dd>
+        <dt>setAttribute</dt>
+        <dd>
+            <p>sets an item's attribute to true or false.</p>
+            <pre class="prettyprint">
+    // Sets the window's isOpen attribute to true.
+    window setAttribute isOpen;
+
+    // Sets the window's isOpen attribute to false.
+    window setAttribute !isOpen;
+            </pre>
+        </dd>
+        <dt>canCarry</dt>
+        <dd>
+            <p>used with the player's name to check if there is room in your inventory.</p>
+            <pre class="prettyprint">
+    if (playerName canCarry) {
+    }
+            </pre>
+        </dd>
+        <dt>setNorth</dt>
+        <dd>
+            <p>Sets a location to the north of another location.</p>
+            <pre class="prettyprint">
+    // Sets the lounge north of the hallway.
+    hallway setNorth lounge;
+            </pre>
+        </dd>
+		<dt>setSouth</dt>
+        <dd>
+            <p>Sets a location to the south of another location.</p>
+            <pre class="prettyprint">
+    // Sets the hallway south of the lounge.
+    lounge setSouth hallway;
+            </pre>
+        </dd>
+		<dt>setEast</dt>
+        <dd>
+            <p>Sets a location to the east of another location.</p>
+            <pre class="prettyprint">
+    // Sets the kitchen east of the lounge.
+    lounge setEast kitchen;
+            </pre>
+        </dd>
+		<dt>setWest</dt>
+        <dd>
+            <p>Sets a location to the west of another location.</p>
+            <pre class="prettyprint">
+    // Sets the lounge west of the kitchen.
+    kitchen setWest lounge;
+            </pre>
+        </dd>
+		<dt>removeNorth</dt>
+        <dd>
+            <p>Remove the north exit of a location.</p>
+            <pre class="prettyprint">
+    // Removes the north exit of the hallway.
+    hallway removeNorth;
+            </pre>
+        </dd>
+		<dt>removeSouth</dt>
+        <dd>
+            <p>Remove the south exit of a location.</p>
+            <pre class="prettyprint">
+    // Removes the south exit of the hallway.
+    hallway removeSouth;
+            </pre>
+        </dd>
+		<dt>removeEast</dt>
+        <dd>
+            <p>Remove the east exit of a location.</p>
+            <pre class="prettyprint">
+    // Removes the east exit of the hallway.
+    hallway removeEast;
+            </pre>
+        </dd>
+		<dt>removeWest</dt>
+        <dd>
+            <p>Remove the west exit of a location.</p>
+            <pre class="prettyprint">
+    // Removes the west exit of the hallway.
+    hallway removeWest;
+            </pre>
+        </dd>
+        <dt>toNorth</dt>
+        <dd>
+            <p>used with setLocation to move player north of current location.</p>
+            <pre class="prettyprint">
+    // Moves the player north.
+    playerName setLocation toNorth;
+            </pre>
+        </dd>
+        <dt>toSouth</dt>
+        <dd>
+            <p>used with setLocation to move player south of current location.</p>
+            <pre class="prettyprint">
+    // Moves the player south.
+    playerName setLocation toSouth;
+            </pre>
+        </dd>
+        <dt>toEast</dt>
+        <dd>
+            <p>used with setLocation to move player east of current location.</p>
+            <pre class="prettyprint">
+    // Moves the player east.
+    playerName setLocation toEast;
+            </pre>
+        </dd>
+        <dt>toWest</dt>
+        <dd>
+            <p>used with setLocation to move player west of current location.</p>
+            <pre class="prettyprint">
+    // Moves the player west.
+    playerName setLocation toWest;
+            </pre>
+        </dd>
+        <dt>hasNorth</dt>
+        <dd>
+            <p>Used to check if a given location has a north link</p>
+            <pre class="prettyprint">
+    // Checks to see if the current location has a location to the north.
+    if (currentLocation hasNorth){}  	
+            </pre>
+        </dd>
+        <dt>hasSouth</dt>
+        <dd>
+            <p>Used to check if a given location has a south link</p>
+            <pre class="prettyprint">
+    // Checks to see if the current location has a location to the south.
+    if (currentLocation hasSouth){} 
+            </pre>
+        </dd>
+        <dt>hasEast</dt>
+        <dd>
+            <p>Used to check if a given location has a east link</p>
+            <pre class="prettyprint">
+    // Checks to see if the current location has a location to the east.
+    if (currentLocation hasEast){} 
+            </pre>
+        </dd>
+        <dt>hasWest</dt>
+        <dd>
+            <p>Used to check if a given location has a west link</p>
+            <pre class="prettyprint">
+    // Checks to see if the current location has a location to the west.
+    if (currentLocation hasWest){} 
+            </pre>
+        </dd>
+    </dl>
+
+    <h2>Error checking</h2>
+	<p>All errors caused from bad syntax, bad logic or from compiling and building a game file incorrectly are expressed to the user with these constants.
+	There is a test game found at /TextAdventure/games/test.txt that tests for most of the basic syntax errors that can be encountered while creating a game.</p>
+	<pre class="prettyprint">
+    #define ERROR_WRONG_ARGUMENTS "Please enter one command line argument as the path to the file.\n"
+    #define ERROR_BAD_FILE "The file specified was not able to be opened.\n"
+    #define ERROR_TEMP_FILE_NOT_OPEN "The temporary file was unavailable.\n"
+    #define ERROR_UNCLOSED_COMMENT "There is an unclosed multiple line comment.\n"
+    #define BAD_LOCATION "Cannot find your location "
+    #define NO_LOCATION_NAME "Your location must have a name."
+    #define NO_ITEM "Cannot find item."
+    #define NO_LOCATION_DESCRIPTION "Your location does not have a description."
+    #define NO_JOINED_LOCATION "You are trying to join to a location that does not exist: "
+    #define NO_ITEM_NAME "Your item does not have a name."
+    #define NO_ITEM_DESCRIPTION "Your item does not have a description."
+    #define NO_ITEM_LOCATION "Your item is not associated with a location."
+    #define UNKNOWN_COMMAND "Unreadable/Unknown Command: \""
+    #define UNKNOWN_PRINT_STATEMENT "Unknown/ill-formed Print Statement."
+    #define INCOMPLETE_EXPRESSION "Your expression is incomplete."
+    #define BAD_CARRIABLE_EXPRESSION "Your carry expression is wrong."
+    #define BAD_INLOCATION "Your inLocation statement is incorrect."
+    #define BAD_BOOLEAN "Your boolean (true/false) expression is incorrect."
+    #define BAD_BRACES "Your open and close braces are not syntactically correct."
+    #define ONLY_ONE_LOCATION "You need more than one Location."
+    #define NO_LOCATIONS "You do not have any Locations."
+    #define PARSER_FAIL "The Parser did not complete without errors."
+    #define FILE_DID_NOT_OPEN "The file specified could not be opened."
+    #define INCOMPLETE_HASATTRIBUTE "Need to use a valid item before hasAttribute."
+    #define INCOMPLETE_SETATTRIBUTE "Need to use a valid item before getAttribute."
+    #define BAD_INITIAL_LOCATION "Need to set initialLocation."
+    #define NO_LOCATION_VARIABLE_NAME "Locations must have a unique variable name eg. Location uniqueName {}"
+    #define NO_ITEM_VARIABLE_NAME "Items must have a unique variable name eg. Item uniqueName {}"
+    #define NO_PLAYER_VARIABLE_NAME "Player must have a variable name eg. Player name {}"
+    #define BAD_VERB_STRING "Verbs must contain a non empty verb string eg. Verb \"n\" {}"
+    #define MISSING_EQUALS_OPERATOR "This expression must assign a value with an '=' operator."
+    #define MISSING_SEMICOLON "This expression must end with a ';' character."
+    #define MISSING_QUOTES "Missing both quotes. This expression must contain an opening and closing quote."
+    #define MISSING_QUOTE "Missing a quote. This expression must contain an opening and closing quote."
+	</pre>
+	
+	<h2>Known Bugs</h2>   
+	<p>If 'or' is used as a verb it will cause an error even though 'or' is not a verb. This can be easily fixed later on.</p>
+	<p>Can only use single quotes inside strings and not double quotes. Double quotes will cause a bug which will finish 
+	the string at the second set of double quotes.</p>
+	<p>Parser uses a line by line approach which fails if there is a line break in the middle of a statement.
+	<pre class="prettyprint">// A string written like this will break
+gameName = "
+
+
+asddadsas 
+
+
+";
+	</pre>
+	</p>
+	
+	<h2>Future development plans</h2>
+	<ul>
+		<li>Improve error checking.</li>
+		<li>Add feature for count items.</li>
+		<li>Add score feature.</li>
+		<li>Implement a token based parser instead of line by line parser.</li>
+	</ul>
+
+      <footer>
+        <p>&copy; Diff Language Corp 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

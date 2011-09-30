@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Diff, A Different Biff</title>
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="styles/theme.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/prettify.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/interface.js"></script>
+  </head>
+
+  <body onload="prettyPrint();">
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="index.html">Diff</a>
+          <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="active"><a href="tutorial.html">Tutorial</a></li>
+			<li><a href="documentation.html">Documentation</a></li>
+			<li><a href="games.html">Games</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<a href="#" class="btn large" id="clearFormatting">Clear Code Formatting</a>
+    <div class="container">
+        <h1>Tutorial</h1>
+		<p>In this tutorial I will walk you through the process of making a game in Diff. This will mainly focus on the creation of items and the interactions between them. This is to showcase the new ability of 4 word commands such as “use key on door” or “burn paper with match”. Also this will allow us to show that when using two objects together it is possible to create a new object, such as when you “burn paper with match” it will produce ash. </p>
+		
+		<p>The game we are going to make is a classic escape game where a player is stuck inside of a room for some reason and has to use the stuff around him to open the exit. The game is as follows:</p>
+		
+		<p class="sized"><em>You are a claustrophobic man named Jeeves who fell asleep in a closet and was accidentally locked in over night. As you wake up you begin to panic, you must find your way out of this single room by using your skills of combining objects. The wrong combination will be deadly and only a single combination of the objects around you will work to unlock the door. Jeeves has never been very clever, so to show this in the game we will be using poor grammar and other language techniques to bring this into the game.</em></p>
+
+		<div class="page-header">
+    	<h2>Setting Up The Game <small>Game settings, The Player and Locations</small></h2>
+  		</div>        
+	
+		<p>The first thing we want to do is set up the game defaults, player and our closet location. These are the things that make your game different from all other games in this language. It allows you to make the response from the game engine completely unique and accustomed to the tone of your game.</p>
+		
+		<pre class="prettyprint">
+gameName = "Jeevesies Dialema";
+gameCredits = "By the TextAdventure team";
+defaultResponse = "Jeevesy don’t have no clue how to";
+defaultInventoryName = "Jeeves’ fings: ";
+defaultInteractiveName = "Other fings: ";
+defaultNoObjects = "Dere aint nufin’ in here";
+initialDescription = “You open your eyes slowly, as you do you realise you are in a closet at 1 o’clock in the morning. You glance down to check yourself for injury, you are fine but a name badge catches your eye. JEEVES! written in childish writing screams out at you. You begin to panic, claustrophobia grips you and drives you to take desperate measures to escape the clutches of the closet.”;
+saveGame = "save";                       				
+gameSavedMessage = "Jeeves’s progress is saved!";         		
+saveGameMessage = "Save game to which slot? 0-9.";  	
+restoreGameMessage = "Load game from which slot? 0-9."; 
+restoreGameChoice = "Load Game"; 
+newGameChoice = "Start New Game";
+		</pre>
+
+	<p>Let’s move onto the player. I’m going to call the player Jeeves and he can only carry 5 objects at a time.</p>
+	
+		<pre class="prettyprint">
+Player Jeeves {
+        carryLimit = 5; 
+}
+		</pre>
+		
+		<p>The word Player specifies the type of object, the word Jeeves defines the unique ID given to this object and the carryLimit is set using the “=” sign.</p>
+		
+		<p>
+We have two locations we need. The obvious one is the closet Jeeves is locked in and the other is a less obvious one that will be used to swap objects in and out of the sight of the user. The person playing this game will not know about the second.</p>
+
+	<pre class="prettyprint">
+Location swaparea {
+        name = "There is no point in having a name for this";
+        description = "There is no point in having a description for this";
+}
+
+Location closet {
+        name = "Jeevesies prison";
+        description = "The prison that Jeeves must escape. Its a pretty standard closet, lots of things to try combining.";
+}
+		</pre>
+		
+		<p>At this point we have everything set up to start but the place where the player starts. initialLocation must be set to a valid location.</p>
+		
+		<pre class="prettyprint">
+initialLocation = closet;</pre>
+
+
+		<p>At this point we can compile and play the game but can’t do anything. We will simply be prompted by “Jeevesy don’t have no clue how to” (or what you set the defaultResponse to) along with the action you typed.</p>
+		
+		
+		<div class="page-header">
+    	<h2>Creating the actions of our game <small>One and two word verbs</small></h2>
+  		</div>
+		
+		<p>The basics of the game are set up but we want to actually do something. So we have to decide what we want to do. To simplify this example game I will not use an inventory, for an implementation check the example game in the documentation. Our basic one word commands are the easiest to set up. For this game we will have the following commands (aliases will be listed in the brackets):</p>
+		
+		<ul>
+			<li>quit (q) - quit the game and return to the terminal</li>
+			<li>look (l) - look at the current room</li>
+			<li>sit (sleep, rest, liedown) - lose the game by going to sleep</li>
+		</ul>
+				
+		<p>The first two are so the game is usable and the last one is to just annoy the player a bit. These are all placed within a tag called LocationDefaults which are the default actions for every location. This is where you would define verbs such as “up, down, north, east, south or west”. The following verb declarations will be placed inside this tag:</p>
+		
+		<pre class="prettyprint">LocationDefaults {
+}</pre>
+		
+		<p>Here are the two three-word verbs and will be similar in any game you create in this language:
+</p>
+
+<pre class="prettyprint">Verb "look or l" {
+        describe;
+        list;
+}
+
+Verb "quit or q" {
+        print "Bye bye thanks for playing!!!";
+        gameOver;
+}</pre>
+
+<p>Most of these commands are self explanatory.</p>
+<ul>
+	<li>list - lists all the items in the current location.</li>
+	<li>describe - prints out the description of the current location. print prints out a string. </li>
+	<li>gameOver - quits the game and stops execution.</li>
+</ul>
+<p>The sit verb will be the same as quit except you can add a humourous message instead of the goodbye message.</p>
+<pre class="prettyprint">Verb "sit or sleep or rest or liedown" {
+        print "You rest your eyes for just a moment without realising the gas leak. You inhale to much gas and pass out. Tragically Jeeves dies from being deprived of oxygen. Try again!";
+        gameOver;
+}</pre>
+
+<p>The next type is to add the two word verbs. These are the ones which interact with the items. The common ones like “examine key” or “eat pencil”. This is similar to the one word commands except these are placed either inside the item declaration themselves or the ItemDefaults field. We will be implementing examine and eat for starters and will add more later on when we add the objects.</p>
+
+<pre class="prettyprint">ItemDefaults {
+        Verb "examine or x or ex or look or l" {
+                print inputItem getDescription;
+        }
+	
+        Verb "eat or consume or scoff or swallow or drink" {
+                print “You quickly scoff the inputItem and begin to have an allergic reaction. You can’t breath at all and the lack of oxygen quick brings you closer and closer to death. You fall over and die. Well done.”;
+		gameOver;
+        }
+}</pre>
+
+<p>You may have noticed ItemDefaults has a special key word; inputItem. This word can be placed inside a string or where the variable name is placed. In a string it will be replaced by the name given to the item the action is run on and in the variable use it is as if you are using that item. Right now if you use eat on any item in the game you will die. This is not ideal and won’t make sense in most cases. One way of doing this is to override the eat action when the Item is defined. A better way is to take advantage of the attributes supplied by the Diff language. We will get to that when we start creating the Items.</p>
+
+<p>So at this point you can do the verbs and die in both case. We can’t test the two word commands because we have no verbs but you can test out sit and look commands. The next and final step is to add our Items.</p>
+
+<div class="page-header">
+    	<h2>Adding the complex interactions <small>four word verbs</small></h2>
+  		</div>
+
+<p>This section of the tutorial is where the game comes alive and we learn how to add things the player can interact with. The idea of the game is like a chemistry game; combine certain items in the room and get an item which will unlock the door. So a good start would be the door and the item to open it with. </p>
+
+<pre class="prettyprint">Item door {
+        name = "da closet door";
+        description = "It is a door which has push on it.";
+        location = closet;
+
+        Verb "open" {
+            print "How does Jeeves open it?";
+        }
+
+        Verb  "push" {
+            print "The door says push but it is obviously a pull door.";
+        }
+
+        Verb  "pull" {
+            print "The door has no handle to pull.";
+        }
+    }</pre>
+
+<p>The game will be won when the door is opened. To do this we will use an attribute to change the functionality pull action. So now we need to get some attributes going. Add the following lines below the location in the verb declaration of the door.</p>
+
+<pre class="prettyprint"> hasAttributes = !isOpenable !isEdible;</pre>
+<p>This is saying the isOpen and isEdible attributes are false. The isEdible is set so we can say its not an item which can be eaten as we defined above in the ItemDefaults. Go back and change the eat verb in ItemDefaults to include the attributes.</p>
+<pre class="prettyprint">Verb "eat or consume or scoff or swallow or drink" {
+	if (inputItem hasAttribute isEdible) {
+		print “You quickly scoff the inputItem and begin to have an allergic 
+		reaction. You can’t breath at all and the lack of oxygen quick brings you 
+		closer and closer to death. You fall over and die. Well done.”;
+		gameOver;
+	} else {
+		print “Jeeves tried his hardest but could not get inputItem down his gullet.”;
+	}
+}</pre>
+<p>Specifying the door is inEdible is rather redundant because the verbs are defaulted to false. This is only for clarity. This now means that the door can not be eaten. We can do a similar step with the pull action in the door.</p>
+<pre class="prettyprint">Verb "pull" {
+	if (inputItem hasAttribute isOpenable)  {
+    		print "The door flies open and the morning sunrise glears into Jeeves eyes and he sighs a large sigh of relief. Thank god you were here to guide him through it.";
+		gameOver;
+	} else {
+           print "The door has no handle to pull.";
+	}
+}</pre>
+<p>So our win case is set up. Now the other items are to be set up. Lets use the following Items:</p>
+<ol>
+<li>A handle - A handle to allow the user to open the door.</li>
+<li>Some Glue/Explosive Jelly - This is made by the combination of the flour and water. Can either be used with the handle or placed on the door to explode.</li>
+<li>Explosive Flour and Water to make the glue - Used to make the Glue</li>
+<li>Matches - Used to ignite the Glue</li>
+<li>A hat - Used to make Jeeves look nice (change his description)</li>
+</ol>
+
+<p>Lets start with the Item basics. Each Item can be set up to have a name and a description. This is similar to the Location initialisation. Items also have a location value which specifies what items are in which location. We can also use our Attributes again so we can specify which Items are edible or not.</p>
+
+<pre class="prettyprint">Item handle {
+        name = "Handle";
+        description = "A Door Handle";
+        location = closet;
+        hasAttributes = isEdible !isSticky;
+}
+Item glue {
+        name = "Glue";
+        description = "A Sticky substance made up of explosive flour and water, it looks very flamable";
+        location = swaparea;
+        hasAttributes = isEdible;
+}
+
+Item flour {
+        name = "Flour";
+        description = "A Door Handle";
+        location = Closet;
+        hasAttributes = isEdible;
+}
+
+Item water {
+        name = "Water";
+        description = "A Small jug filled with brown water";
+        location = closet;
+        hasAttributes = isEdible;
+}
+
+Item hat {
+        name = "Hat";
+        description = "A beige, Indiana Jones hat";
+        location = closet;
+        hasAttributes = isEdible;
+}</pre>
+<p>If we play the game now, we can eat all our items but that’s not a very fun game. Lets add the win case. The player will use a command such as “use handle on door” or “stick handle to door”. Notice we added the isSticky attribute, we will build on this next. Add the following verb to the handle:</p>
+
+<pre class="prettyprint">Verb "use or stick or place Join: on Item: door" {
+	if (handle hasAttribute isSticky) {
+		print “You place the handle on the door and it bonds immediately. Impressive glue indeed.”;
+		door setDescription "A door with a poorly attached door handle.";
+		door setAttribute isOpenable;
+		handle setLocation swaparea;
+	} else {
+		print "You stupidly place the handle on the door and it falls to the floor, 
+there is nothing to make it stick.";
+	}
+}</pre>
+<p>The setDescription method allows us to change the state of the objects in the game and add hints on what to do when the user has done something.</p>
+
+<p>
+The game can almost be won. Add the verb below into the Handle item to add the combination of the handle and the glue.</p>
+<pre class="prettyprint">Verb "lather or use or cover or coat or apply Join: with Item: glue" {
+	print “You Smear the handle with the glue. Its now very sticky.”;
+	handle setDescription "A Door Handle coated with a sticky substance.";
+	handle setAttribute isSticky;
+	glue setLocation swaparea;
+}</pre>
+<p>You could also add a similar verb to the glue item so both could be used. Now the glue has to be made. Add the following verb to the flour.</p>
+<pre class="prettyprint">Verb "mix or use or combine Join: with or and Item: water" {
+	print “You combine the flour and water to create a very flammable and very sticky substance.”;
+	glue setLocation closet;
+	water setLocation swaparea;
+	flour setLocation swaparea;
+}</pre>
+
+<p>And add the next verb to the water.</p>
+
+<pre class="prettyprint">Verb "mix or use or combine Join: with or and Item: flour" {
+	print “You combine the flour and water to create a very flammable and very sticky substance.”;
+	glue setLocation closet;
+	water setLocation swaparea;
+	flour setLocation swaparea;
+}</pre>
+<p>The game can now be won. The other extras can be done very easily. Try implementing the following verbs:</p>
+<ol>
+<li>Wear the hat. This would remove the hat to the swap area and set the description of Jeeves.</li>
+<li>ignite glue with match. This will explode and kill the character.</li>
+</ol>
+
+
+<div class="page-header">
+    	<h2>Final Thoughts <small>the next step</small></h2>
+  		</div>
+<p>A game in Diff can be very simple and create a very reactive game. The more you think about what the user might want to do the better your game will be. For more information about the commands in Diff check the documentation. This tutorial is only an introduction into the use of Items and the verbs. This tutorial has intentionally missed the use of player travels and inventory. Documentation of these are available in the example game.</p>
+      <footer>
+        <p>&copy; Diff Language Corp 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

@@ -26,7 +26,7 @@
 #define ONLY_ONE_LOCATION "You need more than one Location."
 #define NO_LOCATIONS "You do not have any Locations."
 #define PARSER_FAIL "The Parser did not complete without errors."
-#define FILE_DID_NOT_OPEN "The file specified was unable to be opened."
+#define FILE_DID_NOT_OPEN "The file specified could not be opened."
 #define INCOMPLETE_HASATTRIBUTE "Need to use a valid item before hasAttribute."
 #define INCOMPLETE_SETATTRIBUTE "Need to use a valid item before getAttribute."
 #define BAD_INITIAL_LOCATION "Need to set initialLocation."
