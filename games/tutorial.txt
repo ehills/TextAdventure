@@ -1,5 +1,6 @@
-/* Use these variables to change in-game words. They are optional. */
+/* A tutorial to make a game using Diff */
 
+/* Use these variables to change in-game words. They are optional. */
 gameName = "*****Tutorial*****";             // Set your game's name.
 gameCredits = "By Game Dev";                 // Set your game's credits.
 defaultResponse = "You do not know how to";  // Set your response if a user command is unknown.
@@ -21,13 +22,13 @@ Player player {
 /* Create Verbs that work for all items in the game. For 2 or 4 word user commands. */
 ItemDefaults {
     
-    /* Examine an item */
+    /* Examine an item, user command = 'x item'*/
     Verb "examine or x or ex or look or l" {
         print inputItem getDescription; // Use inputItem to refer to the item the verb is referring to
     }
     
 	
-	/* Pick up an item */
+	/* Pick up an item, user command = 'get item' */
 	Verb "pickup or pick-up or get" {
 		if (inputItem hasAttribute canPickup) {
 			if (player hasItem inputItem) {
@@ -45,7 +46,7 @@ ItemDefaults {
         }
     }
     
-    /* Drop an item */
+    /* Drop an item, user command = 'drop item' */
     Verb "drop or discard or throwout or throw-out" {
         if (player hasItem inputItem) {
             inputItem setLocation currentLocation;
@@ -56,6 +57,7 @@ ItemDefaults {
     }
     
     /* 4 word user command to put items in a desk if the item has the attribute putdesk and the desk is open */
+	/* user command = 'put item into desk' */
     Verb "put or place Join: into or in or inside Item: desk" {
 		if(inputItem hasAttribute putDesk) {
 				if(inputItem inLocation player) {
@@ -78,24 +80,25 @@ ItemDefaults {
 
 LocationDefaults {
 	
-	/* Show inventory */
+	/* Show inventory, user command = 'i' */
 	Verb "i or inventory or invent or inv" {
 		describeInventory;
 	}
     
- 	/* Describe current location and list items */
+ 	/* Describe current location and list items, user command = 'l' */
     Verb "look or l" {
           	describe;
 			list;
     }
     
-	/* Quit game */
+	/* Quit game, user command = 'q' */
 	Verb "quit or q or exit" {
     	print "Bye bye thanks for playing!!!";
     	gameOver;
     }   
     
     /* Set directions */
+	/* go north, user command = 'n' */
     Verb "north or n or nth" {
     	if(player inLocation hasNorth) {
     		player setLocation toNorth;
@@ -105,6 +108,7 @@ LocationDefaults {
     		print "You cannot go north.";
     	}
     }
+	/* go south, user command = 's' */
     Verb "south or s or sth" {
        	if(player inLocation hasSouth) {
     		player setLocation toSouth;
@@ -114,6 +118,7 @@ LocationDefaults {
     		print "You cannot go south.";
     	}
     }
+	/* go east, user command = 'e' */
     Verb "east or e" {
     	if(player inLocation hasEast) {
     		player setLocation toEast;
@@ -123,6 +128,7 @@ LocationDefaults {
     		print "You cannot go east.";
     	}
     }
+	/* go west, user command = 'w' */
     Verb "west or w" {
     	if(player inLocation hasWest) {
     		player setLocation toWest;
@@ -140,9 +146,10 @@ initialDescription = "Hi welcome to the tutorial."; // Sets the introduction of 
 
 /* All locations require a name and description. Exits are optional. */
 
+/* The start location of the game */
 Location lab {
     name = "lab";
-    description = "Place to learn.";
+    description = "Place to learn. \nThings to do: \n1) type 'pickup key' \n2) type 'use key' to unlock desk \n3) type 'open desk' \n4) type 'put key into desk'\n5) type 'close desk' \n6) type 'burn paper with lighter' \n7) type 'i' to see the ash in your inventory \n8) type 'q' to quit";
 }
 
 /* Place to store items not currently being used */
@@ -151,14 +158,16 @@ Location deadSpace {
     description = "Dead space.";
 }
 
-/* Create Items in the game. */
+/* Create Items in the game and their 2 and 4 word user command Verbs. */
 
+/* Create an item key that can be picked up and put into the desk. If used it unlocks the desk */
 Item key {
 	name = "key";
 	description = "A small key.";
 	location = lab;
 	hasAttributes = canPickup putDesk;
-
+	
+	/* user command = 'use key' */
 	Verb "use" {
 		if(desk hasAttribute isLocked) {
 			if(player inLocation lab) {
@@ -173,13 +182,16 @@ Item key {
 	}
 }
 
+/* Create an item desk that is closed and locked. Items inside are hidden from view initially. */
 Item desk {
 	name = "desk";
 	description = "A large wooden desk.";
 	location = lab;
 	hasAttributes = !isOpen isLocked;
 	hideItems;
-
+	
+	/* When the desk is opened it shows the items inside */
+	/* user command = 'open desk' */
 	Verb "open" { 
 		if (desk hasAttribute !isLocked) {
 			if (desk hasAttribute !isOpen) {
@@ -194,7 +206,9 @@ Item desk {
 			print "The desk is locked.";
 		}
 	}
-
+	
+	/* When the desk is closed it hides the items */
+	/* user command = 'close desk' */
 	Verb "close or shut" {
 		if(desk hasAttribute isOpen) {
 			desk hideItems;
@@ -205,24 +219,28 @@ Item desk {
 		}
 	}
 }
-	
+
+/* Create item lighter that when used with paper will burn it */
 Item lighter {
 	name = "lighter";
 	description = "A lighter to burn stuff with.";
 	location = player;
 }
 
+/* This is the item that will be produced when the paper is burned */
 Item ash {
 	name = "ash";
 	description = "pile of ash";
 	location = deadSpace;
 }
-	
+
+/* When the paper is burnt using the 4 word command 'burn paper with lighter' it will produce ash */
 Item paper {
 	name = "paper";
 	description = "burn me.";
 	location = player;
 	
+	/* user command = 'burn paper with lighter */
 	Verb "use or burn Join: with Item: lighter" {
 		if (paper inLocation player ) {
 			if (lighter inLocation player) {

@@ -405,7 +405,7 @@ Item wrench {
 	location = andy;
 	hasAttributes = canPickup putBox;
 
-	Verb = "use" {
+	Verb "use" {
 		if(andy inLocation garden) {
 			if(wrench inLocation andy) {
 				if(window hasAttribute isJammed) {
@@ -428,7 +428,7 @@ Item mansion_door {
 	description = "The mansion door is bolted shut. You will need to find another way in.";
 	location = garden;
 
-	Verb = "open" {
+	Verb "open" {
 		print "The mansion door is bolted shut. You will need to find another way in.";
 	}
 }
